@@ -1,0 +1,39 @@
+{
+  "name": "project-atelier",
+  "version": "1.0.0",
+  "description": "FEC project for Hack Reactor",
+  "main": "client/src/index.js",
+  "scripts": {
+    "client-dev": "npx webpack --watch",
+    "build": "webpack",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFP2209-CORN/FEC-Project-Atelier.git"
+  },
+  "keywords": [
+    "CORN"
+  ],
+  "author": "Hieu, Stephanie, Scott, Josh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFP2209-CORN/FEC-Project-Atelier/issues"
+  },
+  "homepage": "https://github.com/RFP2209-CORN/FEC-Project-Atelier#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
