@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RelatedItemsCard from './RelatedItemsCard.jsx'
 
 const RelatedItems = ({productId}) => {
   const [relatedItems, setRelatedItems] = useState([])
@@ -28,7 +29,9 @@ const RelatedItems = ({productId}) => {
 
   return (
     <div>
-      Related Items
+      {relatedItems.map((item) => {
+        return <RelatedItemsCard item={item}/>
+      })}
     </div>
   )
 }
