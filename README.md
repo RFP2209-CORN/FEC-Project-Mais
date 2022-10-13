@@ -3,7 +3,7 @@
 ## Setup instructions:
   1. `npm install`
 
-  2. copy content from `example.env` and create `.env` file
+  2. Make a copy of `example.env` and rename to `.env`
 
   3. `npm run server-dev`
 
