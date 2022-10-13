@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
+import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
 // import your components
 
@@ -21,6 +22,7 @@ const App = () => {
       {/* josh */}
 
       {/* QA */}
+      {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
 
       {/* Ratings */}
