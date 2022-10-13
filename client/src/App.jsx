@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
-
+import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
 // import your components
 
 const App = () => {
@@ -13,19 +14,21 @@ const App = () => {
       {/* whoever finishes first */}
 
       {/* Overview */}
+      {/* <Overview/> */}
       {/* steph */}
 
       {/* RelatedItems */}
+      {/* <RelatedItemsAndOutfits/> */}
       {/* josh */}
 
       {/* QA */}
-      <QuestionsAndAnswers />
+      {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
 
       {/* Ratings */}
       {/* scott */}
     </div>
-  )
+  );
 };
 
 export default App;

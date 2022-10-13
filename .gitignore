@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 .env
 node_modules
 client/dist
+=======
+node_modules
+client/dist
+.env
+>>>>>>> master
