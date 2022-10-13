@@ -1,5 +1,7 @@
+require("dotenv").config();
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -24,6 +26,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "client/src", "index.html"),
+    }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        GITHUB_API_KEY: JSON.stringify(process.env.GITHUB_API_KEY),
+      },
     }),
   ],
 }
