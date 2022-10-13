@@ -4,7 +4,7 @@
  *   https://github.com/hackreactor-labs/eslint-config-hackreactor
  */
 
-module.exports = {
+ module.exports = {
   env: {
     'es6': true
   },
