@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddAnswer = () => {
+const IndividualQuestion = () => {
 
   return (
     <div>
@@ -9,4 +9,4 @@ const AddAnswer = () => {
   )
 }
 
-export default AddAnswer;
+export default IndividualQuestion;
