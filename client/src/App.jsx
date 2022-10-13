@@ -1,9 +1,27 @@
 import React from 'react';
+// import your components
 
-function App() {
+const App = () => {
+// get request all relevant data
+
   return (
-    <div>Our app, an update</div>
+    <div>
+      {/* Navbar */}
+      {/* whoever finishes first */}
+
+      {/* Overview */}
+      {/* steph */}
+
+      {/* RelatedItems */}
+      {/* josh */}
+
+      {/* QA */}
+      {/* hieu */}
+
+      {/* Ratings */}
+      {/* scott */}
+    </div>
   )
-}
+};
 
 export default App;
