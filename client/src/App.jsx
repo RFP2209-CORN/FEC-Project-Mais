@@ -8,11 +8,6 @@ import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/R
 
 
 const App = () => {
-// get request all relevant data
-  // useEffect(() => {
-  //   axios.get('/products')
-  // });
-
   return (
     <div>
       {/* Navbar */}
@@ -29,7 +24,7 @@ const App = () => {
       {/* QA */}
       {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
-      <RatingsBreakdownSidebar />
+      {/* <RatingsBreakdownSidebar /> */}
       {/* Ratings */}
       {/* scott */}
     </div>

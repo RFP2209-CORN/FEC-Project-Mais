@@ -29,34 +29,28 @@ const RelatedItemsCard = ({item}) => {
   };
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${product.id}`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/reviews/${product.id}`)
       .then(result => {
         let reviews = result.data.results;
-        calcRating(reviews)
-      })
+        calcRating(reviews);
+      });
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/products/${product.id}/styles`)
       .then(result => {
         let styles = result.data.results;
-        console.log('styles:', styles)
 
         for (let i = 0; i < styles.length; i++) {
           if (styles[i]['default?'] === true) {
             setPrice(currStyle => {
-              return styles[i].original_price
-            })
+              return styles[i].original_price;
+            });
             setImgURL(currImg => {
-              return styles[i].photos[0].thumbnail_url
-            })
+              return styles[i].photos[0].thumbnail_url;
+            });
           }
-
         }
-      })
-  }, [])
+      });
+  }, []);
 
   return (
     <div>
