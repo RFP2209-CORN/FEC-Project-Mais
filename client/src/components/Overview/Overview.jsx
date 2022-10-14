@@ -7,7 +7,9 @@ import AddToCart from './AddToCart.jsx';
 
 const Overview = () => {
   const productId = '40344';
-  const [currentProduct, setCurrentProduct] = React.useState({});
+  const blankProduct = {name: '', slogan: '', description: '', category: '', features: []};
+  const [currentProduct, setCurrentProduct] = React.useState(blankProduct);
+  const [currentStyle, setCurrentStyle] = React.useState({});
   const [styles, setStyles] = React.useState([]);
 
   React.useEffect(() => {
@@ -20,17 +22,26 @@ const Overview = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`, {
       headers: {Authorization: process.env.GITHUB_API_KEY},
     })
-      .then(styles => setStyles(styles.data.results))
+      .then(styles => {
+        setStyles(styles.data.results);
+        for (let i = 0; i < styles.data.results.length; i++) {
+          if (styles.data.results[i]['default?']) {
+            setCurrentStyle(styles.data.results[i]);
+            defaultStyle = true;
+            break;
+          }
+        }
+      })
       .catch(err => console.log(err));
   }, []);
 
   return (
     <div>
-      Product Overview
-      <ImageGallery/>
-      <ProductInfo/>
-      <StyleSelector/>
-      <AddToCart/>
+      {/* Product Overview */}
+      {/* <ImageGallery/> */}
+      <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
+      {/* <StyleSelector/> */}
+      {/* <AddToCart/> */}
     </div>
   );
 };
