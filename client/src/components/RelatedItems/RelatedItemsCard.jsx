@@ -11,7 +11,7 @@ const RelatedItemsCard = ({item}) => {
     let totalStars = 0;
 
     for (let i = 0; i < reviews.length; i++) {
-      totalStars += reviews[i].rating
+      totalStars += reviews[i].rating;
     }
     let rating = totalStars / reviews.length;
     let floor = Math.floor(rating);
