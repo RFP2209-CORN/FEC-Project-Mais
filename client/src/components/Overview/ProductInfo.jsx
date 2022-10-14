@@ -7,7 +7,7 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
         <p>
           <span style={{textDecoration: 'line-through red'}}>{currentStyle.original_price}</span>
           <span> </span>
-          <span style={{color: 'red'}}>{currentStyle.original_price}</span>
+          <span style={{color: 'red'}}>{currentStyle.sale_price}</span>
         </p>
       );
     } else {

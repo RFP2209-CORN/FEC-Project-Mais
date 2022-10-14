@@ -8,8 +8,6 @@ import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/R
 
 
 const App = () => {
-// get request all relevant data
-
   return (
     <div>
       {/* Navbar */}
@@ -27,8 +25,8 @@ const App = () => {
       {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
 
-      {/* <RatingsBreakdownSidebar /> */}
       {/* Ratings */}
+      {/* <RatingsBreakdownSidebar /> */}
       {/* scott */}
     </div>
   );

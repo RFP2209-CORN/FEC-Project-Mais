@@ -13,8 +13,8 @@ const RelatedItemsAndOutfits = () => {
       <RelatedItems productId={productId}/>
       <OutfitCreation/>
     </>
-  )
-}
+  );
+};
 
 
 export default RelatedItemsAndOutfits;
