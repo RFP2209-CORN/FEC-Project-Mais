@@ -6,7 +6,8 @@ const StarRating = ({ rating }) => {
   while (stars.length < 5) {
     if (rating > 1) {
       stars.push(1);
-    } else if (rating > 0) {
+    }
+    else if (rating > 0) {
       let empty = Math.abs(0 - rating);
       let oneQuarter = Math.abs(0.25 - rating);
       let half = Math.abs(0.5 - rating);
@@ -40,22 +41,21 @@ const StarRating = ({ rating }) => {
         rating = rating - 1;
     }
 
-    return (
-      <div>
-          {stars.map((item, i) => {
-              return (
-                  <div className="single-star-container" key={i}>
-                      <div className="single-star-fill" style={{"width" : `${parseInt(item*31)}px`}}>
-                          <img className="single-star-outline" src="star.png" alt="stars alt"></img>
-                      </div>
-                  </div>
-              );
-          })}
-      </div>
+  return (
+    <div>
+        {stars.map((item, i) => {
+            return (
+                <div className="single-star-container" key={i}>
+                    <div style={{"color": "gold", "width" : `${parseInt(item*31)}px`}}>
+                      <i className="fa fa-star"/>
+                    </div>
+                </div>
+            );
+        })}
+    </div>
   );
 
-
- };
+};
 
 export default StarRating;
 
