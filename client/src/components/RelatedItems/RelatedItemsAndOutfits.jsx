@@ -11,7 +11,8 @@ const RelatedItemsAndOutfits = () => {
   return (
     <>
       <RelatedItems productId={productId}/>
-      <OutfitCreation/>
+      <br></br>
+      <OutfitCreation productId={productId}/>
     </>
   );
 };
