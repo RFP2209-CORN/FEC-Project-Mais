@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import IndividualAnswer from './IndividualAnswer.jsx';
+import axios from 'axios';
 
 // List of answers - Integrate into IndividualQuestion.jsx
-const AnswersList = ({ answersList }) => {
-  // console.log('answersList: ', answersList)
+const AnswersList = ({ question_id }) => {
+  // console.log('answersList: ', question_id);
+  const [answerList, setAnswerList] = useState([]);
 
-  // convert answersList Object into array for easy iteration
-  let convertAnswersListToArray = []
-  for (let key in answersList) {
-    convertAnswersListToArray.push(answersList[key])
-  }
+  const answerData = () => {
+    if (!answerList.length) {
+      return 'There are no answers yet';
+    } else {
+      return answerList.map(answer => {
+        return <IndividualAnswer answer={answer} key={answer.answer_id} />;
+      });
+    }
+  };
+
+  useEffect(() => {
+    axios.get(`/qa/questions/${question_id}/answers`)
+      .then(result => setAnswerList(result.data.results))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
     <div>
-      {/* if array length is 0, respond with no answers given */}
-      {!convertAnswersListToArray.length && 'There are no answers yet'}
-
-      {/* if array length is at least 1 map array for individual answer */}
-      {convertAnswersListToArray.length &&
-        convertAnswersListToArray.map(answer => {
-          return <IndividualAnswer answer={answer} key={answer.id} />
-        })}
+      {answerData()}
     </div>
-  )
+  );
 };
 
 export default AnswersList;

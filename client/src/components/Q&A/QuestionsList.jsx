@@ -9,10 +9,10 @@ const QuestionList = ({ questionsData }) => {
     <div>
       {/* Generate individual question item per product */}
       {questionsData.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} />
+        return <IndividualQuestion question={item} key={item.question_id} />;
       })}
     </div>
-  )
-}
+  );
+};
 
 export default QuestionList;
