@@ -20,13 +20,13 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      <RelatedItemsAndOutfits/>
+      {/* <RelatedItemsAndOutfits/> */}
       {/* josh */}
 
       {/* QA */}
       {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
-      <RatingsBreakdownSidebar />
+      {/* <RatingsBreakdownSidebar /> */}
       {/* Ratings */}
       {/* scott */}
     </div>

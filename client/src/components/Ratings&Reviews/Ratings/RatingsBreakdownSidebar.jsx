@@ -1,10 +1,7 @@
-// Ratings Breakdown Sidebar
-
-// state: product rating, number of reviews, number of ratings/star number
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StarRating from './StarRating.jsx';
+import StarRatingsChart from './StarRatingsChart.jsx';
 
 const RatingsBreakdownSidebar = ({ product_id }) => {
 
@@ -17,9 +14,9 @@ const RatingsBreakdownSidebar = ({ product_id }) => {
   const [oneStar, setOneStar] = useState(0);
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY}
-    })
+    // hardcoded product_id for now
+    product_id = 40344;
+    axios.get(`/reviews/${product_id}`)
       .then((results) => {
         let productReviews = results.data.results;
         console.log('productReviews', productReviews);
@@ -31,17 +28,44 @@ const RatingsBreakdownSidebar = ({ product_id }) => {
         let averageRating = totalRating / productReviews.length;
         averageRating = Math.round(averageRating * 10) / 10;
         setRating(averageRating);
+        getMetaData();
       })
       .catch((error) => {
         console.log(error)
       })
   }, []);
 
+
+  const getMetaData = () => {
+    // hardcoded product_id for now
+    product_id = 40344;
+    axios.get(`/reviews/meta/${product_id}`)
+      .then((results) => {
+        console.log('results.data from successful axios request to get meta data', results.data);
+        let individualRatings = results.data.ratings;
+        console.log('individualRatings', individualRatings);
+        for (var key in individualRatings) {
+          let ratings = individualRatings[key];
+          if (key === '1') {
+            setOneStar(parseInt(ratings))
+          } else if (key === '2') {
+            setTwoStar(parseInt(ratings));
+          } else if (key === '3') {
+            setThreeStar(parseInt(ratings));
+          } else if (key === '4') {
+            setFourStar(parseInt(ratings));
+          } else if (key === '5') {
+            setFiveStar(parseInt(ratings));
+          }
+        }
+      })
+  };
+
   return (
     <div>
-      <h2>
+      <h1>
         Ratings Breakdown
-      </h2>
+      </h1>
       <h1>
         {rating} &nbsp; <StarRating rating={rating}/>
       </h1>
@@ -51,32 +75,23 @@ const RatingsBreakdownSidebar = ({ product_id }) => {
     <div>
     </div>
     <h3>
-      5 star
+      5 star &nbsp; <StarRatingsChart />
     </h3>
     <h3>
-      4 star
+      4 star &nbsp; <StarRatingsChart />
     </h3>
     <h3>
-      3 star
+      3 star &nbsp; <StarRatingsChart />
     </h3>
     <h3>
-      2 star
+      2 star &nbsp; <StarRatingsChart />
     </h3>
     <h3>
-      1 star
+      1 star &nbsp; <StarRatingsChart />
     </h3>
     </div>
     );
-
 }
 
 export default RatingsBreakdownSidebar;
-
-
-
-
-
-// Stars and Stars Ratings
-
-// npm install react-rating-stars-component --save
 
