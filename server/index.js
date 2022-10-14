@@ -62,7 +62,6 @@ app.post('/reviews', (req, res) => {
     .then(result => res.end())
 });
 
-
 // Q&A
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`${url}/qa/questions/?product_id=${req.params.id}`, header)
