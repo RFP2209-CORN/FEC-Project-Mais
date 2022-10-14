@@ -18,13 +18,13 @@ const RelatedItemsCard = ({item}) => {
     let decimal = rating - floor;
 
     if (decimal <= .25) {
-      setRating(floor)
+      setRating(floor);
     } else if (decimal <= .5) {
-      setRating(floor + .25)
+      setRating(floor + .25);
     } else if (decimal <= .75) {
-      setRating(floor + .5)
+      setRating(floor + .5);
     } else {
-      setRating(floor + .75)
+      setRating(floor + .75);
     }
   };
 

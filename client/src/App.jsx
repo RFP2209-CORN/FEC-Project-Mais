@@ -7,6 +7,9 @@ import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOut
 
 const App = () => {
 // get request all relevant data
+  // useEffect(() => {
+  //   axios.get('/products')
+  // });
 
   return (
     <div>
