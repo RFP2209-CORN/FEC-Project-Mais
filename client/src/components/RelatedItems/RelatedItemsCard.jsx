@@ -11,52 +11,46 @@ const RelatedItemsCard = ({item}) => {
     let totalStars = 0;
 
     for (let i = 0; i < reviews.length; i++) {
-      totalStars += reviews[i].rating
+      totalStars += reviews[i].rating;
     }
     let rating = totalStars / reviews.length;
     let floor = Math.floor(rating);
     let decimal = rating - floor;
 
     if (decimal <= .25) {
-      setRating(floor)
+      setRating(floor);
     } else if (decimal <= .5) {
-      setRating(floor + .25)
+      setRating(floor + .25);
     } else if (decimal <= .75) {
-      setRating(floor + .5)
+      setRating(floor + .5);
     } else {
-      setRating(floor + .75)
+      setRating(floor + .75);
     }
   };
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${product.id}`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/reviews/${product.id}`)
       .then(result => {
         let reviews = result.data.results;
-        calcRating(reviews)
-      })
+        calcRating(reviews);
+      });
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product.id}/styles`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/products/${product.id}/styles`)
       .then(result => {
         let styles = result.data.results;
-        console.log('styles:', styles)
 
         for (let i = 0; i < styles.length; i++) {
           if (styles[i]['default?'] === true) {
             setPrice(currStyle => {
-              return styles[i].original_price
-            })
+              return styles[i].original_price;
+            });
             setImgURL(currImg => {
-              return styles[i].photos[0].thumbnail_url
-            })
+              return styles[i].photos[0].thumbnail_url;
+            });
           }
-
         }
-      })
-  }, [])
+      });
+  }, []);
 
   return (
     <div>
