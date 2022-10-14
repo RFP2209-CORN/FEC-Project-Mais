@@ -1,11 +1,16 @@
 import React from 'react';
 import IndividualQuestion from './IndividualQuestion.jsx';
 
-const QuestionList = () => {
+// Question List - Integrate into Q&A Overview
+const QuestionList = ({ questionsData }) => {
+  // console.log(questionsData)
 
   return (
     <div>
-
+      {/* Generate individual question item per product */}
+      {questionsData.map(item => {
+        return <IndividualQuestion question={item} key={item.question_id} />
+      })}
     </div>
   )
 }
