@@ -4,7 +4,6 @@ const AskAQuestion = () => {
 
   return (
     <div>
-      "Ask a Question"
     </div>
   )
 }
