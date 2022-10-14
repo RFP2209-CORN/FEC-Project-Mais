@@ -8,6 +8,7 @@ const OutfitCard = ({ outfit }) => {
   const [imgURL, setImgURL] = useState();
 
   // Need to abstract this function or Scott's function to App
+  // need to determine how to round
   const calcRating = (reviews) => {
     let totalStars = 0;
 
