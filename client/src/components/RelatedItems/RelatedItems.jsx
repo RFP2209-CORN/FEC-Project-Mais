@@ -3,38 +3,32 @@ import axios from 'axios';
 import RelatedItemsCard from './RelatedItemsCard.jsx'
 
 const RelatedItems = ({productId}) => {
-  const [relatedItems, setRelatedItems] = useState([])
+  const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/related`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
-      .then(result => {
-        console.log(result);
-
-        for (let id of result.data) {
-          axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`, {
-            headers: {Authorization: process.env.GITHUB_API_KEY},
-          })
-            .then(result =>
+    axios.get(`/products/${productId}/related`)
+      .then(relatedProducts => {
+        for (let id of relatedProducts.data) {
+          axios.get(`/products/${id}`)
+            .then(product => {
               setRelatedItems(currProducts => {
-                return [...currProducts, result.data]
-              }
-            ))
+                return [...currProducts, product.data];
+              });
+            });
         }
       })
-      .catch(err => console.log(err))
-  }, [])
+      .catch(err => console.log(err));
+  }, []);
 
 
   return (
     <div>
       {relatedItems.map((item) => {
-        return <RelatedItemsCard item={item}/>
+        return <RelatedItemsCard key={item.id} item={item}/>;
       })}
     </div>
-  )
-}
+  );
+};
 
 
 export default RelatedItems;

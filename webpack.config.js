@@ -21,6 +21,10 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      }
     ]
   },
   plugins: [
@@ -34,3 +38,58 @@ module.exports = {
     }),
   ],
 }
+
+// from the TAA
+// module: {
+//   rules: [
+//     {
+//       test: /\.(js|jsx)$/,
+//       exclude: /nodeModules/,
+//       use: {
+//         loader: "babel-loader",
+//       },
+//     },
+//     {
+//       test: /\.css$/i,
+//       use: ["style-loader", "css-loader"],
+//     },
+//     {
+//       test: /\.(png|svg|jpg|jpeg|gif)$/i,
+//       type: "asset/resource",
+//     },
+//   ],
+// },
+
+
+// from stack overflow
+// const path = require('path');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+// module.exports = {
+//   entry: './src/index.js',
+//   output: {
+//     filename: 'bundle.js',
+//     path: path.resolve(__dirname, 'dist'),
+//   },
+//   plugins: [
+//     new HtmlWebpackPlugin({
+//         template: './src/index.html',
+//     }),
+//     new MiniCssExtractPlugin({
+//       filename: '[name].css',
+//     }),
+//   ],
+//   module: {
+//     rules: [
+//       {
+//         test: /\.scss$/,
+//         use: [
+//             { loader: MiniCssExtractPlugin.loader },
+//             'css-loader',
+//             'sass-loader'
+//         ],
+//       },
+//     ],
+//   },
+// };
