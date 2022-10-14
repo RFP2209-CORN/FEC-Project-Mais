@@ -69,8 +69,8 @@ app.get('/qa/questions/:id', (req, res) => {
 });
 
 /////endpoint not working
-app.get('/qa/questions/:question_id/answers', (req, res) => {
-  axios.get(`${url}/qa/questions/?question_id=${req.params.id}/answers`, header)
+app.get('/qa/questions/:id/answers', (req, res) => {
+  axios.get(`${url}/qa/questions/${req.params.id}/answers`, header)
     .then(result => res.status(200).send(result.data));
 });
 
