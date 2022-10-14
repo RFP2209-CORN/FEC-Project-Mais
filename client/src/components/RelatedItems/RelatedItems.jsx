@@ -30,7 +30,7 @@ const RelatedItems = ({productId}) => {
   return (
     <div>
       {relatedItems.map((item) => {
-        return <RelatedItemsCard item={item}/>
+        return <RelatedItemsCard key={item.id} item={item}/>
       })}
     </div>
   )
