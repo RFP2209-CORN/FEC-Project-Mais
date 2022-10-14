@@ -4,7 +4,7 @@ const AddAnswer = () => {
 
   return (
     <div>
-      "Add Answer"
+
     </div>
   )
 }
