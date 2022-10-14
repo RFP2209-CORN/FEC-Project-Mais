@@ -1,6 +1,6 @@
 // all the reviews posted on the screen
 
-const ReviewList = () => {
+const ReviewsList = () => {
 
   return (
     <div>
@@ -10,4 +10,4 @@ const ReviewList = () => {
 }
 
 
-export default ReviewList;
+export default ReviewsList;
