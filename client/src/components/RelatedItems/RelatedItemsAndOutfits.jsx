@@ -3,15 +3,19 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
-const productId = 40344;
+const productId = 40351;
 
 const RelatedItemsAndOutfits = () => {
-
+  useEffect(() => {
+    axios.get('/products')
+      .then(result => console.log('all products', result))
+  });
 
   return (
     <>
       <RelatedItems productId={productId}/>
-      <OutfitCreation/>
+      <br></br>
+      <OutfitCreation productId={productId}/>
     </>
   );
 };
