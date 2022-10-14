@@ -24,8 +24,9 @@ const App = () => {
       {/* QA */}
       {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
-      {/* <RatingsBreakdownSidebar /> */}
+
       {/* Ratings */}
+      {/* <RatingsBreakdownSidebar /> */}
       {/* scott */}
     </div>
   );

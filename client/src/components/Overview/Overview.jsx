@@ -27,7 +27,6 @@ const Overview = () => {
         for (let i = 0; i < styles.data.results.length; i++) {
           if (styles.data.results[i]['default?']) {
             setCurrentStyle(styles.data.results[i]);
-            defaultStyle = true;
             break;
           }
         }
@@ -35,12 +34,16 @@ const Overview = () => {
       .catch(err => console.log(err));
   }, []);
 
+  const changeCurrentStyle = (style) => {
+    setCurrentStyle(style);
+  };
+
   return (
     <div>
       {/* Product Overview */}
       {/* <ImageGallery/> */}
-      <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
-      {/* <StyleSelector/> */}
+      {/* <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/> */}
+      <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle}/>
       {/* <AddToCart/> */}
     </div>
   );
