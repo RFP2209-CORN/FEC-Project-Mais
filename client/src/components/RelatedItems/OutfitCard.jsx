@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice }) => {
-  const [product, setProduct] = useState(item);
+const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice }) => {
+  const [product, setProduct] = useState(outfit);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState(null);
@@ -27,16 +27,16 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice })
   }, []);
 
 
-
   return (
-    <div className="card-container">
+    <div>
+      OutfitCard
       <img src={imgURL}/>
-      <div>category {item.category}</div>
-      <div>product name {item.name}</div>
+      <div>category {outfit.category}</div>
+      <div>product name {outfit.name}</div>
       {renderPrice(salesPrice, originalPrice)}
       <div>star rating {rating}</div>
     </div>
   );
 };
 
-export default RelatedItemsCard;
+export default OutfitCard;
