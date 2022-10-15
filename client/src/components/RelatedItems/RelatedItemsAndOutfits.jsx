@@ -3,12 +3,12 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
-const productId = 40351;
+const productId = 40344;
 
 const RelatedItemsAndOutfits = () => {
   useEffect(() => {
     axios.get('/products')
-      .then(result => console.log('all products', result))
+      .then(result => console.log('all products', result));
   });
 
   /// Why isn't an image registering for Bright Future Sunglasses
@@ -32,16 +32,16 @@ const RelatedItemsAndOutfits = () => {
   const renderPrice = (salesPrice, originalPrice) => {
     if (salesPrice) {
       return (
-        <p>
+        <div className="card-price">
           <br></br>
-          <span style={{textDecoration: 'line-through red'}}>{originalPrice}</span>
+          <span style={{textDecoration: 'line-through red'}}>${originalPrice}</span>
           <br></br>
-          <span style={{color: 'red'}}>{salesPrice}</span>
-        </p>
+          <span style={{color: 'red'}}>${salesPrice}</span>
+        </div>
       );
     } else {
       return (
-        <p>{originalPrice}</p>
+        <div className="card-price">${originalPrice}</div>
       );
     }
   };
@@ -76,12 +76,12 @@ const RelatedItemsAndOutfits = () => {
         renderPrice={renderPrice}
       />
       <br></br>
-      <OutfitCreation
+      {/* <OutfitCreation
         productId={productId}
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
-      />
+      /> */}
     </>
   );
 };

@@ -57,19 +57,49 @@
 ========================================
 */
 
-/* .card-list {
+.card-container {
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: stretch;
-  max-width: 100px;
-  max-height: 200px;
-  border: solid;
-} */
+  justify-content: center;
+}
 
-/* .card-container {
-  display
-} */
+.card {
+  width: 270px;
+  height: 400px;
+  margin: 10px;
+  border: solid black;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.card-image {
+  justify-content: center;
+  background-color: grey;
+  height: 75%;
+  /* margin-bottom: 5px; */
+}
+
+.card-category, .card-name, .card-price, .card-rating {
+  padding-left: 5px;
+  margin: 5px;
+}
+
+.card-category {
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.card-name {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-price {
+  font-size: small;
+}
+
+.card-rating {
+
+}
 
 
 /*

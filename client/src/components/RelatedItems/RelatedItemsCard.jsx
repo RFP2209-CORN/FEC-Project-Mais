@@ -29,12 +29,12 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice })
 
 
   return (
-    <div className="card-container">
-      <img src={imgURL}/>
-      <div>category {item.category}</div>
-      <div>product name {item.name}</div>
+    <div className="card">
+      <img className="card-image" src={imgURL}/>
+      <p className="card-category">{item.category}</p>
+      <div className="card-name">{item.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div>star rating {rating}</div>
+      <div className="card-rating">{rating}</div>
     </div>
   );
 };
