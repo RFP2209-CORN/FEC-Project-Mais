@@ -11,7 +11,7 @@ const RelatedItemsAndOutfits = () => {
       .then(result => console.log('all products', result))
   });
 
-  // saleAndImageSetter goes here
+  /// Why isn't an image registering for Bright Future Sunglasses
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
@@ -22,7 +22,6 @@ const RelatedItemsAndOutfits = () => {
         };
       }
     }
-    // if we get here, there wasn't a default style
     return {
       sale: styles[0].sale_price,
       ogPrice: styles[0].original_price,
@@ -30,7 +29,22 @@ const RelatedItemsAndOutfits = () => {
     };
   };
 
-  // renderPrice goes here
+  const renderPrice = (salesPrice, originalPrice) => {
+    if (salesPrice) {
+      return (
+        <p>
+          <br></br>
+          <span style={{textDecoration: 'line-through red'}}>{originalPrice}</span>
+          <br></br>
+          <span style={{color: 'red'}}>{salesPrice}</span>
+        </p>
+      );
+    } else {
+      return (
+        <p>{originalPrice}</p>
+      );
+    }
+  };
 
   const calcRating = (reviews) => {
     let totalStars = 0;
@@ -55,9 +69,19 @@ const RelatedItemsAndOutfits = () => {
 
   return (
     <>
-      <RelatedItems productId={productId} calcRating={calcRating} saleAndImageSetter={saleAndImageSetter}/>
+      <RelatedItems
+        productId={productId}
+        calcRating={calcRating}
+        saleAndImageSetter={saleAndImageSetter}
+        renderPrice={renderPrice}
+      />
       <br></br>
-      <OutfitCreation productId={productId} calcRating={calcRating} saleAndImageSetter={saleAndImageSetter}/>
+      <OutfitCreation
+        productId={productId}
+        calcRating={calcRating}
+        saleAndImageSetter={saleAndImageSetter}
+        renderPrice={renderPrice}
+      />
     </>
   );
 };

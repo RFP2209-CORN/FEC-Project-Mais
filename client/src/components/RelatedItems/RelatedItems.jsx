@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItemsCard from './RelatedItemsCard.jsx'
 
-const RelatedItems = ({ productId, calcRating, saleAndImageSetter }) => {
+const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice }) => {
   const [relatedItems, setRelatedItems] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,15 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter }) => {
   return (
     <div className="card-list">
       {relatedItems.map((item) => {
-        return <RelatedItemsCard key={item.id} item={item} calcRating={calcRating} saleAndImageSetter={saleAndImageSetter}/>;
+        return (
+          <RelatedItemsCard
+            key={item.id}
+            item={item}
+            calcRating={calcRating}
+            saleAndImageSetter={saleAndImageSetter}
+            renderPrice={renderPrice}
+          />
+        );
       })}
     </div>
   );
