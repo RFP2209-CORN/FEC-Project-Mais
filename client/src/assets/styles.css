@@ -57,7 +57,7 @@
 ========================================
 */
 
-.card-list {
+/* .card-list {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -65,7 +65,7 @@
   max-width: 100px;
   max-height: 200px;
   border: solid;
-}
+} */
 
 /* .card-container {
   display
