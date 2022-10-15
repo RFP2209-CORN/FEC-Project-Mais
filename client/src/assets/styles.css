@@ -4,38 +4,16 @@
 ========================================
 */
 
+.flexbox-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .single-star-container {
-  height: 36px;
-  width: 31px;
+  height: 30px;
+  width: 24px;
   display: inline-block;
-  /* background-color: white; */
-}
-
-.star-ratings-chart {
-  border: 1px solid #ccc;
-  padding: 5px;
-}
-
-.star-ratings-chart table {
-  width: 100%;
-}
-
-.star-ratings-chart h1 {
-  font-size: 150%;
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
-}
-
-.star-ratings-chart h1 small {
-  font-size: 60%;
-  color: #888888;
-}
-
-.star-ratings-chart p {
-  font-size: 90%;
-  font-weight: 400;
-  color: #888888;
-  margin: 3px;
+  white-space: nowrap;
+  background-color: white;
 }
 
