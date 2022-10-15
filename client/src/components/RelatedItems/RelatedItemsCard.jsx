@@ -53,7 +53,7 @@ const RelatedItemsCard = ({item}) => {
   }, []);
 
   return (
-    <div>
+    <div className="card-container">
       <img src={imgURL}/>
       <div>category {item.category}</div>
       <div>product name {item.name}</div>
@@ -61,7 +61,7 @@ const RelatedItemsCard = ({item}) => {
       <div>price {price === null && item.default_price}</div>
       <div>star rating {rating}</div>
     </div>
-  )
-}
+  );
+};
 
 export default RelatedItemsCard;

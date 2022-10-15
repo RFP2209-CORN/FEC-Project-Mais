@@ -6,11 +6,8 @@ const OutfitCard = ({ outfit }) => {
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState(null);
-  const [onSale, setOnSale] = useState(false);
   const [imgURL, setImgURL] = useState();
 
-  // Need to abstract this function or Scott's function to App
-  // need to determine how to round
   const calcRating = (reviews) => {
     let totalStars = 0;
 
@@ -31,8 +28,9 @@ const OutfitCard = ({ outfit }) => {
       setRating(floor + .75);
     }
   };
+
   const renderPrice = () => {
-    if (onSale) {
+    if (salesPrice) {
       return (
         <p>
           <br></br>
@@ -63,7 +61,6 @@ const OutfitCard = ({ outfit }) => {
         for (let i = 0; i < styles.length; i++) {
           if (styles[i]['default?'] === true) {
             if (styles[i].sale_price) {
-              setOnSale(currBool => true);
               setSalesPrice(currSalesPrice => {
                 return styles[i].sale_price;
               });

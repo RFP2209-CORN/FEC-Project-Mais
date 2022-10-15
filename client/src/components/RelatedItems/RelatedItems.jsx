@@ -22,7 +22,7 @@ const RelatedItems = ({productId}) => {
 
 
   return (
-    <div>
+    <div className="card-list">
       {relatedItems.map((item) => {
         return <RelatedItemsCard key={item.id} item={item}/>;
       })}
