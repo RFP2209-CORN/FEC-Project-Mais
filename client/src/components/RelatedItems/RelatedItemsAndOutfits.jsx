@@ -81,6 +81,7 @@ const RelatedItemsAndOutfits = () => {
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
+        updateProduct={updateProduct}
       />
     </>
   );

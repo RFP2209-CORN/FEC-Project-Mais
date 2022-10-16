@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice }) => {
+const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
   const [outfits, setOutfits] = useState([]);
 
   useEffect(() => {
@@ -76,6 +76,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             calcRating={calcRating}
             saleAndImageSetter={saleAndImageSetter}
             renderPrice={renderPrice}
+            updateProduct={updateProduct}
           />
         );
       })}
