@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice }) => {
+const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
   const [product, setProduct] = useState(item);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -29,7 +29,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice })
 
 
   return (
-    <div className="card card-shadow">
+    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
       <div className="card-image">
         {imgURL === null && <div className="no-image">Image not available</div>}
         {imgURL && <img src={imgURL}/>}

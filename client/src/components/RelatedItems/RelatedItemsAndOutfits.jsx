@@ -3,13 +3,13 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
-const productId = 40344;
-
 const RelatedItemsAndOutfits = () => {
-  useEffect(() => {
-    axios.get('/products')
-      .then(result => console.log('all products', result));
-  });
+  const [productId, setProductId] = useState(40344);
+
+  const updateProduct = (e, product) => {
+    console.log(product);
+    setProductId(product.id);
+  }
 
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
@@ -73,6 +73,7 @@ const RelatedItemsAndOutfits = () => {
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
+        updateProduct={updateProduct}
       />
       <br></br>
       <OutfitCreation
