@@ -35,18 +35,80 @@
 ========================================
 */
 
-/* .card-list {
+.card-container {
   display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: stretch;
-  max-width: 100px;
-  max-height: 200px;
-  border: solid;
+  justify-content: center;
+}
+
+.card {
+  width: 255px;
+  height: 375px;
+  margin: .85em;
+  border-radius: .2rem;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.card.card-shadow {
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+/* .card.add-outfit {
+
 } */
 
-/* .card-container {
-  display
+.add-outfit-btn {
+  display: block;
+  margin: 1em;
+  height: 20px;
+  margin-top: 150px;
+  text-align: center;
+  border: none;
+  border-radius: .8em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
+  padding: 1em;
+}
+
+.add-outfit-btn:hover {
+  cursor: pointer;
+}
+
+
+.card-image {
+  overflow: hidden;
+}
+
+.card-image > img {
+  display: block;
+  width: 100%;
+  max-height: 255px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card-category, .card-name, .card-price, .card-rating {
+  padding-left: 5px;
+  margin: 10px;
+}
+
+.card-category {
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.card-name {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-price {
+  font-size: small;
+}
+
+/* .card-rating {
+
 } */
 
 
