@@ -9,7 +9,7 @@ const RelatedItemsAndOutfits = () => {
   const updateProduct = (e, product) => {
     console.log(product);
     setProductId(product.id);
-  }
+  };
 
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
