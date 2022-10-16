@@ -11,7 +11,6 @@ const RelatedItemsAndOutfits = () => {
       .then(result => console.log('all products', result));
   });
 
-  /// Why isn't an image registering for Bright Future Sunglasses
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
