@@ -76,12 +76,12 @@ const RelatedItemsAndOutfits = () => {
         renderPrice={renderPrice}
       />
       <br></br>
-      {/* <OutfitCreation
+      <OutfitCreation
         productId={productId}
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
-      /> */}
+      />
     </>
   );
 };

@@ -29,8 +29,10 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice })
 
 
   return (
-    <div className="card">
-      <img className="card-image" src={imgURL}/>
+    <div className="card card-shadow">
+      <div className="card-image">
+        <img src={imgURL}/>
+      </div>
       <p className="card-category">{item.category}</p>
       <div className="card-name">{item.name}</div>
       {renderPrice(salesPrice, originalPrice)}
