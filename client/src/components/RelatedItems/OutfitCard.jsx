@@ -30,7 +30,8 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice }) => 
   return (
     <div className="card card-shadow">
       <div className="card-image">
-        <img src={imgURL}/>
+        {imgURL === null && <div className="no-image">Image not available</div>}
+        {imgURL && <img src={imgURL}/>}
       </div>
       <p className="card-category">{outfit.category}</p>
       <div className="card-name">{outfit.name}</div>
