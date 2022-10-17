@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./client/dist'));
 
-//PRODUCTS
 
+//PRODUCTS
 app.get('/products', (req, res) => {
   axios.get(`${url}/products/?count=50`, header)
     .then(result => res.status(200).send(result.data));
@@ -32,6 +32,7 @@ app.get('/products/:id/related', (req, res) => {
   axios.get(`${url}/products/${req.params.id}/related`, header)
     .then(result => res.status(200).send(result.data));
 });
+
 
 // REVIEWS
 app.get('/reviews/:id', (req, res) => {
@@ -62,13 +63,13 @@ app.post('/reviews', (req, res) => {
     .then(result => res.end())
 });
 
+
 // Q&A
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`${url}/qa/questions/?product_id=${req.params.id}`, header)
     .then(result => res.status(200).send(result.data));
 });
 
-/////endpoint not working
 app.get('/qa/questions/:id/answers', (req, res) => {
   axios.get(`${url}/qa/questions/${req.params.id}/answers`, header)
     .then(result => res.status(200).send(result.data));
