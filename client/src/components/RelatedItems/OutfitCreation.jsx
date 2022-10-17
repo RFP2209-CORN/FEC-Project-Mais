@@ -37,6 +37,22 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       });
   };
 
+  const removeOutfit = (event) => {
+    event.stopPropagation();
+
+    const productToRemove = parseInt(event.target.value);
+    const newOutfits = outfits.filter((outfit) => outfit.id !== productToRemove);
+
+    setOutfits(newOutfits);
+
+    // update local storage
+    let outfitStorage = localStorage.getItem('outfitStorage');
+    outfitStorage = JSON.parse(outfitStorage);
+    const newLocalStorage = outfitStorage.filter((outfit) => outfit.id !== productToRemove);
+    localStorage.setItem('outfitStorage', JSON.stringify(newLocalStorage));
+  };
+
+
   const renderBlankCards = (outfitLength) => {
     if (outfitLength === 0) {
       return (
@@ -60,8 +76,8 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         </>
       );
     }
-
   };
+
 
   return (
     <div className="card-container">
@@ -77,6 +93,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             saleAndImageSetter={saleAndImageSetter}
             renderPrice={renderPrice}
             updateProduct={updateProduct}
+            removeOutfit={removeOutfit}
           />
         );
       })}
