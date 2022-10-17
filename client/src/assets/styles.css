@@ -50,6 +50,7 @@
 }
 
 .card.card-shadow {
+  position: relative;
   border: none;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
 }
@@ -74,6 +75,11 @@
   cursor: pointer;
 }
 
+.favorite-icon {
+  position: absolute;
+  background-color: white;
+  right: 0;
+}
 
 .card-image {
   overflow: hidden;
