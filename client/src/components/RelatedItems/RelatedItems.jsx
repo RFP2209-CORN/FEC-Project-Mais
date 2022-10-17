@@ -32,6 +32,7 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
             saleAndImageSetter={saleAndImageSetter}
             renderPrice={renderPrice}
             updateProduct={updateProduct}
+            currProductId={productId}
           />
         );
       })}
