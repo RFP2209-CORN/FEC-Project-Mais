@@ -28,13 +28,14 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice }) => 
 
 
   return (
-    <div>
-      OutfitCard
-      <img src={imgURL}/>
-      <div>category {outfit.category}</div>
-      <div>product name {outfit.name}</div>
+    <div className="card card-shadow">
+      <div className="card-image">
+        <img src={imgURL}/>
+      </div>
+      <p className="card-category">{outfit.category}</p>
+      <div className="card-name">{outfit.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div>star rating {rating}</div>
+      <div className="card-rating">{rating}</div>
     </div>
   );
 };

@@ -27,10 +27,37 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       });
   };
 
+  const renderBlankCards = (outfitLength) => {
+    if (outfitLength === 0) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (outfitLength === 1) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (outfitLength === 2) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    }
+
+  };
+
   return (
-    <div>
-      Outfit Creation
-      <button onClick={addOutfit} name="facebook"><i className="fa-solid fa-plus"></i> Add to Outfit</button>
+    <div className="card-container">
+      <div className="card add-outfit card-shadow">
+        <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
+      </div>
       {outfits.map((outfit) => {
         return (
           <OutfitCard
@@ -42,6 +69,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
           />
         );
       })}
+      {outfits.length <= 2 && renderBlankCards(outfits.length)}
     </div>
   );
 };
