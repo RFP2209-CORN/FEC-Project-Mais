@@ -8,8 +8,7 @@ import axios from 'axios';
 const QuestionsAndAnswers = () => {
   const [allQestionsData, setAllQuestionsData] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
-  // const [answerList, setAnswerList] = useState([]);
-  const [cookie, setCookie] = useState('');
+  // const [cookie, setCookie] = useState('');
 
   // TODO: Handle helpfulness PUT Request - update helpfulness count;
   const handleHelpful = (item) => {
@@ -47,32 +46,23 @@ const QuestionsAndAnswers = () => {
     setQuestionsData(container);
   };
 
-  const renderQuestionsList = () => {
-    if (questionsData.length === 0) {
-      return 'No question found. Try again...';
-    } else if (questionsData.length !== 0) {
-      return <QuestionsList questionsData={questionsData} handleHelpful={handleHelpful} handleReport={handleReport} />;
-    }
-  };
-
   useEffect(() => {
     axios.get(`/qa/questions/${40349}`)
       .then(result => {
         setAllQuestionsData(result.data.results);
         setQuestionsData(result.data.results);
-        // renderQuestionsList();
       })
-      .then(() => setCookie(document.cookie))
+      // .then(() => setCookie(document.cookie))
       .catch(err => console.log(err));
   }, []);
 
   return (
     <div>
-      <SearchQA handleSearch={handleSearch}/>
+      <SearchQA handleSearch={handleSearch} />
 
       <div>
         {/* Provides all the details of questions and their answers */}
-        {renderQuestionsList()}
+        <QuestionsList questionsData={questionsData} handleHelpful={handleHelpful} handleReport={handleReport} />
       </div>
 
       <div>
