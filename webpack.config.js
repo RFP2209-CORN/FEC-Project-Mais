@@ -72,14 +72,14 @@ module.exports = {
 //     filename: 'bundle.js',
 //     path: path.resolve(__dirname, 'dist'),
 //   },
-//   plugins: [
-//     new HtmlWebpackPlugin({
-//         template: './src/index.html',
-//     }),
-//     new MiniCssExtractPlugin({
-//       filename: '[name].css',
-//     }),
-//   ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //       template: './src/index.html',
+  //   }),
+  //   new MiniCssExtractPlugin({
+  //     filename: '[name].css',
+  //   }),
+  // ],
 //   module: {
 //     rules: [
 //       {

@@ -14,7 +14,7 @@ app.use(express.static('./client/dist'));
 
 //PRODUCTS
 app.get('/products', (req, res) => {
-  axios.get(`${url}/products/`, header)
+  axios.get(`${url}/products/?count=50`, header)
     .then(result => res.status(200).send(result.data));
 });
 
