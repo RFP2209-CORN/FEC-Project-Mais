@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from './Modal.jsx';
 
-const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice }) => {
+const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
   const [product, setProduct] = useState(item);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState(null);
   const [imgURL, setImgURL] = useState();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axios.get(`/reviews/${product.id}`)
@@ -26,12 +28,31 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice })
       });
   }, []);
 
+  const renderModal = (event) => {
+    event.stopPropagation();
+    setIsOpen(true);
+  };
+
+  const closeModal = (event) => {
+    event.stopPropagation();
+    setIsOpen(false);
+  };
+
 
 
   return (
-    <div className="card card-shadow">
+    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
+      <button
+        className="favorite-icon"
+        onClick={renderModal}>
+        <i className="fa-regular fa-star"></i>
+      </button>
+      <Modal open={isOpen} onClose={closeModal}>
+        hello
+      </Modal>
       <div className="card-image">
-        <img src={imgURL}/>
+        {imgURL === null && <div className="no-image">Image not available</div>}
+        {imgURL && <img src={imgURL}/>}
       </div>
       <p className="card-category">{item.category}</p>
       <div className="card-name">{item.name}</div>

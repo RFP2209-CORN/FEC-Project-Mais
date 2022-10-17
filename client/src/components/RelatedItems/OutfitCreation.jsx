@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice }) => {
+const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
   const [outfits, setOutfits] = useState([]);
 
-  // TODO: useEffect to pull outfit data from local storage
+  useEffect(() => {
+    // Get local storage
+    let outfitStorage = localStorage.getItem('outfitStorage');
+    outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
+
+    setOutfits(outfitStorage);
+  }, []);
 
   const addOutfit = () => {
     axios.get(`/products/${productId}`)
@@ -22,10 +28,30 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             return [...currOutfits, product.data];
           });
 
-          // TODO: add outfit to local storage
+          // Set local storage
+          let outfitStorage = localStorage.getItem('outfitStorage');
+          outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
+          outfitStorage.push(product.data);
+          localStorage.setItem('outfitStorage', JSON.stringify(outfitStorage));
         }
       });
   };
+
+  const removeOutfit = (event) => {
+    event.stopPropagation();
+
+    const productToRemove = parseInt(event.target.value);
+    const newOutfits = outfits.filter((outfit) => outfit.id !== productToRemove);
+
+    setOutfits(newOutfits);
+
+    // update local storage
+    let outfitStorage = localStorage.getItem('outfitStorage');
+    outfitStorage = JSON.parse(outfitStorage);
+    const newLocalStorage = outfitStorage.filter((outfit) => outfit.id !== productToRemove);
+    localStorage.setItem('outfitStorage', JSON.stringify(newLocalStorage));
+  };
+
 
   const renderBlankCards = (outfitLength) => {
     if (outfitLength === 0) {
@@ -50,8 +76,8 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         </>
       );
     }
-
   };
+
 
   return (
     <div className="card-container">
@@ -66,6 +92,8 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             calcRating={calcRating}
             saleAndImageSetter={saleAndImageSetter}
             renderPrice={renderPrice}
+            updateProduct={updateProduct}
+            removeOutfit={removeOutfit}
           />
         );
       })}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice }) => {
+const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit }) => {
   const [product, setProduct] = useState(outfit);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -26,11 +26,17 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice }) => 
       });
   }, []);
 
-
   return (
-    <div className="card card-shadow">
+    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
+      <button
+        className="favorite-icon"
+        value={product.id}
+        onClick={removeOutfit}>
+        ❌
+      </button>
       <div className="card-image">
-        <img src={imgURL}/>
+        {imgURL === null && <div className="no-image">Image not available</div>}
+        {imgURL && <img src={imgURL}/>}
       </div>
       <p className="card-category">{outfit.category}</p>
       <div className="card-name">{outfit.name}</div>
