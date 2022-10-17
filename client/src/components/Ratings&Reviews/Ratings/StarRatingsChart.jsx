@@ -10,7 +10,7 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
     scales: {
       y: {
         stacked: true,
-        // display: false,
+        display: false,
         grid: {
           drawBorder: false,
           display: false,
@@ -22,7 +22,7 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
       },
       x: {
         stacked: true,
-        // display: false,
+        display: false,
         grid: {
           drawBorder: false,
           display: false,
@@ -53,7 +53,6 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
   }
 
   const data = {
-
     labels: [''],
     datasets: [
       // {
