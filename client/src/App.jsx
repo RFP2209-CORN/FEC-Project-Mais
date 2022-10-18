@@ -27,7 +27,7 @@ const App = () => {
       {/* hieu */}
 
       {/* Ratings */}
-      {/* <RatingsBreakdownSidebar /> */}
+      <RatingsBreakdownSidebar />
       {/* <AddReview /> */}
       {/* scott */}
     </div>

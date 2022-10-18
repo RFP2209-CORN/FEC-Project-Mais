@@ -4,31 +4,30 @@
 ========================================
 */
 
-/* .form-container {
-
-} */
-
-/* .form-control {
-
-} */
-
 .flexbox-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
 .single-star-container {
-  height: 30px;
-  width: 24px;
+  height: 36px;
+  width: 31px;
   display: inline-block;
-  white-space: nowrap;
   background-color: white;
 }
 
-/* body {
-  background-color: blue;
-} */
+.single-star-outline {
+  height: 36px;
+  width: 31px;
+}
 
+.single-star-fill {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  background-color: gold;
+
+}
 
 /*
 ========================================
@@ -139,3 +138,4 @@
     REVIEWS
 ========================================
 */
+
