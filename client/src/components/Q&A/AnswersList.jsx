@@ -1,28 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import IndividualAnswer from './IndividualAnswer.jsx';
+import axios from 'axios';
 
 // List of answers - Integrate into IndividualQuestion.jsx
-const AnswersList = ({ answersList }) => {
-  // console.log('answersList: ', answersList)
+const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
+  // console.log('answersList: ', question_id);
+  const [totalAnswerList, setTotalAnswerList] = useState([]);
+  const [answerList, setAnswerList] = useState([]);
 
-  // convert answersList Object into array for easy iteration
-  let convertAnswersListToArray = []
-  for (let key in answersList) {
-    convertAnswersListToArray.push(answersList[key])
-  }
+  // TODO: handle load more answers
+  const handleLoadMoreAnswers = () => {
+    console.log('load more answer button clicked');
+  };
+
+  const answerData = () => {
+    if (!totalAnswerList.length) {
+      return <em>There are no answers yet.</em>;
+    }
+    if (totalAnswerList.length <= 2) {
+      return totalAnswerList.map(answer => {
+        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+      });
+    }
+    // Need to sort list of answers according to seller first, then helpfulness
+    if (totalAnswerList.length > 2) {
+      return answerList.map(answer => {
+        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+      });
+    }
+  };
+
+  useEffect(() => {
+    axios.get(`/qa/questions/${question_id}/answers`)
+      .then(result => {
+        const data = result.data.results;
+        setTotalAnswerList(data);
+        // temporary set for answer list;
+        setAnswerList([data[0], data[1]]);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <div>
-      {/* if array length is 0, respond with no answers given */}
-      {!convertAnswersListToArray.length && 'There are no answers yet'}
+    <div className="answers-list">
+      {answerData()}
 
-      {/* if array length is at least 1 map array for individual answer */}
-      {convertAnswersListToArray.length &&
-        convertAnswersListToArray.map(answer => {
-          return <IndividualAnswer answer={answer} key={answer.id} />
-        })}
+      <br />
+
+      {/* shows load more answers button if answers are more than 2 */}
+      {totalAnswerList.length > 2 && <button onClick={() => handleLoadMoreAnswers()}>Load more answers</button>}
+
+      <br />
+
+      <button className="add-answer">Add Answer</button>
     </div>
-  )
+  );
 };
 
 export default AnswersList;

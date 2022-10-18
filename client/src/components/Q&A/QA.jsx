@@ -1,33 +1,97 @@
 import React, { useState, useEffect } from 'react';
-// import SearchQA from './SearchQA.jsx';
-// import AddAnswer from './AddAnswer.jsx';
-// import AskAQuestion from './AskAQuestion.jsx';
+import SearchQA from './SearchQA.jsx';
+// import AddAnswerModal from './AddAnswerModal.jsx';
+import AskAQuestionModal from './AskAQuestionModal.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import axios from 'axios';
 
+// Will need to change out once actual product_id is passed down from App
+const product_id = 40355;
+
 const QuestionsAndAnswers = () => {
-  const [questionsData, setQuestionsData] = useState([])
-  // const [answerList, setAnswerList] = useState([])
+
+  const [currentProduct, setCurrentProduct ] = useState('');
+  const [allQestionsData, setAllQuestionsData] = useState([]);
+  const [questionsData, setQuestionsData] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  // const [cookie, setCookie] = useState('');
+
+  // TODO: Handle helpfulness PUT Request - update helpfulness count;
+  const handleHelpful = (item) => {
+    // console.log('Helpful clicked', item);
+
+    // need special implementation to only inc by 1.
+    // also need a PUT request to change helpfulness.
+    if (item.question_helpfulness) {
+      item.question_helpfulness++;
+      console.log('after clicked question helpfulness: ', item.question_helpfulness);
+    }
+    if (item.helpfulness) {
+      item.helpfulness++;
+      console.log('after clicked answer helpfulness', item.helpfulness);
+    }
+  };
+
+  // TODO: Handle report PUT request - does not delete answer, just not return answer for GET request.
+  const handleReport = (e, item) => {
+    console.log('Report clicked', e, item);
+    e.target.innerText = 'Reported';
+  };
+
+  const handleSearch = (value) => {
+    let container = [];
+    if (value.length <= 2) {
+      container = allQestionsData;
+    } else if (value.length > 2) {
+      for (let i = 0; i < allQestionsData.length; i++) {
+        if (allQestionsData[i].question_body.toLowerCase().includes(value)) {
+          container.push(allQestionsData[i]);
+        }
+      }
+    }
+    setQuestionsData(container);
+  };
 
   useEffect(() => {
-    // HARDCODE axios GET data for testing. 40349 has good data to use
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/?product_id=40349', {
-      headers: { Authorization: process.env.GITHUB_API_KEY },
-    })
-      .then(result => setQuestionsData(result.data.results))
-      .catch(err => console.log(err))
-  }, [])
+    axios.get(`/qa/questions/${product_id}`)
+      .then(result => {
+        setAllQuestionsData(result.data.results);
+        setQuestionsData(result.data.results);
+      })
+      // .then(() => setCookie(document.cookie))
+      .catch(err => console.log(err));
+  }, []);
+
+  // get product ID - will change in future
+  useEffect(() => {
+    axios.get(`/products/${product_id}`)
+      .then(result => {
+        console.log(result.data);
+        setCurrentProduct(result.data.name);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-    <div>
-      {/* <SearchQA /> */}
+    <>
+      <div>
+        <SearchQA handleSearch={handleSearch} />
+      </div>
 
       <div>
         {/* Provides all the details of questions and their answers */}
-        <QuestionsList questionsData={questionsData} />
+        <QuestionsList questionsData={questionsData} handleHelpful={handleHelpful} handleReport={handleReport} />
       </div>
-    </div>
-  )
+
+      <br/>
+
+      <span>
+        <button onClick={() => setIsOpen(true)}>Ask a question</button>
+
+        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={currentProduct} />
+      </span>
+    </>
+  );
 };
 
 export default QuestionsAndAnswers;

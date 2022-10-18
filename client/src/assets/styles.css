@@ -1,9 +1,213 @@
-/* .single-star-outline {
+/*
+========================================
+    MODAL
+========================================
+*/
+
+.flexbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.single-star-container {
   height: 36px;
   width: 31px;
+  display: inline-block;
+  background-color: white;
+}
+
+.single-star-outline {
+  height: 36px;
+  width: 31px;
+}
+
+.single-star-fill {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  background-color: gold;
+}
+
+#modal-styles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 50px;
+  z-index: 1000;
+}
+
+#overlay-styles {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: .7;
+  z-index: 1000;
+}
+
+/*
+========================================
+    OVERVIEW
+========================================
+*/
+
+
+
+
+
+/*
+========================================
+    RELATED PRODUCTS
+========================================
+*/
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 255px;
+  height: 375px;
+  margin: .85em;
+  border-radius: .2rem;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.card.card-shadow {
+  position: relative;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+/* .card.add-outfit {
+
 } */
 
+.add-outfit-btn {
+  display: block;
+  margin: 1em;
+  height: 20px;
+  margin-top: 150px;
+  text-align: center;
+  border: none;
+  border-radius: .8em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
+  padding: 1em;
+}
+
+.add-outfit-btn:hover {
+  cursor: pointer;
+}
+
+.favorite-icon {
+  position: absolute;
+  background-color: white;
+  right: 0;
+}
+
+.card-image {
+  overflow: hidden;
+}
+
+.card-image>img {
+  display: block;
+  width: 100%;
+  max-height: 255px;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  object-position: center;
+}
+
+.no-image {
+  display: block;
+  width: 100%;
+  max-height: 255px;
+  aspect-ratio: 9 / 16;
+}
+
+.card-category,
+.card-name,
+.card-price,
+.card-rating {
+  padding-left: 5px;
+  margin: 10px;
+}
+
+.card-category {
+  text-transform: uppercase;
+  font-size: small;
+}
+
+.card-name {
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-price {
+  font-size: small;
+}
+
+/* .card-rating {
+
+} */
+
+
+/*
+========================================
+    QUESTIONS AND ANSWERS
+========================================
+*/
+
+
+
+
+
+/*
+========================================
+    RATINGS & REVIEWS
+========================================
+*/
+
+/* .form-container {
+
+} */
+
+/* .form-control {
+
+} */
+
+.flexbox-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-star-container {
+  height: 30px;
+  width: 24px;
+  display: inline-block;
+  white-space: nowrap;
+  background-color: white;
+}
 
 /* body {
   background-color: blue;
 } */
+
+/*
+========================================
+    RATINGS
+========================================
+*/
+
+
+/*
+========================================
+    REVIEWS
+========================================
+*/

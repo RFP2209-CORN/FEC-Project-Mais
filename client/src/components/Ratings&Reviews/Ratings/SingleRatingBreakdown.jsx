@@ -4,7 +4,6 @@ const SingleRatingBreakdown = () => {
 
   const [rating, setRating] = useState(0.0);
 
-
   return (
     <div>
       Single Rating

@@ -4,6 +4,7 @@ import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
 import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/RatingsBreakdownSidebar.jsx';
+import AddReview from './/components/Ratings&Reviews/Reviews/AddReview.jsx';
 // import your components
 
 
@@ -24,8 +25,10 @@ const App = () => {
       {/* QA */}
       {/* <QuestionsAndAnswers /> */}
       {/* hieu */}
-      {/* <RatingsBreakdownSidebar /> */}
+
       {/* Ratings */}
+      <RatingsBreakdownSidebar />
+      {/* <AddReview /> */}
       {/* scott */}
     </div>
   );

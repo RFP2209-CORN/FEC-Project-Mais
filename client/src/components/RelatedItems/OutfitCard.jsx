@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Modal from './Modal.jsx';
 
-const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct, currProductId }) => {
-  const [product, setProduct] = useState(item);
+const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit }) => {
+  const [product, setProduct] = useState(outfit);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState(null);
   const [imgURL, setImgURL] = useState();
-  const [isOpen, setIsOpen] = useState(false);
-  const [compareId, setCompareId] = useState();
 
   useEffect(() => {
     axios.get(`/reviews/${product.id}`)
@@ -29,41 +26,24 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
       });
   }, []);
 
-  const renderModal = (event) => {
-    event.stopPropagation();
-    setIsOpen(true);
-    setCompareId(event.target.value);
-  };
-
-  const closeModal = (event) => {
-    event.stopPropagation();
-    setIsOpen(false);
-  };
-
-
-
   return (
-    <div className="card card-shadow" value={product} onClick={() => updateProduct(event, product)}>
+    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
       <button
         className="favorite-icon"
         value={product.id}
-        onClick={renderModal}>
-        ⭐
+        onClick={removeOutfit}>
+        ❌
       </button>
-      {isOpen === true &&
-        <Modal open={isOpen} onClose={closeModal} productId={currProductId} compareId={compareId} compareProduct={product}>
-        </Modal>
-      }
       <div className="card-image">
         {imgURL === null && <div className="no-image">Image not available</div>}
         {imgURL && <img src={imgURL}/>}
       </div>
-      <p className="card-category">{item.category}</p>
-      <div className="card-name">{item.name}</div>
+      <p className="card-category">{outfit.category}</p>
+      <div className="card-name">{outfit.name}</div>
       {renderPrice(salesPrice, originalPrice)}
       <div className="card-rating">{rating}</div>
     </div>
   );
 };
 
-export default RelatedItemsCard;
+export default OutfitCard;
