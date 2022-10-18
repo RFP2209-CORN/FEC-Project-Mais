@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StyleSelector = ({currentStyle, styles, changeCurrentStyle}) => {
+const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected}) => {
   // THIS WILL GET MOVED TO THE CSS FILE LATER
   const styleSelectorThumbnail = {
     width: '55px',
@@ -36,6 +36,8 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle}) => {
       }
     }
     changeCurrentStyle(style);
+    changeSkuSelected(false);
+    changeQuantitySelected(0);
   };
 
   const renderStyleSelectorThumbnails = () => {
