@@ -12,11 +12,11 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
     <div className="individual-answer">
       {/* Format of answer, NOT yet completed */}
       <p className="individual-answer-body">
-        Text Body: {body} <br />
+        {body}
       </p>
 
       <p className="answer-name-and-date">
-        {answerer_name}, {formatDistanceToNow(parseISO(date))} <br />
+        {answerer_name}, {formatDistanceToNow(parseISO(date))}
       </p>
 
       <p>

@@ -1,33 +1,30 @@
 /*
 ========================================
-    RATINGS & REVIEWS
+    MODAL
 ========================================
 */
 
-/* .form-container {
-
-} */
-
-/* .form-control {
-
-} */
-
-.flexbox-container {
-  display: flex;
-  flex-direction: row;
+#modal-styles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 50px;
+  z-index: 1000;
 }
 
-.single-star-container {
-  height: 30px;
-  width: 24px;
-  display: inline-block;
-  white-space: nowrap;
-  background-color: white;
+#overlay-styles {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: .7;
+  z-index: 1000;
 }
 
-/* body {
-  background-color: blue;
-} */
 
 
 /*
@@ -35,6 +32,9 @@
     OVERVIEW
 ========================================
 */
+
+
+
 
 
 /*
@@ -93,7 +93,7 @@
   overflow: hidden;
 }
 
-.card-image > img {
+.card-image>img {
   display: block;
   width: 100%;
   max-height: 255px;
@@ -101,6 +101,7 @@
   object-fit: cover;
   object-position: center;
 }
+
 .no-image {
   display: block;
   width: 100%;
@@ -108,7 +109,10 @@
   aspect-ratio: 9 / 16;
 }
 
-.card-category, .card-name, .card-price, .card-rating {
+.card-category,
+.card-name,
+.card-price,
+.card-rating {
   padding-left: 5px;
   margin: 10px;
 }
@@ -138,6 +142,40 @@
 ========================================
 */
 
+
+
+
+
+/*
+========================================
+    RATINGS & REVIEWS
+========================================
+*/
+
+/* .form-container {
+
+} */
+
+/* .form-control {
+
+} */
+
+.flexbox-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-star-container {
+  height: 30px;
+  width: 24px;
+  display: inline-block;
+  white-space: nowrap;
+  background-color: white;
+}
+
+/* body {
+  background-color: blue;
+} */
 
 /*
 ========================================
