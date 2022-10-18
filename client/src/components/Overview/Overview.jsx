@@ -6,11 +6,15 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Overview = () => {
-  const productId = '40344';
+  const productId = '40346';
+  //out of stock style
+  // const productId = '40345';
   const blankProduct = {name: '', slogan: '', description: '', category: '', features: []};
   const [currentProduct, setCurrentProduct] = React.useState(blankProduct);
   const [currentStyle, setCurrentStyle] = React.useState({});
   const [styles, setStyles] = React.useState([]);
+  const [skuSelected, setSkuSelected] = React.useState(false);
+  const [quantitySelected, setQuantitySelected] = React.useState(0);
 
   React.useEffect(() => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, {
@@ -38,13 +42,21 @@ const Overview = () => {
     setCurrentStyle(style);
   };
 
+  const changeSkuSelected = (sku) => {
+    setSkuSelected(sku);
+  };
+
+  const changeQuantitySelected = (quantity) => {
+    setQuantitySelected(quantity);
+  };
+
   return (
     <div>
       {/* Product Overview */}
       {/* <ImageGallery/> */}
-      {/* <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/> */}
-      <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle}/>
-      {/* <AddToCart/> */}
+      <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
+      <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
+      <AddToCart currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
     </div>
   );
 };
