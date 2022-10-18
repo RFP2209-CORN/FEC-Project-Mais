@@ -4,30 +4,6 @@
 ========================================
 */
 
-.flexbox-container {
-  display: flex;
-  align-items: center;
-}
-
-.single-star-container {
-  height: 36px;
-  width: 31px;
-  display: inline-block;
-  background-color: white;
-}
-
-.single-star-outline {
-  height: 36px;
-  width: 31px;
-}
-
-.single-star-fill {
-  position: relative;
-  display: inline-block;
-  height: 36px;
-  background-color: gold;
-}
-
 #modal-styles {
   position: fixed;
   top: 50%;
@@ -48,16 +24,6 @@
   opacity: .7;
   z-index: 1000;
 }
-
-/*
-========================================
-    OVERVIEW
-========================================
-*/
-
-
-
-
 
 /*
 ========================================
@@ -164,50 +130,32 @@
 ========================================
 */
 
-
-
-
-
 /*
 ========================================
     RATINGS & REVIEWS
 ========================================
 */
 
-/* .form-container {
-
-} */
-
-/* .form-control {
-
-} */
-
 .flexbox-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
 .single-star-container {
-  height: 30px;
-  width: 24px;
+  height: 36px;
+  width: 31px;
   display: inline-block;
-  white-space: nowrap;
   background-color: white;
 }
 
-/* body {
-  background-color: blue;
-} */
+.single-star-outline {
+  height: 36px;
+  width: 31px;
+}
 
-/*
-========================================
-    RATINGS
-========================================
-*/
-
-
-/*
-========================================
-    REVIEWS
-========================================
-*/
+.single-star-fill {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  background-color: gold;
+}

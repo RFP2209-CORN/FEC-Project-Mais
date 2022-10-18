@@ -2,8 +2,6 @@ import React, { useState, useRef } from 'react';
 import Modal from 'react-modal';
 import Stars from './Stars.jsx';
 
-// requires npm install --save react-modal;
-
 const AddReview = ( {product_id} ) => {
 
   const [ rating, setRating ] = useState(0);

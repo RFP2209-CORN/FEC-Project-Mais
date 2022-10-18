@@ -76,36 +76,21 @@ const RatingsBreakdownSidebar = ({ product_id }) => {
           <sup><StarRating rating={rating}/></sup>
         </h3>
       </div>
-
-    <div>
-    </div>
-    <div>
-    </div>
-    <h3>
-      <div className="flexbox-container" onClick={handleClick}>
+      <h3 className="flexbox-container" onClick={handleClick}>
         5 star &nbsp; <StarRatingsChart totalReviews={totalReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
-      </div>
-    </h3>
-    <h3>
-      <div className="flexbox-container" onClick={handleClick}>
+      </h3>
+      <h3 className="flexbox-container" onClick={handleClick}>
         4 star &nbsp; <StarRatingsChart totalReviews={totalReviews} rating={fourStar} /> &nbsp; {fourStar} reviews
-      </div>
-    </h3>
-    <h3>
-      <div className="flexbox-container" onClick={handleClick}>
+      </h3>
+      <h3 className="flexbox-container" onClick={handleClick}>
         3 star &nbsp; <StarRatingsChart totalReviews={totalReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
-      </div>
-    </h3>
-    <h3>
-      <div className="flexbox-container" onClick={handleClick}>
+      </h3>
+      <h3 className="flexbox-container" onClick={handleClick}>
         2 star &nbsp; <StarRatingsChart totalReviews={totalReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
-      </div>
-    </h3>
-    <h3>
-      <div className="flexbox-container" onClick={handleClick}>
+      </h3>
+      <h3 className="flexbox-container" onClick={handleClick}>
         1 star &nbsp; <StarRatingsChart totalReviews={totalReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
-      </div>
-    </h3>
+      </h3>
     </div>
     );
 }
