@@ -98,21 +98,18 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       setDisplayItems(newLocalStorage);
       setStartIndex(0);
     } else {
-      // more than 4 items
       if (newLocalStorage[startIndex + 4] !== undefined) {
         for (let i = startIndex; i < 4; i++) {
           setDisplayItems(currDisplay => {
             return [...currDisplay, newLocalStorage[i]]
           })
         }
-        // if it is, setDisplayList from startIndex of newLocalStorage
       } else {
         for (let i = newLocalStorage.length - startIndex; i < 4; i++) {
           setDisplayItems(currDisplay => {
             return [...currDisplay, newLocalStorage[i]]
           })
         }
-        // if not, subtract newLocalStorage length from startIndex to get a new Index
       }
     }
   };
