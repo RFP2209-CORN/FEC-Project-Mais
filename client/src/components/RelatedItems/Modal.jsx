@@ -97,7 +97,7 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} onClick={onClose}></div>
-      <div style={MODAL_STYLES}>
+      <div style={MODAL_STYLES} onClick={(event) => event.stopPropagation()}>
         <table>
           <tr>
             <td>{currName}</td>
