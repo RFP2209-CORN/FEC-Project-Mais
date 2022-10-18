@@ -4,7 +4,7 @@ const axios = require('axios');
 const express = require('express');
 const path = require('path');
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
-const header = { headers: {Authorization: process.env.GITHUB_API_KEY} };
+const header = { headers: { Authorization: process.env.GITHUB_API_KEY } };
 
 const app = express();
 app.use(express.json());
@@ -64,7 +64,8 @@ app.post('/reviews', (req, res) => {
 });
 
 
-// Q&A
+/*  QUESTIONS & ANSWERS  */
+// GET req
 app.get('/qa/questions/:id', (req, res) => {
   axios.get(`${url}/qa/questions/?product_id=${req.params.id}`, header)
     .then(result => res.status(200).send(result.data));
@@ -74,6 +75,23 @@ app.get('/qa/questions/:id/answers', (req, res) => {
   axios.get(`${url}/qa/questions/${req.params.id}/answers`, header)
     .then(result => res.status(200).send(result.data));
 });
+
+// POST req
+app.post('/qa/questions/:id', (req, res) => {
+  console.log('req body', req.body);
+  // axios.post(`${url}/qa/questions/?product_id=${req.params.id}`, req.body, header)
+  // .then(result => console.log(result.data, 'result data: '));
+});
+
+// PUT req
+app.put('/qa/questions/:id/helpful', (req, res) => {
+  console.log(req.params);
+
+  axios.get(`${url}/qa/questions/?product_id=${req.params.id}`, header)
+    .then(result => res.status(200).send(result.data));
+  // axios.put(`/qa/questions/${req.params.id}/helpful`, )
+});
+
 
 
 // CART

@@ -8,15 +8,14 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
 
-  // TODO: handle load more answers, need to be sorted first
+  // TODO: handle load more answers
   const handleLoadMoreAnswers = () => {
     console.log('load more answer button clicked');
-
   };
 
   const answerData = () => {
     if (!totalAnswerList.length) {
-      return 'There are no answers yet.';
+      return <em>There are no answers yet.</em>;
     }
     if (totalAnswerList.length <= 2) {
       return totalAnswerList.map(answer => {
@@ -34,10 +33,10 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   useEffect(() => {
     axios.get(`/qa/questions/${question_id}/answers`)
       .then(result => {
-        // need to Sort Before rendering data
-        setTotalAnswerList(result.data.results);
+        const data = result.data.results;
+        setTotalAnswerList(data);
         // temporary set for answer list;
-        setAnswerList([result.data.results[0], result.data.results[1]]);
+        setAnswerList([data[0], data[1]]);
       })
       .catch(err => console.log(err));
   }, []);
