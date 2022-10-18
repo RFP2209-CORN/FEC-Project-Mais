@@ -1,40 +1,62 @@
 /*
 ========================================
-    RATINGS & REVIEWS
+    MODAL
 ========================================
 */
 
-/* .form-container {
-
-} */
-
-/* .form-control {
-
-} */
-
 .flexbox-container {
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
 .single-star-container {
-  height: 30px;
-  width: 24px;
+  height: 36px;
+  width: 31px;
   display: inline-block;
-  white-space: nowrap;
   background-color: white;
 }
 
-/* body {
-  background-color: blue;
-} */
+.single-star-outline {
+  height: 36px;
+  width: 31px;
+}
 
+.single-star-fill {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  background-color: gold;
+}
+
+#modal-styles {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #FFF;
+  padding: 50px;
+  z-index: 1000;
+}
+
+#overlay-styles {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: .7;
+  z-index: 1000;
+}
 
 /*
 ========================================
     OVERVIEW
 ========================================
 */
+
+
+
 
 
 /*
@@ -93,7 +115,7 @@
   overflow: hidden;
 }
 
-.card-image > img {
+.card-image>img {
   display: block;
   width: 100%;
   max-height: 255px;
@@ -101,6 +123,7 @@
   object-fit: cover;
   object-position: center;
 }
+
 .no-image {
   display: block;
   width: 100%;
@@ -108,7 +131,10 @@
   aspect-ratio: 9 / 16;
 }
 
-.card-category, .card-name, .card-price, .card-rating {
+.card-category,
+.card-name,
+.card-price,
+.card-rating {
   padding-left: 5px;
   margin: 10px;
 }
@@ -138,6 +164,40 @@
 ========================================
 */
 
+
+
+
+
+/*
+========================================
+    RATINGS & REVIEWS
+========================================
+*/
+
+/* .form-container {
+
+} */
+
+/* .form-control {
+
+} */
+
+.flexbox-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.single-star-container {
+  height: 30px;
+  width: 24px;
+  display: inline-block;
+  white-space: nowrap;
+  background-color: white;
+}
+
+/* body {
+  background-color: blue;
+} */
 
 /*
 ========================================

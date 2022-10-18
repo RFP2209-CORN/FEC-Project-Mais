@@ -4,8 +4,6 @@ import { Bar }  from 'react-chartjs-2';
 
 const StarRatingsChart = ({ rating, totalReviews }) => {
 
-  const ratingsPercentage = rating / totalReviews;
-
   const options = {
     scales: {
       y: {
@@ -55,33 +53,30 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
   const data = {
     labels: [''],
     datasets: [
-      // {
-      //   // Total Rating
-      //   data: [ totalReviews ],
-      //   barThickness: 14,
-
-      //   fillColor: 'rgba(50, 50, 50, 0.5)',
-      //   borderColor: 'rgba(50, 50, 50, 0.5)',
-      //   backgroundColor: 'rgba(50, 50, 50, 0.5)',
-      //   datalabels: {
-      //     display: false
-      //   },
-      //   order: 1,
-      // },
       {
-        // label: 'Star Rating',
-        data: [ ratingsPercentage ],
+        backgroundColor: 'rgba(0,255,0,0.2)',
+        borderColor: 'rgba(0,255,0,0.2)',
+        borderWidth: 0.5,
+        stack: 1,
         barThickness: 14,
         categoryPercentage: 0.5,
-        height: 0.5,
-        fillColor: 'rgba(0, 255, 0, 0.5)',
-        borderColor: 'rgba(0, 255, 0, 0.5)',
-        backgroundColor: 'rgba(0, 255, 0, 0.5)',
-        datalabels: {
-          display: false
-        },
-        order: 0,
+        height: 0.3,
+        hoverBackgroundColor: 'rgba(0,255,0,0.2)',
+        hoverBorderColor: 'rgba(0,255,0,0.2)',
+        data: [rating]
       },
+      {
+        backgroundColor: 'rgba(30,30,30,0.2)',
+        borderColor: 'rgba(30,30,30,0.2)',
+        borderWidth: 0.5,
+        stack: 1,
+        barThickness: 14,
+        categoryPercentage: 0.5,
+        height: 0.3,
+        hoverBackgroundColor: 'rgba(30,30,30,0.2)',
+        hoverBorderColor: 'rgba(30,30,30,0.2)',
+        data: [totalReviews]
+      }
     ]
   }
 
@@ -90,7 +85,6 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
         <Bar data={data} options={options}/>
     </div>
   )
-
 }
 
 export default StarRatingsChart;

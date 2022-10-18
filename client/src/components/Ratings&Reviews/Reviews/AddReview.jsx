@@ -96,4 +96,3 @@ const AddReview = ( {product_id} ) => {
 }
 
 export default AddReview;
-

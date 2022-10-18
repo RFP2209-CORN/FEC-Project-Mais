@@ -25,7 +25,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport }) => {
 
       <div>
         {/* Answers has a list of its own */}
-        <b>A:</b> {<AnswersList question_id={question_id} handleHelpful={handleHelpful} handleReport={handleReport} />}
+        <b>A:</b> {<AnswersList question={question_body} question_id={question_id} handleHelpful={handleHelpful} handleReport={handleReport} />}
       </div>
     </div >
   );
