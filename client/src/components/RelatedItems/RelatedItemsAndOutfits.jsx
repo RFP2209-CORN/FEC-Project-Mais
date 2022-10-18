@@ -7,7 +7,7 @@ const RelatedItemsAndOutfits = () => {
   const [productId, setProductId] = useState(40344);
 
   const updateProduct = (e, product) => {
-    console.log(product);
+    console.log(product, 'clicking');
     setProductId(product.id);
   };
 
