@@ -82,7 +82,7 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
       return (
         <tr>
           <td className="modal-curr-product">{entry[0]}</td>
-          <td className="modal-field">{entry[1]}</td>
+          <td className="modal-field-name">{entry[1]}</td>
           <td className="modal-compare-product">{entry[2]}</td>
           <br></br>
         </tr>
@@ -98,14 +98,15 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
     <>
       <div style={OVERLAY_STYLES} onClick={onClose}></div>
       <div style={MODAL_STYLES}>
-        <button onClick={onClose}>Close Modal</button>
-        Comparing
-        <div>{currName}</div>
-        <div>{compareName}</div>
-        <br></br>
         <table>
+          <tr>
+            <td>{currName}</td>
+            <td></td>
+            <td>{compareName}</td>
+          </tr>
           {currCharacteristics && compareCharacteristics && buildRows()}
         </table>
+        <button onClick={onClose}>Close Modal</button>
       </div>
     </>,
     document.getElementById('modal')

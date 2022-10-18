@@ -52,7 +52,6 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
       </button>
       {isOpen === true &&
         <Modal open={isOpen} onClose={closeModal} productId={currProductId} compareId={compareId} compareProduct={product}>
-          hello
         </Modal>
       }
       <div className="card-image">
