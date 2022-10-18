@@ -8,7 +8,7 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
 
-  // TODO: handle load more answers, need to be sorted first
+  // TODO: handle load more answers
   const handleLoadMoreAnswers = () => {
     console.log('load more answer button clicked');
   };
@@ -34,9 +34,6 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
     axios.get(`/qa/questions/${question_id}/answers`)
       .then(result => {
         const data = result.data.results;
-        data.sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-        });
         setTotalAnswerList(data);
         // temporary set for answer list;
         setAnswerList([data[0], data[1]]);
