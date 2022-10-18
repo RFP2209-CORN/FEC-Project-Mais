@@ -45,7 +45,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
     setOutfits(newOutfits);
 
-    // update local storage
     let outfitStorage = localStorage.getItem('outfitStorage');
     outfitStorage = JSON.parse(outfitStorage);
     const newLocalStorage = outfitStorage.filter((outfit) => outfit.id !== productToRemove);
