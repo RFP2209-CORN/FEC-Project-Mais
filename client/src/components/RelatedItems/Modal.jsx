@@ -80,11 +80,10 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
 
     return comparisons.map(entry => {
       return (
-        <tr>
+        <tr key={entry}>
           <td className="modal-curr-product">{entry[0]}</td>
           <td className="modal-field-name">{entry[1]}</td>
           <td className="modal-compare-product">{entry[2]}</td>
-          <br></br>
         </tr>
       );
     });
@@ -97,17 +96,17 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} onClick={onClose}></div>
-      <div style={MODAL_STYLES} onClick={(event) => event.stopPropagation()}>
-        <table>
+      <table style={MODAL_STYLES} onClick={(event) => event.stopPropagation()}>
+        <tbody>
           <tr>
             <td>{currName}</td>
             <td></td>
             <td>{compareName}</td>
           </tr>
           {currCharacteristics && compareCharacteristics && buildRows()}
-        </table>
+        </tbody>
         <button onClick={onClose}>Close Modal</button>
-      </div>
+      </table>
     </>,
     document.getElementById('modal')
   );
