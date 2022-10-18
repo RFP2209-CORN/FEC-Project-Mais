@@ -5,14 +5,26 @@ import RelatedItemsCard from './RelatedItemsCard.jsx';
 const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
-
-  // we want to display 4 items at a time
-  // we could have a state to manage what to display which is a subsection of relatedItems
-  // instead of mapping through relatedItems, we would map through displayItems
+  const [startIndex, setStartIndex] = useState(0);
 
   const changeDisplay = (direction) => {
-    // if direction is left, check if we can render prev item and update displayItems accordingly
-    console.log('changing display', direction)
+    if (direction === 'left' && startIndex > 0) {
+      let toDisplay = [];
+      for (let i = startIndex - 1; i < startIndex + 3; i++) {
+        toDisplay.push(relatedItems[i])
+      }
+      setStartIndex(startIndex - 1);
+      setDisplayItems(toDisplay)
+    }
+
+    if (direction === 'right' && startIndex + 4 <= relatedItems.length - 1) {
+      let toDisplay = [];
+      for (let i = startIndex + 1; i < startIndex + 5; i++) {
+        toDisplay.push(relatedItems[i])
+      }
+      setStartIndex(startIndex + 1)
+      setDisplayItems(toDisplay)
+    }
   }
 
 
@@ -28,20 +40,14 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
               setRelatedItems(currProducts => {
                 return [...currProducts, product.data];
               });
-              console.log(count)
               if (count < 4) {
-                console.log('should be setting display')
                 setDisplayItems(currDisplay => {
                   return [...currDisplay, product.data]
                 })
-              } else {console.log('conditional not working')}
+              }
               count++
             });
         }
-
-        // setDisplayItems(currDisplay => {
-        //   return relatedProducts.slice(0, 4)
-        // })
       })
       .catch(err => console.log(err));
   }, [productId]);
