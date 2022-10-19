@@ -2,6 +2,8 @@
 
 // import data object from Ratings&Reviews.jsx
 
+import data from '../client/src/components/Ratings&Reviews/Ratings&Reviews.jsx';
+
 // hardcoded data object used to test axios post request
 let data = {
   product_id: 40344,

@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./client/dist'));
 
-
 //PRODUCTS
 app.get('/products', (req, res) => {
   axios.get(`${url}/products/?count=50`, header)
