@@ -5,6 +5,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
   const styleSelectorThumbnail = {
     width: '55px',
     height: '55px',
+    marginRight: '7.5px',
     borderRadius: '50%',
   };
 
@@ -59,7 +60,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
             style={styleSelectorThumbnail}>
           </img>
           {renderCheckmark(styles[i].style_id)}
-        </span>, <span key={i}> </span>
+        </span>
       );
     }
     return thumbnails;
