@@ -63,9 +63,9 @@ const QuestionsAndAnswers = () => {
     }
     setQuestionsData(container);
 
-    if (questionsData.length >= questionCount) {
-      setQuestionsData(allQuestionsData);
+    if (allQuestionsData.length <= questionCount) {
       setLoadQuestionButton(false);
+      setQuestionsData(allQuestionsData);
     }
   };
 
@@ -87,12 +87,13 @@ const QuestionsAndAnswers = () => {
         if (data.length < 3) {
           setLoadQuestionButton(false);
         }
-        setAllQuestionsData(data);
         let container = [];
         for (let i = 0; i < data.length; i++) {
           if (i === questionCount) { break; }
           container.push(data[i]);
         }
+        setQuestionCount(prev => prev + 2);
+        setAllQuestionsData(data);
         setQuestionsData(container);
       })
       // .then(() => setCookie(document.cookie))
@@ -107,6 +108,7 @@ const QuestionsAndAnswers = () => {
       })
       .catch(err => console.log(err));
   }, []);
+  console.log(allQuestionsData);
 
   return (
     <>
