@@ -9,6 +9,16 @@
     "build": "webpack",
     "test": "jest"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "testEnvironment": "jsdom"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RFP2209-CORN/FEC-Project-Atelier.git"
@@ -29,6 +39,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
+    "jest-environment-jsdom": "^29.2.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
@@ -39,13 +50,17 @@
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
+    "@testing-library/react": "^13.4.0",
+    "babel-jest": "^29.2.1",
     "babel-loader": "^8.2.5",
+    "babel-plugin-styled-components": "^1.12.0",
     "css-loader": "^6.7.1",
     "eslint": "^8.25.0",
     "eslint-plugin-react": "^7.31.10",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^29.2.1",
+    "react-test-renderer": "^18.2.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
