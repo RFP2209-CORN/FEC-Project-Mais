@@ -8,7 +8,7 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
   const [loadAnswerButton, setLoadAnswerButton] = useState(true);
-  const [count, setCount] = useState(2);
+  const [answerCount, setAnswerCount] = useState(2);
 
   const answerData = () => {
     if (!totalAnswerList.length) {
@@ -22,18 +22,18 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   };
 
   const handleLoadMoreAnswers = () => {
-    setCount(prev => prev + 2);
+    setAnswerCount(prev => prev + 2);
 
     let container = [];
     for (let i = 0; i < totalAnswerList.length; i++) {
-      if (i === count) {
+      if (i === answerCount) {
         break;
       }
       container.push(totalAnswerList[i]);
     }
     setAnswerList(container);
 
-    if (answerList.length >= count) {
+    if (totalAnswerList.length <= answerCount) {
       setAnswerList(totalAnswerList);
       setLoadAnswerButton(false);
     }
@@ -47,9 +47,16 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
         if (data.length < 3) {
           setLoadAnswerButton(false);
         }
+        let container = [];
+        for (let i = 0; i < data.length; i++) {
+          if (i === answerCount) {
+            break;
+          }
+          container.push(data[i]);
+        }
+        setAnswerCount(prev => prev + 2);
         setTotalAnswerList(data);
-        // Refactor?
-        setAnswerList([data[0], data[1]]);
+        setAnswerList(container);
       })
       .catch(err => console.log(err));
   }, []);
