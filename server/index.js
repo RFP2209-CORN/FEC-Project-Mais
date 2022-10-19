@@ -5,7 +5,7 @@ const express = require('express');
 const path = require('path');
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
 const header = { headers: { Authorization: process.env.GITHUB_API_KEY } };
-
+// const header1 = { 'Authorization': process.env.GITHUB_API_KEY }
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -47,7 +47,8 @@ app.get('/reviews/meta/:id', (req, res) => {
 
 ////TODO: BUILD OUT POST REQUEST
 app.post('/reviews', (req, res) => {
-  console.log(req.body)
+  console.log('req.body', req.body)
+  // let data = JSON.stringify(req.body);
   // {
   //   rating: 5,
   //   summary: 'it a summary',
@@ -60,7 +61,16 @@ app.post('/reviews', (req, res) => {
   // }
 
   axios.post(`${url}/reviews`, req.body, header)
-    .then(result => res.end())
+    .then((result) =>
+     {
+      console.log('result', result);
+      res.sendStatus(201)
+     })
+     .catch((error) => {
+      console.log(error);
+      console.log('error.response.data', error.response.data)
+      res.sendStatus(404);
+     })
 });
 
 
@@ -91,8 +101,6 @@ app.put('/qa/questions/:id/helpful', (req, res) => {
     .then(result => res.status(200).send(result.data));
   // axios.put(`/qa/questions/${req.params.id}/helpful`, )
 });
-
-
 
 // CART
 app.get('/cart', (req, res) => {

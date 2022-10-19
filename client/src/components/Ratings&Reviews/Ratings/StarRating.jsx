@@ -5,7 +5,7 @@ import star from '../../../assets/images/star.png';
 // takes in a rating and renders 5 stars filled in proportionally with the provided rating, rounded to the nearest .25
 const StarRating = ({ rating }) => {
 
-  console.log('rating from starRating.jsx', rating);
+  // console.log('rating from starRating.jsx', rating);
 
   let stars = [];
   while (stars.length < 5) {
@@ -46,7 +46,7 @@ const StarRating = ({ rating }) => {
     rating = rating - 1;
   }
 
-  console.log('stars', stars);
+  // console.log('stars', stars);
 
   return (
     <div>
