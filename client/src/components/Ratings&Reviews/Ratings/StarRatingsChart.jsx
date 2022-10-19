@@ -81,8 +81,10 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
   }
 
   return (
-    <div className="star-ratings-chart">
+    <div className="sidebar">
+      <div className="star-ratings-chart">
         <Bar data={data} options={options}/>
+      </div>
     </div>
   )
 }
