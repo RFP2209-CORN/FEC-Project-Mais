@@ -28,7 +28,6 @@ const App = () => {
       {/* hieu */}
 
       {/* Ratings */}
-      <RatingsAndReviews />
       {/* <RatingsBreakdownSidebar /> */}
       {/* <AddReview /> */}
       {/* scott */}

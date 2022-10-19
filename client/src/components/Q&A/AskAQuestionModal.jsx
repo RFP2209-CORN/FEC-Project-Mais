@@ -9,11 +9,11 @@ const AskAQuestionModal = ({ open, onClose, product }) => {
       <div id="overlay-styles" onClick={onClose} />
       <div id="modal-styles">
         <form>
-          <p className="question-title">
-            <b>Ask Your Question</b>
-          </p>
+          <h3 className="question-title">
+            Ask Your Question
+          </h3>
           <p className="question-subtitle">
-            About the {product}
+            About the <em>{product}</em>
           </p>
 
           <textarea placeholder="Ask your question" />

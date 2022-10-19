@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
-// import AddAnswerModal from './AddAnswerModal.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import axios from 'axios';

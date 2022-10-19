@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import IndividualAnswer from './IndividualAnswer.jsx';
+import AddAnswerModal from './AddAnswerModal.jsx';
 import axios from 'axios';
 
 // List of answers - Integrate into IndividualQuestion.jsx
-const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
+const AnswersList = ({ question, question_id, handleHelpful, handleReport }) => {
   // console.log('answersList: ', question_id);
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   // TODO: handle load more answers
   const handleLoadMoreAnswers = () => {
@@ -43,16 +45,21 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
 
   return (
     <div className="answers-list">
-      {answerData()}
+      <p>
+        {answerData()}
+      </p>
 
-      <br />
+      <p>
 
-      {/* shows load more answers button if answers are more than 2 */}
-      {totalAnswerList.length > 2 && <button onClick={() => handleLoadMoreAnswers()}>Load more answers</button>}
+        {/* shows load more answers button if answers are more than 2 */}
+        {totalAnswerList.length > 2 && <button onClick={() => handleLoadMoreAnswers()}>Load more answers</button>}
+      </p>
 
-      <br />
+      <span>
+        <button className="add-answer" onClick={() => setIsOpen(true)}>Add Answer</button>
 
-      <button className="add-answer">Add Answer</button>
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question}/>
+      </span>
     </div>
   );
 };
