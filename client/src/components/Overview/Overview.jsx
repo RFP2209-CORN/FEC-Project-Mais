@@ -6,7 +6,7 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Overview = () => {
-  const productId = '40346';
+  const productId = '40348';
   //out of stock style
   // const productId = '40345';
   const blankProduct = {name: '', slogan: '', description: '', category: '', features: []};
@@ -53,7 +53,7 @@ const Overview = () => {
   return (
     <div>
       {/* Product Overview */}
-      {/* <ImageGallery/> */}
+      <ImageGallery currentStyle={currentStyle}/>
       <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
       <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
       <AddToCart currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
