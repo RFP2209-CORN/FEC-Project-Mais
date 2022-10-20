@@ -12,23 +12,34 @@ const ImageGallery = ({currentStyle}) => {
   };
 
   const thumbnailNavBar = {
-    width: '85px',
+    width: '82.5px',
     height: '575px',
-    overflow: 'scroll',
     display: 'inline-block'
   };
 
+  const navArrows = {
+    cursor: 'pointer'
+  };
+
+  const thumbnailImages = {
+    width: '82.5px',
+    height: '540px',
+    overflow: 'hidden',
+    scrollSnapType: 'y mandatory'
+  };
+
   const thumbnailImage = {
-    width: '75px',
-    height: '75px',
-    marginBottom: '3.5px'
+    width: '72.5px',
+    height: '72.5px',
+    cursor: 'pointer',
+    scrollSnapAlign: 'start'
   };
 
   const selectedThumbnailImage = {
-    width: '75px',
-    height: '75px',
-    marginBottom: '3.5px',
-    border: '2.5px solid black'
+    width: '72.5px',
+    height: '72.5px',
+    border: '3px solid black',
+    scrollSnapAlign: 'start'
   };
 
   const leftArrow = {
@@ -37,7 +48,8 @@ const ImageGallery = ({currentStyle}) => {
     transform: 'translate(0, -50%)',
     left: '5px',
     fontSize: '35px',
-    color: 'white'
+    color: 'white',
+    cursor: 'pointer'
   };
 
   const rightArrow = {
@@ -46,7 +58,8 @@ const ImageGallery = ({currentStyle}) => {
     transform: 'translate(0, -50%)',
     right: '5px',
     fontSize: '35px',
-    color: 'white'
+    color: 'white',
+    cursor: 'pointer'
   };
 
   const [currentPhoto, setCurrentPhoto] = React.useState(0);
@@ -64,14 +77,17 @@ const ImageGallery = ({currentStyle}) => {
           width: '575px',
           height: '575px',
           display: 'inline-block',
-          position: 'relative'
+          position: 'relative',
+          cursor: 'zoom-in'
         }}>
-          <i className="fa-solid fa-arrow-left-long"
-            onClick={onLeftClick}
-            style={leftArrow}/>
-          <i className="fa-solid fa-arrow-right-long"
-            onClick={onRightClick}
-            style={rightArrow}/>
+          {currentPhoto > 0 ?
+            <i className="fa-solid fa-arrow-left-long"
+              onClick={onLeftClick}
+              style={leftArrow}/> : null}
+          {currentPhoto < currentStyle.photos.length - 1 ?
+            <i className="fa-solid fa-arrow-right-long"
+              onClick={onRightClick}
+              style={rightArrow}/> : null}
         </div>);
     }
   };
@@ -88,15 +104,21 @@ const ImageGallery = ({currentStyle}) => {
             name={i}
             src={currentStyle.photos[i].thumbnail_url}
             onClick={changePhoto}
-            style={i === currentPhoto ? selectedThumbnailImage : thumbnailImage}
-          />);
+            style={i === currentPhoto ? selectedThumbnailImage : thumbnailImage}/>
+        );
       }
     }
     return (
       <div style={thumbnailNavBar}>
-        {/* <i class="fa-solid fa-angle-up"></i> */}
-        {thumbnails}
-        {/* <i class="fa-solid fa-angle-down"></i> */}
+        <i className="fa-solid fa-angle-up"
+          onClick={onUpClick}
+          style={navArrows}/>
+        <div id="thumbnailNavBar" style={thumbnailImages}>
+          {thumbnails}
+        </div>
+        <i className="fa-solid fa-angle-down"
+          onClick={onDownClick}
+          style={navArrows}/>
       </div>
     );
   };
@@ -108,13 +130,23 @@ const ImageGallery = ({currentStyle}) => {
   const onLeftClick = (event) => {
     if (currentPhoto > 0) {
       setCurrentPhoto(currentPhoto - 1);
+      document.getElementById('thumbnailNavBar').scrollBy(0, -75);
     }
   };
 
   const onRightClick = (event) => {
     if (currentPhoto < currentStyle.photos.length - 1) {
       setCurrentPhoto(currentPhoto + 1);
+      document.getElementById('thumbnailNavBar').scrollBy(0, 75);
     }
+  };
+
+  const onUpClick = (event) => {
+    document.getElementById('thumbnailNavBar').scrollBy(0, -75);
+  };
+
+  const onDownClick = (event) => {
+    document.getElementById('thumbnailNavBar').scrollBy(0, 75);
   };
 
   return (
