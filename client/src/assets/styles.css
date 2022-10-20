@@ -127,9 +127,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  /* transform: translate(-50%, -50%); */
   background-color: #FFF;
-  /* padding: 50px; */
   z-index: 10000;
 }
 

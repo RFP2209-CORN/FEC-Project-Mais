@@ -3,14 +3,7 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
-const RelatedItemsAndOutfits = () => {
-  const [productId, setProductId] = useState(40344);
-
-  const updateProduct = (e, product) => {
-    console.log(product, 'clicking');
-    setProductId(product.id);
-  };
-
+const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {

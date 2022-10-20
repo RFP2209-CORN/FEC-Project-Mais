@@ -10,6 +10,13 @@ import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx'
 
 
 const App = () => {
+  const [productId, setProductId] = useState(40344);
+
+  const updateProduct = (e, product) => {
+    console.log('Product ID:', productId);
+    setProductId(product.id);
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -20,7 +27,7 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      <RelatedItemsAndOutfits/>
+      <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
       {/* josh */}
 
       {/* QA */}
