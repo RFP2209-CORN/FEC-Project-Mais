@@ -178,13 +178,14 @@
 
 .reviews-list {
   position: relative;
-  top: -175px;
+  top: -150px;
   left: 200px
 }
 
 .reviews-list-header {
   position: relative;
   right: -38px;
+  top: -150px;
 }
 
 .reviews-card {
@@ -212,6 +213,24 @@
   max-width: 21.25rem;
   border-radius: 0.625rem;
   margin: 2rem;
+}
+
+.reviews-card-response {
+  display: flex;
+  flex-direction: row;
+  background-color: gray;
+  /* border-radius: 0.625rem; */
+  max-width: 21.25rem;
+  /* border: 5px solid gray; */
+  /* margin: 20px; */
+}
+
+.reviews-card-helpful {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  max-width: 21.25rem;
+
 }
 
 .reviews-date {
