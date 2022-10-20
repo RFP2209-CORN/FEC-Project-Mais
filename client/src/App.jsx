@@ -37,6 +37,7 @@ const App = () => {
       {/* Ratings */}
       {/* <RatingsBreakdownSidebar /> */}
       {/* <AddReview /> */}
+      {/* <RatingsAndReviews /> */}
       {/* scott */}
     </div>
   );
