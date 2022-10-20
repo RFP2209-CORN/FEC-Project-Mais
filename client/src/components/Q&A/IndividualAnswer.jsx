@@ -9,7 +9,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
   return (
-    <div className="individual-answer">
+    <div className="individual-answer" data-testid="answer-modal-inputs">
       {/* Format of answer, NOT yet completed */}
       <p className="individual-answer-body">
         {body}
