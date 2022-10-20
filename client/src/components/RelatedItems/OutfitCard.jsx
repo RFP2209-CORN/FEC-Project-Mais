@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit }) => {
+const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit, getProductReviews }) => {
   const [product, setProduct] = useState(outfit);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -9,11 +9,16 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   const [imgURL, setImgURL] = useState();
 
   useEffect(() => {
-    axios.get(`/reviews/${product.id}`)
-      .then(result => {
-        let reviews = result.data.results;
-        setRating(calcRating(reviews));
-      });
+    // console.log('prodReviews', getProductReviews(product.id))
+    const reviews = getProductReviews(product.id);
+    const avgRating = calcRating(reviews);
+    setRating(avgRating)
+
+    // axios.get(`/reviews/${product.id}`)
+    //   .then(result => {
+    //     let reviews = result.data.results;
+    //     setRating(calcRating(reviews));
+    //   });
 
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
