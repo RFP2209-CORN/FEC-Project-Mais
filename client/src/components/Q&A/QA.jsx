@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
-import QuestionsList from './QuestionsList.jsx';
+// import QuestionsList from './QuestionsList.jsx';
+import IndividualQuestion from './IndividualQuestion.jsx';
 import axios from 'axios';
 
 // Will need to change out once actual product_id is passed down from App
-const product_id = 40355;
+const product_id = 40349;
+// 40355
 
 const QuestionsAndAnswers = () => {
-
-  const [currentProduct, setCurrentProduct ] = useState('');
-  const [allQestionsData, setAllQuestionsData] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState('');
+  const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
+  const [loadQuestionButton, setLoadQuestionButton] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [questionCount, setQuestionCount] = useState(2);
   // const [cookie, setCookie] = useState('');
 
   // TODO: Handle helpfulness PUT Request - update helpfulness count;
   const handleHelpful = (item) => {
     // console.log('Helpful clicked', item);
-
-    // need special implementation to only inc by 1.
-    // also need a PUT request to change helpfulness.
     if (item.question_helpfulness) {
       item.question_helpfulness++;
       console.log('after clicked question helpfulness: ', item.question_helpfulness);
@@ -40,22 +40,61 @@ const QuestionsAndAnswers = () => {
   const handleSearch = (value) => {
     let container = [];
     if (value.length <= 2) {
-      container = allQestionsData;
+      container = allQuestionsData;
     } else if (value.length > 2) {
-      for (let i = 0; i < allQestionsData.length; i++) {
-        if (allQestionsData[i].question_body.toLowerCase().includes(value)) {
-          container.push(allQestionsData[i]);
+      for (let i = 0; i < allQuestionsData.length; i++) {
+        if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
+          container.push(allQuestionsData[i]);
         }
       }
     }
     setQuestionsData(container);
   };
 
+  const handleLoadMoreQuestion = () => {
+    setQuestionCount(prev => prev + 2);
+
+    let container = [];
+    for (let i = 0; i < allQuestionsData.length; i++) {
+      if (i === questionCount) {
+        break;
+      }
+      container.push(allQuestionsData[i]);
+    }
+    setQuestionsData(container);
+
+    if (allQuestionsData.length <= questionCount) {
+      setLoadQuestionButton(false);
+      setQuestionsData(allQuestionsData);
+    }
+  };
+
+  const renderQuestionsList = () => {
+    if (questionsData.length === 0) {
+      return <em>No question found. Try again...</em>;
+    }
+    if (questionsData.length !== 0) {
+      return questionsData.map(item => {
+        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+      });
+    }
+  };
+
   useEffect(() => {
     axios.get(`/qa/questions/${product_id}`)
       .then(result => {
-        setAllQuestionsData(result.data.results);
-        setQuestionsData(result.data.results);
+        const data = result.data.results;
+        if (data.length < 3) {
+          setLoadQuestionButton(false);
+        }
+        let container = [];
+        for (let i = 0; i < data.length; i++) {
+          if (i === questionCount) { break; }
+          container.push(data[i]);
+        }
+        setQuestionCount(prev => prev + 2);
+        setAllQuestionsData(data);
+        setQuestionsData(container);
       })
       // .then(() => setCookie(document.cookie))
       .catch(err => console.log(err));
@@ -65,11 +104,11 @@ const QuestionsAndAnswers = () => {
   useEffect(() => {
     axios.get(`/products/${product_id}`)
       .then(result => {
-        console.log(result.data);
         setCurrentProduct(result.data.name);
       })
       .catch(err => console.log(err));
   }, []);
+  console.log(allQuestionsData);
 
   return (
     <>
@@ -77,12 +116,21 @@ const QuestionsAndAnswers = () => {
         <SearchQA handleSearch={handleSearch} />
       </div>
 
-      <div>
-        {/* Provides all the details of questions and their answers */}
-        <QuestionsList questionsData={questionsData} handleHelpful={handleHelpful} handleReport={handleReport} />
+      {/* Provides all the details of questions and their answers */}
+      {/* <QuestionsList
+          renderQuestionsList={renderQuestionsList}
+          handleHelpful={handleHelpful}
+          handleReport={handleReport}
+          loadQuestionButton={loadQuestionButton}
+          handleLoadQuestion={handleLoadMoreQuestion}
+        /> */}
+
+      <div className="questions-list">
+        {renderQuestionsList()}
+        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
       </div>
 
-      <br/>
+      <br />
 
       <span>
         <button onClick={() => setIsOpen(true)}>Ask a question</button>

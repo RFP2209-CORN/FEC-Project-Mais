@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
-import axios from 'axios';
 import Stars from './Stars.jsx';
 
 const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id }) => {

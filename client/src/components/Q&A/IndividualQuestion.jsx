@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AnswersList from './AnswersList.jsx';
+import AddAnswerModal from './AddAnswerModal.jsx';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
 // Individual question - Integrate into QuestionsList.jsx
 const IndividualQuestion = ({ question, handleHelpful, handleReport }) => {
   // console.log('Individual question: ', question);
 
-  // destructure question object
+  const [isOpen, setIsOpen] = useState(false);
+
   const { asker_name, question_body, question_helpfulness, question_date, question_id } = question;
 
   return (
@@ -23,9 +25,14 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport }) => {
         {asker_name}, {formatDistanceToNow(parseISO(question_date))}
       </p>
 
+      <span>
+        <button className="add-answer" onClick={() => setIsOpen(true)}>Add Answer</button>
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} />
+      </span>
+
       <div>
         {/* Answers has a list of its own */}
-        <b>A:</b> {<AnswersList question={question_body} question_id={question_id} handleHelpful={handleHelpful} handleReport={handleReport} />}
+        <b>A:</b> {<AnswersList question_id={question_id} handleHelpful={handleHelpful} handleReport={handleReport} />}
       </div>
     </div >
   );

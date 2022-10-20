@@ -2,17 +2,17 @@ import React from 'react';
 
 const ProductInfo = ({currentProduct, currentStyle}) => {
   const renderPrice = () => {
-    if (currentStyle.sale_price) {
+    if (currentStyle?.sale_price) {
       return (
         <p>
-          <span style={{textDecoration: 'line-through red'}}>{currentStyle.original_price}</span>
+          <span style={{textDecoration: 'line-through red'}}>{currentStyle?.original_price}</span>
           <span> </span>
-          <span style={{color: 'red'}}>{currentStyle.sale_price}</span>
+          <span style={{color: 'red'}}>{currentStyle?.sale_price}</span>
         </p>
       );
     } else {
       return (
-        <p>{currentStyle.original_price}</p>
+        <p>{currentStyle?.original_price}</p>
       );
     }
   };
@@ -28,17 +28,17 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
   };
 
   return (
-    <div>
+    <div data-testid="product-info">
       {/* Product Information */}
       {/* STAR RATING */}
-      <p>{currentProduct.category.toUpperCase()}</p>
-      <h1>{currentProduct.name}</h1>
+      <p>{currentProduct?.category.toUpperCase()}</p>
+      <h1>{currentProduct?.name}</h1>
       {renderPrice()}
-      <p><i>{currentProduct.slogan}</i></p>
-      <p>{currentProduct.description}</p>
+      <p><i>{currentProduct?.slogan}</i></p>
+      <p>{currentProduct?.description}</p>
       <p>Features</p>
       <ul>
-        {currentProduct.features.map(feature =>
+        {currentProduct?.features.map(feature =>
           <li key={feature.feature}>{feature.feature + ': ' + feature.value}</li>
         )}
       </ul>

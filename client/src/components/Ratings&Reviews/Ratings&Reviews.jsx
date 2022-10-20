@@ -27,7 +27,6 @@ const RatingsAndReviews = ({ product_id }) => {
   const usernameRef = useRef();
   const emailRef = useRef();
 
-
   let data = {
     product_id: 40344,
     rating: 5,
@@ -136,7 +135,7 @@ const RatingsAndReviews = ({ product_id }) => {
       <div className="sidebar">
         < RatingsBreakdownSidebar fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalReviews={totalReviews} rating={rating} />
       </div>
-      <ReviewsList totalReviews={totalReviews} reviews={reviews}/>
+      <ReviewsList rating={rating} totalReviews={totalReviews} reviews={reviews}/>
     </div>
     <AddReview prodName={prodName} handleSubmit={handleSubmit}/>
     </>

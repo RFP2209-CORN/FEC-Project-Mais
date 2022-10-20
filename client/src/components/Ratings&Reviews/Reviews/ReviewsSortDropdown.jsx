@@ -4,7 +4,6 @@ const ReviewsSortDropdown = () => {
 
 return (
   <div>
-    [dropdown menu here]
   </div>
 )
 
