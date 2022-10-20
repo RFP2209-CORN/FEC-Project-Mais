@@ -20,7 +20,7 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      <RelatedItemsAndOutfits/>
+      {/* <RelatedItemsAndOutfits/> */}
       {/* josh */}
 
       {/* QA */}
