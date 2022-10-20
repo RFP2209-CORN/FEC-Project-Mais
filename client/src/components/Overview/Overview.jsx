@@ -9,8 +9,7 @@ const Overview = () => {
   const productId = '40348';
   //out of stock style
   // const productId = '40345';
-  const blankProduct = {name: '', slogan: '', description: '', category: '', features: []};
-  const [currentProduct, setCurrentProduct] = React.useState(blankProduct);
+  const [currentProduct, setCurrentProduct] = React.useState({});
   const [currentStyle, setCurrentStyle] = React.useState({});
   const [styles, setStyles] = React.useState([]);
   const [skuSelected, setSkuSelected] = React.useState(false);

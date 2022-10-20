@@ -31,14 +31,14 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
     <div data-testid="product-info">
       {/* Product Information */}
       {/* STAR RATING */}
-      <p>{currentProduct?.category.toUpperCase()}</p>
+      <p>{currentProduct?.category?.toUpperCase()}</p>
       <h1>{currentProduct?.name}</h1>
       {renderPrice()}
       <p><i>{currentProduct?.slogan}</i></p>
       <p>{currentProduct?.description}</p>
       <p>Features</p>
       <ul>
-        {currentProduct?.features.map(feature =>
+        {currentProduct?.features?.map(feature =>
           <li key={feature.feature}>{feature.feature + ': ' + feature.value}</li>
         )}
       </ul>
