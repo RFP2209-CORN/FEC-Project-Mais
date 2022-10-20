@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as Requests from './Requests.js';
 
-const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit, getProductReviews }) => {
+const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit }) => {
   const [product, setProduct] = useState(outfit);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -10,15 +11,23 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
 
   useEffect(() => {
     // console.log('prodReviews', getProductReviews(product.id))
-    const reviews = getProductReviews(product.id);
-    const avgRating = calcRating(reviews);
-    setRating(avgRating)
+    // const reviews = Requests.getProductReviews(product.id);
+    // const avgRating = calcRating(reviews);
+    // setRating(avgRating)
+    // functions.setRating(avgRating)
 
-    // axios.get(`/reviews/${product.id}`)
-    //   .then(result => {
-    //     let reviews = result.data.results;
-    //     setRating(calcRating(reviews));
-    //   });
+    axios.get(`/reviews/${product.id}`)
+      .then(result => {
+        let reviews = result.data.results;
+        setRating(calcRating(reviews));
+      });
+
+    // const styles = Requests.getProductStyles(product.id);
+    // const { sale, ogPrice, thumbnailURL } = saleAndImageSetter(styles);
+    // setOriginalPrice(ogPrice);
+    // setSalesPrice(sale);
+    // setImgURL(thumbnailURL);
+
 
     axios.get(`/products/${product.id}/styles`)
       .then(result => {

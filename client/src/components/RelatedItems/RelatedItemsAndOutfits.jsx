@@ -15,6 +15,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
 
 
   const saleAndImageSetter = (styles) => {
+    // console.log(styles)
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
         return {
