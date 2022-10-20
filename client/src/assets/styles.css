@@ -119,6 +119,18 @@
   font-size: small;
 }
 
+.comparison-modal-name {
+  font-weight: bold;
+}
+
+.close-modal-btn {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #FFF;
+  z-index: 10000;
+}
+
 /* .card-rating {
 
 } */
