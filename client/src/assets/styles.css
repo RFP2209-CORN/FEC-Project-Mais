@@ -119,6 +119,10 @@
   font-size: small;
 }
 
+.comparison-modal-name {
+  font-weight: bold;
+}
+
 /* .card-rating {
 
 } */

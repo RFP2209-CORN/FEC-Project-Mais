@@ -85,12 +85,12 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
   return ReactDom.createPortal(
     <>
       <div className="overlay-styles" onClick={onClose}></div>
-      <table className="modal-styles" onClick={(event) => event.stopPropagation()}>
+      <table className="modal-styles comparison-modal" onClick={(event) => event.stopPropagation()}>
         <tbody>
           <tr>
-            <td>{currName}</td>
+            <td className="comparison-modal-name">{currName}</td>
             <td></td>
-            <td>{compareName}</td>
+            <td className="comparison-modal-name">{compareName}</td>
           </tr>
           {currCharacteristics && compareCharacteristics && buildRows()}
         </tbody>
