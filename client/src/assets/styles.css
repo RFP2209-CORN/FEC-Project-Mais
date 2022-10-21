@@ -142,6 +142,28 @@
 ========================================
 */
 
+.questions-list {
+  display: flex;
+  justify-content: flex-start;
+  /* align-items: center; */
+  flex-direction: column;
+  background-color: aliceblue;
+  border: 1px solid grey;
+}
+
+.question-body,
+.question-info,
+.question-helpfulness,
+.add-answer {
+  align-self: flex-start;
+  order: 1;
+  border: 1px solid grey;
+}
+
+.question-helpfulness {
+  align-self: flex-end;
+}
+
 /*
 ========================================
     RATINGS & REVIEWS

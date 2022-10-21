@@ -6,8 +6,8 @@ const AskAQuestionModal = ({ open, onClose, product }) => {
 
   return ReactDom.createPortal(
     <>
-      <div id="overlay-styles" onClick={onClose} />
-      <div id="modal-styles">
+      <div className="overlay-styles" onClick={onClose} />
+      <div className="modal-styles">
         <form>
           <h3 className="question-title">
             Ask Your Question
