@@ -5,7 +5,6 @@ import SingleReview from '../Reviews/SingleReview.jsx';
 
 const ReviewsList = ({rating,  totalReviews, reviews }) => {
 
-  // console.log('reviews in ReviewsList.jsx', reviews);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
