@@ -17,12 +17,12 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport }) => {
         <b>Q:</b> {question_body}
       </p>
 
-      <p className="question-helpfulness">
-        Helpful? <span onClick={() => handleHelpful(question)}>Yes</span> ({question_helpfulness}) <button className="question-report" onClick={(e) => handleReport(e, question)}>Report</button>
+      <p className="question-info">
+        {asker_name}, {formatDistanceToNow(parseISO(question_date))}
       </p>
 
-      <p>
-        {asker_name}, {formatDistanceToNow(parseISO(question_date))}
+      <p className="question-helpfulness">
+        Helpful? <span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness}) <button className="question-report" onClick={(e) => handleReport(e, question)}>Report</button>
       </p>
 
       <span>
@@ -31,8 +31,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport }) => {
       </span>
 
       <div>
-        {/* Answers has a list of its own */}
-        <b>A:</b> {<AnswersList question_id={question_id} handleHelpful={handleHelpful} handleReport={handleReport} />}
+        <b>A:</b> {<AnswersList question_id={question_id} />}
       </div>
     </div >
   );
