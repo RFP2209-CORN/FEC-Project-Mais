@@ -27,8 +27,20 @@ const RatingsAndReviews = ({ product_id }) => {
   const usernameRef = useRef();
   const emailRef = useRef();
 
+  let data = {
+    product_id: 40346,
+    rating: 5,
+    summary: "good stuff",
+    body: "good stuff...looking forward to using this product",
+    recommend: true,
+    name: "questionasker",
+    email: "questionasker@email.com",
+    photos: ["https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png"],
+    characteristics: {"14": 5, "15": 5}
+  }
+
   useEffect(() => {
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/reviews/${product_id}`)
       .then((results) => {
         let productReviews = results.data.results;
@@ -50,7 +62,7 @@ const RatingsAndReviews = ({ product_id }) => {
   }, []);
 
   const getProductName = () => {
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/products/${product_id}`)
       .then((results) => {
         console.log('results.data from successful axios request to get product name', results.data);
@@ -63,7 +75,7 @@ const RatingsAndReviews = ({ product_id }) => {
 
   const getMetaData = () => {
     // hardcoded product_id for now
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/reviews/meta/${product_id}`)
       .then((results) => {
         console.log('results.data from successful axios request to get meta data', results.data);
@@ -85,9 +97,9 @@ const RatingsAndReviews = ({ product_id }) => {
 
   const handleSubmit = () => {
      // hardcoded product_id for now
-     product_id = 40344;
-     let data = {
-       product_id: 40344,
+     product_id = 40346;
+     data = {
+       product_id: 40346,
        rating: 5,
        summary: "good stuff",
        body: "good stuff...looking forward to using this product",
@@ -97,6 +109,7 @@ const RatingsAndReviews = ({ product_id }) => {
        photos: ["https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png"],
        characteristics: {"14": 5, "15": 5}
      }
+
      axios.post('/reviews', data)
        // product_id: product_id,
        // rating: rating,
@@ -122,7 +135,7 @@ const RatingsAndReviews = ({ product_id }) => {
       <div className="sidebar">
         < RatingsBreakdownSidebar fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalReviews={totalReviews} rating={rating} />
       </div>
-      <ReviewsList reviews={reviews}/>
+      <ReviewsList rating={rating} totalReviews={totalReviews} reviews={reviews}/>
     </div>
     <AddReview prodName={prodName} handleSubmit={handleSubmit}/>
     </>

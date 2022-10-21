@@ -1,28 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
+import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
-const MODAL_STYLES = {
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  backgroundColor: '#FFF',
-  padding: '50px',
-  zIndex: 1000
-};
 
-const OVERLAY_STYLES = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, .7)',
-  zIndex: 1000
-};
-
-const Modal = ({ open, onClose, productId, compareId, compareProduct, children }) => {
+const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, children }) => {
   const [currCharacteristics, setCurrCharacteristics] = useState();
   const [compareCharacteristics, setCompareCharacteristics] = useState();
   const [currName, setCurrName] = useState();
@@ -63,7 +45,7 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
       let compare = [];
 
       if (currCharacteristics.hasOwnProperty(field)) {
-        compare.push(currCharacteristics[field].value);
+        compare.push(Number.parseFloat(currCharacteristics[field].value).toFixed(1));
       } else {
         compare.push('');
       }
@@ -71,7 +53,7 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
       compare.push(field);
 
       if (compareCharacteristics.hasOwnProperty(field)) {
-        compare.push(compareCharacteristics[field].value);
+        compare.push(Number.parseFloat(compareCharacteristics[field].value).toFixed(1));
       } else {
         compare.push('');
       }
@@ -81,9 +63,16 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
     return comparisons.map(entry => {
       return (
         <tr key={entry}>
-          <td className="modal-curr-product">{entry[0]}</td>
-          <td className="modal-field-name">{entry[1]}</td>
-          <td className="modal-compare-product">{entry[2]}</td>
+          <td className="modal-curr-product">
+            {entry[0] > 0 && <StarRating rating={entry[0]}/>}
+
+          </td>
+          <td className="modal-field-name">
+            {entry[1]}
+          </td>
+          <td className="modal-compare-product">
+          {entry[2] > 0 && <StarRating rating={entry[2]}/>}
+          </td>
         </tr>
       );
     });
@@ -95,21 +84,23 @@ const Modal = ({ open, onClose, productId, compareId, compareProduct, children }
   }
   return ReactDom.createPortal(
     <>
-      <div style={OVERLAY_STYLES} onClick={onClose}></div>
-      <table style={MODAL_STYLES} onClick={(event) => event.stopPropagation()}>
-        <tbody>
-          <tr>
-            <td>{currName}</td>
-            <td></td>
-            <td>{compareName}</td>
-          </tr>
-          {currCharacteristics && compareCharacteristics && buildRows()}
-        </tbody>
-        <button onClick={onClose}>Close Modal</button>
-      </table>
+      <div className="overlay-styles" onClick={onClose}></div>
+      <div className="modal-styles comparison-modal">
+        <button className="close-modal-btn" onClick={onClose}>X</button>
+          <table  onClick={(event) => event.stopPropagation()}>
+            <tbody>
+              <tr>
+                <td className="comparison-modal-name">{currName}</td>
+                <td></td>
+                <td className="comparison-modal-name">{compareName}</td>
+              </tr>
+              {currCharacteristics && compareCharacteristics && buildRows()}
+            </tbody>
+          </table>
+      </div>
     </>,
     document.getElementById('modal')
   );
 };
 
-export default Modal;
+export default ComparisonModal;

@@ -3,13 +3,18 @@ import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
-// import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/RatingsBreakdownSidebar.jsx';
-// import AddReview from './/components/Ratings&Reviews/Reviews/AddReview.jsx';
 import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx';
 // import your components
 
 
 const App = () => {
+  const [productId, setProductId] = useState(40344);
+
+  const updateProduct = (e, product) => {
+    console.log('Product ID:', productId);
+    setProductId(product.id);
+  };
+
   return (
     <div>
       {/* Navbar */}
@@ -20,7 +25,7 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      {/* <RelatedItemsAndOutfits/> */}
+      {/* <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/> */}
       {/* josh */}
 
       {/* QA */}
@@ -30,6 +35,7 @@ const App = () => {
       {/* Ratings */}
       {/* <RatingsBreakdownSidebar /> */}
       {/* <AddReview /> */}
+      {/* <RatingsAndReviews /> */}
       {/* scott */}
     </div>
   );
