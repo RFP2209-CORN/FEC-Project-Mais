@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
+const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, getProductReviews }) => {
   const [outfits, setOutfits] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
@@ -159,6 +159,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             renderPrice={renderPrice}
             updateProduct={updateProduct}
             removeOutfit={removeOutfit}
+            getProductReviews={getProductReviews}
           />
         );
       })}

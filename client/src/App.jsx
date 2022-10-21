@@ -3,54 +3,48 @@ import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
-// import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/RatingsBreakdownSidebar.jsx';
-// import AddReview from './/components/Ratings&Reviews/Reviews/AddReview.jsx';
 import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx';
-// import your components
+import { useTrackerUpdate } from './TrackerProvider.jsx';
 
 
 const App = () => {
+  const [productId, setProductId] = useState(40344);
+  const trackClicks = useTrackerUpdate();
+
+  const updateProduct = (e, product) => {
+    setProductId(product.id);
+  };
+
+  // useEffect(() => {
+  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
+
+  //   const listeners = modules.map(module => {
+  //     let elem = document.getElementById(module);
+  //     elem.addEventListener('click', trackClicks);
+  //   });
+  // }, [])
+
+
+
   return (
-    <div>
-      {/* Navbar */}
-      {/* whoever finishes first */}
+    <>
+      {/* <div id="overview">
+        <Overview/>
+      </div> */}
 
-      {/* Overview */}
-      {/* <Overview/> */}
-      {/* steph */}
+      {/* <div id="relatedItemsAndOutfits">
+        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
+      </div> */}
 
-      {/* RelatedItems */}
-      {/* <RelatedItemsAndOutfits/> */}
-      {/* josh */}
+      {/* <div id="qa">
+        <QuestionsAndAnswers />
+      </div> */}
 
-      {/* QA */}
-      {/* <QuestionsAndAnswers /> */}
-      {/* hieu */}
-
-      {/* Ratings */}
-      {/* <RatingsBreakdownSidebar /> */}
-      {/* <AddReview /> */}
-      {/* scott */}
-    </div>
+      {/* <div id="rateAndReview">
+        <RatingsAndReviews />
+      </div> */}
+    </>
   );
 };
 
 export default App;
-
-/////EXAMPLE USING A QUERY
-// useEffect(() => {
-//   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=40344', {
-//     headers: {Authorization: process.env.GITHUB_API_KEY},
-//   })
-//     .then(result => console.log(result))
-//     .catch(err => console.log(err))
-// })
-
-/////EXAMPLE HITTING ENDPOINT
-// useEffect(() => {
-//   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products', {
-//     headers: {Authorization: process.env.GITHUB_API_KEY},
-//   })
-//     .then(result => console.log(result))
-//     .catch(err => console.log(err))
-// })

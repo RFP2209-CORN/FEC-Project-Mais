@@ -3,15 +3,18 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
-const RelatedItemsAndOutfits = () => {
-  const [productId, setProductId] = useState(40344);
 
-  const updateProduct = (e, product) => {
-    console.log(product, 'clicking');
-    setProductId(product.id);
-  };
+const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
+  const getProductReviews = (productId) => {
+    return (
+      axios.get(`/reviews/${productId}`)
+        .then(result => result.data.results)
+    )
+  }
+
 
   const saleAndImageSetter = (styles) => {
+    // console.log(styles)
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
         return {
@@ -82,6 +85,7 @@ const RelatedItemsAndOutfits = () => {
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
+        getProductReviews={getProductReviews}
       />
     </>
   );
