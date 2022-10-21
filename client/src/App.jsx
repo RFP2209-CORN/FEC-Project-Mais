@@ -40,10 +40,6 @@ const App = () => {
         <QuestionsAndAnswers />
       </div> */}
 
-      {/* RelatedItems */}
-      {/* <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/> */}
-      {/* josh */}
-
       {/* <div id="rateAndReview">
         <RatingsAndReviews />
       </div> */}
