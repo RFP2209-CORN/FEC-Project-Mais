@@ -106,7 +106,9 @@ app.put('/qa/questions/:id/report', (req, res) => {
 app.put('/qa/answers/:id/helpful', (req, res) => {
   const params = { answer_id: req.params.id };
   axios.put(`${url}/qa/answers/${req.params.id}/helpful`, params, header)
-    .then(result => res.status(204).end())
+    .then(result => {
+      res.status(204).end();
+    })
     .catch(err => console.log(err));
 });
 
