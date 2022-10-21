@@ -6,8 +6,8 @@ const AddAnswerModal = ({ open, onClose, question }) => {
 
   return ReactDom.createPortal(
     <>
-      <div id="overlay-styles" onClick={onClose} />
-      <div id="modal-styles">
+      <div className="overlay-styles" onClick={onClose} />
+      <div className="modal-styles">
         <form>
           <h3 className="answer-title">
             Provide an Answer

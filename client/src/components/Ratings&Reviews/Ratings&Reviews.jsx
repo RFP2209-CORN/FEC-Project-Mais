@@ -28,7 +28,7 @@ const RatingsAndReviews = ({ product_id }) => {
   const emailRef = useRef();
 
   let data = {
-    product_id: 40344,
+    product_id: 40346,
     rating: 5,
     summary: "good stuff",
     body: "good stuff...looking forward to using this product",
@@ -40,7 +40,7 @@ const RatingsAndReviews = ({ product_id }) => {
   }
 
   useEffect(() => {
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/reviews/${product_id}`)
       .then((results) => {
         let productReviews = results.data.results;
@@ -62,7 +62,7 @@ const RatingsAndReviews = ({ product_id }) => {
   }, []);
 
   const getProductName = () => {
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/products/${product_id}`)
       .then((results) => {
         console.log('results.data from successful axios request to get product name', results.data);
@@ -75,7 +75,7 @@ const RatingsAndReviews = ({ product_id }) => {
 
   const getMetaData = () => {
     // hardcoded product_id for now
-    product_id = 40344;
+    product_id = 40346;
     axios.get(`/reviews/meta/${product_id}`)
       .then((results) => {
         console.log('results.data from successful axios request to get meta data', results.data);
@@ -97,9 +97,9 @@ const RatingsAndReviews = ({ product_id }) => {
 
   const handleSubmit = () => {
      // hardcoded product_id for now
-     product_id = 40344;
+     product_id = 40346;
      data = {
-       product_id: 40344,
+       product_id: 40346,
        rating: 5,
        summary: "good stuff",
        body: "good stuff...looking forward to using this product",

@@ -16,14 +16,13 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
     }
     if (totalAnswerList.length) {
       return answerList.map(answer => {
-        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleAnswerHelpful} handleReport={handleAnswerReport} />;
       });
     }
   };
 
   const handleLoadMoreAnswers = () => {
     setAnswerCount(prev => prev + 2);
-
     let container = [];
     for (let i = 0; i < totalAnswerList.length; i++) {
       if (i === answerCount) {
@@ -32,18 +31,35 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
       container.push(totalAnswerList[i]);
     }
     setAnswerList(container);
-
     if (totalAnswerList.length <= answerCount) {
       setAnswerList(totalAnswerList);
       setLoadAnswerButton(false);
     }
   };
 
+  const handleAnswerHelpful = (item) => {
+    axios.put(`/qa/answers/${item.answer_id}/helpful`)
+      .then(() => {
+        for (let i = 0; i < answerList.length; i++) {
+          if (item.answer_id === answerList[i].answer_id) {
+            setAnswerList((data) => {
+              let newData = data.slice();
+              newData[i].helpfulness += 1;
+              return newData;
+            });
+          }
+        }
+      });
+  };
+
+  const handleAnswerReport = (item) => {
+
+  };
+
   useEffect(() => {
     axios.get(`/qa/questions/${question_id}/answers`)
       .then(result => {
         const data = result.data.results;
-        console.log(data);
         if (data.length < 3) {
           setLoadAnswerButton(false);
         }
@@ -62,8 +78,11 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   }, []);
 
   return (
-    <div className="answers-list">
-      {answerData()}
+    <div>
+      <div className="answers-list">
+        {answerData()}
+      </div>
+
       {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
     </div>
   );

@@ -41,8 +41,6 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
     setIsOpen(false);
   };
 
-
-
   return (
     <div className="card card-shadow" value={product} onClick={() => updateProduct(event, product)}>
       <button

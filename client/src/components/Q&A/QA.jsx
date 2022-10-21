@@ -3,6 +3,7 @@ import SearchQA from './SearchQA.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
 // import QuestionsList from './QuestionsList.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
+import AnswersList from './AnswersList.jsx';
 import axios from 'axios';
 
 // Will need to change out once actual product_id is passed down from App
@@ -18,21 +19,23 @@ const QuestionsAndAnswers = () => {
   const [questionCount, setQuestionCount] = useState(2);
   // const [cookie, setCookie] = useState('');
 
-  // TODO: Handle helpfulness PUT Request - update helpfulness count;
-  const handleHelpful = (item) => {
-    // console.log('Helpful clicked', item);
-    if (item.question_helpfulness) {
-      item.question_helpfulness++;
-      console.log('after clicked question helpfulness: ', item.question_helpfulness);
-    }
-    if (item.helpfulness) {
-      item.helpfulness++;
-      console.log('after clicked answer helpfulness', item.helpfulness);
-    }
+  const handleQuestionHelpful = (item) => {
+    axios.put(`/qa/questions/${item.question_id}/helpful`)
+      .then(() => {
+        for (let i = 0; i < questionsData.length; i++) {
+          if (item.question_id === questionsData[i].question_id) {
+            setQuestionsData((data) => {
+              let newData = data.slice();
+              newData[i].question_helpfulness += 1;
+              return newData;
+            });
+          }
+        }
+      });
   };
 
   // TODO: Handle report PUT request - does not delete answer, just not return answer for GET request.
-  const handleReport = (e, item) => {
+  const handleQuestionReport = (e, item) => {
     console.log('Report clicked', e, item);
     e.target.innerText = 'Reported';
   };
@@ -69,13 +72,13 @@ const QuestionsAndAnswers = () => {
     }
   };
 
-  const renderQuestionsList = () => {
-    if (questionsData.length === 0) {
+  const renderQuestionsList = (data) => {
+    if (data.length === 0) {
       return <em>No question found. Try again...</em>;
     }
-    if (questionsData.length !== 0) {
-      return questionsData.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+    if (data.length !== 0) {
+      return data.map(item => {
+        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} />;
       });
     }
   };
@@ -96,19 +99,23 @@ const QuestionsAndAnswers = () => {
         setAllQuestionsData(data);
         setQuestionsData(container);
       })
-      // .then(() => setCookie(document.cookie))
+      .then(() => {
+        localStorage.setItem(`${document.cookie}`, document.cookie);
+      })
       .catch(err => console.log(err));
-  }, []);
 
-  // get product ID - will change in future
-  useEffect(() => {
+
+    // get product ID - will change in future
     axios.get(`/products/${product_id}`)
       .then(result => {
         setCurrentProduct(result.data.name);
       })
       .catch(err => console.log(err));
   }, []);
-  console.log(allQuestionsData);
+
+
+  console.log('QA: data = ', allQuestionsData);
+
 
   return (
     <>
@@ -126,9 +133,9 @@ const QuestionsAndAnswers = () => {
         /> */}
 
       <div className="questions-list">
-        {renderQuestionsList()}
-        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
+        {renderQuestionsList(questionsData)}
       </div>
+      {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
 
       <br />
 
