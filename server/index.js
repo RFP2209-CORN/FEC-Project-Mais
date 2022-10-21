@@ -128,7 +128,9 @@ app.get('/cart', (req, res) => {
 // INTERACTIONS
 app.post('/interactions', (req, res) => {
   axios.post(`${url}/interactions`, req.body, header)
-    .then(result => res.status(201).end())
+    .then(result => {
+      res.status(201).send(req.body);
+    })
     .catch(err => console.log(err));
 });
 
@@ -137,7 +139,3 @@ const PORT = process.env.PORT || 3000;
 
 app.listen(PORT);
 console.log(`Server listening at http://localhost:${PORT}`);
-
-// element	string	Required. Selector for the element which was clicked
-// widget	string	Required. Name of the module/widget in which the click occured
-// time	string	Required. Time the interaction occurred

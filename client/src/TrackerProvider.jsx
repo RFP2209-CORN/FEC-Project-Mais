@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 
 const TrackerContext = React.createContext();
 const TrackerUpdateContext = React.createContext();
@@ -15,15 +16,18 @@ export const TrackerProvider = ({ children }) => {
   const [events, setEvents] = useState();
 
   const trackClicks = (event) => {
-    // send a post request with the element clicked, the module it belongs to, and a timestamp
+    axios.post('/interactions', {
+      element: event.target.nodeName,
+      widget: event.currentTarget.id,
+      time: Date.now().toString()
+    })
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
 
     setEvents({
       registeredOn: event.currentTarget,
       happenedOn: event.target
     });
-    console.log('Element clicked:', event.target.nodeName);
-    console.log('Module:', event.currentTarget.id);
-    console.log('Timestamp:', Date.now());
   };
 
   return (
