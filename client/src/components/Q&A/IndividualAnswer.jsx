@@ -3,14 +3,21 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 
 // individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
-  // console.log('individual answer: ', answer);
+  console.log('individual answer: ', answer);
 
   // destructoring answer object
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
+  const showPhotos = () => {
+    if (photos.length) {
+      return photos.map(photo => {
+        return <img src={photo.url} />;
+      });
+    }
+  };
+
   return (
     <div className="individual-answer" data-testid="answer-modal-inputs">
-      {/* Format of answer, NOT yet completed */}
       <p className="individual-answer-body">
         {body}
       </p>
@@ -19,9 +26,8 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
         {answerer_name}, {formatDistanceToNow(parseISO(date))}
       </p>
 
-      <p>
-        {/* Answer Photos - might be another file due to photo array */}
-        {/* Photos: {[photos].length > 0 && photos[0]} */}
+      <p className="photos">
+        {showPhotos()}
       </p>
 
       <div className="answer-helpfulness">
