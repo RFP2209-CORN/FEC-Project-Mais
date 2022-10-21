@@ -15,34 +15,34 @@ const App = () => {
     setProductId(product.id);
   };
 
-  // useEffect(() => {
-  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
+  useEffect(() => {
+    const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
 
-  //   const listeners = modules.map(module => {
-  //     let elem = document.getElementById(module);
-  //     elem.addEventListener('click', trackClicks);
-  //   });
-  // }, [])
+    const listeners = modules.map(module => {
+      let elem = document.getElementById(module);
+      elem.addEventListener('click', trackClicks);
+    });
+  }, [])
 
 
 
   return (
     <>
-      {/* <div id="overview">
+      <div id="overview">
         <Overview/>
-      </div> */}
+      </div>
 
-      {/* <div id="relatedItemsAndOutfits">
+      <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      </div>
 
-      {/* <div id="qa">
+      <div id="qa">
         <QuestionsAndAnswers />
-      </div> */}
+      </div>
 
-      {/* <div id="rateAndReview">
+      <div id="rateAndReview">
         <RatingsAndReviews />
-      </div> */}
+      </div>
     </>
   );
 };

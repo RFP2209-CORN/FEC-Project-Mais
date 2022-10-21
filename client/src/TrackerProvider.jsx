@@ -15,12 +15,15 @@ export const TrackerProvider = ({ children }) => {
   const [events, setEvents] = useState();
 
   const trackClicks = (event) => {
+    // send a post request with the element clicked, the module it belongs to, and a timestamp
+
     setEvents({
       registeredOn: event.currentTarget,
       happenedOn: event.target
     });
-    console.log('event happened on', event.target);
-    console.log('event registered on', event.currentTarget);
+    console.log('Element clicked:', event.target.nodeName);
+    console.log('Module:', event.currentTarget.id);
+    console.log('Timestamp:', Date.now());
   };
 
   return (
