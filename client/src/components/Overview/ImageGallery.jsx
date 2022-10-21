@@ -1,93 +1,26 @@
 import React from 'react';
+import ExpandedView from './ExpandedView.jsx';
 
 const ImageGallery = ({currentStyle}) => {
-  // THIS WILL GET MOVED TO THE CSS FILE LATER
-  const outOfStockImage = {
-    backgroundImage: 'url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    width: '575px',
-    height: '575px',
-    display: 'inline-block',
-  };
-
-  const thumbnailNavBar = {
-    width: '82.5px',
-    height: '575px',
-    display: 'inline-block'
-  };
-
-  const navArrows = {
-    cursor: 'pointer'
-  };
-
-  const thumbnailImages = {
-    width: '82.5px',
-    height: '540px',
-    overflow: 'hidden',
-    scrollSnapType: 'y mandatory'
-  };
-
-  const thumbnailImage = {
-    width: '72.5px',
-    height: '72.5px',
-    cursor: 'pointer',
-    scrollSnapAlign: 'start'
-  };
-
-  const selectedThumbnailImage = {
-    width: '72.5px',
-    height: '72.5px',
-    border: '3px solid black',
-    scrollSnapAlign: 'start'
-  };
-
-  const leftArrow = {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translate(0, -50%)',
-    left: '5px',
-    fontSize: '35px',
-    color: 'white',
-    cursor: 'pointer'
-  };
-
-  const rightArrow = {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translate(0, -50%)',
-    right: '5px',
-    fontSize: '35px',
-    color: 'white',
-    cursor: 'pointer'
-  };
-
   const [currentPhoto, setCurrentPhoto] = React.useState(0);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const renderMainImage = () => {
     if (!currentStyle.photos[0].url) {
       return (
-        <div style={outOfStockImage}/>);
+        <div className="out-of-stock-main-image"/>);
     } else {
       return (
-        <div style={{
-          backgroundImage: `url(${currentStyle.photos[currentPhoto].url})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          width: '575px',
-          height: '575px',
-          display: 'inline-block',
-          position: 'relative',
-          cursor: 'zoom-in'
-        }}>
+        <div className="default-view">
+          <div className ="default-view-image"
+            style={{backgroundImage: `url(${currentStyle.photos[currentPhoto].url})`}}
+            onClick={onExpandedView}/>
           {currentPhoto > 0 ?
             <i className="fa-solid fa-arrow-left-long"
-              onClick={onLeftClick}
-              style={leftArrow}/> : null}
+              onClick={onLeftClick}/> : null}
           {currentPhoto < currentStyle.photos.length - 1 ?
             <i className="fa-solid fa-arrow-right-long"
-              onClick={onRightClick}
-              style={rightArrow}/> : null}
+              onClick={onRightClick}/> : null}
         </div>);
     }
   };
@@ -102,29 +35,29 @@ const ImageGallery = ({currentStyle}) => {
           <img
             key={i}
             name={i}
+            className={i === currentPhoto ? 'thumbnail-nav-bar-image thumbnail-nav-bar-selected' : 'thumbnail-nav-bar-image'}
             src={currentStyle.photos[i].thumbnail_url}
-            onClick={changePhoto}
-            style={i === currentPhoto ? selectedThumbnailImage : thumbnailImage}/>
+            onClick={changePhoto}/>
         );
       }
     }
     return (
-      <div style={thumbnailNavBar}>
-        <i className="fa-solid fa-angle-up"
-          onClick={onUpClick}
-          style={navArrows}/>
-        <div id="thumbnailNavBar" style={thumbnailImages}>
+      <div className="thumbnail-nav-bar">
+        {currentStyle.photos.length > 7 ?
+          <i className="fa-solid fa-angle-up thumbnail-nav-bar-arrows"
+            onClick={onUpClick}/> : null}
+        <div id="thumbnailNavBar" className="thumbnail-nav-bar-images">
           {thumbnails}
         </div>
-        <i className="fa-solid fa-angle-down"
-          onClick={onDownClick}
-          style={navArrows}/>
+        {currentStyle.photos.length > 7 ?
+          <i className="fa-solid fa-angle-down thumbnail-nav-bar-arrows"
+            onClick={onDownClick}/> : null}
       </div>
     );
   };
 
   const changePhoto = (event) => {
-    setCurrentPhoto(Number(event.target.name));
+    setCurrentPhoto(Number(event.target.name || event.target.id));
   };
 
   const onLeftClick = (event) => {
@@ -149,11 +82,16 @@ const ImageGallery = ({currentStyle}) => {
     document.getElementById('thumbnailNavBar').scrollBy(0, 75);
   };
 
+  const onExpandedView = (event) => {
+    setIsOpen(true);
+  };
+
   return (
     <div>
       {/* Image Gallery */}
       {currentStyle.photos ? renderPhotoThumbnails() : null}
       {currentStyle.photos ? renderMainImage() : null}
+      <ExpandedView open={isOpen} onClose={() => setIsOpen(false)} currentStyle={currentStyle} currentPhoto={currentPhoto} onLeftClick={onLeftClick} onRightClick={onRightClick} changePhoto={changePhoto}/>
     </div>
   );
 };
