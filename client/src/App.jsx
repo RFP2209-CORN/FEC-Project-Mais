@@ -3,8 +3,6 @@ import axios from 'axios';
 import Overview from './components/Overview/Overview.jsx';
 import QuestionsAndAnswers from './components/Q&A/QA.jsx';
 import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOutfits.jsx';
-// import RatingsBreakdownSidebar from '../src/components/Ratings&Reviews/Ratings/RatingsBreakdownSidebar.jsx';
-// import AddReview from './/components/Ratings&Reviews/Reviews/AddReview.jsx';
 import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx';
 // import your components
 
@@ -27,7 +25,7 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
+      {/* <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/> */}
       {/* josh */}
 
       {/* QA */}
