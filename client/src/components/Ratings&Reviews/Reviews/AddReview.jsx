@@ -21,7 +21,7 @@ const AddReview = ({ prodName, handleSubmit, product_id }) => {
       Add Review
     </button>
 
-    <AddReviewModal open={isOpen} prodName={prodName} handleSubmit={handleSubmit} />
+    <AddReviewModal open={isOpen} onClose={closeModal} prodName={prodName} handleSubmit={handleSubmit} />
 
     </>
   )

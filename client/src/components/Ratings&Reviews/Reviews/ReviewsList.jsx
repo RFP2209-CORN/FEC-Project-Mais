@@ -5,7 +5,7 @@ import SingleReview from '../Reviews/SingleReview.jsx';
 
 const ReviewsList = ({rating,  totalReviews, reviews }) => {
 
-  console.log('reviews in ReviewsList.jsx', reviews);
+  // console.log('reviews in ReviewsList.jsx', reviews);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -13,13 +13,12 @@ const ReviewsList = ({rating,  totalReviews, reviews }) => {
   };
 
   return (
-    <div className="reviews-list">
+    <>
+    <div className="reviews-list-header">
       <div className="flexbox-container">
-        <div className="reviews-list-header">
-          <h2>
-            {totalReviews} Reviews, sorted by
-          </h2>
-        </div>
+        <h2>
+          {totalReviews} Reviews, sorted by
+        </h2>
         <h3>
           {/* <ReviewsSortDropdown /> */}
           <div className="sort-dropdown">
@@ -40,10 +39,20 @@ const ReviewsList = ({rating,  totalReviews, reviews }) => {
           </div>
         </h3>
       </div>
-       {reviews.slice(0, 2).map((review, index) => {
-        return <SingleReview rating={rating} totalReviews={totalReviews} review={review} key={index} />
-       })}
     </div>
+    <br></br>
+    <br></br>
+    <div>
+      {reviews.slice(0, 2).map((review, index) => {
+      return <SingleReview rating={rating} totalReviews={totalReviews} review={review} key={index} />
+      })}
+    </div>
+    <div className="more-reviews-button">
+      <button>
+        Load More Reviews
+      </button>
+    </div>
+    </>
   )
 }
 

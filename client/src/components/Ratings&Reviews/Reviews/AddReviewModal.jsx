@@ -22,7 +22,7 @@ const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id }) =
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay-styles" onClick={onClose}></div>
+      <div className="overlay-styles" onClick={onClose}/>
       <div className="modal-styles">
         <div className="form-container">
           <h1>Write Your Review</h1>

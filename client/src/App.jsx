@@ -27,7 +27,7 @@ const App = () => {
       {/* steph */}
 
       {/* RelatedItems */}
-      <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
+      {/* <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/> */}
       {/* josh */}
 
       {/* QA */}
@@ -37,7 +37,7 @@ const App = () => {
       {/* Ratings */}
       {/* <RatingsBreakdownSidebar /> */}
       {/* <AddReview /> */}
-      {/* <RatingsAndReviews /> */}
+      <RatingsAndReviews />
       {/* scott */}
     </div>
   );

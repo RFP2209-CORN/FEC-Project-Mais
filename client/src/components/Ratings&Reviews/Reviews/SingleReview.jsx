@@ -5,7 +5,7 @@ import SingleReviewPhotoModal from './SingleReviewPhotoModal.jsx';
 
 const SingleReview = ({ rating, totalReviews, review }) => {
 
-  const [ openModal, setOpenModal ] = useState(false);
+  const [ isOpen, setIsOpen ] = useState(false);
   const [ yes, setYes ] = useState(0);
   const [ no, setNo ] = useState(0);
   const [ yesClicked, setYesClicked ] = useState(false);
@@ -13,6 +13,7 @@ const SingleReview = ({ rating, totalReviews, review }) => {
   review.date = new Date();
   review.date = format(review.date, 'mm/dd/yyyy');
   review.photos?.slice(0, 4);
+  let photos = review.photos;
 
   const onPhotoClick = () => {
     setOpenModal(true);
@@ -42,14 +43,16 @@ const SingleReview = ({ rating, totalReviews, review }) => {
           {review.recommend ? '✅ I recommend this product' : null}
         </p>
       </div>
-      {/* <div className="reviews-card-images">
-        {review.photos.length > 0 && review.photos.map((photo) => {
-          <button onClick={onPhotoClick()}>
-            {openModal &&
-            <SingleReviewPhotoModal onClose={closeModal} photo={photo} />}
-          </button>
-        })}
-      </div> */}
+      <div>
+      {photos.length > 0 && photos.map((photo, index) => {
+        return (
+          <div key={index}>
+            <button className="reviews-image-button"onClick={() => setIsOpen(true)}>Open Image</button>
+            <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
+          </div>
+        )
+      })}
+       </div>
       {review.response &&
         <div className="reviews-card-response">
           <h3>
