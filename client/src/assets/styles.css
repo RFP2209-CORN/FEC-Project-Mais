@@ -25,6 +25,111 @@
   z-index: 1000;
 }
 
+.expanded-view-modal-style {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+/*
+========================================
+    OVERVIEW
+========================================
+*/
+
+.out-of-stock-main-image {
+  background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 575px;
+  height: 575px;
+  display: inline-block
+}
+
+.thumbnail-nav-bar {
+  width: 82.5px;
+  height: 575px;
+  display: inline-block
+}
+
+.thumbnail-nav-bar-arrows {
+  cursor: pointer
+}
+
+.thumbnail-nav-bar-images {
+  width: 82.5px;
+  height: 540px;
+  overflow: hidden;
+  scroll-snap-type: y mandatory
+}
+
+.thumbnail-nav-bar-image {
+  width: 72.5px;
+  height: 72.5px;
+  cursor: pointer;
+  scroll-snap-align: 'start'
+}
+
+.thumbnail-nav-bar-selected {
+  border: 3px solid black
+}
+
+.fa-arrow-left-long {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 5px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
+
+.fa-arrow-right-long {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 5px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+}
+
+.default-view {
+  position: relative;
+  width: 575px;
+  height: 575px;
+  display: inline-block;
+}
+
+.default-view-image {
+  background-size: cover;
+  background-position: center;
+  width: 575px;
+  height: 575px;
+  cursor: zoom-in
+}
+
+.expanded-view-image {
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  width: 700px;
+  cursor: crosshair
+}
+
+.expanded-view-icons {
+  display: flex;
+  justify-content: center;
+  padding: 2.5px
+}
+
+.fa-circle {
+  font-size: 12px;
+  margin-right: 2.5px;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
