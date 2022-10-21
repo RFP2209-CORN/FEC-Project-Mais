@@ -9,13 +9,14 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
   useEffect(() => {
     setDisplayItems([]);
+
     let outfitStorage = localStorage.getItem('outfitStorage');
     outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
-
     setOutfits(outfitStorage);
+
     let toDisplay = [];
     for (let i = 0; i < 4 && i < outfitStorage.length; i++) {
-      toDisplay.push(outfitStorage[i])
+      toDisplay.push(outfitStorage[i]);
     }
     setDisplayItems(toDisplay);
   }, []);
@@ -24,27 +25,25 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
     if (direction === 'left' && startIndex > 0) {
       let toDisplay = [];
       for (let i = startIndex - 1; i < startIndex + 3; i++) {
-        toDisplay.push(outfits[i])
+        toDisplay.push(outfits[i]);
       }
       setStartIndex(startIndex - 1);
-      setDisplayItems(toDisplay)
+      setDisplayItems(toDisplay);
     }
-
     if (direction === 'right' && startIndex + 4 <= outfits.length - 1) {
       let toDisplay = [];
       for (let i = startIndex + 1; i < startIndex + 5; i++) {
-        toDisplay.push(outfits[i])
+        toDisplay.push(outfits[i]);
       }
-      setStartIndex(startIndex + 1)
-      setDisplayItems(toDisplay)
+      setStartIndex(startIndex + 1);
+      setDisplayItems(toDisplay);
     }
-  }
+  };
 
   const addOutfit = () => {
     axios.get(`/products/${productId}`)
       .then(product => {
         let outfitAdded = false;
-
         for (let i = 0; i < outfits.length; i++) {
           if (outfits[i].id === product.data.id) {
             outfitAdded = true;
@@ -54,13 +53,11 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
           setOutfits(currOutfits => {
             return [...currOutfits, product.data];
           });
-
           // Set local storage
           let outfitStorage = localStorage.getItem('outfitStorage');
           outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
           outfitStorage.push(product.data);
           localStorage.setItem('outfitStorage', JSON.stringify(outfitStorage));
-
 
           let toDisplay = [];
           setDisplayItems([]);
@@ -69,10 +66,10 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
           } else {
             for (let i = outfitStorage.length - 4; i < outfitStorage.length; i++) {
               setDisplayItems(currDisplay => {
-                return [...currDisplay, outfitStorage[i]]
-              })
+                return [...currDisplay, outfitStorage[i]];
+              });
             }
-            setStartIndex(outfitStorage.length - 4)
+            setStartIndex(outfitStorage.length - 4);
           }
         }
       });
@@ -83,7 +80,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
     const productToRemove = parseInt(event.target.value);
     const newOutfits = outfits.filter((outfit) => outfit.id !== productToRemove);
-
     setOutfits(newOutfits);
 
     let outfitStorage = localStorage.getItem('outfitStorage');
@@ -91,9 +87,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
     const newLocalStorage = outfitStorage.filter((outfit) => outfit.id !== productToRemove);
     localStorage.setItem('outfitStorage', JSON.stringify(newLocalStorage));
 
-
     setDisplayItems([]);
-
     if (newLocalStorage.length <= 4) {
       setDisplayItems(newLocalStorage);
       setStartIndex(0);
@@ -101,14 +95,14 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       if (newLocalStorage[startIndex + 4] !== undefined) {
         for (let i = startIndex; i < 4; i++) {
           setDisplayItems(currDisplay => {
-            return [...currDisplay, newLocalStorage[i]]
-          })
+            return [...currDisplay, newLocalStorage[i]];
+          });
         }
       } else {
         for (let i = newLocalStorage.length - startIndex; i < 4; i++) {
           setDisplayItems(currDisplay => {
-            return [...currDisplay, newLocalStorage[i]]
-          })
+            return [...currDisplay, newLocalStorage[i]];
+          });
         }
       }
     }
@@ -146,9 +140,9 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       <div className="card add-outfit card-shadow">
         <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
       </div>
-      <button onClick={() => {
-        changeDisplay('left')
-      }}>Left arrow</button>
+      <button onClick={() => { changeDisplay('left'); }}>
+        Left arrow
+      </button>
       {displayItems.map((outfit) => {
         return (
           <OutfitCard
@@ -164,9 +158,9 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         );
       })}
       {displayItems.length <= 2 && renderBlankCards(outfits.length)}
-      <button onClick={() => {
-        changeDisplay('right')
-      }}>Right arrow</button>
+      <button onClick={() => { changeDisplay('right'); }}>
+        Right arrow
+      </button>
     </div>
   );
 };

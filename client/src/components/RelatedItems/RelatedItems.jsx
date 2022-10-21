@@ -7,27 +7,6 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
   const [displayItems, setDisplayItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
 
-  const changeDisplay = (direction) => {
-    if (direction === 'left' && startIndex > 0) {
-      let toDisplay = [];
-      for (let i = startIndex - 1; i < startIndex + 3; i++) {
-        toDisplay.push(relatedItems[i])
-      }
-      setStartIndex(startIndex - 1);
-      setDisplayItems(toDisplay)
-    }
-
-    if (direction === 'right' && startIndex + 4 <= relatedItems.length - 1) {
-      let toDisplay = [];
-      for (let i = startIndex + 1; i < startIndex + 5; i++) {
-        toDisplay.push(relatedItems[i])
-      }
-      setStartIndex(startIndex + 1)
-      setDisplayItems(toDisplay)
-    }
-  }
-
-
   useEffect(() => {
     setRelatedItems([]);
     setDisplayItems([]);
@@ -42,21 +21,40 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
               });
               if (count < 4) {
                 setDisplayItems(currDisplay => {
-                  return [...currDisplay, product.data]
-                })
+                  return [...currDisplay, product.data];
+                });
               }
-              count++
+              count++;
             });
         }
       })
       .catch(err => console.log(err));
   }, [productId]);
 
+  const changeDisplay = (direction) => {
+    if (direction === 'left' && startIndex > 0) {
+      let toDisplay = [];
+      for (let i = startIndex - 1; i < startIndex + 3; i++) {
+        toDisplay.push(relatedItems[i]);
+      }
+      setStartIndex(startIndex - 1);
+      setDisplayItems(toDisplay);
+    }
+    if (direction === 'right' && startIndex + 4 <= relatedItems.length - 1) {
+      let toDisplay = [];
+      for (let i = startIndex + 1; i < startIndex + 5; i++) {
+        toDisplay.push(relatedItems[i]);
+      }
+      setStartIndex(startIndex + 1);
+      setDisplayItems(toDisplay);
+    }
+  };
+
   return (
     <div className="card-container">
-      <button onClick={() => {
-        changeDisplay('left')
-      }}>Left arrow</button>
+      <button onClick={() => { changeDisplay('left'); }}>
+        Left arrow
+      </button>
       {displayItems.map((item) => {
         return (
           <RelatedItemsCard
@@ -70,9 +68,9 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
           />
         );
       })}
-      <button onClick={() => {
-        changeDisplay('right')
-      }}>Right arrow</button>
+      <button onClick={() => { changeDisplay('right'); }}>
+        Right arrow
+      </button>
     </div>
   );
 };

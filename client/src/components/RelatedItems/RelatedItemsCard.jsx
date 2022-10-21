@@ -4,6 +4,7 @@ import ComparisonModal from './ComparisonModal.jsx';
 import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
 const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct, currProductId }) => {
+  // which states can we combine into a single object?
   const [product, setProduct] = useState(item);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -50,7 +51,12 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
         ⭐
       </button>
       {isOpen === true &&
-        <ComparisonModal open={isOpen} onClose={closeModal} productId={currProductId} compareId={compareId} compareProduct={product}>
+        <ComparisonModal
+          open={isOpen}
+          onClose={closeModal}
+          productId={currProductId}
+          compareId={compareId}
+          compareProduct={product}>
         </ComparisonModal>
       }
       <div className="card-image">
