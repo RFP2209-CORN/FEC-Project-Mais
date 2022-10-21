@@ -3,9 +3,8 @@ import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
+
 const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
-
-
   const getProductReviews = (productId) => {
     return (
       axios.get(`/reviews/${productId}`)
