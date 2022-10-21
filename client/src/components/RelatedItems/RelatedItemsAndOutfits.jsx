@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
@@ -9,12 +9,11 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
     return (
       axios.get(`/reviews/${productId}`)
         .then(result => result.data.results)
-    )
-  }
+    );
+  };
 
 
   const saleAndImageSetter = (styles) => {
-    // console.log(styles)
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
         return {

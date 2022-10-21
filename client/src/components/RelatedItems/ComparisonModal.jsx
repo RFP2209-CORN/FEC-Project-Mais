@@ -40,7 +40,6 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
         characteristics.push(field);
       }
     }
-
     for (let field of characteristics) {
       let compare = [];
 
@@ -65,13 +64,12 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
         <tr key={entry}>
           <td className="modal-curr-product">
             {entry[0] > 0 && <StarRating rating={entry[0]}/>}
-
           </td>
           <td className="modal-field-name">
             {entry[1]}
           </td>
           <td className="modal-compare-product">
-          {entry[2] > 0 && <StarRating rating={entry[2]}/>}
+            {entry[2] > 0 && <StarRating rating={entry[2]}/>}
           </td>
         </tr>
       );
@@ -87,16 +85,16 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
       <div className="overlay-styles" onClick={onClose}></div>
       <div className="modal-styles comparison-modal">
         <button className="close-modal-btn" onClick={onClose}>X</button>
-          <table  onClick={(event) => event.stopPropagation()}>
-            <tbody>
-              <tr>
-                <td className="comparison-modal-name">{currName}</td>
-                <td></td>
-                <td className="comparison-modal-name">{compareName}</td>
-              </tr>
-              {currCharacteristics && compareCharacteristics && buildRows()}
-            </tbody>
-          </table>
+        <table onClick={(event) => event.stopPropagation()}>
+          <tbody>
+            <tr>
+              <td className="comparison-modal-name">{currName}</td>
+              <td></td>
+              <td className="comparison-modal-name">{compareName}</td>
+            </tr>
+            {currCharacteristics && compareCharacteristics && buildRows()}
+          </tbody>
+        </table>
       </div>
     </>,
     document.getElementById('modal')
