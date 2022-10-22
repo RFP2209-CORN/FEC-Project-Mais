@@ -87,12 +87,15 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   }, []);
 
   return (
-    <div>
+    <div className="answers-container">
       <div className="answers-list">
         {answerData()}
       </div>
 
-      {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+      <div>
+        {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+      </div>
+
     </div>
   );
 };
