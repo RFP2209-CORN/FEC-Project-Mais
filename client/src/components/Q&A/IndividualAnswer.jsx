@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { formatDistanceToNow, parseISO } from 'date-fns';
+import DisplayPhotoModal from './DisplayPhotoModal.jsx';
 
 // individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   // console.log('individual answer: ', answer);
   const [report, setReport] = useState(false);
+  const [photoClicked, setPhotoClicked] = useState(false);
+  const [image, setImage] = useState();
 
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
-        return <img src={photo.url} width="90" height="60"/>;
+        return <img src={photo.url} width="90" height="60"
+          onClick={() => {
+            setImage(photo);
+            setPhotoClicked(true);
+          }}/>;
       });
     }
   };
@@ -29,6 +36,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
       <p className="photos" >
         {showPhotos()}
       </p>
+      <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image}/>
 
       <p className="answer-helpfulness">
         Helpful? <span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness}) {!report && <button className="answer-report"
