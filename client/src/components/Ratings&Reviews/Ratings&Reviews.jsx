@@ -93,7 +93,7 @@ const RatingsAndReviews = ({ product_id }) => {
     // axios.put('/reviews/')
   }
 
-  const handleSubmit = () => {
+  const addReview = () => {
      // hardcoded product_id for now
      product_id = 40346;
      data = {
@@ -135,7 +135,7 @@ const RatingsAndReviews = ({ product_id }) => {
       </div>
       <ReviewsList reviews={reviews} rating={rating} totalNumberOfReviews={totalNumberOfReviews} />
     </div>
-    <AddReview prodName={prodName} metaData={metaData} handleSubmit={handleSubmit}/>
+    <AddReview prodName={prodName} metaData={metaData} addReview={addReview}/>
     </>
   );
 }

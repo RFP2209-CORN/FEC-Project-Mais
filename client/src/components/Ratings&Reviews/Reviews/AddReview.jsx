@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AddReviewModal from './AddReviewModal.jsx';
 
-const AddReview = ({ prodName, handleSubmit, metaData }) => {
+const AddReview = ({ prodName, addReview, metaData }) => {
 
   const [ isOpen, setIsOpen ] = useState(false);
 
@@ -21,7 +21,7 @@ const AddReview = ({ prodName, handleSubmit, metaData }) => {
       Add Review
     </button>
 
-    <AddReviewModal open={isOpen} onClose={closeModal} prodName={prodName} handleSubmit={handleSubmit} metaData={metaData} />
+    <AddReviewModal open={isOpen} onClose={closeModal} prodName={prodName} addReview={addReview} metaData={metaData} />
 
     </>
   )

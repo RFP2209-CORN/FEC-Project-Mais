@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
 import Stars from './Stars.jsx';
+import { useForm } from "react-hook-form";
 
-const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id, metaData }) => {
+const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
 
   let chararcteristicsObj = metaData.characteristics
   let characteristicsArray = []
@@ -45,39 +46,92 @@ const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id, met
 
   const [ rating, setRating ] = useState(0);
   const [ star, setStar ] = useState();
-  const [ recommend, setRecommend ] = useState(false);
   const [ photos, setPhotos ] = useState([]);
   const [ modalIsOpen, setIsOpen ] = useState(false);
   const [ characteristics, setCharacteristics ] = useState({});
-
-  const summaryRef = useRef();
-  const bodyRef = useRef();
-  const usernameRef = useRef();
-  const emailRef = useRef();
+  const { register, handleSubmit } = useForm();
 
   if (!open) {
     return null;
   }
 
   const massageCharacteristics = () => {
-
+    // TODO: take characteristics from form data and convert it to an object that the api will recognize
   }
 
+  const registerOptions = {
+    rating: {
+      required: "rating is required",
+      maxLength: 5,
+    },
+    recommend: {
+      required: "recommend is required",
+    },
+    characteristics: {
+      required: "characteristics is required",
+    },
+    summary: {
+      maxLength: {
+        value: 60,
+        message: "summary must have no more than 60 characters"
+      },
+    },
+    body: {
+      required: "body is required",
+      minLength: {
+        value: 50,
+        message: "body must have no less than 50 characters",
+      },
+      maxLength: {
+        value: 1000,
+        message: "body must have no more than 1000 characters"
+      },
+    },
+    photos: {
+      maxLength: 5,
+    },
+
+    name: {
+      required: "Name is required",
+      maxLength: {
+        value: 60,
+        message: "name must have no more than 60 characters"
+      },
+    },
+    email: {
+      required: "Email is required",
+      maxLength: {
+        value: 60,
+        message: "email must have no more than 60 characters"
+      },
+    },
+  };
+
+  const onFormSubmit  = (data) => {
+    console.log('data to be submitted', data);
+    // addReview(data);
+  }
+
+  const onErrors = (errors) => {
+    console.error('errors', errors);
+  }
 
   return ReactDom.createPortal(
     <>
+    {/* <div onClick={onClose}/>
+    <div> */}
       <div className="overlay-styles" onClick={onClose}/>
       <div className="modal-styles">
         <div className="form-container">
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit(onFormSubmit, onErrors)} >
             <div>
               <label>Do you recommend this product?
                 <br></br>
-                <input type="radio" value="true" name="recommend"  onClick={() => setRecommend(true)} />Yes
-                <input type="radio" value="false" name="recommend" onClick={() => setRecommend(false)}/>No
+                <input type="radio" value="true" name="recommend" {...register('recommend', registerOptions.recommend)}/>Yes
+                <input type="radio" value="false" name="recommend" {...register('recommend', registerOptions.recommend)}/>No
               </label>
             </div>
             &nbsp;
@@ -91,70 +145,25 @@ const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id, met
                   <div key={index} onChange={massageCharacteristics}>
                     <div>{char[0]}</div>
                     <label>1</label>
-                    <input type="radio" value="1" name="characteristics"/>
+                    <input type="radio" value="1" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
                     &nbsp;
                     &nbsp;
                     <label>2</label>
-                    <input type="radio" value="2" name="characteristics"/>
+                    <input type="radio" value="2" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
                     &nbsp;
                     &nbsp;
                     <label>3</label>
-                    <input type="radio" value="3" name="characteristics"/>
+                    <input type="radio" value="3" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
                     &nbsp;
                     &nbsp;
                     <label>4</label>
-                    <input type="radio" value="4" name="characteristics"/>
+                    <input type="radio" value="4" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
                     &nbsp;
                     &nbsp;
                     <label>5</label>
-                    <input type="radio" value="5" name="characteristics"/>
+                    <input type="radio" value="5" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
                     <div>{char[2]} &nbsp; {char[3]}</div>
                     &nbsp;
-                    {/* <div>
-                      {switch (`${char[0]}`) {
-                        case "Size":
-                          <div>
-                            1 = A size too small
-                            5 = A size too wide
-                          </div>
-                          break;
-                        case "Width":
-                          <div>
-                            1 = Too narrow
-                            5 = Too wide
-                          </div>
-                          break;
-                        case "Comfort":
-                          <div>
-                            1 = uncomfortable
-                            5 = Perfect
-                          </div>
-                          break;
-                        case "Quality":
-                          <div>
-                            1 = Poor
-                            5 = Perfect
-                          </div>
-                          break;
-                        case "Length":
-                          <div>
-                            1 = Runs Short
-                            5 = Runs Long
-                          </div>
-                          break;
-                        case "Fit":
-                          <div>
-                            1 = Runs tight
-                            5 = Runs long
-                          </div>
-                          break;
-                        default:
-                          <div>
-                            No characteristics
-                          </div>
-                          break;
-                      }}
-                    </div> */}
                   </div>
                 )
               })}
@@ -162,54 +171,79 @@ const AddReviewModal = ({ prodName, handleSubmit, open, onClose, product_id, met
             <br></br>
             <div>
               <div>
-                A Brief Summary - 60 characters or less
+                <label>
+                  A Brief Summary - 60 characters or less
+                </label>
               </div>
               <textarea
-                className="form-control"
                 type="text"
+                className="form-control"
+                name="summary"
                 placeholder="Example: Best purchase ever!"
-                ref={summaryRef}
+                {...register('summary', registerOptions.summary)}
               />
             </div>
             &nbsp;
             <div>
               <div>
-                Full Review - up to 1000 characters
+                <label>
+                  Full Review - up to 1000 characters
+                </label>
               </div>
               <textarea
                 className="form-control"
                 type="text"
                 placeholder="Why did you like the product or not?"
-                ref={bodyRef}
+                name="body"
+                {...register('body', registerOptions.body)}
               />
             </div>
             &nbsp;
             <div>
               <div>
-                Enter your username
+                <label>
+                  Enter your username
+                </label>
               </div>
               <input
                 className="form-control"
                 type="text"
                 placeholder="Example: jackson11!"
-                ref={usernameRef}
+                name="name"
+                {...register('name', registerOptions.name)}
               />
+              <div>
+                <small>
+                  For privacy reasons, do not use your full name or email address
+                </small>
+              </div>
             </div>
             &nbsp;
             <div>
               <div>
-                Enter your email address
+                <label>
+                  Enter your email address
+                </label>
               </div>
-              <textarea
+              <input
                 className="form-control"
                 type="text"
                 placeholder="Example: jackson11@email.com"
-                ref={emailRef}
+                name="email"
+                {...register('email', registerOptions.email)}
               />
+              <div>
+                <small>
+                  For authentication reasons, you will not be emailed
+                </small>
+              </div>
             </div>
             &nbsp;
-            <input type="submit" className="btn-modal">
-            </input>
+            <div>
+              <button>
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </div>

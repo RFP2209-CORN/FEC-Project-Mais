@@ -6,38 +6,11 @@ import StarRatingsChart from './StarRatingsChart.jsx';
 const RatingsBreakdownSidebar = ({ setReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalReviews, product_id }) => {
 
   const [ filteredReviews, setFilteredReviews ] = useState([]);
-  // const [ fiveStarReviews, setFiveStarReviews ] = useState([]);
-  // const [ fourStarReviews, setFourStarReviews ] = useState([]);
-  // const [ threeStarReviews, setThreeStarReviews ] = useState([]);
-  // const [ twoStarReviews, setTwoStarReviews ] = useState([]);
-  // const [ oneStarReviews, setOneStarReviews ] = useState([]);
   const [ toggleFiveStar, setToggleFiveStar ] = useState(false);
   const [ toggleFourStar, setToggleFourStar ] = useState(false);
   const [ toggleThreeStar, setToggleThreeStar ] = useState(false);
   const [ toggleTwoStar, setToggleTwoStar ] = useState(false);
   const [ toggleOneStar, setToggleOneStar ] = useState(false);
-
-
-  // console.log('filtered reviews', filteredReviews);
-
-  // useEffect(() => {
-  //   setFiveStarReviews(reviews.filter((review) => {
-  //     return review.rating === 5;
-  //   }));
-  //   setFourStarReviews(reviews.filter((review) => {
-  //     return review.rating === 4;
-  //   }));
-  //   setThreeStarReviews(reviews.filter((review) => {
-  //     return review.rating === 3;
-  //   }));
-  //   setTwoStarReviews(reviews.filter((review) => {
-  //     return review.rating === 2;
-  //   }));
-  //   setOneStarReviews(reviews.filter((review) => {
-  //     return review.rating === 1;
-  //   }));
-
-  // }, [])
 
   const handleFiveStarClick = () => {
     setToggleFiveStar(!toggleFiveStar);
@@ -48,7 +21,6 @@ const RatingsBreakdownSidebar = ({ setReviews, reviews, rating, fiveStar, fourSt
       });
       setFilteredReviews(...filteredReviews, filtered);
     } else {
-      // setFilteredReviews(filteredReviews.slice(0, filteredReviews.length - filtered.length + 1));
       setFilteredReviews(filteredReviews.filter((review) => {
         return review.rating !== 5;
       }));
