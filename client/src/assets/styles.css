@@ -119,6 +119,12 @@
   cursor: crosshair
 }
 
+.zoomed-view {
+  background-size: 2500px 1875px;
+  width: 1000px;
+  cursor: zoom-out;
+}
+
 .expanded-view-icons {
   display: flex;
   justify-content: center;
