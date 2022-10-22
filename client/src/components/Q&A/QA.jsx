@@ -137,24 +137,26 @@ const QuestionsAndAnswers = ({ productId }) => {
 
 
   return (
-    <>
-      <div>
+    <div className="qa-container">
+      <div className="search-question">
         <SearchQA handleSearch={handleSearch} />
       </div>
 
       <div className="questions-list">
         {renderQuestionsList(questionsList)}
       </div>
-      {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
+
+      <div className="load-more-questions">
+        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
+      </div>
 
       <br />
 
-      <span>
-        <button onClick={() => setIsOpen(true)}>Ask a question</button>
-
+      <div className="ask-question-modal">
+        <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
         <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={currentProduct} submitQuestion={handleSubmitQuestion} />
-      </span>
-    </>
+      </div>
+    </div>
   );
 };
 
