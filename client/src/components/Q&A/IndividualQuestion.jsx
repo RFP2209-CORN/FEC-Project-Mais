@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AnswersList from './AnswersList.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
-import { formatDistanceToNow, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import axios from 'axios';
 import { validate } from 'react-email-validator';
 
@@ -53,16 +53,29 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
 
   return (
     <div className="individual-question">
+      <p className="question">
+        <b>Q:</b>
+      </p>
+
       <p className="question-body">
-        <b>Q:</b> {question_body}
+        {question_body}
+      </p>
+
+      <p className="add-answer">
+        <button onClick={() => setIsOpen(true)} >Add Answer</button>
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} />
       </p>
 
       <p className="question-info">
-        {asker_name}, {formatDistanceToNow(parseISO(question_date))}
+        by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')}
       </p>
 
       <p className="question-helpfulness">
-        Helpful? <span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness}) {!report && <button className="question-report"
+        Helpful? <em><span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em>
+      </p>
+
+      <p className="question-report">
+        {!report && <button
           onClick={() => {
             setReport(true);
             handleReport(question);
@@ -70,13 +83,11 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
         {report && <span>Reported</span>}
       </p>
 
-      <span>
-        <button className="add-answer" onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images}/>
-      </span>
-
-      <div>
-        <b>A:</b> {renderAnswerList()}
+      <div className="answers">
+        <b>A:</b>
+      </div>
+      <div className="render-answers">
+        {renderAnswerList()}
       </div>
     </div >
   );

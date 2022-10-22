@@ -38,7 +38,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   };
 
   const handleAnswerHelpful = (item) => {
-    const userLookup = JSON.parse(localStorage.getItem(`${document.cookie}`));
+    const userLookup = JSON.parse(localStorage.getItem([document.cookie]));
 
     if (!userLookup[`AID${item.answer_id}`]) {
       axios.put(`/qa/answers/${item.answer_id}/helpful`)
@@ -92,7 +92,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
         {answerData()}
       </div>
 
-      <div>
+      <div className="load-answers">
         {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
       </div>
 
