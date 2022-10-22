@@ -95,7 +95,8 @@ app.put('/qa/questions/:id/helpful', (req, res) => {
 
 // PUT Question Report
 app.put('/qa/questions/:id/report', (req, res) => {
-  axios.put(`${url}/qa/questions/${req.params.id}/report`, req.body, header)
+  const params = { question_id: req.params.id };
+  axios.put(`${url}/qa/questions/${req.params.id}/report`, params, header)
     .then(result => res.status(204).end())
     .catch(err => console.log(err));
 });
@@ -112,7 +113,8 @@ app.put('/qa/answers/:id/helpful', (req, res) => {
 
 // PUT Answer Report
 app.put('/qa/answers/:id/report', (req, res) => {
-  axios.put(`${url}/qa/answers/${req.params.id}/report`, req.body, header)
+  const params = { answer_id: req.params.id };
+  axios.put(`${url}/qa/answers/${req.params.id}/report`, params, header)
     .then(result => res.status(204).end())
     .catch(err => console.log(err));
 });

@@ -34,10 +34,12 @@ const QuestionsAndAnswers = ({ productId }) => {
   };
 
   // TODO: Handle report PUT request - does not delete answer, just not return answer for GET request.
-  const handleQuestionReport = (e, item) => {
-    console.log('Report clicked', e, item);
-    e.target.innerText = 'Reported';
+  const handleQuestionReport = (item) => {
+    axios.put(`/qa/questions/${item.question_id}/report`)
+      .then(() => item)
+      .catch(err => console.log(err));
   };
+
 
   const handleSearch = (value) => {
     let container = [];
