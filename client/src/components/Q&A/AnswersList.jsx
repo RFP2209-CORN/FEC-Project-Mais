@@ -53,7 +53,10 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   };
 
   const handleAnswerReport = (item) => {
-
+    console.log(item);
+    axios.put(`/qa/answers/${item.answer_id}/report`)
+      .then(() => item)
+      .catch(err => console.log(err));
   };
 
   useEffect(() => {

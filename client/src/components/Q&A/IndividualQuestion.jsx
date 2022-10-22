@@ -10,6 +10,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
   // console.log('Individual question: ', question);
   const [isOpen, setIsOpen] = useState(false);
   const [images, setImages] = useState([]);
+  const [report, setReport] = useState(false);
   const { asker_name, question_body, question_helpfulness, question_date, question_id } = question;
 
   const onClose = () => {
@@ -66,12 +67,17 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
       </p>
 
       <p className="question-helpfulness">
-        Helpful? <span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness}) <button className="question-report" onClick={(e) => handleReport(e, question)}>Report</button>
+        Helpful? <span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness}) {!report && <button className="question-report"
+          onClick={() => {
+            setReport(true);
+            handleReport(question);
+          }}>Report</button>}
+        {report && <span>Reported</span>}
       </p>
 
       <span>
         <button className="add-answer" onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={onClose} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images}/>
+        <AddAnswerModal open={isOpen} onClose={onClose} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} />
       </span>
 
       <div>

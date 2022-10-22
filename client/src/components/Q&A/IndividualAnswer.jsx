@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
 // individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
-  console.log('individual answer: ', answer);
+  // console.log('individual answer: ', answer);
+  const [report, setReport] = useState(false);
 
-  // destructoring answer object
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
   const showPhotos = () => {
@@ -30,9 +30,14 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
         {showPhotos()}
       </p>
 
-      <div className="answer-helpfulness">
-        Helpful? <span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness}) <button className="answer-report" onClick={(e) => handleReport(e, answer)}>Report</button>
-      </div>
+      <p className="answer-helpfulness">
+        Helpful? <span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness}) {!report && <button className="answer-report"
+          onClick={() => {
+            setReport(true);
+            handleReport(answer);
+          }}>Report</button>}
+        {report && <span>Reported</span>}
+      </p>
     </div>
   );
 };
