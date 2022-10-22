@@ -11,7 +11,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
-        return <img src={photo.url} />;
+        return <img src={photo.url} width="90" height="60"/>;
       });
     }
   };
@@ -26,7 +26,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
         {answerer_name}, {formatDistanceToNow(parseISO(date))}
       </p>
 
-      <p className="photos">
+      <p className="photos" >
         {showPhotos()}
       </p>
 

@@ -13,10 +13,6 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
   const [report, setReport] = useState(false);
   const { asker_name, question_body, question_helpfulness, question_date, question_id } = question;
 
-  const onClose = () => {
-    setIsOpen(false);
-  };
-
   const photoWidget = cloudinary.createUploadWidget(
     {
       cloudName: 'dqk77sezi',
@@ -32,24 +28,23 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
 
   const handleSubmitAnswer = (e) => {
     e.preventDefault();
-    const query = {
+    const answerData = {
       body: e.target.answer.value,
       name: e.target.name.value,
       email: e.target.email.value,
       photos: images
     };
 
-    if (!validate(query.email)) {
-      alert('incorrect email format');
+    if (!validate(answerData.email)) {
+      alert('The email address provided is not in correct email format.');
     }
-    if (query.photos.length > 5) {
+    if (answerData.photos.length > 5) {
       alert('Only max of 5 photos allowed');
     }
 
-    axios.post(`/qa/questions/${question_id}/answers`, query)
-      .then(() => {
-        onClose();
-      });
+    axios.post(`/qa/questions/${question_id}/answers`, answerData)
+      .then(() => setIsOpen(false))
+      .catch(err => console.log(err));
   };
 
   const renderAnswerList = () => {
@@ -77,7 +72,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
 
       <span>
         <button className="add-answer" onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={onClose} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} />
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images}/>
       </span>
 
       <div>
