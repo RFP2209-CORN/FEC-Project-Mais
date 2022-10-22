@@ -305,3 +305,9 @@
   background-color:rgb(143, 187, 194);
   border-radius:10px;
 }
+
+.textButton {
+  background:none;
+  border:none;
+}
+

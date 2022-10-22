@@ -13,7 +13,7 @@ const RatingsAndReviews = ({ product_id }) => {
   const [ threeStar, setThreeStar ] = useState(0);
   const [ twoStar, setTwoStar ] = useState(0);
   const [ oneStar, setOneStar ] = useState(0);
-  const [ totalReviews, setTotalReviews ] = useState(0);
+  const [ totalNumberOfReviews, setTotalNumberOfReviews ] = useState(0);
 
   const [ prodName, setProdName ] = useState('');
   const [ star, setStar ] = useState();
@@ -21,6 +21,8 @@ const RatingsAndReviews = ({ product_id }) => {
   const [ photos, setPhotos ] = useState([]);
   const [ characteristics, setCharacteristics ] = useState({});
   const [ modalIsOpen, setIsOpen ] = useState(false);
+  const [ metaData, setMetaData ] = useState({});
+  const [ products, setProducts ] = useState({});
 
   const summaryRef = useRef();
   const bodyRef = useRef();
@@ -28,7 +30,7 @@ const RatingsAndReviews = ({ product_id }) => {
   const emailRef = useRef();
 
   let data = {
-    product_id: 40346,
+    product_id: 40344,
     rating: 5,
     summary: "good stuff",
     body: "good stuff...looking forward to using this product",
@@ -40,12 +42,11 @@ const RatingsAndReviews = ({ product_id }) => {
   }
 
   useEffect(() => {
-    product_id = 40346;
-    axios.get(`/reviews/${product_id}`)
+    product_id = 40344;
+    axios.get(`/reviews/${product_id}/count`)
       .then((results) => {
+        console.log('reviews by product_id', results.data.results)
         let productReviews = results.data.results;
-        console.log('productReviews', productReviews);
-        setReviews(productReviews);
         let totalRating = 0;
         productReviews.forEach((review) => {
           totalRating += review.rating;
@@ -53,47 +54,44 @@ const RatingsAndReviews = ({ product_id }) => {
         let averageRating = totalRating / productReviews.length;
         averageRating = Math.round(averageRating * 10) / 10;
         setRating(averageRating);
-        getMetaData();
-        getProductName();
+        setReviews(productReviews);
       })
       .catch((error) => {
         console.log(error)
       })
+    axios.get(`/reviews/meta/${product_id}`)
+    .then((results) => {
+      console.log('results.data from successful axios request to get meta data', results.data);
+      let individualRatings = results.data.ratings;
+      console.log('individualRatings', individualRatings);
+      let total = 0;
+      for (var key in individualRatings) {
+        let ratings = parseInt(individualRatings[key]);
+        total += ratings;
+        key === '1' && setOneStar(ratings);
+        key === '2' && setTwoStar(ratings);
+        key === '3' && setThreeStar(ratings);
+        key === '4' && setFourStar(ratings);
+        key === '5' && setFiveStar(ratings);
+      }
+      setTotalNumberOfReviews(total);
+      setMetaData(results.data);
+    })
+    axios.get(`/products/${product_id}`)
+    .then((results) => {
+      console.log('results.data from successful axios request to get product name', results.data);
+      setProdName(results.data.name);
+      setProducts(results.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }, []);
 
-  const getProductName = () => {
-    product_id = 40346;
-    axios.get(`/products/${product_id}`)
-      .then((results) => {
-        console.log('results.data from successful axios request to get product name', results.data);
-        setProdName(results.data.name);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+  const handleYesClick = () => {
+    console.log('move handleYesClick function here later')
+    // axios.put('/reviews/')
   }
-
-  const getMetaData = () => {
-    // hardcoded product_id for now
-    product_id = 40346;
-    axios.get(`/reviews/meta/${product_id}`)
-      .then((results) => {
-        console.log('results.data from successful axios request to get meta data', results.data);
-        let individualRatings = results.data.ratings;
-        console.log('individualRatings', individualRatings);
-        let total = 0;
-        for (var key in individualRatings) {
-          let ratings = parseInt(individualRatings[key]);
-          total += ratings;
-          key === '1' && setOneStar(ratings);
-          key === '2' && setTwoStar(ratings);
-          key === '3' && setThreeStar(ratings);
-          key === '4' && setFourStar(ratings);
-          key === '5' && setFiveStar(ratings);
-        }
-        setTotalReviews(total);
-      })
-  };
 
   const handleSubmit = () => {
      // hardcoded product_id for now
@@ -133,11 +131,11 @@ const RatingsAndReviews = ({ product_id }) => {
     <>
     <div className="flexbox-container">
       <div className="sidebar">
-        < RatingsBreakdownSidebar fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalReviews={totalReviews} rating={rating} />
+        < RatingsBreakdownSidebar setReviews={setReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalNumberOfReviews} rating={rating} />
       </div>
-      <ReviewsList rating={rating} totalReviews={totalReviews} reviews={reviews}/>
+      <ReviewsList reviews={reviews} rating={rating} totalNumberOfReviews={totalNumberOfReviews} />
     </div>
-    <AddReview prodName={prodName} handleSubmit={handleSubmit}/>
+    <AddReview prodName={prodName} metaData={metaData} handleSubmit={handleSubmit}/>
     </>
   );
 }

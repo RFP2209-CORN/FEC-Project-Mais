@@ -34,8 +34,9 @@ app.get('/products/:id/related', (req, res) => {
 });
 
 // REVIEWS
-app.get('/reviews/:id', (req, res) => {
-  axios.get(`${url}/reviews/?product_id=${req.params.id}`, header)
+// get 100 reviews by id
+app.get('/reviews/:id/count', (req, res) => {
+  axios.get(`${url}/reviews/?product_id=${req.params.id}&count=100`, header)
     .then(result => res.status(200).send(result.data));
 });
 
@@ -57,6 +58,16 @@ app.post('/reviews', (req, res) => {
       res.sendStatus(404);
     })
 });
+
+// PUT
+// req.body.review_id = reveiw_id
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  console.log('req.body', req.body);
+  axios.put(`${url}/reviews/${req.params.review_id}/helpful`, req.body, header)
+    .then(res.sendStatus(204))
+    .catch(err => console.log(err))
+});
+
 
 /* -------------------------------------------------- */
 /*  QUESTIONS & ANSWERS  */
