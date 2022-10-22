@@ -3,15 +3,14 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 
 // individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
-  console.log('individual answer: ', answer);
+  // console.log('individual answer: ', answer);
 
-  // destructoring answer object
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
-        return <img src={photo.url} />;
+        return <img src={photo.url} width="90" height="60"/>;
       });
     }
   };
@@ -26,7 +25,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
         {answerer_name}, {formatDistanceToNow(parseISO(date))}
       </p>
 
-      <p className="photos">
+      <p className="photos" >
         {showPhotos()}
       </p>
 
