@@ -38,22 +38,28 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   };
 
   const handleAnswerHelpful = (item) => {
-    axios.put(`/qa/answers/${item.answer_id}/helpful`)
-      .then(() => {
-        for (let i = 0; i < answerList.length; i++) {
-          if (item.answer_id === answerList[i].answer_id) {
-            setAnswerList((data) => {
-              let newData = data.slice();
-              newData[i].helpfulness += 1;
-              return newData;
-            });
+    const userLookup = JSON.parse(localStorage.getItem(`${document.cookie}`));
+
+    if (!userLookup[`AID${item.answer_id}`]) {
+      axios.put(`/qa/answers/${item.answer_id}/helpful`)
+        .then(() => {
+          for (let i = 0; i < answerList.length; i++) {
+            if (item.answer_id === answerList[i].answer_id) {
+              setAnswerList((data) => {
+                let newData = data.slice();
+                newData[i].helpfulness += 1;
+                return newData;
+              });
+            }
           }
-        }
-      });
+          userLookup[`AID${item.answer_id}`] = true;
+          localStorage.setItem(`${document.cookie}`, JSON.stringify(userLookup));
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   const handleAnswerReport = (item) => {
-    console.log(item);
     axios.put(`/qa/answers/${item.answer_id}/report`)
       .then(() => item)
       .catch(err => console.log(err));
@@ -81,12 +87,15 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   }, []);
 
   return (
-    <div>
+    <div className="answers-container">
       <div className="answers-list">
         {answerData()}
       </div>
 
-      {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+      <div>
+        {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+      </div>
+
     </div>
   );
 };
