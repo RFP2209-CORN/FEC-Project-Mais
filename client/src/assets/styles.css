@@ -120,8 +120,8 @@
 }
 
 .zoomed-view {
-  background-size: 2500px 1875px;
-  width: 1000px;
+  background-size: 1875px;
+  background-repeat: no-repeat;
   cursor: zoom-out;
 }
 
