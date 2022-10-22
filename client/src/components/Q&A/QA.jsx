@@ -6,12 +6,10 @@ import IndividualQuestion from './IndividualQuestion.jsx';
 import AnswersList from './AnswersList.jsx';
 import axios from 'axios';
 
-// Will need to change out once actual product_id is passed down from App
-const product_id = 40349;
 // 40355
 
-const QuestionsAndAnswers = () => {
-  const [currentProduct, setCurrentProduct] = useState('');
+const QuestionsAndAnswers = ({ productId }) => {
+  const [currentProduct, setCurrentProduct] = useState([]);
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsData, setQuestionsData] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
@@ -78,13 +76,13 @@ const QuestionsAndAnswers = () => {
     }
     if (data.length !== 0) {
       return data.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} />;
+        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} product={currentProduct}/>;
       });
     }
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/${product_id}`)
+    axios.get(`/qa/questions/${productId}`)
       .then(result => {
         const data = result.data.results;
         if (data.length < 3) {
@@ -104,9 +102,7 @@ const QuestionsAndAnswers = () => {
       })
       .catch(err => console.log(err));
 
-
-    // get product ID - will change in future
-    axios.get(`/products/${product_id}`)
+    axios.get(`/products/${productId}`)
       .then(result => {
         setCurrentProduct(result.data.name);
       })

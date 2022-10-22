@@ -3,7 +3,7 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 import axios from 'axios';
 
 // List of answers - Integrate into IndividualQuestion.jsx
-const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
+const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   // console.log('answersList: ', question_id);
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
@@ -57,7 +57,7 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/${question_id}/answers`)
+    axios.get(`/qa/questions/${questionId}/answers`)
       .then(result => {
         const data = result.data.results;
         if (data.length < 3) {
