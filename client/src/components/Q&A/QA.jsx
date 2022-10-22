@@ -1,40 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
-// import QuestionsList from './QuestionsList.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
+import AnswersList from './AnswersList.jsx';
+import { validate } from 'react-email-validator';
 import axios from 'axios';
 
-// Will need to change out once actual product_id is passed down from App
-const product_id = 40349;
-// 40355
-
-const QuestionsAndAnswers = () => {
-  const [currentProduct, setCurrentProduct] = useState('');
+const QuestionsAndAnswers = ({ productId }) => {
+  const [currentProduct, setCurrentProduct] = useState([]);
   const [allQuestionsData, setAllQuestionsData] = useState([]);
-  const [questionsData, setQuestionsData] = useState([]);
+  const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
-  // const [cookie, setCookie] = useState('');
 
-  // TODO: Handle helpfulness PUT Request - update helpfulness count;
-  const handleHelpful = (item) => {
-    // console.log('Helpful clicked', item);
-    if (item.question_helpfulness) {
-      item.question_helpfulness++;
-      console.log('after clicked question helpfulness: ', item.question_helpfulness);
-    }
-    if (item.helpfulness) {
-      item.helpfulness++;
-      console.log('after clicked answer helpfulness', item.helpfulness);
+  const handleQuestionHelpful = (item) => {
+    const userLookup = JSON.parse(localStorage.getItem(`${document.cookie}`));
+
+    if (!userLookup[`QID${item.question_id}`]) {
+      axios.put(`/qa/questions/${item.question_id}/helpful`)
+        .then(() => {
+          for (let i = 0; i < questionsList.length; i++) {
+            if (item.question_id === questionsList[i].question_id) {
+              setQuestionsList((data) => {
+                let newData = data.slice();
+                newData[i].question_helpfulness += 1;
+                return newData;
+              });
+            }
+          }
+          userLookup[`QID${item.question_id}`] = true;
+          localStorage.setItem(`${document.cookie}`, JSON.stringify(userLookup));
+        })
+        .catch(err => console.log(err));
     }
   };
 
-  // TODO: Handle report PUT request - does not delete answer, just not return answer for GET request.
-  const handleReport = (e, item) => {
-    console.log('Report clicked', e, item);
-    e.target.innerText = 'Reported';
+  const handleQuestionReport = (item) => {
+    axios.put(`/qa/questions/${item.question_id}/report`)
+      .then(() => item)
+      .catch(err => console.log(err));
   };
 
   const handleSearch = (value) => {
@@ -48,7 +53,7 @@ const QuestionsAndAnswers = () => {
         }
       }
     }
-    setQuestionsData(container);
+    setQuestionsList(container);
   };
 
   const handleLoadMoreQuestion = () => {
@@ -61,27 +66,45 @@ const QuestionsAndAnswers = () => {
       }
       container.push(allQuestionsData[i]);
     }
-    setQuestionsData(container);
+    setQuestionsList(container);
 
     if (allQuestionsData.length <= questionCount) {
       setLoadQuestionButton(false);
-      setQuestionsData(allQuestionsData);
+      setQuestionsList(allQuestionsData);
     }
   };
 
-  const renderQuestionsList = () => {
-    if (questionsData.length === 0) {
+  const handleSubmitQuestion = (e) => {
+    e.preventDefault();
+    const questionData = {
+      body: e.target.question.value,
+      name: e.target.name.value,
+      email: e.target.email.value,
+      'product_id': productId
+    };
+
+    if (!validate(questionData.email)) {
+      alert('The email address provided is not in correct email format.');
+    }
+
+    axios.post('/qa/questions', questionData)
+      .then(() => setIsOpen(false))
+      .catch(err => console.log(err));
+  };
+
+  const renderQuestionsList = (data) => {
+    if (data.length === 0) {
       return <em>No question found. Try again...</em>;
     }
-    if (questionsData.length !== 0) {
-      return questionsData.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+    if (data.length !== 0) {
+      return data.map(item => {
+        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} product={currentProduct} />;
       });
     }
   };
 
   useEffect(() => {
-    axios.get(`/qa/questions/${product_id}`)
+    axios.get(`/qa/questions/${productId}`)
       .then(result => {
         const data = result.data.results;
         if (data.length < 3) {
@@ -94,50 +117,40 @@ const QuestionsAndAnswers = () => {
         }
         setQuestionCount(prev => prev + 2);
         setAllQuestionsData(data);
-        setQuestionsData(container);
+        setQuestionsList(container);
       })
-      // .then(() => setCookie(document.cookie))
+      .then(() => {
+        if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
+          localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+        }
+      })
       .catch(err => console.log(err));
-  }, []);
 
-  // get product ID - will change in future
-  useEffect(() => {
-    axios.get(`/products/${product_id}`)
+    axios.get(`/products/${productId}`)
       .then(result => {
         setCurrentProduct(result.data.name);
       })
       .catch(err => console.log(err));
   }, []);
-  console.log(allQuestionsData);
 
   return (
-    <>
-      <div>
+    <div className="qa-container">
+      <div className="search-question">
         <SearchQA handleSearch={handleSearch} />
       </div>
 
-      {/* Provides all the details of questions and their answers */}
-      {/* <QuestionsList
-          renderQuestionsList={renderQuestionsList}
-          handleHelpful={handleHelpful}
-          handleReport={handleReport}
-          loadQuestionButton={loadQuestionButton}
-          handleLoadQuestion={handleLoadMoreQuestion}
-        /> */}
-
       <div className="questions-list">
-        {renderQuestionsList()}
-        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>}
+        {renderQuestionsList(questionsList)}
       </div>
+      {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>} <br />
 
       <br />
 
-      <span>
-        <button onClick={() => setIsOpen(true)}>Ask a question</button>
-
-        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={currentProduct} />
-      </span>
-    </>
+      <div className="ask-question-modal">
+        <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
+        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={currentProduct} submitQuestion={handleSubmitQuestion} />
+      </div>
+    </div>
   );
 };
 

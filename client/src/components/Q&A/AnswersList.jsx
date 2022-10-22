@@ -3,7 +3,7 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 import axios from 'axios';
 
 // List of answers - Integrate into IndividualQuestion.jsx
-const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
+const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   // console.log('answersList: ', question_id);
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
@@ -16,14 +16,13 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
     }
     if (totalAnswerList.length) {
       return answerList.map(answer => {
-        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleHelpful} handleReport={handleReport} />;
+        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleAnswerHelpful} handleReport={handleAnswerReport} />;
       });
     }
   };
 
   const handleLoadMoreAnswers = () => {
     setAnswerCount(prev => prev + 2);
-
     let container = [];
     for (let i = 0; i < totalAnswerList.length; i++) {
       if (i === answerCount) {
@@ -32,18 +31,44 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
       container.push(totalAnswerList[i]);
     }
     setAnswerList(container);
-
     if (totalAnswerList.length <= answerCount) {
       setAnswerList(totalAnswerList);
       setLoadAnswerButton(false);
     }
   };
 
+  const handleAnswerHelpful = (item) => {
+    const userLookup = JSON.parse(localStorage.getItem(`${document.cookie}`));
+
+    if (!userLookup[`AID${item.answer_id}`]) {
+      axios.put(`/qa/answers/${item.answer_id}/helpful`)
+        .then(() => {
+          for (let i = 0; i < answerList.length; i++) {
+            if (item.answer_id === answerList[i].answer_id) {
+              setAnswerList((data) => {
+                let newData = data.slice();
+                newData[i].helpfulness += 1;
+                return newData;
+              });
+            }
+          }
+          userLookup[`AID${item.answer_id}`] = true;
+          localStorage.setItem(`${document.cookie}`, JSON.stringify(userLookup));
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
+  const handleAnswerReport = (item) => {
+    axios.put(`/qa/answers/${item.answer_id}/report`)
+      .then(() => item)
+      .catch(err => console.log(err));
+  };
+
   useEffect(() => {
-    axios.get(`/qa/questions/${question_id}/answers`)
+    axios.get(`/qa/questions/${questionId}/answers`)
       .then(result => {
         const data = result.data.results;
-        console.log(data);
         if (data.length < 3) {
           setLoadAnswerButton(false);
         }
@@ -62,9 +87,15 @@ const AnswersList = ({ question_id, handleHelpful, handleReport }) => {
   }, []);
 
   return (
-    <div className="answers-list">
-      {answerData()}
-      {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+    <div className="answers-container">
+      <div className="answers-list">
+        {answerData()}
+      </div>
+
+      <div>
+        {loadAnswerButton && <button onClick={() => handleLoadMoreAnswers()}>LOAD MORE ANSWERS</button>}
+      </div>
+
     </div>
   );
 };
