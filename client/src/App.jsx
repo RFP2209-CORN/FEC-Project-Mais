@@ -27,23 +27,28 @@ const App = () => {
 
 
   return (
-    <>
-      {/* <div id="overview">
-        <Overview/>
-      </div> */}
+    <div>
+      {/* Navbar */}
+      {/* whoever finishes first */}
 
-      {/* <div id="relatedItemsAndOutfits">
-        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      {/* Overview */}
+      {/* <Overview/> */}
+      {/* steph */}
 
-      {/* <div id="qa">
-        <QuestionsAndAnswers productId={productId}/>
-      </div> */}
+      {/* RelatedItems */}
+      {/* <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/> */}
+      {/* josh */}
 
-      {/* <div id="rateAndReview">
-        <RatingsAndReviews />
-      </div> */}
-    </>
+      {/* QA */}
+      {/* <QuestionsAndAnswers /> */}
+      {/* hieu */}
+
+      {/* Ratings */}
+      {/* <RatingsBreakdownSidebar /> */}
+      {/* <AddReview /> */}
+      {/* <RatingsAndReviews /> */}
+      {/* scott */}
+    </div>
   );
 };
 
