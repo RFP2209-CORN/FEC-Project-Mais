@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatDistanceToNow, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import DisplayPhotoModal from './DisplayPhotoModal.jsx';
 
 // individual answer - Integrate into AnswersList.jsx
@@ -18,8 +18,14 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
           onClick={() => {
             setImage(photo);
             setPhotoClicked(true);
-          }}/>;
+          }} />;
       });
+    }
+  };
+
+  const setPhotos = () => {
+    if (photos.length) {
+      return <p className="photos">{showPhotos()} <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image} /></p>;
     }
   };
 
@@ -29,21 +35,21 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
         {body}
       </p>
 
-      <p className="answer-name-and-date">
-        {answerer_name}, {formatDistanceToNow(parseISO(date))}
-      </p>
+      {setPhotos()}
 
-      <p className="photos" >
-        {showPhotos()}
+      <p className="answer-name-and-date">
+        by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}
       </p>
-      <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image}/>
 
       <p className="answer-helpfulness">
-        Helpful? <span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness}) {!report && <button className="answer-report"
-          onClick={() => {
-            setReport(true);
-            handleReport(answer);
-          }}>Report</button>}
+        Helpful? <em><span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em>
+      </p>
+
+      <p className="answer-report">
+        {!report && <button onClick={() => {
+          setReport(true);
+          handleReport(answer);
+        }}>Report</button>}
         {report && <span>Reported</span>}
       </p>
     </div>

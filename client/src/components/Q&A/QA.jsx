@@ -15,7 +15,7 @@ const QuestionsAndAnswers = ({ productId }) => {
   const [questionCount, setQuestionCount] = useState(2);
 
   const handleQuestionHelpful = (item) => {
-    const userLookup = JSON.parse(localStorage.getItem(`${document.cookie}`));
+    const userLookup = JSON.parse(localStorage.getItem([document.cookie]));
 
     if (!userLookup[`QID${item.question_id}`]) {
       axios.put(`/qa/questions/${item.question_id}/helpful`)
@@ -142,9 +142,10 @@ const QuestionsAndAnswers = ({ productId }) => {
       <div className="questions-list">
         {renderQuestionsList(questionsList)}
       </div>
-      {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>} <br />
 
-      <br />
+      <div className="more-answered-questions">
+        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>} <br />
+      </div>
 
       <div className="ask-question-modal">
         <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
