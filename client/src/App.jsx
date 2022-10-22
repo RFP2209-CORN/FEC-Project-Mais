@@ -22,7 +22,7 @@ const App = () => {
   //     let elem = document.getElementById(module);
   //     elem.addEventListener('click', trackClicks);
   //   });
-  // }, [])
+  // }, []);
 
 
 
