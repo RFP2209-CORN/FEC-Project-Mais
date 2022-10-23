@@ -69,7 +69,6 @@ const QuestionsAndAnswers = ({ productId }) => {
 
   // works async in conjunction with handleLoadMoreQuestion
   useEffect(() => {
-    console.log(allQuestionsData);
     if (allQuestionsData.length <= questionCount) {
       setLoadQuestionButton(false);
       setCollapseButton(true);
