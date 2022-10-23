@@ -26,7 +26,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
   const handleAnswerLength = (e) => {
     if (e.target.innerText === 'LOAD MORE ANSWERS') {
       setAnswerCount(prev => prev + 2);
-    } else if (e.target.innerText === 'Collapse Answers') {
+    } else if (e.target.innerText === 'COLLAPSE ANSWERS') {
       setAnswerCount(2);
     }
   };
@@ -106,7 +106,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
 
       <div className="load-answers">
         {loadAnswerButton && <button onClick={(e) => handleAnswerLength(e)}>LOAD MORE ANSWERS</button>}
-        {collapseButton && answerList.length > 0 && <button onClick={(e) => handleAnswerLength(e)}>Collapse Answers</button>}
+        {collapseButton && answerList.length > 0 && <button onClick={(e) => handleAnswerLength(e)}>COLLAPSE ANSWERS</button>}
       </div>
     </div>
   );

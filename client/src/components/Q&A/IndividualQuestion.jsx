@@ -59,7 +59,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
 
       <p className="add-answer">
         <button onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} />
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages}/>
       </p>
 
       <p className="question-info">

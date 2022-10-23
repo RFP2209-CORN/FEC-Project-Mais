@@ -11,6 +11,7 @@ const QuestionsAndAnswers = ({ productId }) => {
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
+  const [collapseButton, setCollapseButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
 
@@ -57,9 +58,13 @@ const QuestionsAndAnswers = ({ productId }) => {
       .catch(err => console.log(err));
   };
 
-  // Increase count by 2 to load 2 more Questions
-  const handleLoadMoreQuestion = () => {
-    setQuestionCount(prev => prev + 2);
+  // Handle LoadMoreQuestions/Collapse Button
+  const handleLoadMoreQuestion = (e) => {
+    if (e.target.innerText === 'MORE ANSWERED QUESTIONS') {
+      setQuestionCount(prev => prev + 2);
+    } else if (e.target.innerText === 'COLLAPSE QUESTIONS') {
+      setQuestionCount(2);
+    }
   };
 
   // works async in conjunction with handleLoadMoreQuestion
@@ -67,8 +72,10 @@ const QuestionsAndAnswers = ({ productId }) => {
     console.log(allQuestionsData);
     if (allQuestionsData.length <= questionCount) {
       setLoadQuestionButton(false);
+      setCollapseButton(true);
     } else {
       setLoadQuestionButton(true);
+      setCollapseButton(false);
     }
     let container = [];
     for (let i = 0; i < allQuestionsData.length; i++) {
@@ -149,7 +156,8 @@ const QuestionsAndAnswers = ({ productId }) => {
       </div>
 
       <div className="more-answered-questions">
-        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>} <br />
+        {loadQuestionButton && <button onClick={(e) => handleLoadMoreQuestion(e)} >MORE ANSWERED QUESTIONS</button>}
+        {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadMoreQuestion(e)}>COLLAPSE QUESTIONS</button>}
       </div>
 
       <div className="ask-question-modal">
