@@ -24,8 +24,6 @@ const App = () => {
   //   });
   // }, []);
 
-
-
   return (
     <div>
       {/* Navbar */}
@@ -46,7 +44,7 @@ const App = () => {
       {/* Ratings */}
       {/* <RatingsBreakdownSidebar /> */}
       {/* <AddReview /> */}
-      {/* <RatingsAndReviews /> */}
+      <RatingsAndReviews />
       {/* scott */}
     </div>
   );
