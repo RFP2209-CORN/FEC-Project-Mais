@@ -33,7 +33,10 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
 
   // Async Rendering in conjunction with handleAnswerLength
   useEffect(() => {
-    if (totalAnswerList.length <= answerCount) {
+    if (totalAnswerList.length < 3) {
+      setLoadAnswerButton(false);
+      setCollapseButton(false);
+    } else if (totalAnswerList.length <= answerCount) {
       setLoadAnswerButton(false);
       setCollapseButton(true);
     } else {
@@ -82,9 +85,6 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
     axios.get(`/qa/questions/${questionId}/answers`)
       .then(result => {
         const data = result.data.results;
-        if (data.length < 3) {
-          setLoadAnswerButton(false);
-        }
         let container = [];
         for (let i = 0; i < data.length; i++) {
           if (i === answerCount) {

@@ -69,7 +69,10 @@ const QuestionsAndAnswers = ({ productId }) => {
 
   // works async in conjunction with handleLoadMoreQuestion
   useEffect(() => {
-    if (allQuestionsData.length <= questionCount) {
+    if (allQuestionsData.length < 3) {
+      setLoadQuestionButton(false);
+      setCollapseButton(false);
+    } else if (allQuestionsData.length <= questionCount) {
       setLoadQuestionButton(false);
       setCollapseButton(true);
     } else {
@@ -117,9 +120,6 @@ const QuestionsAndAnswers = ({ productId }) => {
     axios.get(`/qa/questions/${productId}`)
       .then(result => {
         const data = result.data.results;
-        if (data.length < 3) {
-          setLoadQuestionButton(false);
-        }
         let container = [];
         for (let i = 0; i < data.length; i++) {
           if (i === questionCount) { break; }
