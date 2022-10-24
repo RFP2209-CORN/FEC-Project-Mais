@@ -8,7 +8,7 @@ import { useTrackerUpdate } from './TrackerProvider.jsx';
 
 
 const App = () => {
-  const [productId, setProductId] = useState(40344);
+  const [productId, setProductId] = useState(40349);
   const trackClicks = useTrackerUpdate();
 
   const updateProduct = (e, prodId) => {
@@ -25,7 +25,6 @@ const App = () => {
   // }, []);
 
 
-
   return (
     <>
       {/* <div id="overview">
@@ -37,7 +36,7 @@ const App = () => {
       </div>
 
       {/* <div id="qa">
-        <QuestionsAndAnswers />
+        <QuestionsAndAnswers productId={productId}/>
       </div> */}
 
       {/* <div id="rateAndReview">

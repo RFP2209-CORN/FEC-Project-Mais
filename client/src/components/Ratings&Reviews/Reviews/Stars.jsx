@@ -6,32 +6,12 @@ const Stars = ({ setStar }) => {
 
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
+  const [hoverText, setHoverText] = useState('');
 
   const handleClick = (ratingValue) => {
     setRating(ratingValue);
     setStar(ratingValue);
-    console.log({ratingValue});
-
-    switch (ratingValue) {
-      case 5:
-        alert('5 stars - Great');
-        break;
-      case 4:
-        alert('4 stars - Good');
-        break;
-      case 3:
-        alert('3 stars - Average');
-        break;
-      case 2:
-        alert('2 stars - Fair');
-        break;
-      case 1:
-        alert('1 star - Poor');
-        break;
-      default:
-        alert('product is not rated 1-5');
-        break;
-    }
+    setHoverText('');
   };
 
   return (
@@ -40,7 +20,7 @@ const Stars = ({ setStar }) => {
         const ratingValue = i + 1;
         return (
           <label key={i}>
-            <button
+            <button className="textButton"
               name="rating"
               value={ratingValue}
               onClick={() => handleClick(ratingValue)}
@@ -48,15 +28,26 @@ const Stars = ({ setStar }) => {
             <FaStar
               className="star"
               color={ratingValue <= (hover || rating) ? "gold" : "lightgray"}
-              size={20}
-              onMouseEnter={() => setHover(ratingValue)}
-              onMouseLeave={() => setHover(null)}
+              size={35}
+              onMouseEnter={() => {
+                setHover(ratingValue);
+                setHoverText(ratingValue);
+                // setStar(ratingValue);
+              }}
+              onMouseLeave={() => {
+                setHover(null);
+                setHoverText('');
+              }}
             />
             </button>
           </label>
         );
       })}
-      <p>I rate this product {rating + " stars"}</p>
+      {
+        hoverText
+        ? <p>I rate this product {hoverText + " stars"}</p>
+        : <p>I rate this product {rating + " stars"}</p>
+      }
     </div>
   );
 };

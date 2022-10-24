@@ -34,8 +34,9 @@ app.get('/products/:id/related', (req, res) => {
 });
 
 // REVIEWS
-app.get('/reviews/:id', (req, res) => {
-  axios.get(`${url}/reviews/?product_id=${req.params.id}`, header)
+// get 100 reviews by id
+app.get('/reviews/:id/count', (req, res) => {
+  axios.get(`${url}/reviews/?product_id=${req.params.id}&count=100`, header)
     .then(result => res.status(200).send(result.data));
 });
 
@@ -58,36 +59,44 @@ app.post('/reviews', (req, res) => {
     })
 });
 
+// PUT
+// req.body.review_id = reveiw_id
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  console.log('req.body', req.body);
+  axios.put(`${url}/reviews/${req.params.review_id}/helpful`, req.body, header)
+    .then(res.sendStatus(204))
+    .catch(err => console.log(err))
+});
+
+
 /* -------------------------------------------------- */
 /*  QUESTIONS & ANSWERS  */
 // GET all questions data
 app.get('/qa/questions/:id', (req, res) => {
-  axios.get(`${url}/qa/questions?product_id=${req.params.id}&page=1&count=1000`, header)
+  axios.get(`${url}/qa/questions?product_id=${req.params.id}&count=100`, header)
     .then(result => res.status(200).send(result.data));
 });
 // GET all answers data
 app.get('/qa/questions/:id/answers', (req, res) => {
-  axios.get(`${url}/qa/questions/${req.params.id}/answers`, header)
+  axios.get(`${url}/qa/questions/${req.params.id}/answers?count=100`, header)
     .then(result => res.status(200).send(result.data));
 });
 
-// POST
-// req.body obj - body, name, product_id, email
+// POST/ADD Quesion
 app.post('/qa/questions', (req, res) => {
   axios.post(`${url}/qa/questions`, req.body, header)
     .then(result => res.status(201).end())
     .catch(err => console.log(err));
 });
 
-// need the question_id when posted, req.body obj - body, name, email, photo
+// POST/ADD Answer
 app.post('/qa/questions/:id/answers', (req, res) => {
   axios.post(`${url}/qa/questions/${req.params.id}/answers`, req.body, header)
     .then(result => res.status(201).end())
     .catch(err => console.log(err));
 });
 
-// PUT
-// req.body - question_id
+// PUT Question Helpfulness
 app.put('/qa/questions/:id/helpful', (req, res) => {
   const params = { question_id: req.params.id };
   axios.put(`${url}/qa/questions/${req.params.id}/helpful`, params, header)
@@ -95,14 +104,15 @@ app.put('/qa/questions/:id/helpful', (req, res) => {
     .catch(err => console.log(err));
 });
 
-// req.body - question_id
+// PUT Question Report
 app.put('/qa/questions/:id/report', (req, res) => {
-  axios.put(`${url}/qa/questions/${req.params.id}/report`, req.body, header)
+  const params = { question_id: req.params.id };
+  axios.put(`${url}/qa/questions/${req.params.id}/report`, params, header)
     .then(result => res.status(204).end())
     .catch(err => console.log(err));
 });
 
-// req.body - answer_id
+// PUT Answer Helpfulness
 app.put('/qa/answers/:id/helpful', (req, res) => {
   const params = { answer_id: req.params.id };
   axios.put(`${url}/qa/answers/${req.params.id}/helpful`, params, header)
@@ -112,9 +122,10 @@ app.put('/qa/answers/:id/helpful', (req, res) => {
     .catch(err => console.log(err));
 });
 
-// req.body - answer_id
+// PUT Answer Report
 app.put('/qa/answers/:id/report', (req, res) => {
-  axios.put(`${url}/qa/answers/${req.params.id}/report`, req.body, header)
+  const params = { answer_id: req.params.id };
+  axios.put(`${url}/qa/answers/${req.params.id}/report`, params, header)
     .then(result => res.status(204).end())
     .catch(err => console.log(err));
 });

@@ -1,32 +1,57 @@
-import React from 'react';
-import { formatDistanceToNow, parseISO } from 'date-fns';
+import React, { useState } from 'react';
+import { format, parseISO } from 'date-fns';
+import DisplayPhotoModal from './DisplayPhotoModal.jsx';
 
-// individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   // console.log('individual answer: ', answer);
-
-  // destructoring answer object
+  const [report, setReport] = useState(false);
+  const [photoClicked, setPhotoClicked] = useState(false);
+  const [image, setImage] = useState();
   const { body, answerer_name, date, photos, helpfulness } = answer;
+
+  // Display List of Photos for Answer
+  const showPhotos = () => {
+    if (photos.length) {
+      return photos.map(photo => {
+        return <img src={photo.url} width="90" height="60"
+          onClick={() => {
+            setImage(photo);
+            setPhotoClicked(true);
+          }} />;
+      });
+    }
+  };
+
+  // Click event to enlarge image
+  const setPhotos = () => {
+    if (photos.length) {
+      return <p className="photos">{showPhotos()} <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image} /></p>;
+    }
+  };
 
   return (
     <div className="individual-answer" data-testid="answer-modal-inputs">
-      {/* Format of answer, NOT yet completed */}
       <p className="individual-answer-body">
         {body}
       </p>
 
+      {setPhotos()}
+
       <p className="answer-name-and-date">
-        {answerer_name}, {formatDistanceToNow(parseISO(date))}
+        by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}
       </p>
 
-      <p>
-        {/* Answer Photos - might be another file due to photo array */}
-        {/* Photos: {[photos].length > 0 && photos[0]} */}
+      <p className="answer-helpfulness">
+        Helpful? <em><span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em>
       </p>
 
-      <div className="answer-helpfulness">
-        Helpful? <span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness}) <button className="answer-report" onClick={(e) => handleReport(e, answer)}>Report</button>
-      </div>
+      <p className="answer-report">
+        {!report && <button onClick={() => {
+          setReport(true);
+          handleReport(answer);
+        }}>Report</button>}
+        {report && <span>Reported</span>}
+      </p>
     </div>
   );
 };

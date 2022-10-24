@@ -119,6 +119,12 @@
   cursor: crosshair
 }
 
+.zoomed-view {
+  background-size: 1875px;
+  background-repeat: no-repeat;
+  cursor: zoom-out;
+}
+
 .expanded-view-icons {
   display: flex;
   justify-content: center;
@@ -247,26 +253,128 @@
 ========================================
 */
 
-.questions-list {
-  display: flex;
-  justify-content: flex-start;
-  /* align-items: center; */
-  flex-direction: column;
+.qa-container {
+  display: grid;
+  max-height: 600px;
+  overflow: scroll;
+  grid-template-columns: 2fr 6fr;
   background-color: aliceblue;
-  border: 1px solid grey;
+  border: 2px solid grey;
+  grid-template-areas:
+    "title title"
+    "search search"
+    "q-list q-list"
 }
 
-.question-body,
-.question-info,
-.question-helpfulness,
-.add-answer {
-  align-self: flex-start;
-  order: 1;
-  border: 1px solid grey;
+.qa-title {
+  grid-area: title;
+  zoom: 125%;
+  padding-left: 10px;
+}
+
+.search-question {
+  grid-area: search;
+  zoom: 125%;
+  padding-left: 10px;
+}
+
+.questions-list {
+  grid-area: q-list;
+}
+
+.questions-list,
+.more-answered-questions,
+.ask-question-modal {
+  padding: 5px 10px 5px 10px;
+}
+
+.individual-question {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(10, 1fr);
+  padding: 0 5px 0 5px;
+  border: 1.5px solid grey;
+  grid-template-areas:
+    "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
+    "blank q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
+    "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
+}
+
+.blank {
+  grid-area: blank;
+}
+
+.question {
+  grid-area: question;
+  justify-self: end;
+}
+
+.question-body {
+  grid-area: q-body;
+  word-wrap: break-word;
+}
+
+.answers {
+  grid-area: answer;
+  justify-self: end;
+}
+
+.render-answers {
+  grid-area: render-a;
+}
+
+.question-info {
+  grid-area: q-info;
 }
 
 .question-helpfulness {
-  align-self: flex-end;
+  grid-area: q-helpful;
+  justify-self: end;
+}
+
+.question-report {
+  grid-area: q-report;
+  justify-self: start;
+}
+
+.add-answer {
+  grid-area: add-a;
+  padding: 0 10px 0 0;
+  justify-self: end;
+}
+
+.individual-answer {
+  display: grid;
+  grid-template-columns: 4fr 2fr 4fr;
+  grid-gap: 5px;
+  padding: 0 10px 0 10px;
+  border: 1px solid grey;
+  grid-template-areas:
+    "a-body a-body a-body"
+    "a-photos a-photos a-photos"
+}
+
+.individual-answer-body {
+  grid-area: a-body;
+  margin-top: 0;
+  word-wrap: break-word;
+}
+
+.photos {
+  grid-area: a-photos;
+  word-wrap: break-word;
+}
+
+.answer-helpfulness {
+  justify-self: end;
+}
+
+.answer-report {
+  justify-self: start;
+}
+
+.load-answers {
+  padding: 10px 0 10px 0;
 }
 
 /*
@@ -301,7 +409,7 @@
 
 .btn-modal {
   background-color: antiquewhite;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 .sidebar {
@@ -335,6 +443,7 @@
   border-radius: 0.625rem;
   margin: 2rem;
 }
+
 .review-photo {
   height: 200px;
   width: 200px;
@@ -385,12 +494,12 @@
   width: 100px;
 }
 
-.sort-dropdown-menu > li {
+.sort-dropdown-menu>li {
   margin: 0;
   background-color: white;
 }
 
-.sort-dropdown-menu > li > button {
+.sort-dropdown-menu>li>button {
   width: 100%;
   height: 100%;
   text-align: center;
@@ -402,6 +511,7 @@
   font: inherit;
   cursor: pointer;
 }
+
 .more-reviews-button {
   position: relative;
   bottom: -450px;
@@ -428,7 +538,13 @@
   left: 650px;
   bottom: 35px;
   font-weight: bold;
-  color:rgba(7, 1, 1, 0.2);
-  background-color:rgb(143, 187, 194);
-  border-radius:10px;
+  color: rgba(7, 1, 1, 0.2);
+  background-color: rgb(143, 187, 194);
+  border-radius: 10px;
 }
+
+.textButton {
+  background:none;
+  border:none;
+}
+
