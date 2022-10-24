@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import DisplayPhotoModal from './DisplayPhotoModal.jsx';
 
-// individual answer - Integrate into AnswersList.jsx
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   // console.log('individual answer: ', answer);
   const [report, setReport] = useState(false);
   const [photoClicked, setPhotoClicked] = useState(false);
   const [image, setImage] = useState();
-
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
+  // Display List of Photos for Answer
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
@@ -23,6 +22,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
     }
   };
 
+  // Click event to enlarge image
   const setPhotos = () => {
     if (photos.length) {
       return <p className="photos">{showPhotos()} <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image} /></p>;

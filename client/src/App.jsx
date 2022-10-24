@@ -35,9 +35,9 @@ const App = () => {
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
       </div> */}
 
-      <div id="qa">
+      {/* <div id="qa">
         <QuestionsAndAnswers productId={productId}/>
-      </div>
+      </div> */}
 
       {/* <div id="rateAndReview">
         <RatingsAndReviews />
