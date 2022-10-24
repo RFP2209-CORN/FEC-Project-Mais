@@ -43,7 +43,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   };
 
   return (
-    <div className="card card-shadow" value={product} onClick={() => updateProduct(event, product)}>
+    <div className="card card-shadow" value={product.id} onClick={() => updateProduct(event, product.id)}>
       <button
         className="favorite-icon"
         value={product.id}
