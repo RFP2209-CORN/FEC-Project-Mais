@@ -255,24 +255,33 @@
 
 .qa-container {
   display: grid;
+  max-height: 600px;
+  overflow: scroll;
   grid-template-columns: 2fr 6fr;
   background-color: aliceblue;
   border: 2px solid grey;
   grid-template-areas:
+    "title title"
     "search search"
     "q-list q-list"
+}
+
+.qa-title {
+  grid-area: title;
+  zoom: 125%;
+  padding-left: 10px;
 }
 
 .search-question {
   grid-area: search;
   zoom: 125%;
+  padding-left: 10px;
 }
 
 .questions-list {
   grid-area: q-list;
 }
 
-.search-question,
 .questions-list,
 .more-answered-questions,
 .ask-question-modal {
@@ -287,8 +296,12 @@
   border: 1.5px solid grey;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
-    "q-info q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
+    "blank q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
     "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
+}
+
+.blank {
+  grid-area: blank;
 }
 
 .question {
@@ -312,8 +325,6 @@
 
 .question-info {
   grid-area: q-info;
-  padding-left: 80px;
-  justify-self: center;
 }
 
 .question-helpfulness {

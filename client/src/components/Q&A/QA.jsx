@@ -11,12 +11,28 @@ const QuestionsAndAnswers = ({ productId }) => {
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
+  const [collapseButton, setCollapseButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
 
+  // Search Function
+  const handleSearch = (value) => {
+    let container = [];
+    if (value.length <= 2) {
+      container = allQuestionsData;
+    } else if (value.length > 2) {
+      for (let i = 0; i < allQuestionsData.length; i++) {
+        if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
+          container.push(allQuestionsData[i]);
+        }
+      }
+    }
+    setQuestionsList(container);
+  };
+
+  // increment Question helpful by 1 per user
   const handleQuestionHelpful = (item) => {
     const userLookup = JSON.parse(localStorage.getItem([document.cookie]));
-
     if (!userLookup[`QID${item.question_id}`]) {
       axios.put(`/qa/questions/${item.question_id}/helpful`)
         .then(() => {
@@ -36,44 +52,42 @@ const QuestionsAndAnswers = ({ productId }) => {
     }
   };
 
+  // Mark Question as Reported
   const handleQuestionReport = (item) => {
     axios.put(`/qa/questions/${item.question_id}/report`)
-      .then(() => item)
       .catch(err => console.log(err));
   };
 
-  const handleSearch = (value) => {
-    let container = [];
-    if (value.length <= 2) {
-      container = allQuestionsData;
-    } else if (value.length > 2) {
-      for (let i = 0; i < allQuestionsData.length; i++) {
-        if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
-          container.push(allQuestionsData[i]);
-        }
-      }
+  // Handle LoadMoreQuestions/Collapse Button
+  const handleLoadMoreQuestion = (e) => {
+    if (e.target.innerText === 'MORE ANSWERED QUESTIONS') {
+      setQuestionCount(prev => prev + 2);
+    } else if (e.target.innerText === 'COLLAPSE QUESTIONS') {
+      setQuestionCount(2);
     }
-    setQuestionsList(container);
   };
 
-  const handleLoadMoreQuestion = () => {
-    setQuestionCount(prev => prev + 2);
-
+  // works async in conjunction with handleLoadMoreQuestion
+  useEffect(() => {
+    if (allQuestionsData.length < 3) {
+      setLoadQuestionButton(false);
+      setCollapseButton(false);
+    } else if (allQuestionsData.length <= questionCount) {
+      setLoadQuestionButton(false);
+      setCollapseButton(true);
+    } else {
+      setLoadQuestionButton(true);
+      setCollapseButton(false);
+    }
     let container = [];
     for (let i = 0; i < allQuestionsData.length; i++) {
-      if (i === questionCount) {
-        break;
-      }
+      if (i === questionCount) { break; }
       container.push(allQuestionsData[i]);
     }
     setQuestionsList(container);
+  }, [questionCount, allQuestionsData]);
 
-    if (allQuestionsData.length <= questionCount) {
-      setLoadQuestionButton(false);
-      setQuestionsList(allQuestionsData);
-    }
-  };
-
+  // Add new Question w/ validation
   const handleSubmitQuestion = (e) => {
     e.preventDefault();
     const questionData = {
@@ -82,16 +96,14 @@ const QuestionsAndAnswers = ({ productId }) => {
       email: e.target.email.value,
       'product_id': productId
     };
-
     if (!validate(questionData.email)) {
       alert('The email address provided is not in correct email format.');
     }
-
     axios.post('/qa/questions', questionData)
-      .then(() => setIsOpen(false))
       .catch(err => console.log(err));
   };
 
+  // Renders list of Questions or Nothing.
   const renderQuestionsList = (data) => {
     if (data.length === 0) {
       return <em>No question found. Try again...</em>;
@@ -103,19 +115,16 @@ const QuestionsAndAnswers = ({ productId }) => {
     }
   };
 
+  // Initial Questions Data Retrieval
   useEffect(() => {
     axios.get(`/qa/questions/${productId}`)
       .then(result => {
         const data = result.data.results;
-        if (data.length < 3) {
-          setLoadQuestionButton(false);
-        }
         let container = [];
         for (let i = 0; i < data.length; i++) {
           if (i === questionCount) { break; }
           container.push(data[i]);
         }
-        setQuestionCount(prev => prev + 2);
         setAllQuestionsData(data);
         setQuestionsList(container);
       })
@@ -135,6 +144,8 @@ const QuestionsAndAnswers = ({ productId }) => {
 
   return (
     <div className="qa-container">
+      <p className="qa-title"><b>Questions & Answers</b></p>
+
       <div className="search-question">
         <SearchQA handleSearch={handleSearch} />
       </div>
@@ -144,7 +155,8 @@ const QuestionsAndAnswers = ({ productId }) => {
       </div>
 
       <div className="more-answered-questions">
-        {loadQuestionButton && <button onClick={() => handleLoadMoreQuestion()} >MORE ANSWERED QUESTIONS</button>} <br />
+        {loadQuestionButton && <button onClick={(e) => handleLoadMoreQuestion(e)} >MORE ANSWERED QUESTIONS</button>}
+        {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadMoreQuestion(e)}>COLLAPSE QUESTIONS</button>}
       </div>
 
       <div className="ask-question-modal">

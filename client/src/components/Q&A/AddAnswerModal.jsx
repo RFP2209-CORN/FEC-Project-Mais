@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 
-const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoWidget, images }) => {
+const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoWidget, images, setImages }) => {
   if (!open) { return null; }
 
   return ReactDom.createPortal(
@@ -32,8 +32,9 @@ const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoW
           <p className="answer-photo">
             {images.length < 5 && <button id="upload-widget" className="cloudinary-button"
               onClick={(e) => { e.preventDefault(); photoWidget.open(); }}>Upload photos</button>} <br />
-            {images.length && <span>Images uploaded: {images.length}</span>}
           </p>
+          {images.length > 0 &&
+          <p> Images uploaded: ( {images.length} ) <button onClick={() => setImages([])}>X</button></p>}
 
           <input type="submit" />
         </form>
