@@ -32,10 +32,9 @@ const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoW
           <p className="answer-photo">
             {images.length < 5 && <button id="upload-widget" className="cloudinary-button"
               onClick={(e) => { e.preventDefault(); photoWidget.open(); }}>Upload photos</button>} <br />
-            <div>
-              Images uploaded: ( {images.length} ) {images.length > 0 && <button onClick={() => setImages([])}>X</button>}
-            </div>
           </p>
+          {images.length > 0 &&
+          <p> Images uploaded: ( {images.length} ) <button onClick={() => setImages([])}>X</button></p>}
 
           <input type="submit" />
         </form>
