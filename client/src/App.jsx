@@ -11,8 +11,8 @@ const App = () => {
   const [productId, setProductId] = useState(40344);
   const trackClicks = useTrackerUpdate();
 
-  const updateProduct = (e, product) => {
-    setProductId(product.id);
+  const updateProduct = (e, prodId) => {
+    setProductId(prodId);
   };
 
   // useEffect(() => {
@@ -32,9 +32,9 @@ const App = () => {
         <Overview/>
       </div> */}
 
-      {/* <div id="relatedItemsAndOutfits">
+      <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      </div>
 
       {/* <div id="qa">
         <QuestionsAndAnswers />
