@@ -9,6 +9,7 @@ const AskAQuestionModal = ({ open, onClose, product, submitQuestion }) => {
       <div className="overlay-styles" onClick={onClose} />
       <div className="modal-styles">
         <form onSubmit={(e) => submitQuestion(e)}>
+          <button className="form-cancel" onClick={onClose} >X</button>
           <h3 className="question-title">
             Ask Your Question
           </h3>
@@ -32,7 +33,7 @@ const AskAQuestionModal = ({ open, onClose, product, submitQuestion }) => {
             <em>For authentication reasons, you will not be emailed.</em>
           </p>
 
-          <input type="submit" />
+          <input className="submit" type="submit" />
         </form>
       </div>
     </>,

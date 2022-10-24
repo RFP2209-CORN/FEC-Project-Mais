@@ -13,7 +13,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
-        return <img src={photo.url} width="90" height="60"
+        return <img src={photo.url} width="90" height="60" className="photo"
           onClick={() => {
             setImage(photo);
             setPhotoClicked(true);
@@ -42,7 +42,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
       </p>
 
       <p className="answer-helpfulness">
-        Helpful? <em><span onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em>
+        Helpful? <em><span className="helpful" onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em>
       </p>
 
       <p className="answer-report">
