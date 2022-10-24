@@ -4,9 +4,12 @@ import QuantitySelector from './QuantitySelector.jsx';
 
 const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) => {
   const [cart, setCart] = React.useState([]);
+  const [failToAdd, setFailToAdd] = React.useState(false);
 
   const onAddToCart = (event) => {
-    if (skuSelected && quantitySelected) {
+    if (!skuSelected) {
+      setFailToAdd(true);
+    } else if (skuSelected && quantitySelected) {
       let item = { sku: skuSelected, quantity: quantitySelected };
       setCart([...cart, item]);
     }
@@ -15,9 +18,10 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
   return (
     <div>
       {/* Add to Cart */}
-      <SizeSelector currentStyle={currentStyle} skuSelected={skuSelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
+      {failToAdd ? <p style={{color: 'red'}}>Please select size</p> : null}
+      <SizeSelector currentStyle={currentStyle} skuSelected={skuSelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected} setFailToAdd={setFailToAdd}/>
       <QuantitySelector currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeQuantitySelected={changeQuantitySelected}/>
-      <button onClick={onAddToCart}>Add to Cart</button>
+      {currentStyle.skus?.null ? null : <button onClick={onAddToCart}>Add to Cart</button>}
     </div>
   );
 };
