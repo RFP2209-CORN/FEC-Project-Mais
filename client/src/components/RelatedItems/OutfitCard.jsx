@@ -19,6 +19,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
     axios.get(`/reviews/${product.id}`)
       .then(result => {
         let reviews = result.data.results;
+        console.log('reviews', reviews);
         setRating(calcRating(reviews));
       });
 

@@ -39,6 +39,10 @@ app.get('/reviews/:id/count', (req, res) => {
   axios.get(`${url}/reviews/?product_id=${req.params.id}&count=100`, header)
     .then(result => res.status(200).send(result.data));
 });
+app.get('/reviews/:id', (req, res) => {
+  axios.get(`${url}/reviews/?product_id=${req.params.id}`, header)
+    .then(result => res.status(200).send(result.data));
+});
 
 app.get('/reviews/meta/:id', (req, res) => {
   axios.get(`${url}/reviews/meta/?product_id=${req.params.id}`, header)
