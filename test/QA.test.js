@@ -17,20 +17,28 @@ jest.mock('axios');
 
 describe('Questions and Answer Overview', () => {
 
-  axios.get
-  .mockImplementationOnce(() => Promise.resolve({
-    data: dummyData.questionList
-  }))
-  .mockImplementationOnce(() => Promise.resolve({
-    data: dummyData.product
-  }));
+  beforeEach(() => {
+    axios.get
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.questionList
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.product
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.answerList
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.answerList
+    }))
+  })
 
   it('ProductInfo renders and contains an id of product-info', async () => {
     // Render the widget, use act to handle any states being re-rendered
     await act(async () => render(<QuestionsAndAnswers />));
 
 
-    // Check if testID renders
+    // Check if
     const searchQuestion = await screen.getByText('Questions & Answers');
     expect(searchQuestion).toBeTruthy();
 
