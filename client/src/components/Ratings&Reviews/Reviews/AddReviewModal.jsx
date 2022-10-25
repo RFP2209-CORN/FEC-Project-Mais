@@ -5,15 +5,14 @@ import { validate } from 'react-email-validator';
 
 const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
 
+  const [ recommend, setRecommend ] = useState(false);
   const [ rating, setRating ] = useState(0);
   const [ star, setStar ] = useState();
-  const [ photos, setPhotos ] = useState([]);
-  const [ modalIsOpen, setIsOpen ] = useState(false);
+  const [ images, setImages ] = useState([]);
   const [ characteristics, setCharacteristics ] = useState({});
   const [ body, setBody ] = useState('');
   const { recommend, setRecommend } = useState(false);
 
-  // const body = useRef('');
   const summary = useRef('');
   const name = useRef('');
   const email = useRef('');
@@ -56,6 +55,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     }
   }
 
+  // photo uploader
   const photoWidget = cloudinary.createUploadWidget(
     {
       cloudName: 'dgjzqkjh0',
@@ -66,33 +66,40 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
         console.log('error uploading photo', error);
       }
       if (!error && result && result.event === "success") {
-        setPhotos([...photos, result.info.url]);
+        console.log('result.info.url', result.info.url);
+        setImages([...images, result.info.url]);
       }
     }
   );
 
+  // if the modal isn't open, return null
   if (!open) {
     return null;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // convert characteristics back into an object for the post request
+    let charsObj = {};
+    for (let i = 0; i < characteristicsArray.length; i++) {
+      charsObj[characteristicsArray[i][1].id] = characteristicsArray[i][1].value
+    }
+
     let data = {
       product_id: product_id,
       rating: star,
-      summary: summary,
-      body: body,
+      summary: event.target.summary.value,
+      body: event.target.body.value,
       recommend: recommend,
-      name: name,
-      email: email,
-      photos: photos,
-      characteristics: characteristics,
-      // {"14": 5, "15": 5}
+      name: event.target.name.value,
+      email: event.target.email.value,
+      photos: images,
+      characteristics: charsObj,
     }
-    console.log('data to be submitted', data);
-
     addReview(data);
   }
 
+  // show the user how many words are left before the body is complete
   const showCounter = () => {
     let counter = body.length;
     let left = 50 - body.length;
@@ -108,13 +115,15 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={(event) =>
+            handleSubmit(event)} >
             <div>
               <label>Do you recommend this product?
                 <br></br>
-                <input type="radio"  value="true" name="recommend" required onClick={() => {
-                  setRecommend(true)}} />Yes
-                <input type="radio" value="false" name="recommend" required onClick={() => {
+                <input type="radio"  value="true" checked={recommend === true} name="recommend" required onChange={() => {
+                  setRecommend(true)
+                  }} />Yes
+                <input type="radio" value="false"checked={recommend === false} name="recommend" required onChange={() => {
                   setRecommend(false)
                 }}/>No
               </label>
@@ -124,26 +133,38 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
               </h3>
               {characteristicsArray.map((char, index) => {
                 return (
-                  <div key={index} onChange={massageCharacteristics}>
+                  <div key={index} >
                     <div>{char[0]}</div>
+                    {/* remove 'required' for testing purposes */}
+
                     <label>1</label>
-                    <input type="radio" value="1" name="1" required/>
+                    <input type="radio" value="1" name="1" required onClick={() => {
+                      char[1].value = 1
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>2</label>
-                    <input type="radio" value="2" name="2" required />
+                    <input type="radio" value="2" name="2" required onClick={() => {
+                      char[1].value = 2
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>3</label>
-                    <input type="radio" value="3" name="3" required />
+                    <input type="radio" value="3" name="3" required onClick={() => {
+                      char[1].value = 3
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>4</label>
-                    <input type="radio" value="4" name="4" required />
+                    <input type="radio" value="4" name="4" required onClick={() => {
+                      char[1].value = 4
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>5</label>
-                    <input type="radio" value="5" name="5" required />
+                    <input type="radio" value="5" name="5" required onClick={() => {
+                      char[1].value = 5
+                    }}/>
                     <div>{char[2]} &nbsp; {char[3]}</div>
                     &nbsp;
                   </div>
@@ -198,7 +219,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
             &nbsp;
 
             <div className="answer-photo">
-              {photos.length < 5 &&
+              {images.length < 5 &&
                 <button
                   onClick={(event) => {
                     event.preventDefault();
@@ -206,8 +227,14 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                   }}>Upload photos
                 </button>}
               &nbsp;
-              <img src={photos[photos.length - 1]} width="70" height="70" />
-              {photos?.length && <span>Images uploaded: {photos.length}</span>}
+              {images && images.map((image, index) => {
+                return <img key={index} src={`${image}`} width="70" height="70" />
+              })}
+              {images.length > 0 &&
+                <div>
+                  <small>Images uploaded: {images.length}</small>
+                </div>
+              }
             </div>
 
             &nbsp;
@@ -222,7 +249,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 type="text"
                 placeholder="Example: jackson11!"
                 name="name"
-                ref={name}
                 required
               />
               <div>
@@ -246,7 +272,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 placeholder="Example: jackson11@email.com"
                 name="email"
                 required
-                ref={email}
               />
               <div>
                 <small>
@@ -256,9 +281,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
             </div>
             &nbsp;
             <div>
-              <button>
-                Submit
-              </button>
+              <input type="submit"/>
             </div>
           </form>
         </div>
