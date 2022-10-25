@@ -12,14 +12,17 @@ const ImageGallery = ({currentStyle}) => {
     } else {
       return (
         <div data-testid="default-view" className="default-view">
-          <div className ="default-view-image"
+          <div data-testid={`default-photo-${currentPhoto}`}
+            className ="default-view-image"
             style={{backgroundImage: `url(${currentStyle.photos[currentPhoto].url})`}}
             onClick={onExpandedView}/>
           {currentPhoto > 0 ?
-            <i className="fa-solid fa-arrow-left-long"
+            <i data-testid="default-left-arrow"
+              className="fa-solid fa-arrow-left-long"
               onClick={onLeftClick}/> : null}
           {currentPhoto < currentStyle.photos.length - 1 ?
-            <i className="fa-solid fa-arrow-right-long"
+            <i data-testid="default-right-arrow"
+              className="fa-solid fa-arrow-right-long"
               onClick={onRightClick}/> : null}
         </div>);
     }
@@ -33,6 +36,7 @@ const ImageGallery = ({currentStyle}) => {
       for (let i = 0; i < currentStyle.photos.length; i++) {
         thumbnails.push(
           <img
+            data-testid={`thumbnail-${i}`}
             key={i}
             name={i}
             className={i === currentPhoto ? 'thumbnail-nav-bar-image thumbnail-nav-bar-selected' : 'thumbnail-nav-bar-image'}
@@ -63,6 +67,8 @@ const ImageGallery = ({currentStyle}) => {
   const onLeftClick = (event) => {
     if (currentPhoto > 0) {
       setCurrentPhoto(currentPhoto - 1);
+    }
+    if (currentStyle?.photos.length > 7) {
       document.getElementById('thumbnail-nav-bar-images').scrollBy(0, -75);
     }
   };
@@ -70,6 +76,8 @@ const ImageGallery = ({currentStyle}) => {
   const onRightClick = (event) => {
     if (currentPhoto < currentStyle.photos.length - 1) {
       setCurrentPhoto(currentPhoto + 1);
+    }
+    if (currentStyle?.photos.length > 7) {
       document.getElementById('thumbnail-nav-bar-images').scrollBy(0, 75);
     }
   };
