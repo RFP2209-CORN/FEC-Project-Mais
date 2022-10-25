@@ -12,35 +12,36 @@ import QuestionsAndAnswers from '../client/src/components/Q&A/QA.jsx';
 // import AddAnswerModal from '../client/src/components/Q&A/AddAnswerModal.jsx';
 // import DisplayPhotoModal from '../client/src/components/Q&A/DisplayPhotoModal.jsx';
 
-
-// Mock axios using jest
 jest.mock('axios');
 
-// Intercept any axios requests made by the component being tested and return the mockup data instead
-axios.get
-  .mockImplementationOnce(() => Promise.resolve({ //<--- Replaces data from products request
+
+describe('Questions and Answer Overview', () => {
+
+  axios.get
+  .mockImplementationOnce(() => Promise.resolve({
     data: dummyData.questionList
   }))
-  .mockImplementationOnce(() => Promise.resolve({ // <---- Replaces data from productStyles request
-    data: dummyData.productId
+  .mockImplementationOnce(() => Promise.resolve({
+    data: dummyData.product
   }));
 
+  it('ProductInfo renders and contains an id of product-info', async () => {
+    // Render the widget, use act to handle any states being re-rendered
+    await act(async () => render(<QuestionsAndAnswers />));
 
-it('ProductInfo renders and contains an id of product-info', async () => {
-  // Render the widget, use act to handle any states being re-rendered
-  await act(async () => render(<QuestionsAndAnswers />));
 
-  // Check if testID renders
-  // const searchQuestion = await screen.getByClass('search-question');
-  // expect(searchQuestion).toBeTruthy();
+    // Check if testID renders
+    const searchQuestion = await screen.getByText('Questions & Answers');
+    expect(searchQuestion).toBeTruthy();
 
-  // // Check if product name renders
-  // const productName = await screen.getByText('Camo Onesie')
-  // expect(productName).toBeTruthy();
+    // // Check if product name renders
+    // const productName = await screen.getByText('Camo Onesie')
+    // expect(productName).toBeTruthy();
 
-  // // Check if product style renders
-  // const productStyle = await screen.getByText("Forest Green & Black")
-  // expect(productStyle).toBeTruthy();
+    // // Check if product style renders
+    // const productStyle = await screen.getByText("Forest Green & Black")
+    // expect(productStyle).toBeTruthy();
+  });
 });
 
 
