@@ -67,7 +67,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
       </p>
 
       <p className="question-helpfulness">
-        Helpful? <em><span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em>
+        Helpful? <em><span className="helpful" onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em>
       </p>
 
       <p className="question-report">
