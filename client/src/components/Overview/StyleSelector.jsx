@@ -51,9 +51,11 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
       }
       thumbnails.push(
         <span
+          data-testid={`style${i}-selector`}
           key={styles[i].style_id}
           style={styleSelector}>
           <img
+            data-testid={`style${i}`}
             name={styles[i].name}
             src={styles[i].photos[0].thumbnail_url}
             onClick={onChange}
@@ -68,7 +70,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
 
   const renderCheckmark = (styleId) => {
     if (styleId === currentStyle.style_id) {
-      return <span style={checkmark}>✓</span>;
+      return <span data-testid="checkmark" style={checkmark}>✓</span>;
     }
   };
 

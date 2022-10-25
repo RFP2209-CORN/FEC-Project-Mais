@@ -7,7 +7,7 @@
     "client-dev": "npx webpack --watch",
     "server-dev": "nodemon server/index.js --watch",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest --coverage --collectCoverageFrom='./client/src/**'"
   },
   "jest": {
     "moduleFileExtensions": [
