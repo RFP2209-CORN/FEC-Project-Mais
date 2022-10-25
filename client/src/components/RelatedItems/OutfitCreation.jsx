@@ -136,31 +136,29 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
 
   return (
-    <div className="card-container">
-      <div className="card add-outfit card-shadow">
-        <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
+    <div className="card-container-container">
+      <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }}/>
+      <div id="card-container-related">
+        <div className="card add-outfit card-shadow">
+          <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
+        </div>
+        {displayItems.map((outfit) => {
+          return (
+            <OutfitCard
+              key={outfit.id}
+              outfit={outfit}
+              calcRating={calcRating}
+              saleAndImageSetter={saleAndImageSetter}
+              renderPrice={renderPrice}
+              updateProduct={updateProduct}
+              removeOutfit={removeOutfit}
+              getProductReviews={getProductReviews}
+            />
+          );
+        })}
+        {displayItems.length <= 2 && renderBlankCards(outfits.length)}
       </div>
-      <button onClick={() => { changeDisplay('left'); }}>
-        Left arrow
-      </button>
-      {displayItems.map((outfit) => {
-        return (
-          <OutfitCard
-            key={outfit.id}
-            outfit={outfit}
-            calcRating={calcRating}
-            saleAndImageSetter={saleAndImageSetter}
-            renderPrice={renderPrice}
-            updateProduct={updateProduct}
-            removeOutfit={removeOutfit}
-            getProductReviews={getProductReviews}
-          />
-        );
-      })}
-      {displayItems.length <= 2 && renderBlankCards(outfits.length)}
-      <button onClick={() => { changeDisplay('right'); }}>
-        Right arrow
-      </button>
+      <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }}/>
     </div>
   );
 };

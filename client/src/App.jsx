@@ -26,21 +26,27 @@ const App = () => {
 
   return (
     <>
-      {/* <div id="overview">
+      <div id="overview">
         <Overview/>
-      </div> */}
+      </div>
 
-      {/* <div id="relatedItemsAndOutfits">
+      <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      </div>
 
-      {/* <div id="qa">
+      <div id="qa">
         <QuestionsAndAnswers productId={productId}/>
-      </div> */}
+      </div>
 
+<<<<<<< HEAD
+      <div id="rateAndReview">
+        <RatingsAndReviews />
+      </div>
+=======
       {/* <div id="rateAndReview">
         <RatingsAndReviews product_id={productId} />
       </div> */}
+>>>>>>> master
     </>
   );
 };
