@@ -26,21 +26,21 @@ const App = () => {
 
   return (
     <>
-      {/* <div id="overview">
+      <div id="overview">
         <Overview/>
-      </div> */}
+      </div>
 
-      {/* <div id="relatedItemsAndOutfits">
+      <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      </div>
 
-      {/* <div id="qa">
+      <div id="qa">
         <QuestionsAndAnswers productId={productId}/>
-      </div> */}
+      </div>
 
-      {/* <div id="rateAndReview">
+      <div id="rateAndReview">
         <RatingsAndReviews />
-      </div> */}
+      </div>
     </>
   );
 };

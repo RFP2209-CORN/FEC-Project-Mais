@@ -3,6 +3,11 @@
     MODAL
 ========================================
 */
+body {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
 
 .modal-styles {
   position: fixed;
@@ -32,6 +37,7 @@
   transform: translate(-50%, -50%);
   z-index: 1000;
 }
+
 
 /*
 ========================================
@@ -141,16 +147,49 @@
     RELATED PRODUCTS
 ========================================
 */
+  /* .related-items-and-outfits-container {
+    display: flex;
+    justify-content: center;
+  } */
 
+.card-container-container{
+  width: 1500px;
+  position: relative;
+  display: inline-block;
+  /* align-items: center; */
+  /* left: 13%;
+  top: 10%; */
+  /* justify-content: right; */
+
+}
+#card-container-related {
+  display: inline-flex;
+  justify-content: left;
+  /* position: relative; */
+  scroll-snap-type: x mandatory;
+  width: 75%;
+  overflow: hidden;
+}
 .card-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  /* width: 75%; */
+  /* overflow: hidden; */
+}
+
+.cards-arrow {
+  position: relative;
+  color: black;
 }
 
 .card {
-  width: 255px;
+  min-width: 255px;
   height: 375px;
   margin: .85em;
+  display: inline;
+  scroll-snap-align: start;
+  /* position: relative; */
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;
@@ -547,4 +586,3 @@
   background:none;
   border:none;
 }
-

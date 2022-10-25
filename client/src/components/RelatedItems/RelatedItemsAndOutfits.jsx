@@ -69,7 +69,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
   };
 
   return (
-    <>
+    <div className="related-items-and-outfits-container">
       <RelatedItems
         productId={productId}
         calcRating={calcRating}
@@ -86,7 +86,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
         updateProduct={updateProduct}
         getProductReviews={getProductReviews}
       />
-    </>
+    </div>
   );
 };
 
