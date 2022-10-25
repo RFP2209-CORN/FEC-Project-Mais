@@ -1,5 +1,21 @@
 /*
 ========================================
+    WHOLE APP CONTENT
+========================================
+*/
+
+
+/* For Buttons, Links, Modals, or anything clickable */
+button,
+.submit,
+.helpful,
+.photo {
+  cursor: pointer;
+}
+
+
+/*
+========================================
     MODAL
 ========================================
 */
@@ -17,6 +33,7 @@ body {
   background-color: #FFF;
   padding: 50px;
   z-index: 1000;
+  border-radius: 5px;
 }
 
 .overlay-styles {

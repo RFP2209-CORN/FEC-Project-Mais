@@ -5,6 +5,11 @@ import { format, parseISO } from 'date-fns';
 import axios from 'axios';
 import { validate } from 'react-email-validator';
 
+// Testing Purpose ONLY ---- COMMENT OUT WHEN NOT TESTING //
+const cloudinary = {
+  createUploadWidget: () => { return null; }
+};
+
 const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) => {
   // console.log('Individual question: ', question);
   const [isOpen, setIsOpen] = useState(false);
@@ -59,15 +64,18 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
 
       <p className="add-answer">
         <button onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages}/>
+        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages} />
       </p>
 
       <p className="question-info">
-        by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')}
+        by {asker_name},
+
+        {/* COMMENT OUT FOR TESTING */}
+        {/* by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')} */}
       </p>
 
       <p className="question-helpfulness">
-        Helpful? <em><span onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em>
+        Helpful? <em><span className="helpful" onClick={() => { handleHelpful(question); }}>Yes</span> ({question_helpfulness})</em>
       </p>
 
       <p className="question-report">

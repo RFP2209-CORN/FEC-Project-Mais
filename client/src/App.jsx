@@ -38,9 +38,15 @@ const App = () => {
         <QuestionsAndAnswers productId={productId}/>
       </div>
 
+<<<<<<< HEAD
       <div id="rateAndReview">
         <RatingsAndReviews />
       </div>
+=======
+      {/* <div id="rateAndReview">
+        <RatingsAndReviews product_id={productId} />
+      </div> */}
+>>>>>>> master
     </>
   );
 };

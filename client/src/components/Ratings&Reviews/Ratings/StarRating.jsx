@@ -36,7 +36,7 @@ const StarRating = ({ rating }) => {
           stars.push(1.0);
           break;
         default:
-          console.log("OOPS");
+          console.log('Error: did not register an increment');
           stars.push(0);
           break;
       }
@@ -46,14 +46,12 @@ const StarRating = ({ rating }) => {
     rating = rating - 1;
   }
 
-  // console.log('stars', stars);
-
   return (
     <div>
       {stars.map((item, i) => {
         return (
           <div className="single-star-container" key={i}>
-            <div className="single-star-fill" style={{"color": "gold", "width" : `${parseInt(item * 125)}%`}}>
+            <div className="single-star-fill" style={{"color": "gold", "width" : `${parseInt(item * 100)}%`}}>
             <img className="single-star-outline"
             src={star} />
             </div>

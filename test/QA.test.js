@@ -12,6 +12,7 @@
 // // import AddAnswerModal from '../client/src/components/Q&A/AddAnswerModal.jsx';
 // // import DisplayPhotoModal from '../client/src/components/Q&A/DisplayPhotoModal.jsx';
 
+<<<<<<< HEAD
 
 // // Mock axios using jest
 // jest.mock('axios');
@@ -42,6 +43,47 @@
 //   // const productStyle = await screen.getByText("Forest Green & Black")
 //   // expect(productStyle).toBeTruthy();
 // });
+=======
+jest.mock('axios');
+
+
+describe('Questions and Answer Overview', () => {
+
+  beforeEach(() => {
+    axios.get
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.questionList
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.product
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.answerList
+    }))
+    .mockImplementationOnce(() => Promise.resolve({
+      data: dummyData.answerList
+    }))
+  })
+
+  it('ProductInfo renders and contains an id of product-info', async () => {
+    // Render the widget, use act to handle any states being re-rendered
+    await act(async () => render(<QuestionsAndAnswers />));
+
+
+    // Check if
+    const searchQuestion = await screen.getByText('Questions & Answers');
+    expect(searchQuestion).toBeTruthy();
+
+    // // Check if product name renders
+    // const productName = await screen.getByText('Camo Onesie')
+    // expect(productName).toBeTruthy();
+
+    // // Check if product style renders
+    // const productStyle = await screen.getByText("Forest Green & Black")
+    // expect(productStyle).toBeTruthy();
+  });
+});
+>>>>>>> master
 
 
 // // it('ProductInfo renders and contains an id of product-info', () => {
