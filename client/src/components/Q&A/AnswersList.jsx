@@ -3,7 +3,6 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 import axios from 'axios';
 
 const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
-  // console.log('answersList: ', question_id);
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
   const [loadAnswerButton, setLoadAnswerButton] = useState(true);
