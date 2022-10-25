@@ -53,7 +53,7 @@ const StarRating = ({ rating }) => {
       {stars.map((item, i) => {
         return (
           <div className="single-star-container" key={i}>
-            <div className="single-star-fill" style={{"color": "gold", "width" : `${parseInt(item * 125)}%`}}>
+            <div className="single-star-fill" style={{"color": "gold", "width" : `${parseInt(item * 100)}%`}}>
             <img className="single-star-outline"
             src={star} />
             </div>
