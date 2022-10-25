@@ -24,16 +24,15 @@ const App = () => {
   //   });
   // }, []);
 
-
   return (
     <>
       {/* <div id="overview">
         <Overview/>
       </div> */}
 
-      <div id="relatedItemsAndOutfits">
+      {/* <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div>
+      </div> */}
 
       {/* <div id="qa">
         <QuestionsAndAnswers productId={productId}/>

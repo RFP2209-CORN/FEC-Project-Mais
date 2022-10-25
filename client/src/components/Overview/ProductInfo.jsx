@@ -28,7 +28,7 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
   };
 
   return (
-    <div data-testid="product-info">
+    <div>
       {/* Product Information */}
       {/* STAR RATING */}
       <p>{currentProduct?.category?.toUpperCase()}</p>

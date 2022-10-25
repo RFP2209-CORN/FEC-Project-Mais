@@ -23,9 +23,15 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">27.02% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>10/37</span>
+=======
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/37</span>
+>>>>>>> master
             </div>
         
             
@@ -37,16 +43,28 @@
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">18.18% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>2/11</span>
+=======
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/11</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>10/35</span>
+=======
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/35</span>
+>>>>>>> master
             </div>
         
             
@@ -145,6 +163,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -154,6 +173,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+=======
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -174,7 +204,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
+=======
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -193,7 +227,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">1x</span>
+=======
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -223,6 +261,7 @@
 import axios from 'axios';
 import RelatedItemsCard from './RelatedItemsCard.jsx';
 &nbsp;
+<<<<<<< HEAD
 const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) =&gt; {
   const [relatedItems, setRelatedItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
@@ -232,6 +271,17 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
     setRelatedItems([]);
     setDisplayItems([]);
     axios.get(`/products/${productId}/related`)
+=======
+const RelatedItems = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) =&gt; {</span>
+  const [relatedItems, setRelatedItems] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+  const [displayItems, setDisplayItems] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+  const [startIndex, setStartIndex] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setRelatedItems([]);</span>
+<span class="cstat-no" title="statement not covered" >    setDisplayItems([]);</span>
+<span class="cstat-no" title="statement not covered" >    axios.get(`/products/${productId}/related`)</span>
+>>>>>>> master
       .then(<span class="fstat-no" title="function not covered" >re</span>latedProducts =&gt; {
         let count = <span class="cstat-no" title="statement not covered" >0;</span>
 <span class="cstat-no" title="statement not covered" >        for (let id of relatedProducts.data) {</span>
@@ -252,7 +302,11 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
       .catch(<span class="fstat-no" title="function not covered" >er</span>r =&gt; <span class="cstat-no" title="statement not covered" >console.log(err))</span>;
   }, [productId]);
 &nbsp;
+<<<<<<< HEAD
   const changeDisplay = <span class="fstat-no" title="function not covered" >(d</span>irection) =&gt; {
+=======
+  const changeDisplay = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(d</span>irection) =&gt; {</span>
+>>>>>>> master
 <span class="cstat-no" title="statement not covered" >    if (direction === 'left' &amp;&amp; startIndex &gt; 0) {</span>
       let toDisplay = <span class="cstat-no" title="statement not covered" >[];</span>
 <span class="cstat-no" title="statement not covered" >      for (let i = <span class="cstat-no" title="statement not covered" >startIndex - 1;</span> i &lt; startIndex + 3; i++) {</span>
@@ -271,7 +325,11 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
     }
   };
 &nbsp;
+<<<<<<< HEAD
   return (
+=======
+<span class="cstat-no" title="statement not covered" >  return (</span>
+>>>>>>> master
     &lt;div className="card-container"&gt;
       &lt;button onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >changeDisplay('left'); </span>}}&gt;
         Left arrow
@@ -304,7 +362,11 @@ export default RelatedItems;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2022-10-24T18:46:17.792Z
+=======
+                at 2022-10-25T00:46:33.734Z
+>>>>>>> master
             </div>
         <script src="../../../prettify.js"></script>
         <script>

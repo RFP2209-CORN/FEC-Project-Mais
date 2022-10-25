@@ -23,30 +23,54 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>0/7</span>
+=======
+                <span class="strong">50% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>5/10</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/4</span>
+=======
+                <span class="strong">20% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/10</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/2</span>
+=======
+                <span class="strong">50% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>1/2</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>0/7</span>
+=======
+                <span class="strong">50% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>5/10</span>
+>>>>>>> master
             </div>
         
             
@@ -61,7 +85,11 @@
             </div>
         </template>
     </div>
+<<<<<<< HEAD
     <div class='status-line low'></div>
+=======
+    <div class='status-line medium'></div>
+>>>>>>> master
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -88,6 +116,7 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
+<<<<<<< HEAD
 <a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -96,13 +125,35 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,22 +168,43 @@
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 &nbsp;
+<<<<<<< HEAD
 const AddToCart = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span>currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) =&gt; {</span>
   const [cart, setCart] = <span class="cstat-no" title="statement not covered" >React.useState([]);</span>
 &nbsp;
   const onAddToCart = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (skuSelected &amp;&amp; quantitySelected) {</span>
+=======
+const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) =&gt; {
+  const [cart, setCart] = React.useState([]);
+  const [failToAdd, setFailToAdd] = React.useState(false);
+&nbsp;
+  const onAddToCart = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (!skuSelected) {</span>
+<span class="cstat-no" title="statement not covered" >      setFailToAdd(true);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (skuSelected &amp;&amp; quantitySelected) {</span>
+>>>>>>> master
       let item = <span class="cstat-no" title="statement not covered" >{ sku: skuSelected, quantity: quantitySelected };</span>
 <span class="cstat-no" title="statement not covered" >      setCart([...cart, item]);</span>
     }
   };
 &nbsp;
+<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div&gt;
       {/* Add to Cart */}
       &lt;SizeSelector currentStyle={currentStyle} skuSelected={skuSelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/&gt;
       &lt;QuantitySelector currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeQuantitySelected={changeQuantitySelected}/&gt;
       &lt;button onClick={onAddToCart}&gt;Add to Cart&lt;/button&gt;
+=======
+  return (
+    &lt;div&gt;
+      {/* Add to Cart */}
+      {failToAdd ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;p style={{color: 'red'}}&gt;Please select size&lt;/p&gt; </span>: null}
+      &lt;SizeSelector currentStyle={currentStyle} skuSelected={skuSelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected} setFailToAdd={setFailToAdd}/&gt;
+      &lt;QuantitySelector currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeQuantitySelected={changeQuantitySelected}/&gt;
+      {currentStyle.skus?.null ? <span class="branch-0 cbranch-no" title="branch not covered" >null </span>: &lt;button data-testid="add-to-cart-button" onClick={onAddToCart}&gt;Add to Cart&lt;/button&gt;}
+>>>>>>> master
     &lt;/div&gt;
   );
 };
@@ -145,7 +217,11 @@ export default AddToCart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2022-10-24T18:46:17.792Z
+=======
+                at 2022-10-25T00:46:33.734Z
+>>>>>>> master
             </div>
         <script src="../../../prettify.js"></script>
         <script>
