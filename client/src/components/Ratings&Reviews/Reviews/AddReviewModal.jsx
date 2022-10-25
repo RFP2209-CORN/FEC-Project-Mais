@@ -9,9 +9,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const [ rating, setRating ] = useState(0);
   const [ star, setStar ] = useState();
   const [ images, setImages ] = useState([]);
-  const [ characteristics, setCharacteristics ] = useState({});
   const [ body, setBody ] = useState('');
-  const { recommend, setRecommend } = useState(false);
 
   const summary = useRef('');
   const name = useRef('');
@@ -72,11 +70,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     }
   );
 
-  // if the modal isn't open, return null
-  if (!open) {
-    return null;
-  }
-
   const handleSubmit = (event) => {
     event.preventDefault();
     // convert characteristics back into an object for the post request
@@ -105,6 +98,11 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     let left = 50 - body.length;
     console.log('left', left);
     return `Minimum required characters left: ${left}`
+  }
+
+  // if the modal isn't open, return null
+  if (!open) {
+    return null;
   }
 
   return ReactDom.createPortal(

@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from 'chart.js/auto';
 import { Bar }  from 'react-chartjs-2';
 
-const StarRatingsChart = ({ rating, totalReviews }) => {
+const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
 
   const options = {
     scales: {
@@ -75,7 +75,7 @@ const StarRatingsChart = ({ rating, totalReviews }) => {
         height: 0.3,
         hoverBackgroundColor: 'rgba(30,30,30,0.2)',
         hoverBorderColor: 'rgba(30,30,30,0.2)',
-        data: [totalReviews]
+        data: [totalNumberOfReviews]
       }
     ]
   }

@@ -4,9 +4,9 @@ import StarRating from '../Ratings/StarRating.jsx';
 import SingleReviewPhotoModal from './SingleReviewPhotoModal.jsx';
 import axios from 'axios';
 
-const SingleReview = ({rating, review }) => {
+const SingleReview = ({ review }) => {
 
-  // console.log('review from singleReview.jsx', review);
+  console.log('review', review);
 
   const [ isOpen, setIsOpen ] = useState(false);
   const [ yes, setYes ] = useState(0);
@@ -58,7 +58,7 @@ const SingleReview = ({rating, review }) => {
     <>
       <div className="reviews-card">
         <div className="flexbox-container">
-          <div><StarRating rating={rating} /></div>
+          <div><StarRating rating={review.rating} /></div>
           <div className="reviews-date">{review.reviewer_name},&nbsp;{review.date}</div>
         </div>
       </div>

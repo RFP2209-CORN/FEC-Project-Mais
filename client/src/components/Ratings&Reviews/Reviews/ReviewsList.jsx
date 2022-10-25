@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import StarRating from '../Ratings/StarRating.jsx';
 import SingleReview from '../Reviews/SingleReview.jsx';
 
-const ReviewsList = ({ reviews, handleYesClick, rating, totalNumberOfReviews }) => {
+const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
+
+  reviews = displayedReviews || reviews;
+  // console.log('ReviewsList.jsx: reviews', reviews, 'displayedReviews', displayedReviews);
 
   const [ currentReviews, setCurrentReviews ] = useState([]);
   const [ currentReviewIndex, setCurrentReviewIndex ] = useState(4);
@@ -36,7 +39,7 @@ const ReviewsList = ({ reviews, handleYesClick, rating, totalNumberOfReviews }) 
 
   const updateCurrentReviewList = () => {
     // how the review list should display
-    console.log('helpfulness', helpfulness, 'newest', newest, 'relevance', relevance);
+    // console.log('helpfulness', helpfulness, 'newest', newest, 'relevance', relevance);
     if (helpfulness) {
       currentReviews.sort((a, b) => {
           return b.helpfulness - a.helpfulness;
@@ -147,11 +150,11 @@ const ReviewsList = ({ reviews, handleYesClick, rating, totalNumberOfReviews }) 
       {currentReviews.length > 0
       ?
       currentReviews.map((review, index) => {
-        return <SingleReview rating={rating} totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
+        return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
       })
       :
       reviews.slice(0, 2).map((review, index) => {
-        return <SingleReview rating={rating} totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
+        return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
         })
       }
     </div>
