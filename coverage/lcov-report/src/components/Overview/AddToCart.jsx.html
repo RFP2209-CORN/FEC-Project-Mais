@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/10</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>1/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -97,19 +97,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -125,11 +125,11 @@
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 &nbsp;
-const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) =&gt; {
-  const [cart, setCart] = React.useState([]);
-  const [failToAdd, setFailToAdd] = React.useState(false);
+const AddToCart = <span class="fstat-no" title="function not covered" >({</span>currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) =&gt; {
+  const [cart, setCart] = <span class="cstat-no" title="statement not covered" >React.useState([]);</span>
+  const [failToAdd, setFailToAdd] = <span class="cstat-no" title="statement not covered" >React.useState(false);</span>
 &nbsp;
-  const onAddToCart = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+  const onAddToCart = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (!skuSelected) {</span>
 <span class="cstat-no" title="statement not covered" >      setFailToAdd(true);</span>
     } else <span class="cstat-no" title="statement not covered" >if (skuSelected &amp;&amp; quantitySelected) {</span>
@@ -138,13 +138,13 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
     }
   };
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div&gt;
       {/* Add to Cart */}
-      {failToAdd ? <span class="branch-0 cbranch-no" title="branch not covered" >&lt;p style={{color: 'red'}}&gt;Please select size&lt;/p&gt; </span>: null}
+      {failToAdd ? &lt;p style={{color: 'red'}}&gt;Please select size&lt;/p&gt; : null}
       &lt;SizeSelector currentStyle={currentStyle} skuSelected={skuSelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected} setFailToAdd={setFailToAdd}/&gt;
       &lt;QuantitySelector currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeQuantitySelected={changeQuantitySelected}/&gt;
-      {currentStyle.skus?.null ? <span class="branch-0 cbranch-no" title="branch not covered" >null </span>: &lt;button onClick={onAddToCart}&gt;Add to Cart&lt;/button&gt;}
+      {currentStyle.skus?.null ? null : &lt;button onClick={onAddToCart}&gt;Add to Cart&lt;/button&gt;}
     &lt;/div&gt;
   );
 };
@@ -157,7 +157,7 @@ export default AddToCart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-24T18:30:36.269Z
+                at 2022-10-25T02:12:33.269Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

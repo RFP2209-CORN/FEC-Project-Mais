@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.29% </span>
+                <span class="strong">5.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/17</span>
+                <span class='fraction'>1/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/15</span>
+                <span class='fraction'>1/15</span>
             </div>
         
             
@@ -99,9 +99,9 @@
 <a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -117,11 +117,11 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,10 +131,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
-const QuantitySelector = ({currentStyle, skuSelected, quantitySelected, changeQuantitySelected}) =&gt; {
-  const renderQuantityDropdown = () =&gt; {
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (!skuSelected) {
-      return (&lt;option key="defaultValue" value={0} disabled&gt;—&lt;/option&gt;);
+const QuantitySelector = <span class="fstat-no" title="function not covered" >({</span>currentStyle, skuSelected, quantitySelected, changeQuantitySelected}) =&gt; {
+  const renderQuantityDropdown = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (!skuSelected) {</span>
+<span class="cstat-no" title="statement not covered" >      return (&lt;option key="defaultValue" value={0} disabled&gt;—&lt;/option&gt;);</span>
     }
     let quantity = <span class="cstat-no" title="statement not covered" >Number(currentStyle.skus[skuSelected].quantity);</span>
     let quantities = <span class="cstat-no" title="statement not covered" >[];</span>
@@ -150,11 +150,11 @@ const QuantitySelector = ({currentStyle, skuSelected, quantitySelected, changeQu
 <span class="cstat-no" title="statement not covered" >    return quantities;</span>
   };
 &nbsp;
-  const onSelectQuantity = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+  const onSelectQuantity = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    changeQuantitySelected(Number(event.target.value));</span>
   };
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;select value={quantitySelected} onChange={onSelectQuantity}&gt;
       {renderQuantityDropdown()}
     &lt;/select&gt;
@@ -169,7 +169,7 @@ export default QuantitySelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-24T18:30:36.269Z
+                at 2022-10-25T02:12:33.269Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/15</span>
+                <span class='fraction'>1/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">53.33% </span>
+                <span class="strong">6.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/15</span>
+                <span class='fraction'>1/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -98,28 +98,28 @@
 <a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,29 +129,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
-const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuantitySelected, setFailToAdd}) =&gt; {
-  const renderSizeDropdown = () =&gt; {
-    let sizes = [&lt;option key="defaultValue" value={false} disabled&gt;Select Size&lt;/option&gt;];
-    for (let sku in currentStyle.skus) {
+const SizeSelector = <span class="fstat-no" title="function not covered" >({</span>currentStyle, skuSelected, changeSkuSelected, changeQuantitySelected, setFailToAdd}) =&gt; {
+  const renderSizeDropdown = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+    let sizes = <span class="cstat-no" title="statement not covered" >[&lt;option key="defaultValue" value={false} disabled&gt;Select Size&lt;/option&gt;];</span>
+<span class="cstat-no" title="statement not covered" >    for (let sku in currentStyle.skus) {</span>
       let currentSku = <span class="cstat-no" title="statement not covered" >currentStyle.skus[sku];</span>
 <span class="cstat-no" title="statement not covered" >      if (Number(currentSku.quantity) &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >        sizes.push(&lt;option key={currentSku.size} value={sku}&gt;{currentSku.size}&lt;/option&gt;);</span>
       }
     }
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (sizes.length &gt; 1) {
+<span class="cstat-no" title="statement not covered" >    if (sizes.length &gt; 1) {</span>
 <span class="cstat-no" title="statement not covered" >      return sizes;</span>
     } else {
-      return (&lt;option key="outOfStock" value={false} disabled&gt;OUT OF STOCK&lt;/option&gt;);
+<span class="cstat-no" title="statement not covered" >      return (&lt;option key="outOfStock" value={false} disabled&gt;OUT OF STOCK&lt;/option&gt;);</span>
     }
   };
 &nbsp;
-  const onSelectSize = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+  const onSelectSize = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    changeSkuSelected(event.target.value);</span>
 <span class="cstat-no" title="statement not covered" >    changeQuantitySelected(1);</span>
 <span class="cstat-no" title="statement not covered" >    setFailToAdd(false);</span>
   };
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;select value={skuSelected} onChange={onSelectSize}&gt;
       {renderSizeDropdown()}
     &lt;/select&gt;
@@ -166,7 +166,7 @@ export default SizeSelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-24T18:30:36.269Z
+                at 2022-10-25T02:12:33.269Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
