@@ -7,7 +7,8 @@
     "client-dev": "npx webpack --watch",
     "server-dev": "nodemon server/index.js --watch",
     "build": "webpack",
-    "test": "jest --coverage --collectCoverageFrom='./client/src/**'"
+    "test": "jest --coverage --collectCoverageFrom='./client/src/**'",
+    "test-simple": "jest"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -17,8 +18,12 @@
     "moduleDirectories": [
       "node_modules"
     ],
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/mocks/imageMock.js",
+      "\\.(css|less)$": "<rootDir>/test/mocks/cssMock.js"
+    },
     "testEnvironment": "jsdom",
-    "transformIgnorePatterns": ["node_modules/(?!axios)"]
+    "transformIgnorePatterns": ["node_modules/(?!axios|react-email-validator)"]
   },
   "repository": {
     "type": "git",
