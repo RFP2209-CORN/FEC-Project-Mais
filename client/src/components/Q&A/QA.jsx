@@ -140,7 +140,7 @@ const QuestionsAndAnswers = ({ productId }) => {
         setCurrentProduct(result.data.name);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [productId]);
 
   return (
     <div className="qa-container">
