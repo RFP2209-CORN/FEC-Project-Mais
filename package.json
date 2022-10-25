@@ -7,7 +7,8 @@
     "client-dev": "npx webpack --watch",
     "server-dev": "nodemon server/index.js --watch",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest --coverage --collectCoverageFrom='./client/src/**'",
+    "test-simple": "jest"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -18,7 +19,7 @@
       "node_modules"
     ],
     "testEnvironment": "jsdom",
-    "transformIgnorePatterns": ["node_modules/(?!axios)"]
+    "transformIgnorePatterns": ["node_modules/(?!axios|react-email-validator)"]
   },
   "repository": {
     "type": "git",
