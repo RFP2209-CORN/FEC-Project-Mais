@@ -128,11 +128,12 @@ const QuestionsAndAnswers = ({ productId }) => {
         setAllQuestionsData(data);
         setQuestionsList(container);
       })
-      .then(() => {
-        if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
-          localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-        }
-      })
+      // COMMENT OUT FOR TESTING //
+      // .then(() => {
+      //   if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
+      //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+      //   }
+      // })
       .catch(err => console.log(err));
 
     axios.get(`/products/${productId}`)
