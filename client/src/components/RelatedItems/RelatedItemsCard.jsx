@@ -14,8 +14,10 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   const [compareId, setCompareId] = useState();
 
   useEffect(() => {
+    console.log(item)
     axios.get(`/reviews/${product.id}`)
       .then(result => {
+        // console.log(product)
         let reviews = result.data.results;
         setRating(calcRating(reviews));
       });

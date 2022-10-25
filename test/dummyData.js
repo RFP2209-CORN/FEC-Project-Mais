@@ -1,3 +1,9 @@
 module.exports = {
-
+  relatedProducts: [40344, 40345, 40346, 40347],
+  product: {
+    'id': 40344, 'campus': 'hr-rfp', 'name': 'Camo Onesie', 'slogan': 'Blend in to your crowd', 'description': 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.', 'category': 'Jackets', 'default_price': '140.00', 'created_at': '2021-08-13T14:38:44.509Z', 'updated_at': '2021-08-13T14:38:44.509Z', 'features': [{'feature': 'Fabric', 'value': 'Canvas'}, {'feature': 'Buttons', 'value': 'Brass'}]
+  },
+  reviews: {
+    'product': '40344', 'page': 0, 'count': 5, 'results': [{'review_id': 1275572, 'rating': 4, 'summary': 'heyo???', 'recommend': true, 'response': null, 'body': 'hello? where are my images man... i swear i did this correctly...', 'date': '2022-07-18T00:00:00.000Z', 'reviewer_name': 'asdfasfasd', 'helpfulness': 1, 'photos': []}, {'review_id': 1275882, 'rating': 4, 'summary': 'cvb', 'recommend': false, 'response': null, 'body': 'cvbcvbxcvbcxvbxcvbxcvbcxvbxcvbcxvbcxvbcxvbcxvbxccvb', 'date': '2022-07-22T00:00:00.000Z', 'reviewer_name': 'cvbcvbxc', 'helpfulness': 0, 'photos': []}, {'review_id': 1275737, 'rating': 3, 'summary': 'asdfasdfasdfsadf', 'recommend': true, 'response': null, 'body': 'asdfasdfasdfasfasdfasdfasdfasfasdfasdfasdfasfasdfasdfasdfasf', 'date': '2022-07-20T00:00:00.000Z', 'reviewer_name': 'sdfsdf', 'helpfulness': 0, 'photos': []}, {'review_id': 1275714, 'rating': 2, 'summary': 'asdfasdf', 'recommend': true, 'response': null, 'body': 'asdfasdfasdfasasdfasdfasdfasasdfasdfasdfasasdfasdfasdfas', 'date': '2022-07-19T00:00:00.000Z', 'reviewer_name': 'sfasdf', 'helpfulness': 0, 'photos': []}, {'review_id': 1275711, 'rating': 4, 'summary': 'asdfasdf', 'recommend': true, 'response': null, 'body': 'asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf', 'date': '2022-07-19T00:00:00.000Z', 'reviewer_name': 'sadfasdf', 'helpfulness': 0, 'photos': []}]
+  }
 };
