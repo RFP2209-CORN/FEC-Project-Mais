@@ -30,17 +30,17 @@ const App = () => {
         <Overview/>
       </div> */}
 
-      <div id="relatedItemsAndOutfits">
+      {/* <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div>
+      </div> */}
 
       {/* <div id="qa">
         <QuestionsAndAnswers productId={productId}/>
       </div> */}
 
-      {/* <div id="rateAndReview">
+      <div id="rateAndReview">
         <RatingsAndReviews />
-      </div> */}
+      </div>
     </>
   );
 };

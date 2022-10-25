@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReviewsSortDropdown from './ReviewsSortDropdown.jsx';
 import StarRating from '../Ratings/StarRating.jsx';
 import SingleReview from '../Reviews/SingleReview.jsx';
 

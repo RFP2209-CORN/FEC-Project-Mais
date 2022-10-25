@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
 import Stars from './Stars.jsx';
-// import { useForm } from "react-hook-form";
 import { validate } from 'react-email-validator';
 
 const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
@@ -12,7 +11,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const [ modalIsOpen, setIsOpen ] = useState(false);
   const [ characteristics, setCharacteristics ] = useState({});
   const [ body, setBody ] = useState('');
-  // const { register, handleSubmit } = useForm();
   const { recommend, setRecommend } = useState(false);
 
   // const body = useRef('');
@@ -58,8 +56,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     }
   }
 
-  console.log({characteristicsArray});
-
   const photoWidget = cloudinary.createUploadWidget(
     {
       cloudName: 'dgjzqkjh0',
@@ -79,10 +75,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     return null;
   }
 
-  const massageCharacteristics = () => {
-    // TODO: take characteristics from form data and convert it to an object that the api will recognize
-  }
-
   const handleSubmit = () => {
     let data = {
       product_id: product_id,
@@ -97,8 +89,8 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
       // {"14": 5, "15": 5}
     }
     console.log('data to be submitted', data);
-    // console.log('star', star, 'recommend', recommend, 'characteristics', characteristics, 'summary', summary, 'body', body, 'name', name, 'email', email);
-    // addReview(data);
+
+    addReview(data);
   }
 
   const showCounter = () => {
