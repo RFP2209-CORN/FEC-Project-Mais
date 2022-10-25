@@ -4,47 +4,73 @@ import {act, cleanup, fireEvent, render, screen, waitFor} from '@testing-library
 import axios from "axios";
 import dummyData from './dummyData.js';
 
-// Mock axios using jest
 jest.mock('axios');
 
-// Intercept any axios requests made by the component being tested and return the mockup data instead
-axios.get
-  .mockImplementationOnce(() => Promise.resolve({    //<--- Replaces data from products request
-    data: dummyData.products
-  }))
-  .mockImplementationOnce(() => Promise.resolve({   // <---- Replaces data from productStyles request
-    data: dummyData.productStyles
-  }));
+describe('Overview', () => {
 
+  beforeEach(() => {
+    axios.get
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.product
+      }))
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.productStyles
+      }));
+  })
 
-it('ProductInfo renders and contains an id of product-info', async () => {
-  // Render the widget, use act to handle any states being re-rendered
-  await act( async () => render(<Overview/>));
+  it('image gallery renders', async () => {
+    await act(async () => render(<Overview/>));
 
-  // Check if testID renders
-    const testID = await screen.getByTestId('product-info');
-    expect(testID).toBeTruthy();
+    const defaultView = await screen.getByTestId('default-view');
+    expect(defaultView).toBeTruthy();
 
-  // Check if product name renders
-    const productName = await screen.getByText('Camo Onesie')
-    expect(productName).toBeTruthy();
+    const thumbnailNavBar = await screen.getByTestId('thumbnail-nav-bar');
+    expect(thumbnailNavBar).toBeTruthy();
+  })
 
+  it('product info component renders', async () => {
+    await act(async () => render(<Overview/>));
 
-  // Check if product style renders
-    const productStyle = await screen.getByText("Forest Green & Black")
+      const productCategory = await screen.getByText('JACKETS');
+      expect(productCategory).toBeTruthy();
+
+      const productName = await screen.getByText('Camo Onesie');
+      expect(productName).toBeTruthy();
+
+      const productPrice = await screen.getByText('140.00');
+      expect(productPrice).toBeTruthy();
+  });
+
+  it('style selector component renders', async () => {
+    await act(async () => render(<Overview/>));
+
+    const productStyle = await screen.getByText("Forest Green & Black");
     expect(productStyle).toBeTruthy();
+
+    const currentStyleSelected = screen.getByTestId('style0-selector');
+    const checkmark = screen.getByTestId('checkmark')
+    expect(currentStyleSelected.childNodes).toContain(checkmark);
+  });
+
+  it('add to cart component renders', async () => {
+    await act(async () => render(<Overview/>));
+
+    const sizeSelector = screen.getByTestId('size-selector');
+    expect(sizeSelector).toBeTruthy();
+
+    const quantitySelector = screen.getByTestId('quantity-selector');
+    expect(quantitySelector).toBeTruthy();
+
+    const addToCartButton = screen.getByTestId('add-to-cart-button');
+    expect(addToCartButton).toBeTruthy();
+  });
+
+  it('handles style changes', async () => {
+    await act(async () => render(<Overview/>));
+
+    fireEvent.click(screen.getByTestId('style2'));
+
+    const productStyle2 = await screen.getByText("Ocean Blue & Grey");
+    expect(productStyle2).toBeTruthy();
+  })
 });
-
-
-// import React from 'react';
-// import ProductInfo from '../client/src/components/Overview/ProductInfo.jsx';
-// import {cleanup, fireEvent, render} from '@testing-library/react';
-
-
-// it('ProductInfo renders and contains an id of product-info', () => {
-//   const widget = render(
-//     <ProductInfo/>
-//   )
-
-//   expect(widget.getByTestId('product-info')).toBeTruthy()
-// });

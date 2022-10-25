@@ -23,30 +23,54 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">48.14% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>13/27</span>
+=======
+                <span class="strong">70.37% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>19/27</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/6</span>
+=======
+                <span class="strong">66.66% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>4/6</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>2/4</span>
+=======
+                <span class="strong">75% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>3/4</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">48% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>12/25</span>
+=======
+                <span class="strong">72% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>18/25</span>
+>>>>>>> master
             </div>
         
             
@@ -61,7 +85,11 @@
             </div>
         </template>
     </div>
+<<<<<<< HEAD
     <div class='status-line low'></div>
+=======
+    <div class='status-line medium'></div>
+>>>>>>> master
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -197,11 +225,19 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -219,8 +255,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,11 +325,19 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
     let thumbnails = [];
     let currentRow = 0;
     for (let i = 0; i &lt; styles.length; i++) {
+<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >      if (Math.floor(i / 4) !== currentRow) {</span>
 <span class="cstat-no" title="statement not covered" >        currentRow = Math.floor(i / 4);</span>
 <span class="cstat-no" title="statement not covered" >        thumbnails.push(&lt;br key={`row ${currentRow}`}/&gt;);</span>
       }
 <span class="cstat-no" title="statement not covered" >      thumbnails.push(</span>
+=======
+      if (Math.floor(i / 4) !== currentRow) {
+        currentRow = Math.floor(i / 4);
+        thumbnails.push(&lt;br key={`row ${currentRow}`}/&gt;);
+      }
+      thumbnails.push(
+>>>>>>> master
         &lt;span
           key={styles[i].style_id}
           style={styleSelector}&gt;
@@ -305,9 +354,15 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
     return thumbnails;
   };
 &nbsp;
+<<<<<<< HEAD
   const renderCheckmark = <span class="fstat-no" title="function not covered" >(s</span>tyleId) =&gt; {
 <span class="cstat-no" title="statement not covered" >    if (styleId === currentStyle.style_id) {</span>
 <span class="cstat-no" title="statement not covered" >      return &lt;span style={checkmark}&gt;✓&lt;/span&gt;;</span>
+=======
+  const renderCheckmark = (styleId) =&gt; {
+    if (styleId === currentStyle.style_id) {
+      return &lt;span style={checkmark}&gt;✓&lt;/span&gt;;
+>>>>>>> master
     }
   };
 &nbsp;
@@ -331,7 +386,11 @@ export default StyleSelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2022-10-24T18:18:18.592Z
+=======
+                at 2022-10-24T18:41:05.654Z
+>>>>>>> master
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

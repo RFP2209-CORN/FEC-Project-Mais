@@ -1,10 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
 import Stars from './Stars.jsx';
-import { useForm } from "react-hook-form";
+import { validate } from 'react-email-validator';
 
 const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
 
+  const [ recommend, setRecommend ] = useState(false);
+  const [ rating, setRating ] = useState(0);
+  const [ star, setStar ] = useState();
+  const [ images, setImages ] = useState([]);
+  const [ characteristics, setCharacteristics ] = useState({});
+  const [ body, setBody ] = useState('');
+
+  const summary = useRef('');
+  const name = useRef('');
+  const email = useRef('');
+
+  // convert chraracteristics object into an array for mapping purposes and add ratings details
   let chararcteristicsObj = metaData.characteristics
   let characteristicsArray = []
   if (chararcteristicsObj) {
@@ -42,126 +54,116 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     }
   }
 
-  console.log({characteristicsArray});
+  // photo uploader
+  const photoWidget = cloudinary.createUploadWidget(
+    {
+      cloudName: 'dgjzqkjh0',
+      uploadPreset: 'Add Review Form'
+    },
+    (error, result) => {
+      if (error) {
+        console.log('error uploading photo', error);
+      }
+      if (!error && result && result.event === "success") {
+        console.log('result.info.url', result.info.url);
+        setImages([...images, result.info.url]);
+      }
+    }
+  );
 
-  const [ rating, setRating ] = useState(0);
-  const [ star, setStar ] = useState();
-  const [ photos, setPhotos ] = useState([]);
-  const [ modalIsOpen, setIsOpen ] = useState(false);
-  const [ characteristics, setCharacteristics ] = useState({});
-  const { register, handleSubmit } = useForm();
-
+  // if the modal isn't open, return null
   if (!open) {
     return null;
   }
 
-  const massageCharacteristics = () => {
-    // TODO: take characteristics from form data and convert it to an object that the api will recognize
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // convert characteristics back into an object for the post request
+    let charsObj = {};
+    for (let i = 0; i < characteristicsArray.length; i++) {
+      charsObj[characteristicsArray[i][1].id] = characteristicsArray[i][1].value
+    }
+
+    let data = {
+      product_id: product_id,
+      rating: star,
+      summary: event.target.summary.value,
+      body: event.target.body.value,
+      recommend: recommend,
+      name: event.target.name.value,
+      email: event.target.email.value,
+      photos: images,
+      characteristics: charsObj,
+    }
+    addReview(data);
   }
 
-  const registerOptions = {
-    rating: {
-      required: "rating is required",
-      maxLength: 5,
-    },
-    recommend: {
-      required: "recommend is required",
-    },
-    characteristics: {
-      required: "characteristics is required",
-    },
-    summary: {
-      maxLength: {
-        value: 60,
-        message: "summary must have no more than 60 characters"
-      },
-    },
-    body: {
-      required: "body is required",
-      minLength: {
-        value: 50,
-        message: "body must have no less than 50 characters",
-      },
-      maxLength: {
-        value: 1000,
-        message: "body must have no more than 1000 characters"
-      },
-    },
-    photos: {
-      maxLength: 5,
-    },
-
-    name: {
-      required: "Name is required",
-      maxLength: {
-        value: 60,
-        message: "name must have no more than 60 characters"
-      },
-    },
-    email: {
-      required: "Email is required",
-      maxLength: {
-        value: 60,
-        message: "email must have no more than 60 characters"
-      },
-    },
-  };
-
-  const onFormSubmit  = (data) => {
-    console.log('data to be submitted', data);
-    // addReview(data);
-  }
-
-  const onErrors = (errors) => {
-    console.error('errors', errors);
+  // show the user how many words are left before the body is complete
+  const showCounter = () => {
+    let counter = body.length;
+    let left = 50 - body.length;
+    console.log('left', left);
+    return `Minimum required characters left: ${left}`
   }
 
   return ReactDom.createPortal(
     <>
-    {/* <div onClick={onClose}/>
-    <div> */}
       <div className="overlay-styles" onClick={onClose}/>
       <div className="modal-styles">
         <div className="form-container">
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
-          <form onSubmit={handleSubmit(onFormSubmit, onErrors)} >
+          <form onSubmit={(event) =>
+            handleSubmit(event)} >
             <div>
               <label>Do you recommend this product?
                 <br></br>
-                <input type="radio" value="true" name="recommend" {...register('recommend', registerOptions.recommend)}/>Yes
-                <input type="radio" value="false" name="recommend" {...register('recommend', registerOptions.recommend)}/>No
+                <input type="radio"  value="true" checked={recommend === true} name="recommend" required onChange={() => {
+                  setRecommend(true)
+                  }} />Yes
+                <input type="radio" value="false"checked={recommend === false} name="recommend" required onChange={() => {
+                  setRecommend(false)
+                }}/>No
               </label>
             </div>
-            &nbsp;
             <div>
-
-              <br></br>
               <h3>Characteristics
               </h3>
               {characteristicsArray.map((char, index) => {
                 return (
-                  <div key={index} onChange={massageCharacteristics}>
+                  <div key={index} >
                     <div>{char[0]}</div>
+                    {/* remove 'required' for testing purposes */}
+
                     <label>1</label>
-                    <input type="radio" value="1" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
+                    <input type="radio" value="1" name="1" required onClick={() => {
+                      char[1].value = 1
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>2</label>
-                    <input type="radio" value="2" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
+                    <input type="radio" value="2" name="2" required onClick={() => {
+                      char[1].value = 2
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>3</label>
-                    <input type="radio" value="3" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
+                    <input type="radio" value="3" name="3" required onClick={() => {
+                      char[1].value = 3
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>4</label>
-                    <input type="radio" value="4" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
+                    <input type="radio" value="4" name="4" required onClick={() => {
+                      char[1].value = 4
+                    }}/>
                     &nbsp;
                     &nbsp;
                     <label>5</label>
-                    <input type="radio" value="5" name="characteristics" {...register('characteristics', registerOptions.characteristics)}/>
+                    <input type="radio" value="5" name="5" required onClick={() => {
+                      char[1].value = 5
+                    }}/>
                     <div>{char[2]} &nbsp; {char[3]}</div>
                     &nbsp;
                   </div>
@@ -180,7 +182,8 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 className="form-control"
                 name="summary"
                 placeholder="Example: Best purchase ever!"
-                {...register('summary', registerOptions.summary)}
+                ref={summary}
+                maxLength="60"
               />
             </div>
             &nbsp;
@@ -195,9 +198,44 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 type="text"
                 placeholder="Why did you like the product or not?"
                 name="body"
-                {...register('body', registerOptions.body)}
+                maxLength="1000"
+                minLength="50"
+                required
+                onChange={(event) => {
+                  setBody(event.target.value);
+                }}
               />
             </div>
+            {body.length < 50 &&
+            <small>
+              {showCounter()}
+            </small>}
+            {body.length >= 50 &&
+              <small>
+                Maximum reached
+              </small>}
+            <br></br>
+            &nbsp;
+
+            <div className="answer-photo">
+              {images.length < 5 &&
+                <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    photoWidget.open();
+                  }}>Upload photos
+                </button>}
+              &nbsp;
+              {images && images.map((image, index) => {
+                return <img key={index} src={`${image}`} width="70" height="70" />
+              })}
+              {images.length > 0 &&
+                <div>
+                  <small>Images uploaded: {images.length}</small>
+                </div>
+              }
+            </div>
+
             &nbsp;
             <div>
               <div>
@@ -210,7 +248,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 type="text"
                 placeholder="Example: jackson11!"
                 name="name"
-                {...register('name', registerOptions.name)}
+                required
               />
               <div>
                 <small>
@@ -227,10 +265,12 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
               </div>
               <input
                 className="form-control"
-                type="text"
+                type="email"
+                size="60"
+                maxLength="60"
                 placeholder="Example: jackson11@email.com"
                 name="email"
-                {...register('email', registerOptions.email)}
+                required
               />
               <div>
                 <small>
@@ -240,9 +280,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
             </div>
             &nbsp;
             <div>
-              <button>
-                Submit
-              </button>
+              <input type="submit"/>
             </div>
           </form>
         </div>

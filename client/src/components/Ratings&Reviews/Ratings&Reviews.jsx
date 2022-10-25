@@ -6,6 +6,9 @@ import ReviewsList from './Reviews/ReviewsList.jsx';
 
 const RatingsAndReviews = ({ product_id }) => {
 
+  product_id = 40344;
+
+
   const [ reviews, setReviews ] = useState([]);
   const [ rating, setRating ] = useState(0.0);
   const [ fiveStar, setFiveStar ] = useState(0);
@@ -93,38 +96,15 @@ const RatingsAndReviews = ({ product_id }) => {
     // axios.put('/reviews/')
   }
 
-  const addReview = () => {
-     // hardcoded product_id for now
-     product_id = 40346;
-     data = {
-       product_id: 40346,
-       rating: 5,
-       summary: "good stuff",
-       body: "good stuff...looking forward to using this product",
-       recommend: true,
-       name: "questionasker",
-       email: "questionasker@email.com",
-       photos: ["https://static.vecteezy.com/system/resources/thumbnails/001/189/165/small/star.png"],
-       characteristics: {"14": 5, "15": 5}
-     }
-
+  const addReview = (data) => {
      axios.post('/reviews', data)
-       // product_id: product_id,
-       // rating: rating,
-       // summary: summaryRef,
-       // body: bodyRef,
-       // recommend: recommend,
-       // name: usernameRef,
-       // email: emailRef,
-       // photos: photos,
-       // characteristics: characteristics
-
-       .then((response) => {
-         console.log('response.data', response.data);
-       })
-       .catch((error) => {
-         console.log('error', error);
-       })
+      .then((response) => {
+        console.log('successful axios post request from client to add a new review')
+        console.log('response.data', response.data);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      })
   }
 
   return (
@@ -135,7 +115,7 @@ const RatingsAndReviews = ({ product_id }) => {
       </div>
       <ReviewsList reviews={reviews} rating={rating} totalNumberOfReviews={totalNumberOfReviews} />
     </div>
-    <AddReview prodName={prodName} metaData={metaData} addReview={addReview}/>
+    <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}/>
     </>
   );
 }

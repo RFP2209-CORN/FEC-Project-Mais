@@ -23,30 +23,54 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">5.88% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>1/17</span>
+=======
+                <span class="strong">35.29% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>6/17</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>0/4</span>
+=======
+                <span class="strong">25% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>1/4</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>0/3</span>
+=======
+                <span class="strong">66.66% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/3</span>
+>>>>>>> master
             </div>
         
             
             <div class='fl pad1y space-right2'>
+<<<<<<< HEAD
                 <span class="strong">6.66% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>1/15</span>
+=======
+                <span class="strong">40% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>6/15</span>
+>>>>>>> master
             </div>
         
             
@@ -99,9 +123,15 @@
 <a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -117,11 +147,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+=======
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+>>>>>>> master
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,10 +169,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 &nbsp;
+<<<<<<< HEAD
 const QuantitySelector = <span class="fstat-no" title="function not covered" >({</span>currentStyle, skuSelected, quantitySelected, changeQuantitySelected}) =&gt; {
   const renderQuantityDropdown = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (!skuSelected) {</span>
 <span class="cstat-no" title="statement not covered" >      return (&lt;option key="defaultValue" value={0} disabled&gt;—&lt;/option&gt;);</span>
+=======
+const QuantitySelector = ({currentStyle, skuSelected, quantitySelected, changeQuantitySelected}) =&gt; {
+  const renderQuantityDropdown = () =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!skuSelected) {
+      return (&lt;option key="defaultValue" value={0} disabled&gt;—&lt;/option&gt;);
+>>>>>>> master
     }
     let quantity = <span class="cstat-no" title="statement not covered" >Number(currentStyle.skus[skuSelected].quantity);</span>
     let quantities = <span class="cstat-no" title="statement not covered" >[];</span>
@@ -150,12 +195,21 @@ const QuantitySelector = <span class="fstat-no" title="function not covered" >({
 <span class="cstat-no" title="statement not covered" >    return quantities;</span>
   };
 &nbsp;
+<<<<<<< HEAD
   const onSelectQuantity = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    changeQuantitySelected(Number(event.target.value));</span>
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;select value={quantitySelected} onChange={onSelectQuantity}&gt;
+=======
+  const onSelectQuantity = <span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {
+<span class="cstat-no" title="statement not covered" >    changeQuantitySelected(Number(event.target.value));</span>
+  };
+&nbsp;
+  return (
+    &lt;select data-testid="quantity-selector" value={quantitySelected} onChange={onSelectQuantity}&gt;
+>>>>>>> master
       {renderQuantityDropdown()}
     &lt;/select&gt;
   );
@@ -169,7 +223,11 @@ export default QuantitySelector;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2022-10-25T02:12:33.269Z
+=======
+                at 2022-10-25T00:46:33.734Z
+>>>>>>> master
             </div>
         <script src="../../../prettify.js"></script>
         <script>

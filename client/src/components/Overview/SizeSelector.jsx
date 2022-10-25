@@ -6,7 +6,7 @@ const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuant
     for (let sku in currentStyle.skus) {
       let currentSku = currentStyle.skus[sku];
       if (Number(currentSku.quantity) > 0) {
-        sizes.push(<option key={currentSku.size} value={sku}>{currentSku.size}</option>);
+        sizes.push(<option key={sku} value={sku}>{currentSku.size}</option>);
       }
     }
     if (sizes.length > 1) {
@@ -23,7 +23,7 @@ const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuant
   };
 
   return (
-    <select value={skuSelected} onChange={onSelectSize}>
+    <select data-testid="size-selector" value={skuSelected} onChange={onSelectSize}>
       {renderSizeDropdown()}
     </select>
   );

@@ -58,7 +58,7 @@
   cursor: pointer
 }
 
-.thumbnail-nav-bar-images {
+#thumbnail-nav-bar-images {
   width: 82.5px;
   height: 540px;
   overflow: hidden;
