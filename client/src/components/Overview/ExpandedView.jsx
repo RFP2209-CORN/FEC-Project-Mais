@@ -12,9 +12,9 @@ const ExpandedView = ({open, onClose, currentStyle, currentPhoto, onLeftClick, o
     let icons = [];
     for (let i = 0; i < currentStyle.photos.length; i++) {
       if (i === currentPhoto) {
-        icons.push(<i key={i} id={i} className="fa-regular fa-circle" onClick={changePhoto}/>);
+        icons.push(<i data-testid={`icon-${i}`} key={i} id={i} className="fa-regular fa-circle" onClick={changePhoto}/>);
       } else {
-        icons.push(<i key={i} id={i} className="fa-solid fa-circle" onClick={changePhoto}/>);
+        icons.push(<i data-testid={`icon-${i}`} key={i} id={i} className="fa-solid fa-circle" onClick={changePhoto}/>);
       }
     }
     return icons;
@@ -30,22 +30,26 @@ const ExpandedView = ({open, onClose, currentStyle, currentPhoto, onLeftClick, o
   return (
     <>
       <div className="overlay-styles" onClick={onClose} />
-      <div className="expanded-view-modal-style">
+      <div data-testid="expanded-view" className="expanded-view-modal-style">
         {zoomed ?
-          <div className="expanded-view-image zoomed-view"
+          <div data-testid={`zoomed-photo-${currentPhoto}`}
+            className="expanded-view-image zoomed-view"
             style={{backgroundImage: `url(${currentStyle.photos?.[currentPhoto]?.url})`}}
             onMouseMove={handleZoomedView}
             onClick={event => setZoomed(false)}/> :
-          <div className="expanded-view-image"
+          <div data-testid={`expanded-photo-${currentPhoto}`}
+            className="expanded-view-image"
             style={{backgroundImage: `url(${currentStyle.photos?.[currentPhoto]?.url})`}}
             onClick={event => setZoomed(true)}/>}
         {zoomed ? null :
-          <div className="expanded-view-icons">{renderIcons()}</div>}
+          <div data-testid="expanded-view-icons" className="expanded-view-icons">{renderIcons()}</div>}
         {!zoomed && currentPhoto > 0 ?
-          <i className="fa-solid fa-arrow-left-long"
+          <i data-testid="expanded-left-arrow"
+            className="fa-solid fa-arrow-left-long"
             onClick={onLeftClick}/> : null}
         {!zoomed && currentPhoto < currentStyle.photos.length - 1 ?
-          <i className="fa-solid fa-arrow-right-long"
+          <i data-testid="expanded-right-arrow"
+            className="fa-solid fa-arrow-right-long"
             onClick={onRightClick}/> : null}
       </div>
     </>
