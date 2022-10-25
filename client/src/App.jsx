@@ -39,7 +39,7 @@ const App = () => {
       </div> */}
 
       {/* <div id="rateAndReview">
-        <RatingsAndReviews />
+        <RatingsAndReviews product_id={productId} />
       </div> */}
     </>
   );
