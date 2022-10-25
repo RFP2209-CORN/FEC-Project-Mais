@@ -6,7 +6,7 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
 const Overview = () => {
-  const productId = '40348';
+  const productId = '40344';
   //out of stock style
   // const productId = '40345';
   const [currentProduct, setCurrentProduct] = React.useState({});
