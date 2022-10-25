@@ -8,7 +8,8 @@ const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoW
     <>
       <div className="overlay-styles" onClick={onClose} />
       <div className="modal-styles">
-        <form onSubmit={(e) => submitAnswer(e)}>
+        <form onSubmit={() => submitAnswer(event)}>
+          <button className="form-cancel" onClick={onClose} >X</button>
           <h3 className="answer-title">Submit your Answer</h3>
           <p className="answer-subtitle"><b>{product}:</b> <em>{question}</em></p>
 
@@ -34,9 +35,9 @@ const AddAnswerModal = ({ open, onClose, question, submitAnswer, product, photoW
               onClick={(e) => { e.preventDefault(); photoWidget.open(); }}>Upload photos</button>} <br />
           </p>
           {images.length > 0 &&
-          <p> Images uploaded: ( {images.length} ) <button onClick={() => setImages([])}>X</button></p>}
+            <p> Images uploaded: ( {images.length} ) <button onClick={() => setImages([])}>X</button></p>}
 
-          <input type="submit" />
+          <input className="submit" type="submit" />
         </form>
       </div>
     </>,
