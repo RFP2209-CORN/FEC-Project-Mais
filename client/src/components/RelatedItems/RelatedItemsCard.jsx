@@ -14,11 +14,19 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   const [compareId, setCompareId] = useState();
 
   useEffect(() => {
-    axios.get(`/reviews/${product.id}`)
-      .then(result => {
-        let reviews = result.data.results;
-        setRating(calcRating(reviews));
-      });
+    axios.get(`reviews/meta/${product.id}`)
+      .then(results => {
+        let ratings = results.data.ratings;
+        let rating = 0;
+        let total = 0;
+        for (let key in ratings) {
+          total += Number(ratings[key]);
+          rating += Number(key) * Number(ratings[key]);
+        }
+        rating = (Math.round((rating / total) * 4) / 4);
+        setRating(rating);
+      })
+      .catch(err => console.log(err));
 
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
