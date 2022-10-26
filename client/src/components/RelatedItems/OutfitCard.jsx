@@ -41,7 +41,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   }, []);
 
   return (
-    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
+    <div className="card card-shadow" onClick={() => updateProduct(event, product.id)}>
       <button
         className="favorite-icon"
         value={product.id}
