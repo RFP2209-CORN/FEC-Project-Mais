@@ -29,7 +29,6 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
 
   return (
     <div>
-      {/* Product Information */}
       {/* STAR RATING */}
       <p>{currentProduct?.category?.toUpperCase()}</p>
       <h1>{currentProduct?.name}</h1>

@@ -50,11 +50,23 @@ const Overview = ({productId}) => {
 
   return (
     <div>
-      {/* Product Overview */}
-      <ImageGallery currentStyle={currentStyle}/>
-      <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
-      <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
-      <AddToCart currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
+      <ImageGallery
+        currentStyle={currentStyle}/>
+      <ProductInfo
+        currentProduct={currentProduct}
+        currentStyle={currentStyle}/>
+      <StyleSelector
+        currentStyle={currentStyle}
+        styles={styles}
+        changeCurrentStyle={changeCurrentStyle}
+        changeSkuSelected={changeSkuSelected}
+        changeQuantitySelected={changeQuantitySelected}/>
+      <AddToCart
+        currentStyle={currentStyle}
+        skuSelected={skuSelected}
+        quantitySelected={quantitySelected}
+        changeSkuSelected={changeSkuSelected}
+        changeQuantitySelected={changeQuantitySelected}/>
     </div>
   );
 };
