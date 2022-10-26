@@ -1,6 +1,7 @@
 import React from 'react';
+import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
-const ProductInfo = ({currentProduct, currentStyle}) => {
+const ProductInfo = ({currentProduct, currentStyle, rating, totalReviews}) => {
   const renderPrice = () => {
     if (currentStyle?.sale_price) {
       return (
@@ -29,8 +30,8 @@ const ProductInfo = ({currentProduct, currentStyle}) => {
 
   return (
     <div>
-      {/* Product Information */}
-      {/* STAR RATING */}
+      {rating ? <StarRating rating={rating}/> : null}
+      {totalReviews ? <a href="#rateAndReview">Read all {totalReviews} reviews</a> : null}
       <p>{currentProduct?.category?.toUpperCase()}</p>
       <h1>{currentProduct?.name}</h1>
       {renderPrice()}

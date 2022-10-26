@@ -8,14 +8,10 @@ const AskAQuestionModal = ({ open, onClose, product, submitQuestion }) => {
     <>
       <div className="overlay-styles" onClick={onClose} />
       <div className="modal-styles">
-        <form onSubmit={(e) => submitQuestion(e)}>
-          <button className="form-cancel" onClick={onClose} >X</button>
-          <h3 className="question-title">
-            Ask Your Question
-          </h3>
-          <p className="question-subtitle">
-            About the <em>{product}</em> Here.
-          </p>
+        <button className="cancel-button" onClick={onClose} >X</button>
+        <h3 className="question-title">Ask Your Question</h3>
+        <p className="question-subtitle">About the <em>{product}</em> Here.</p>
+        <form className="qa-form" onSubmit={(e) => submitQuestion(e)}>
 
           <p className="modal-question-body">
             <label>Your Question:</label><br />
@@ -24,12 +20,12 @@ const AskAQuestionModal = ({ open, onClose, product, submitQuestion }) => {
 
           <p className="question-nickname">
             <label>What is your nickname:</label><br />
-            <input type="text" name="name" size="60" maxLength="60" placeholder="Example: jackson11" required /><br />
+            <input type="text" name="name" size="40" maxLength="60" placeholder="Example: jackson11" required /><br />
             <em>For privacy reasons, do not use your full name or email address.</em>
           </p>
 
           <p className="question-email">
-            <input type="email" name="email" size="60" maxLength="60" placeholder="Example: jackson11@email.com" required /><br />
+            <input type="email" name="email" size="40" maxLength="60" placeholder="Example: jackson11@email.com" required /><br />
             <em>For authentication reasons, you will not be emailed.</em>
           </p>
 

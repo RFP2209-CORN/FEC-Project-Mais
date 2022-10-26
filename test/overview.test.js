@@ -1,22 +1,25 @@
-// import React from 'react';
-// import Overview from '../client/src/components/Overview/Overview.jsx';
-// import {act, cleanup, fireEvent, render, screen, waitFor} from '@testing-library/react';
-// import axios from "axios";
-// import dummyData from './dummyData.js';
+import React from 'react';
+import Overview from '../client/src/components/Overview/Overview.jsx';
+import {act, cleanup, fireEvent, render, screen, waitFor} from '@testing-library/react';
+import axios from 'axios';
+import dummyData from './dummyData.js';
 
 // jest.mock('axios');
 
 // describe('Overview', () => {
 
-//   beforeEach(() => {
-//     axios.get
-//       .mockImplementationOnce(() => Promise.resolve({
-//         data: dummyData.product
-//       }))
-//       .mockImplementationOnce(() => Promise.resolve({
-//         data: dummyData.productStyles
-//       }));
-//   })
+  beforeEach(() => {
+    axios.get
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.product
+      }))
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.productStyles
+      }))
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.meta
+      }));
+  });
 
 //   it('image gallery component renders', async () => {
 //     await act(async () => render(<Overview/>));
@@ -24,33 +27,33 @@
 //     const defaultView = await screen.getByTestId('default-view');
 //     expect(defaultView).toBeTruthy();
 
-//     const thumbnailNavBar = await screen.getByTestId('thumbnail-nav-bar');
-//     expect(thumbnailNavBar).toBeTruthy();
-//   })
+    const thumbnailNavBar = await screen.getByTestId('thumbnail-nav-bar');
+    expect(thumbnailNavBar).toBeTruthy();
+  });
 
 //   it('product info component renders', async () => {
 //     await act(async () => render(<Overview/>));
 
-//       const productCategory = await screen.getByText('JACKETS');
-//       expect(productCategory).toBeTruthy();
+    const productCategory = await screen.getByText('JACKETS');
+    expect(productCategory).toBeTruthy();
 
-//       const productName = await screen.getByText('Camo Onesie');
-//       expect(productName).toBeTruthy();
+    const productName = await screen.getByText('Camo Onesie');
+    expect(productName).toBeTruthy();
 
-//       const productPrice = await screen.getByText('140.00');
-//       expect(productPrice).toBeTruthy();
-//   });
+    const productPrice = await screen.getByText('140.00');
+    expect(productPrice).toBeTruthy();
+  });
 
 //   it('style selector component renders', async () => {
 //     await act(async () => render(<Overview/>));
 
-//     const productStyle = await screen.getByText("Forest Green & Black");
-//     expect(productStyle).toBeTruthy();
+    const productStyle = await screen.getByText('Forest Green & Black');
+    expect(productStyle).toBeTruthy();
 
-//     const currentStyleSelected = screen.getByTestId('style0-selector');
-//     const checkmark = screen.getByTestId('checkmark')
-//     expect(currentStyleSelected.childNodes).toContain(checkmark);
-//   });
+    const currentStyleSelected = screen.getByTestId('style0-selector');
+    const checkmark = screen.getByTestId('checkmark');
+    expect(currentStyleSelected.childNodes).toContain(checkmark);
+  });
 
 //   it('add to cart component renders', async () => {
 //     await act(async () => render(<Overview/>));
@@ -70,9 +73,9 @@
 
 //     fireEvent.click(screen.getByTestId('style2'));
 
-//     const productStyle2 = await screen.getByText("Ocean Blue & Grey");
-//     expect(productStyle2).toBeTruthy();
-//   });
+    const productStyle2 = await screen.getByText('Ocean Blue & Grey');
+    expect(productStyle2).toBeTruthy();
+  });
 
 //   it('handles add to cart with no size selected', async () => {
 //     await act(async () => render(<Overview/>));

@@ -5,11 +5,9 @@ import SingleReview from '../Reviews/SingleReview.jsx';
 const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
 
   reviews = displayedReviews || reviews;
-  // console.log('ReviewsList.jsx: reviews', reviews, 'displayedReviews', displayedReviews);
 
   const [ currentReviews, setCurrentReviews ] = useState([]);
   const [ currentReviewIndex, setCurrentReviewIndex ] = useState(4);
-  const [ filteredReviews, setFilteredReviews ] = useState([]);
   const [ open, setOpen ] = useState(false);
   const [ closeLoadButton, setCloseLoadButton ] = useState(false);
   const [ relevance, setRelevance ] = useState(false);
@@ -17,8 +15,26 @@ const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalN
   const [ newest, setNewest ] = useState(false);
 
   useEffect(() => {
-    updateCurrentReviewList();
-  }, [relevance, helpfulness, newest, currentReviews]);
+
+    if (helpfulness) {
+      reviews.sort((a, b) => {
+          return a.helpfulness - b.helpfulness;
+      })
+    }
+    else if (newest) {
+      reviews.sort((a, b) => {
+        return b.date - a.date;
+      })
+    }
+    else if (relevance) {
+      reviews.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      }).sort((a, b) => {
+        return b.date - a.date;
+      });
+    }
+    setCurrentReviews(reviews.slice(0, currentReviewIndex - 2));
+  }, [relevance, helpfulness, newest]);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -37,111 +53,48 @@ const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalN
     }
   }
 
-  const updateCurrentReviewList = () => {
-    // how the review list should display
-    // console.log('helpfulness', helpfulness, 'newest', newest, 'relevance', relevance);
-    if (helpfulness) {
-      currentReviews.sort((a, b) => {
-          return b.helpfulness - a.helpfulness;
-      })
-      console.log('current reviews sorted helpful descending', currentReviews);
-      console.log('just the current helpful sorted helpful', currentReviews.map((review) => review.helpfulness));
-    } else if (newest) {
-      currentReviews.sort((a, b) => {
-        return b.date - a.date;
-      })
-      console.log('current reviews sorted newest descending', currentReviews);
-      console.log('current review dates sorted descending', currentReviews.map((review) => review.date));
+  const handleSort = (event) => {
+    let word = event.target.innerText;
+    if (word === 'Relevant') {
+      setRelevance(true);
+      setHelpfulness(false);
+      setNewest(false);
     }
-
-    else if (relevance) {
-      currentReviews.sort((a, b) => {
-        return b.helpfulness - a.helpfulness;
-      }).sort((a, b) => {
-        return b.date - a.date;
-      });
-      console.log('currentReviews relevance descending', currentReviews);
-    } else {
-      console.log('all values are false: current reviews list not updated');
+    if (word === 'Helpful') {
+      setHelpfulness(true);
+      setNewest(false);
+      setRelevance(false);
     }
-    // console.log('currentReviews after sorting', currentReviews);
-    setCurrentReviews(currentReviews);
-  };
-
-  const handleHelpful = () => {
-
-    setHelpfulness(true);
-    setNewest(false);
-    setRelevance(false);
-    updateCurrentReviewList();
-
-    // setCurrentReviews(currentReviews.sort((a, b) => {
-    //   return b.helpfulness - a.helpfulness;
-    // }));
-    // console.log('current reviews sorted helpful descending', currentReviews);
-    // console.log('just the current helpful sorted helpful', currentReviews.map((review) => review.helpfulness));
-  }
-
-  const handleNewest = () => {
-
-    // setCurrentReviews(currentReviews.sort((a, b) => {
-    //   return b.date - a.date;
-    // }));
-    // console.log('current review dates sorted descending', currentReviews.map((review) => review.date));
-    setNewest(true);
-    setHelpfulness(false);
-    setRelevance(false);
-    updateCurrentReviewList();
-
-  }
-
-  const handleRelevant = () => {
-
-    setRelevance(true);
-    setNewest(false);
-    setHelpfulness(false);
-    updateCurrentReviewList();
-
-    // updateCurrentReviewList();
-    // console.log('current reviews sorted relevance descending', currentReviews);
+    if (word === 'Newest') {
+      setNewest(true);
+      setHelpfulness(false);
+      setRelevance(false);
+    }
   }
 
   return (
     <>
     <div className="reviews-list-header">
       <div className="flexbox-container">
-        <h2>
+      <h3>
           {totalNumberOfReviews} Reviews, sorted by
-        </h2>
-        <h3>
-          {/* <ReviewsSortDropdown /> */}
-          <div className="sort-dropdown">
-            <button className="button-dropdown" onClick={handleOpen} >relevant</button>
-            {open ? (
-              <ul className="sort-dropdown-menu">
-                <li className="sort-dropdown-menu-item">
-                  <button onClick={
-                    handleHelpful
-                  } >Helpful
-                    </button>
-
-                </li>
-                <li className="sort-dropdown-menu-item">
-                <button onClick={
-                    handleNewest
-                  } >Newest
-                    </button>
-                </li>
-                <li className="sort-dropdown-menu-item">
-                <button onClick={
-                    handleRelevant
-                  } >Relevant
-                    </button>
-                </li>
-              </ul>
-            ) : null}
-          </div>
-        </h3>
+      </h3>
+        <div className="sort-dropdown">
+          <button className="button-dropdown" onClick={handleOpen} >relevant</button>
+          {open ? (
+            <ul className="sort-dropdown-menu">
+              <li className="sort-dropdown-menu-item">
+                <button onClick={(event) => handleSort(event)} >Helpful</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Newest</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Relevant</button>
+              </li>
+            </ul>
+          ) : null}
+        </div>
       </div>
     </div>
     <br></br>

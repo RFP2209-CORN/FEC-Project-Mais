@@ -32,21 +32,26 @@ const ExpandedView = ({open, onClose, currentStyle, currentPhoto, onLeftClick, o
       <div className="overlay-styles" onClick={onClose} />
       <div data-testid="expanded-view" className="expanded-view-modal-style">
         {zoomed ?
-          <div data-testid={`zoomed-photo-${currentPhoto}`}
+          <div
+            data-testid={`zoomed-photo-${currentPhoto}`}
             className="expanded-view-image zoomed-view"
             style={{backgroundImage: `url(${currentStyle.photos?.[currentPhoto]?.url})`}}
             onMouseMove={handleZoomedView}
             onClick={event => setZoomed(false)}/> :
-          <div data-testid={`expanded-photo-${currentPhoto}`}
+          <div
+            data-testid={`expanded-photo-${currentPhoto}`}
             className="expanded-view-image"
             style={{backgroundImage: `url(${currentStyle.photos?.[currentPhoto]?.url})`}}
             onClick={event => setZoomed(true)}/>}
+
         {zoomed ? null :
           <div data-testid="expanded-view-icons" className="expanded-view-icons">{renderIcons()}</div>}
+
         {!zoomed && currentPhoto > 0 ?
           <i data-testid="expanded-left-arrow"
             className="fa-solid fa-arrow-left-long"
             onClick={onLeftClick}/> : null}
+
         {!zoomed && currentPhoto < currentStyle.photos.length - 1 ?
           <i data-testid="expanded-right-arrow"
             className="fa-solid fa-arrow-right-long"

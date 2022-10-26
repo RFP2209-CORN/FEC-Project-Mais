@@ -4,6 +4,13 @@
 ========================================
 */
 
+body {
+  padding: 50px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 /* For Buttons, Links, Modals, or anything clickable */
 button,
@@ -19,11 +26,6 @@ button,
     MODAL
 ========================================
 */
-body {
-  display: flex;
-  justify-content: center;
-  padding: 50px;
-}
 
 .modal-styles {
   position: fixed;
@@ -31,7 +33,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 50px;
+  padding: 30px;
   z-index: 1000;
   border-radius: 5px;
 }
@@ -55,12 +57,39 @@ body {
   z-index: 1000;
 }
 
+.qa-form {
+  display: block;
+  overflow: scroll;
+}
+
+.cancel-button {
+  float: right;
+  zoom: 125%;
+  border: none;
+  border-color: unset;
+  color: red;
+}
+
 
 /*
 ========================================
     OVERVIEW
 ========================================
 */
+
+.product-overview {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-gallery {
+  display: inline-block;
+}
+
+.overview-sidebar {
+  display: inline-block;
+  width: 575px;
+}
 
 .out-of-stock-main-image {
   background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
@@ -159,22 +188,49 @@ body {
   margin-right: 2.5px;
 }
 
+.style-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.style-selector-thumbnail {
+  width: 55px;
+  height: 55px;
+  margin-right: 7.5px;
+  border-radius: 50%;
+}
+
+.checkmark {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
 ========================================
 */
-  /* .related-items-and-outfits-container {
+/* .related-items-and-outfits-container {
     display: flex;
     justify-content: center;
   } */
 
-.card-container-container{
+.card-container-container {
   width: 1500px;
   position: relative;
   display: inline-block;
   scroll-behavior: smooth;
 }
+
 #card-container-related {
   display: inline-flex;
   justify-content: left;
@@ -184,6 +240,7 @@ body {
   width: 75%;
   overflow: hidden;
 }
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -308,8 +365,8 @@ body {
   max-height: 600px;
   overflow: scroll;
   grid-template-columns: 2fr 6fr;
-  background-color: aliceblue;
-  border: 2px solid grey;
+  border: .5px solid grey;
+  border-radius: 5px;
   grid-template-areas:
     "title title"
     "search search"
@@ -343,10 +400,11 @@ body {
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
   padding: 0 5px 0 5px;
-  border: 1.5px solid grey;
+  border: .5px solid grey;
+  border-radius: 2px;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
-    "blank q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
+    "blank q-info q-info q-info q-helpful q-helpful q-report q-report q-report q-report"
     "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
 }
 
@@ -398,7 +456,7 @@ body {
   grid-template-columns: 4fr 2fr 4fr;
   grid-gap: 5px;
   padding: 0 10px 0 10px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
@@ -433,9 +491,12 @@ body {
 ========================================
 */
 
-.flexbox-container {
+
+.main-flexbox-container {
   display: flex;
   align-items: center;
+  border: 1px solid grey;
+  padding: 20px;
 }
 
 .single-star-container {
@@ -443,6 +504,8 @@ body {
   width: 31px;
   display: inline-block;
   background-color: white;
+  border: 1px solid grey;
+
 }
 
 .single-star-outline {
@@ -462,41 +525,93 @@ body {
   border-radius: 5px;
 }
 
-.sidebar {
-  max-width: 225px;
+.ratings-sidebar {
+  /* display:grid;
+  border:rgba(105, 33, 33, 0.2);
+  position: absolute;
+  top: 700px; */
+  max-width: 285px;
 }
 
-.reviews-list {
-  position: relative;
-  top: -150px;
-  left: 200px
-}
-
-.reviews-list-header {
-  position: relative;
-  right: -420px;
-  top: -450px;
+.reviews-grid {
+  display: grid;
+  width: 60em;
+  height:25em;
 }
 
 .reviews-card {
   display: flex;
   flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
   border-radius: 0.625rem;
   margin: 2rem;
 }
 
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.reviews-date {
+  position: relative;
+  left: 400px;
+  text-align: right;
+}
+
 .reviews-card-text {
-  background-color: white;
-  max-width: 21.25rem;
+  text-align: left;
   border-radius: 0.625rem;
   margin: 2rem;
+}
+.reviews-list {
+  position: relative;
+  top: 450px;
+  left: 200px
+}
+
+.reviews-list-header {
+  display: inline;
+  position: relative;
+  left: 350px;
+  bottom: 550px;
+}
+
+.review-flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  text-align: right;
+}
+
+.reviews-card-text {
+  text-align: left;
+  border-radius: 0.625rem;
+  margin: 2rem;
+}
+
+.reviews-card-helpful {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+hr {
+  display: block;
+  width: 600px;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 .review-photo {
   height: 200px;
   width: 200px;
+}
+
+.review-form-container {
+  overflow: scroll;
 }
 
 .reviews-image-button {
@@ -510,6 +625,14 @@ body {
   margin: 2rem;
 }
 
+
+
+.reviews-card-helpful {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
 .reviews-card-response {
   display: flex;
   flex-direction: row;
@@ -517,18 +640,7 @@ body {
   max-width: 21.25rem;
 }
 
-.reviews-card-helpful {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
-}
 
-.reviews-date {
-  position: relative;
-  left: 400px;
-  text-align: right;
-}
 
 .sort-dropdown {
   position: relative;
@@ -594,6 +706,6 @@ body {
 }
 
 .textButton {
-  background:none;
-  border:none;
+  background: none;
+  border: none;
 }

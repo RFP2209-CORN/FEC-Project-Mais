@@ -48,7 +48,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
         characteristicsArray[i].push("5 = Runs long");
         break;
       default:
-        console.log('no characteristics details added');
         break;
     }
   }
@@ -64,7 +63,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
         console.log('error uploading photo', error);
       }
       if (!error && result && result.event === "success") {
-        console.log('result.info.url', result.info.url);
+        // console.log('result.info.url', result.info.url);
         setImages([...images, result.info.url]);
       }
     }
@@ -96,7 +95,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const showCounter = () => {
     let counter = body.length;
     let left = 50 - body.length;
-    console.log('left', left);
+    // console.log('left', left);
     return `Minimum required characters left: ${left}`
   }
 
@@ -109,7 +108,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     <>
       <div className="overlay-styles" onClick={onClose}/>
       <div className="modal-styles">
-        <div className="form-container">
+        <div className="review-form-container">
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
@@ -133,34 +132,32 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 return (
                   <div key={index} >
                     <div>{char[0]}</div>
-                    {/* remove 'required' for testing purposes */}
-
                     <label>1</label>
-                    <input type="radio" value="1" name="1" required onClick={() => {
+                    <input type="radio" value="1" name={char[0]} required onClick={() => {
                       char[1].value = 1
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>2</label>
-                    <input type="radio" value="2" name="2" required onClick={() => {
+                    <input type="radio" value="2" name={char[0]} required onClick={() => {
                       char[1].value = 2
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>3</label>
-                    <input type="radio" value="3" name="3" required onClick={() => {
+                    <input type="radio" value="3" name={char[0]} required onClick={() => {
                       char[1].value = 3
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>4</label>
-                    <input type="radio" value="4" name="4" required onClick={() => {
+                    <input type="radio" value="4" name={char[0]} required onClick={() => {
                       char[1].value = 4
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>5</label>
-                    <input type="radio" value="5" name="5" required onClick={() => {
+                    <input type="radio" value="5" name={char[0]} required onClick={() => {
                       char[1].value = 5
                     }}/>
                     <div>{char[2]} &nbsp; {char[3]}</div>

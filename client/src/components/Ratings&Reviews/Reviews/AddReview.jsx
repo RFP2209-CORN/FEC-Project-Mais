@@ -11,7 +11,6 @@ const AddReviewButton = ({ product_id, prodName, addReview, metaData }) => {
   };
 
   const onAddReviewClick = () => {
-    console.log('Add Review button clicked')
     setIsOpen(true);
   }
 
