@@ -12,7 +12,8 @@ const ImageGallery = ({currentStyle}) => {
     } else {
       return (
         <div data-testid="default-view" className="default-view">
-          <div data-testid={`default-photo-${currentPhoto}`}
+          <div
+            data-testid={`default-photo-${currentPhoto}`}
             className ="default-view-image"
             style={{backgroundImage: `url(${currentStyle.photos[currentPhoto].url})`}}
             onClick={onExpandedView}/>
@@ -95,11 +96,17 @@ const ImageGallery = ({currentStyle}) => {
   };
 
   return (
-    <div>
-      {/* Image Gallery */}
+    <div className="image-gallery">
       {currentStyle.photos ? renderPhotoThumbnails() : null}
       {currentStyle.photos ? renderMainImage() : null}
-      <ExpandedView open={isOpen} onClose={() => setIsOpen(false)} currentStyle={currentStyle} currentPhoto={currentPhoto} onLeftClick={onLeftClick} onRightClick={onRightClick} changePhoto={changePhoto}/>
+      <ExpandedView
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        currentStyle={currentStyle}
+        currentPhoto={currentPhoto}
+        onLeftClick={onLeftClick}
+        onRightClick={onRightClick}
+        changePhoto={changePhoto}/>
     </div>
   );
 };

@@ -19,6 +19,11 @@ button,
     MODAL
 ========================================
 */
+body {
+  /* display: flex;
+  justify-content: center; */
+  padding: 50px;
+}
 
 .modal-styles {
   position: fixed;
@@ -50,11 +55,26 @@ button,
   z-index: 1000;
 }
 
+
 /*
 ========================================
     OVERVIEW
 ========================================
 */
+
+.product-overview {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-gallery {
+  display: inline-block;
+}
+
+.overview-sidebar {
+  display: inline-block;
+  width: 575px;
+}
 
 .out-of-stock-main-image {
   background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
@@ -153,21 +173,80 @@ button,
   margin-right: 2.5px;
 }
 
+.style-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.style-selector-thumbnail {
+  width: 55px;
+  height: 55px;
+  margin-right: 7.5px;
+  border-radius: 50%;
+}
+
+.checkmark {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
 ========================================
 */
+  /* .related-items-and-outfits-container {
+    display: flex;
+    justify-content: center;
+  } */
 
+.card-container-container{
+  width: 1500px;
+  position: relative;
+  display: inline-block;
+  /* align-items: center; */
+  /* left: 13%;
+  top: 10%; */
+  /* justify-content: right; */
+
+}
+#card-container-related {
+  display: inline-flex;
+  justify-content: left;
+  /* position: relative; */
+  scroll-snap-type: x mandatory;
+  width: 75%;
+  overflow: hidden;
+}
 .card-container {
   display: flex;
   justify-content: center;
+  position: relative;
+  /* width: 75%; */
+  /* overflow: hidden; */
+}
+
+.cards-arrow {
+  position: relative;
+  color: black;
 }
 
 .card {
-  width: 255px;
+  min-width: 255px;
   height: 375px;
   margin: .85em;
+  display: inline;
+  scroll-snap-align: start;
+  /* position: relative; */
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;
@@ -565,4 +644,3 @@ button,
   background:none;
   border:none;
 }
-
