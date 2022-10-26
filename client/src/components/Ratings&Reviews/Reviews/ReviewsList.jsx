@@ -5,7 +5,6 @@ import SingleReview from '../Reviews/SingleReview.jsx';
 const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
 
   reviews = displayedReviews || reviews;
-  console.log('ReviewsList.jsx: reviews', reviews, 'displayedReviews', displayedReviews);
 
   const [ currentReviews, setCurrentReviews ] = useState([]);
   const [ currentReviewIndex, setCurrentReviewIndex ] = useState(4);
@@ -54,9 +53,7 @@ const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalN
     }
   }
 
-
   const handleSort = (event) => {
-    console.log('event.target.innerText', event.target.innerText)
     let word = event.target.innerText;
     if (word === 'Relevant') {
       setRelevance(true);
@@ -79,28 +76,25 @@ const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalN
     <>
     <div className="reviews-list-header">
       <div className="flexbox-container">
-        <h2>
+      <h3>
           {totalNumberOfReviews} Reviews, sorted by
-        </h2>
-        <h3>
-          {/* <ReviewsSortDropdown /> */}
-          <div className="sort-dropdown">
-            <button className="button-dropdown" onClick={handleOpen} >relevant</button>
-            {open ? (
-              <ul className="sort-dropdown-menu">
-                <li className="sort-dropdown-menu-item">
-                  <button onClick={(event) => handleSort(event)} >Helpful</button>
-                </li>
-                <li className="sort-dropdown-menu-item">
-                <button onClick={(event) => handleSort(event)} >Newest</button>
-                </li>
-                <li className="sort-dropdown-menu-item">
-                <button onClick={(event) => handleSort(event)} >Relevant</button>
-                </li>
-              </ul>
-            ) : null}
-          </div>
-        </h3>
+      </h3>
+        <div className="sort-dropdown">
+          <button className="button-dropdown" onClick={handleOpen} >relevant</button>
+          {open ? (
+            <ul className="sort-dropdown-menu">
+              <li className="sort-dropdown-menu-item">
+                <button onClick={(event) => handleSort(event)} >Helpful</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Newest</button>
+              </li>
+              <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Relevant</button>
+              </li>
+            </ul>
+          ) : null}
+        </div>
       </div>
     </div>
     <br></br>
