@@ -31,7 +31,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 50px;
+  padding: 30px;
   z-index: 1000;
   border-radius: 5px;
 }
@@ -53,6 +53,19 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
+}
+
+.qa-form {
+  display: block;
+  overflow: scroll;
+}
+
+.cancel-button {
+  float: right;
+  zoom: 125%;
+  border: none;
+  border-color: unset;
+  color: red;
 }
 
 
@@ -204,12 +217,12 @@ body {
     RELATED PRODUCTS
 ========================================
 */
-  /* .related-items-and-outfits-container {
+/* .related-items-and-outfits-container {
     display: flex;
     justify-content: center;
   } */
 
-.card-container-container{
+.card-container-container {
   width: 1500px;
   position: relative;
   display: inline-block;
@@ -219,6 +232,7 @@ body {
   /* justify-content: right; */
 
 }
+
 #card-container-related {
   display: inline-flex;
   justify-content: left;
@@ -227,6 +241,7 @@ body {
   width: 75%;
   overflow: hidden;
 }
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -349,20 +364,13 @@ body {
 ========================================
 */
 
-#qa {
-  display: grid;
-  justify-items: center;
-}
-
 .qa-container {
-  align-self: center;
   display: grid;
   max-height: 600px;
-  max-width: 90%;
   overflow: scroll;
   grid-template-columns: 2fr 6fr;
-  background-color: aliceblue;
-  border: 2px solid grey;
+  border: .5px solid grey;
+  border-radius: 5px;
   grid-template-areas:
     "title title"
     "search search"
@@ -396,10 +404,11 @@ body {
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
   padding: 0 5px 0 5px;
-  border: 1.5px solid grey;
+  border: .5px solid grey;
+  border-radius: 2px;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
-    "blank q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
+    "blank q-info q-info q-info q-helpful q-helpful q-report q-report q-report q-report"
     "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
 }
 
@@ -451,7 +460,7 @@ body {
   grid-template-columns: 4fr 2fr 4fr;
   grid-gap: 5px;
   padding: 0 10px 0 10px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
@@ -489,6 +498,8 @@ body {
 .flexbox-container {
   display: flex;
   align-items: center;
+  border: 1px solid grey;
+  padding: 20px;
 }
 
 .single-star-container {
@@ -496,6 +507,8 @@ body {
   width: 31px;
   display: inline-block;
   background-color: white;
+  border: 1px solid grey;
+
 }
 
 .single-star-outline {
@@ -648,6 +661,6 @@ body {
 }
 
 .textButton {
-  background:none;
-  border:none;
+  background: none;
+  border: none;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
@@ -7,7 +8,7 @@ import { validate } from 'react-email-validator';
 import axios from 'axios';
 
 const QuestionsAndAnswers = ({ productId }) => {
-  const [currentProduct, setCurrentProduct] = useState([]);
+  const [productName, setProductName] = useState('');
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
@@ -110,7 +111,7 @@ const QuestionsAndAnswers = ({ productId }) => {
     }
     if (data.length !== 0) {
       return data.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} product={currentProduct} />;
+        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} product={productName} />;
       });
     }
   };
@@ -137,7 +138,7 @@ const QuestionsAndAnswers = ({ productId }) => {
 
     axios.get(`/products/${productId}`)
       .then(result => {
-        setCurrentProduct(result.data.name);
+        setProductName(result.data.name);
       })
       .catch(err => console.log(err));
   }, [productId]);
@@ -161,7 +162,7 @@ const QuestionsAndAnswers = ({ productId }) => {
 
       <div className="ask-question-modal">
         <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
-        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={currentProduct} submitQuestion={handleSubmitQuestion} />
+        <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={productName} submitQuestion={handleSubmitQuestion} />
       </div>
     </div>
   );
