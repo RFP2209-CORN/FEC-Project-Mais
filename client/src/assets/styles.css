@@ -4,6 +4,13 @@
 ========================================
 */
 
+body {
+  padding: 50px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 /* For Buttons, Links, Modals, or anything clickable */
 button,
@@ -19,11 +26,6 @@ button,
     MODAL
 ========================================
 */
-body {
-  /* display: flex;
-  justify-content: center; */
-  padding: 50px;
-}
 
 .modal-styles {
   position: fixed;
