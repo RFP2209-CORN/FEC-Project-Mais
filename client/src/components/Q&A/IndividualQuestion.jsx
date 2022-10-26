@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import AnswersList from './AnswersList.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
@@ -72,7 +73,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
         by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')}
 
         {/* COMMENT IN FOR TESTING */}
-        by {asker_name},
+        {/* by {asker_name}, */}
       </p>
 
       <p className="question-helpfulness">
