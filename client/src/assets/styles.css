@@ -20,8 +20,8 @@ button,
 ========================================
 */
 body {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   padding: 50px;
 }
 
@@ -157,6 +157,32 @@ body {
 .fa-circle {
   font-size: 12px;
   margin-right: 2.5px;
+}
+
+.style-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.style-selector-thumbnail {
+  width: 55px;
+  height: 55px;
+  margin-right: 7.5px;
+  border-radius: 50%;
+}
+
+.checkmark {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
 }
 
 /*
