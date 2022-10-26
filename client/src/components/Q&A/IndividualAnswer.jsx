@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import { format, parseISO } from 'date-fns';
 import DisplayPhotoModal from './DisplayPhotoModal.jsx';

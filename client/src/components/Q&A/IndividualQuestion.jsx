@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { useState } from 'react';
 import AnswersList from './AnswersList.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
@@ -6,9 +7,9 @@ import axios from 'axios';
 import { validate } from 'react-email-validator';
 
 // Testing Purpose ONLY ---- COMMENT OUT WHEN NOT TESTING //
-const cloudinary = {
-  createUploadWidget: () => { return null; }
-};
+// const cloudinary = {
+//   createUploadWidget: () => { return null; }
+// };
 
 const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) => {
   // console.log('Individual question: ', question);
@@ -68,10 +69,11 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
       </p>
 
       <p className="question-info">
-        by {asker_name},
-
         {/* COMMENT OUT FOR TESTING */}
-        {/* by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')} */}
+        by {asker_name}, {format(parseISO(question_date), 'MMMM dd, yyyy')}
+
+        {/* COMMENT IN FOR TESTING */}
+        {/* by {asker_name}, */}
       </p>
 
       <p className="question-helpfulness">
