@@ -5,14 +5,6 @@ import OutfitCreation from './OutfitCreation.jsx';
 
 
 const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
-  const getProductReviews = (productId) => {
-    return (
-      axios.get(`/reviews/${productId}`)
-        .then(result => result.data.results)
-    );
-  };
-
-
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
@@ -84,7 +76,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
-        getProductReviews={getProductReviews}
+        // getProductReviews={getProductReviews}
       />
     </div>
   );

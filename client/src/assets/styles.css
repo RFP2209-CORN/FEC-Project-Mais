@@ -173,17 +173,14 @@ body {
   width: 1500px;
   position: relative;
   display: inline-block;
-  /* align-items: center; */
-  /* left: 13%;
-  top: 10%; */
-  /* justify-content: right; */
-
+  scroll-behavior: smooth;
 }
 #card-container-related {
   display: inline-flex;
   justify-content: left;
-  /* position: relative; */
+  position: relative;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   width: 75%;
   overflow: hidden;
 }
@@ -191,8 +188,6 @@ body {
   display: flex;
   justify-content: center;
   position: relative;
-  /* width: 75%; */
-  /* overflow: hidden; */
 }
 
 .cards-arrow {
@@ -206,7 +201,6 @@ body {
   margin: .85em;
   display: inline;
   scroll-snap-align: start;
-  /* position: relative; */
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;

@@ -8,35 +8,21 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
   const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
-    setDisplayItems([]);
-
     let outfitStorage = localStorage.getItem('outfitStorage');
     outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
     setOutfits(outfitStorage);
-
-    let toDisplay = [];
-    for (let i = 0; i < 4 && i < outfitStorage.length; i++) {
-      toDisplay.push(outfitStorage[i]);
-    }
-    setDisplayItems(toDisplay);
   }, []);
 
   const changeDisplay = (direction) => {
     if (direction === 'left' && startIndex > 0) {
-      let toDisplay = [];
-      for (let i = startIndex - 1; i < startIndex + 3; i++) {
-        toDisplay.push(outfits[i]);
-      }
+      console.log('left')
       setStartIndex(startIndex - 1);
-      setDisplayItems(toDisplay);
+      document.getElementById('card-container-related').scrollBy(-255, 0);
     }
-    if (direction === 'right' && startIndex + 4 <= outfits.length - 1) {
-      let toDisplay = [];
-      for (let i = startIndex + 1; i < startIndex + 5; i++) {
-        toDisplay.push(outfits[i]);
-      }
+    if (direction === 'right' && startIndex + 4 <= relatedItems.length - 1) {
+      console.log('right')
       setStartIndex(startIndex + 1);
-      setDisplayItems(toDisplay);
+      document.getElementById('card-container-related').scrollBy(255, 0);
     }
   };
 
@@ -58,19 +44,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
           outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
           outfitStorage.push(product.data);
           localStorage.setItem('outfitStorage', JSON.stringify(outfitStorage));
-
-          let toDisplay = [];
-          setDisplayItems([]);
-          if (outfitStorage.length < 4) {
-            setDisplayItems(outfitStorage);
-          } else {
-            for (let i = outfitStorage.length - 4; i < outfitStorage.length; i++) {
-              setDisplayItems(currDisplay => {
-                return [...currDisplay, outfitStorage[i]];
-              });
-            }
-            setStartIndex(outfitStorage.length - 4);
-          }
         }
       });
   };
@@ -86,26 +59,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
     outfitStorage = JSON.parse(outfitStorage);
     const newLocalStorage = outfitStorage.filter((outfit) => outfit.id !== productToRemove);
     localStorage.setItem('outfitStorage', JSON.stringify(newLocalStorage));
-
-    setDisplayItems([]);
-    if (newLocalStorage.length <= 4) {
-      setDisplayItems(newLocalStorage);
-      setStartIndex(0);
-    } else {
-      if (newLocalStorage[startIndex + 4] !== undefined) {
-        for (let i = startIndex; i < 4; i++) {
-          setDisplayItems(currDisplay => {
-            return [...currDisplay, newLocalStorage[i]];
-          });
-        }
-      } else {
-        for (let i = newLocalStorage.length - startIndex; i < 4; i++) {
-          setDisplayItems(currDisplay => {
-            return [...currDisplay, newLocalStorage[i]];
-          });
-        }
-      }
-    }
   };
 
 
@@ -142,7 +95,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         <div className="card add-outfit card-shadow">
           <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
         </div>
-        {displayItems.map((outfit) => {
+        {outfits.map((outfit) => {
           return (
             <OutfitCard
               key={outfit.id}
@@ -156,7 +109,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             />
           );
         })}
-        {displayItems.length <= 2 && renderBlankCards(outfits.length)}
+        {outfits.length <= 2 && renderBlankCards(outfits.length)}
       </div>
       <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }}/>
     </div>
