@@ -5,8 +5,7 @@ import ProductInfo from './ProductInfo.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 
-const Overview = () => {
-  const productId = '40344';
+const Overview = ({productId}) => {
   //out of stock style
   // const productId = '40345';
   const [currentProduct, setCurrentProduct] = React.useState({});
@@ -35,7 +34,7 @@ const Overview = () => {
         }
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [productId]);
 
   const changeCurrentStyle = (style) => {
     setCurrentStyle(style);
@@ -50,12 +49,26 @@ const Overview = () => {
   };
 
   return (
-    <div>
-      {/* Product Overview */}
-      <ImageGallery currentStyle={currentStyle}/>
-      <ProductInfo currentProduct={currentProduct} currentStyle={currentStyle}/>
-      <StyleSelector currentStyle={currentStyle} styles={styles} changeCurrentStyle={changeCurrentStyle} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
-      <AddToCart currentStyle={currentStyle} skuSelected={skuSelected} quantitySelected={quantitySelected} changeSkuSelected={changeSkuSelected} changeQuantitySelected={changeQuantitySelected}/>
+    <div className="product-overview">
+      <ImageGallery
+        currentStyle={currentStyle}/>
+      <div className="overview-sidebar">
+        <ProductInfo
+          currentProduct={currentProduct}
+          currentStyle={currentStyle}/>
+        <StyleSelector
+          currentStyle={currentStyle}
+          styles={styles}
+          changeCurrentStyle={changeCurrentStyle}
+          changeSkuSelected={changeSkuSelected}
+          changeQuantitySelected={changeQuantitySelected}/>
+        <AddToCart
+          currentStyle={currentStyle}
+          skuSelected={skuSelected}
+          quantitySelected={quantitySelected}
+          changeSkuSelected={changeSkuSelected}
+          changeQuantitySelected={changeQuantitySelected}/>
+      </div>
     </div>
   );
 };

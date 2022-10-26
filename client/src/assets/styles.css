@@ -20,8 +20,8 @@ button,
 ========================================
 */
 body {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   padding: 50px;
 }
 
@@ -61,6 +61,20 @@ body {
     OVERVIEW
 ========================================
 */
+
+.product-overview {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-gallery {
+  display: inline-block;
+}
+
+.overview-sidebar {
+  display: inline-block;
+  width: 575px;
+}
 
 .out-of-stock-main-image {
   background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
@@ -157,6 +171,32 @@ body {
 .fa-circle {
   font-size: 12px;
   margin-right: 2.5px;
+}
+
+.style-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.style-selector-thumbnail {
+  width: 55px;
+  height: 55px;
+  margin-right: 7.5px;
+  border-radius: 50%;
+}
+
+.checkmark {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: green;
+  color: white;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
 }
 
 /*
