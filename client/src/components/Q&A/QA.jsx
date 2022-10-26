@@ -7,8 +7,7 @@ import AnswersList from './AnswersList.jsx';
 import { validate } from 'react-email-validator';
 import axios from 'axios';
 
-const QuestionsAndAnswers = ({ productId }) => {
-  const [productName, setProductName] = useState('');
+const QuestionsAndAnswers = ({ productId, productName }) => {
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
@@ -133,12 +132,6 @@ const QuestionsAndAnswers = ({ productId }) => {
         if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
           localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
         }
-      })
-      .catch(err => console.log(err));
-
-    axios.get(`/products/${productId}`)
-      .then(result => {
-        setProductName(result.data.name);
       })
       .catch(err => console.log(err));
   }, [productId]);
