@@ -509,6 +509,7 @@ body {
 }
 
 .sidebar {
+  /* position: absolute; */
   max-width: 225px;
 }
 
