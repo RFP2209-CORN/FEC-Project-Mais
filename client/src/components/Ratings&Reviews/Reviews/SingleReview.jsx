@@ -6,8 +6,6 @@ import axios from 'axios';
 
 const SingleReview = ({ review }) => {
 
-  console.log('review', review);
-
   const [ isOpen, setIsOpen ] = useState(false);
   const [ yes, setYes ] = useState(0);
   const [ no, setNo ] = useState(0);
