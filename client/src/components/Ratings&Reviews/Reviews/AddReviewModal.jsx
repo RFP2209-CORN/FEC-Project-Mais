@@ -48,7 +48,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
         characteristicsArray[i].push("5 = Runs long");
         break;
       default:
-        console.log('no characteristics details added');
         break;
     }
   }
@@ -64,7 +63,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
         console.log('error uploading photo', error);
       }
       if (!error && result && result.event === "success") {
-        console.log('result.info.url', result.info.url);
+        // console.log('result.info.url', result.info.url);
         setImages([...images, result.info.url]);
       }
     }
@@ -96,7 +95,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const showCounter = () => {
     let counter = body.length;
     let left = 50 - body.length;
-    console.log('left', left);
+    // console.log('left', left);
     return `Minimum required characters left: ${left}`
   }
 
@@ -109,7 +108,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     <>
       <div className="overlay-styles" onClick={onClose}/>
       <div className="modal-styles">
-        <div className="form-container">
+        <div className="review-form-container">
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
