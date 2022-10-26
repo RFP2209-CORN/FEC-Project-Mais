@@ -38,9 +38,9 @@ const App = () => {
         <QuestionsAndAnswers productId={productId}/>
       </div> */}
 
-      {/* <div id="rateAndReview">
-        <RatingsAndReviews />
-      </div> */}
+      <div id="rateAndReview">
+        <RatingsAndReviews product_id={productId}/>
+      </div>
     </>
   );
 };

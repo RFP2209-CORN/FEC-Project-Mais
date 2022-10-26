@@ -99,13 +99,13 @@ const SingleReview = ({ review }) => {
           <button className="textButton" onClick={handleYesClick}>
             Yes
           </button>
-          ({yes}) &nbsp;
+          ({review.helpfulness}) &nbsp;
         </div>
         <div>
           <button className="textButton" onClick={handleNoClick}>
             No
           </button>
-          ({no}) &nbsp;
+          ({no})
         </div>
       </div>
     </>
