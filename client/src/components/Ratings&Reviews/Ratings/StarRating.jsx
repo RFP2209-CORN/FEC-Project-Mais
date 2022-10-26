@@ -34,7 +34,6 @@ const StarRating = ({ rating }) => {
           stars.push(1.0);
           break;
         default:
-          console.log('Error: did not register an increment');
           stars.push(0);
           break;
       }
