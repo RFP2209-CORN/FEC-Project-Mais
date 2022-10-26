@@ -270,9 +270,16 @@ button,
 ========================================
 */
 
+#qa {
+  display: grid;
+  justify-items: center;
+}
+
 .qa-container {
+  align-self: center;
   display: grid;
   max-height: 600px;
+  max-width: 90%;
   overflow: scroll;
   grid-template-columns: 2fr 6fr;
   background-color: aliceblue;

@@ -126,14 +126,14 @@ const QuestionsAndAnswers = ({ productId }) => {
           container.push(data[i]);
         }
         setAllQuestionsData(data);
-        setQuestionsList(container);
+        setQuestionsList(data);
       })
       // COMMENT OUT FOR TESTING //
-      // .then(() => {
-      //   if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
-      //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-      //   }
-      // })
+      .then(() => {
+        if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
+          localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+        }
+      })
       .catch(err => console.log(err));
 
     axios.get(`/products/${productId}`)
