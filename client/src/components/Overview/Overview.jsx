@@ -49,24 +49,26 @@ const Overview = ({productId}) => {
   };
 
   return (
-    <div>
+    <div className="product-overview">
       <ImageGallery
         currentStyle={currentStyle}/>
-      <ProductInfo
-        currentProduct={currentProduct}
-        currentStyle={currentStyle}/>
-      <StyleSelector
-        currentStyle={currentStyle}
-        styles={styles}
-        changeCurrentStyle={changeCurrentStyle}
-        changeSkuSelected={changeSkuSelected}
-        changeQuantitySelected={changeQuantitySelected}/>
-      <AddToCart
-        currentStyle={currentStyle}
-        skuSelected={skuSelected}
-        quantitySelected={quantitySelected}
-        changeSkuSelected={changeSkuSelected}
-        changeQuantitySelected={changeQuantitySelected}/>
+      <div className="overview-sidebar">
+        <ProductInfo
+          currentProduct={currentProduct}
+          currentStyle={currentStyle}/>
+        <StyleSelector
+          currentStyle={currentStyle}
+          styles={styles}
+          changeCurrentStyle={changeCurrentStyle}
+          changeSkuSelected={changeSkuSelected}
+          changeQuantitySelected={changeQuantitySelected}/>
+        <AddToCart
+          currentStyle={currentStyle}
+          skuSelected={skuSelected}
+          quantitySelected={quantitySelected}
+          changeSkuSelected={changeSkuSelected}
+          changeQuantitySelected={changeQuantitySelected}/>
+      </div>
     </div>
   );
 };

@@ -96,7 +96,7 @@ const ImageGallery = ({currentStyle}) => {
   };
 
   return (
-    <div>
+    <div className="image-gallery">
       {currentStyle.photos ? renderPhotoThumbnails() : null}
       {currentStyle.photos ? renderMainImage() : null}
       <ExpandedView

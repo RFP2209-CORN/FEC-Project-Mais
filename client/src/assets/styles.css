@@ -62,6 +62,20 @@ body {
 ========================================
 */
 
+.product-overview {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image-gallery {
+  display: inline-block;
+}
+
+.overview-sidebar {
+  display: inline-block;
+  width: 575px;
+}
+
 .out-of-stock-main-image {
   background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
   background-size: cover;
