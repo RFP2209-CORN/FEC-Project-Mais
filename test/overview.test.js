@@ -15,6 +15,9 @@ describe('Overview', () => {
       }))
       .mockImplementationOnce(() => Promise.resolve({
         data: dummyData.productStyles
+      }))
+      .mockImplementationOnce(() => Promise.resolve({
+        data: dummyData.meta
       }));
   });
 

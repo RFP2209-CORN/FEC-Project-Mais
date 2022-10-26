@@ -13,17 +13,15 @@ const Overview = ({productId}) => {
   const [styles, setStyles] = React.useState([]);
   const [skuSelected, setSkuSelected] = React.useState(false);
   const [quantitySelected, setQuantitySelected] = React.useState(0);
+  const [rating, setRating] = React.useState({});
+  const [totalReviews, setTotalReviews] = React.useState(0);
 
   React.useEffect(() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/products/${productId}`)
       .then(product => setCurrentProduct(product.data))
       .catch(err => console.log(err));
 
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}/styles`, {
-      headers: {Authorization: process.env.GITHUB_API_KEY},
-    })
+    axios.get(`/products/${productId}/styles`)
       .then(styles => {
         setStyles(styles.data.results);
         for (let i = 0; i < styles.data.results.length; i++) {
@@ -32,6 +30,21 @@ const Overview = ({productId}) => {
             break;
           }
         }
+      })
+      .catch(err => console.log(err));
+
+    axios.get(`reviews/meta/${productId}`)
+      .then(results => {
+        let ratings = results.data.ratings;
+        let rating = 0;
+        let total = 0;
+        for (let key in ratings) {
+          total += Number(ratings[key]);
+          rating += Number(key) * Number(ratings[key]);
+        }
+        rating = (Math.round((rating / total) * 4) / 4);
+        setRating(rating);
+        setTotalReviews(total);
       })
       .catch(err => console.log(err));
   }, [productId]);
@@ -55,7 +68,9 @@ const Overview = ({productId}) => {
       <div className="overview-sidebar">
         <ProductInfo
           currentProduct={currentProduct}
-          currentStyle={currentStyle}/>
+          currentStyle={currentStyle}
+          rating={rating}
+          totalReviews={totalReviews}/>
         <StyleSelector
           currentStyle={currentStyle}
           styles={styles}
