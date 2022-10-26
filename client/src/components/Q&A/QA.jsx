@@ -128,7 +128,6 @@ const QuestionsAndAnswers = ({ productId }) => {
         setAllQuestionsData(data);
         setQuestionsList(data);
       })
-      // COMMENT OUT FOR TESTING //
       .then(() => {
         if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
           localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
