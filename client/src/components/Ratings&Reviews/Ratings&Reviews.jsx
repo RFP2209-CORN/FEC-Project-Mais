@@ -82,8 +82,6 @@ const RatingsAndReviews = ({ product_id }) => {
       })
   }
 
-  // console.log('RatingsAndReviews.jsx: reviews', reviews);
-
   return (
     <>
     <div className="flexbox-container">

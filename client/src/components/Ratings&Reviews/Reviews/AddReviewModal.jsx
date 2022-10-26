@@ -133,34 +133,32 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 return (
                   <div key={index} >
                     <div>{char[0]}</div>
-                    {/* remove 'required' for testing purposes */}
-
                     <label>1</label>
-                    <input type="radio" value="1" name="1" required onClick={() => {
+                    <input type="radio" value="1" name={char[0]} required onClick={() => {
                       char[1].value = 1
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>2</label>
-                    <input type="radio" value="2" name="2" required onClick={() => {
+                    <input type="radio" value="2" name={char[0]} required onClick={() => {
                       char[1].value = 2
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>3</label>
-                    <input type="radio" value="3" name="3" required onClick={() => {
+                    <input type="radio" value="3" name={char[0]} required onClick={() => {
                       char[1].value = 3
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>4</label>
-                    <input type="radio" value="4" name="4" required onClick={() => {
+                    <input type="radio" value="4" name={char[0]} required onClick={() => {
                       char[1].value = 4
                     }}/>
                     &nbsp;
                     &nbsp;
                     <label>5</label>
-                    <input type="radio" value="5" name="5" required onClick={() => {
+                    <input type="radio" value="5" name={char[0]} required onClick={() => {
                       char[1].value = 5
                     }}/>
                     <div>{char[2]} &nbsp; {char[3]}</div>

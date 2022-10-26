@@ -9,122 +9,52 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
   const [ toggleFourStar, setToggleFourStar ] = useState(false);
   const [ toggleThreeStar, setToggleThreeStar ] = useState(false);
   const [ toggleTwoStar, setToggleTwoStar ] = useState(false);
-  const [ toggleOneStar, setToggleOneStar ] = useState(true);
+  const [ toggleOneStar, setToggleOneStar ] = useState(false);
 
-  const handleFiveStarClick = () => {
-    setToggleFiveStar(!toggleFiveStar);
+  useEffect(() => {
     let filtered = [];
-    if (toggleFiveStar) {
-      filtered = reviews.filter((review) => {
-        return review.rating === 5;
-      });
-      setFilteredReviews([...filteredReviews, ...filtered]);
+    for (let i = 0; i < reviews.length; i++) {
+      if (toggleFiveStar && reviews[i].rating === 5) {
+        filtered.push(reviews[i]);
+      }
+      if (toggleFourStar && reviews[i].rating === 4) {
+        filtered.push(reviews[i]);
+      }
+      if (toggleThreeStar && reviews[i].rating === 3) {
+        filtered.push(reviews[i]);
+      }
+      if (toggleTwoStar && reviews[i].rating === 2) {
+        filtered.push(reviews[i]);
+      }
+      if (toggleOneStar && reviews[i].rating === 1) {
+        filtered.push(reviews[i]);
+      }
     }
-     else {
-      let tempArray = [...filteredReviews];
-      filtered = tempArray.filter((review) => {
-        return review.rating !== 5;
-      })
-      setFilteredReviews(filtered);
-    }
+    setDisplayedReviews(filtered);
+  }, [toggleOneStar, toggleTwoStar, toggleThreeStar, toggleFourStar, toggleFiveStar]);
 
-    setDisplayedReviews(filteredReviews);
-    console.log('filteredReviews five stars', filteredReviews, 'toggleFiveStar', toggleFiveStar);
+
+  const handleStarClick = (num) => {
+    switch (num) {
+      case 5:
+        setToggleFiveStar(!toggleFiveStar);
+        break;
+      case 4:
+        setToggleFourStar(!toggleFourStar);
+        break;
+      case 3:
+        setToggleThreeStar(!toggleThreeStar);
+        break;
+      case 2:
+        setToggleTwoStar(!toggleTwoStar);
+        break;
+      case 1:
+        setToggleOneStar(!toggleOneStar);
+        break;
+      default:
+        console.log('did not click anything that I can handle');
+    }
   }
-
-  const handleFourStarClick = () => {
-    setToggleFourStar(!toggleFourStar);
-    let filtered = [];
-    if (toggleFourStar) {
-      filtered = reviews.filter((review) => {
-        return review.rating === 4;
-      });
-      setFilteredReviews([...filteredReviews, ...filtered]);
-    }
-    else {
-      let tempArray = [...filteredReviews];
-      filtered = tempArray.filter((review) => {
-        return review.rating !== 4;
-      })
-      setFilteredReviews(filtered);
-      // console.log('filteredReviews', filteredReviews)
-    }
-
-    // this line breaks it: need to refactor
-    setDisplayedReviews(filteredReviews);
-    console.log('filteredReviews four stars', filteredReviews, 'toggleFourStar', toggleFourStar);
-  }
-
-  const handleThreeStarClick = () => {
-    setToggleThreeStar(!toggleThreeStar);
-    let filtered = [];
-    if (toggleThreeStar === true) {
-      filtered = reviews.filter((review) => {
-        return review.rating === 3;
-      });
-      setFilteredReviews([...filteredReviews, ...filtered]);
-    }
-    else {
-      let tempArray = [...filteredReviews];
-      filtered = tempArray.filter((review) => {
-        return review.rating !== 3;
-      })
-      setFilteredReviews(filtered);
-      // console.log('filteredReviews', filteredReviews)
-    }
-
-    // this line breaks it: need to refactor
-    setDisplayedReviews(filteredReviews);
-    console.log('filteredReviews Three stars', filteredReviews, 'toggleThreeStar', toggleThreeStar);
-  }
-
-  const handleTwoStarClick = () => {
-    setToggleTwoStar(!toggleTwoStar);
-    let filtered = [];
-    if (toggleTwoStar) {
-      filtered = reviews.filter((review) => {
-        return review.rating === 2;
-      });
-      setFilteredReviews([...filteredReviews, ...filtered]);
-    } else {
-      let tempArray = [...filteredReviews];
-      filtered = tempArray.filter((review) => {
-        return review.rating !== 2;
-      })
-      setFilteredReviews(filtered);
-      // console.log('filteredReviews', filteredReviews)
-    }
-
-    // this line breaks it: need to refactor
-    setDisplayedReviews(filteredReviews);
-    console.log('filteredReviews Two stars', filteredReviews, 'toggleTwoStar', toggleTwoStar);
-  }
-
-  const handleOneStarClick = () => {
-    console.log('toggleOneStar', toggleOneStar);
-    console.log('toggleOneStar === true', toggleOneStar === true)
-    if (toggleOneStar === true) {
-      console.log('inside of if statement- true')
-      let filtered = reviews.filter((review) => {
-        return review.rating === 1;
-      });
-      console.log('filtered inside of if statement', filtered)
-      setFilteredReviews(filteredReviews => ([...filteredReviews, ...filtered]));
-      console.log('filteredReviews inside of if statement', filteredReviews)
-    } else {
-      console.log('inside of else statement - false')
-
-      let tempArray = [...filteredReviews];
-      let filtered = tempArray.filter((review) => {
-        return review.rating !== 1;
-      })
-      setFilteredReviews(filtered);
-    }
-    setToggleOneStar(!toggleOneStar);
-    console.log('filteredReviews one star outside of if statement', filteredReviews)
-    setDisplayedReviews(filteredReviews);
-  }
-
 
   return (
     <div className="sidebar">
@@ -139,19 +69,19 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
           <sup><StarRating rating={rating}/></sup>
         </h3>
       </div>
-      <h3 className="flexbox-container" onClick={handleFiveStarClick}>
+      <h3 className="flexbox-container" onClick={() => handleStarClick(5)}>
         5 star &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
       </h3>
-      <h3 className="flexbox-container" onClick={handleFourStarClick}>
+      <h3 className="flexbox-container" onClick={() => handleStarClick(4)}>
         4 star &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fourStar} /> &nbsp; {fourStar} reviews
       </h3>
-      <h3 className="flexbox-container" onClick={handleThreeStarClick}>
+      <h3 className="flexbox-container" onClick={() => handleStarClick(3)}>
         3 star &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
       </h3>
-      <h3 className="flexbox-container" onClick={handleTwoStarClick}>
+      <h3 className="flexbox-container" onClick={() => handleStarClick(2)}>
         2 star &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
       </h3>
-      <h3 className="flexbox-container" onClick={handleOneStarClick}>
+      <h3 className="flexbox-container" onClick={() => handleStarClick(1)}>
         1 star &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
       </h3>
     </div>
@@ -159,4 +89,3 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
 }
 
 export default RatingsBreakdownSidebar;
-
