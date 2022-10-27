@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import * as Requests from './Requests.js';
+import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
 const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updateProduct, removeOutfit }) => {
   const [product, setProduct] = useState(outfit);
@@ -26,14 +26,6 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
         let ratings = result.data.ratings;
         setRating(calcRating(ratings));
       });
-
-    // const styles = Requests.getProductStyles(product.id);
-    // const { sale, ogPrice, thumbnailURL } = saleAndImageSetter(styles);
-    // setOriginalPrice(ogPrice);
-    // setSalesPrice(sale);
-    // setImgURL(thumbnailURL);
-
-
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
         let styles = result.data.results;
@@ -60,7 +52,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
       <p className="card-category">{outfit.category}</p>
       <div className="card-name">{outfit.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div className="card-rating">{rating}</div>
+      <div className="card-rating"><StarRating rating={rating}/></div>
     </div>
   );
 };

@@ -5,14 +5,6 @@ import OutfitCreation from './OutfitCreation.jsx';
 
 
 const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) => {
-  const getProductReviews = (productId) => {
-    return (
-      axios.get(`/reviews/${productId}`)
-        .then(result => result.data.results)
-    );
-  };
-
-
   const saleAndImageSetter = (styles) => {
     for (let i = 0; i < styles.length; i++) {
       if (styles[i]['default?'] === true) {
@@ -43,6 +35,31 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
     } else {
       return (
         <div className="card-price">${originalPrice}</div>
+      );
+    }
+  };
+
+  const renderBlankCards = (objectLength) => {
+    if (objectLength === 0) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (objectLength === 1) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (objectLength === 2) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+        </>
       );
     }
   };
@@ -83,12 +100,14 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
 
   return (
     <div className="related-items-and-outfits-container">
+      <br></br>
       <RelatedItems
         productId={productId}
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
+        renderBlankCards={renderBlankCards}
       />
       <br></br>
       <OutfitCreation
@@ -97,7 +116,8 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
-        getProductReviews={getProductReviews}
+        renderBlankCards={renderBlankCards}
+        // getProductReviews={getProductReviews}
         product={currentProduct}
       />
     </div>

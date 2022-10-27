@@ -21,9 +21,9 @@ it('Related Items renders fully', async () => {
     .mockImplementationOnce(() => Promise.resolve({
       data: dummyData.product
     }))
-    .mockImplementationOnce(() => Promise.resolve({
-      data: dummyData.reviews
-    }))
+    // .mockImplementationOnce(() => Promise.resolve({
+    //   data: dummyData.reviews
+    // }))
   await act( async () => render(<RelatedItemsAndOutfits/>));
 })
 
