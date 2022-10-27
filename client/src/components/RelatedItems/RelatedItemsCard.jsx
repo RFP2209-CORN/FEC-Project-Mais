@@ -4,7 +4,6 @@ import ComparisonModal from './ComparisonModal.jsx';
 import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
 const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct, currProductId }) => {
-  // which states can we combine into a single object?
   const [product, setProduct] = useState(item);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();

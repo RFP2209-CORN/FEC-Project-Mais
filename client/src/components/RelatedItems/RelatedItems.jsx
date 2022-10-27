@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItemsCard from './RelatedItemsCard.jsx';
 
-const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct }) => {
+const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, renderBlankCards }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -33,36 +33,11 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
     }
   };
 
-  const renderBlankCards = (relatedItmesLength) => {
-    if (relatedItmesLength === 0) {
-      return (
-        <>
-          <div className="card card-shadow"></div>
-          <div className="card card-shadow"></div>
-          <div className="card card-shadow"></div>
-        </>
-      );
-    } else if (relatedItmesLength === 1) {
-      return (
-        <>
-          <div className="card card-shadow"></div>
-          <div className="card card-shadow"></div>
-        </>
-      );
-    } else if (relatedItmesLength === 2) {
-      return (
-        <>
-          <div className="card card-shadow"></div>
-        </>
-      );
-    }
-  };
-
   return (
     <div className="card-container-container">
-      <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }}/>
+      {relatedItems.length > 4 && <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }}/>}
+      {relatedItems.length <= 4 && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent"/>}
       <div id="card-container-related">
-        {relatedItems.length <= 1 && renderBlankCards(relatedItems.length)}
         {relatedItems.map((item) => {
           return (
             <RelatedItemsCard
@@ -76,8 +51,10 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
             />
           );
         })}
+        {relatedItems.length <= 1 && renderBlankCards(0)}
       </div>
       {relatedItems.length > 4 && <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }}/>}
+      {relatedItems.length <= 4 && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent"/>}
     </div>
   );
 };

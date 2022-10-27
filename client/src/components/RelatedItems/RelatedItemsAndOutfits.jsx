@@ -39,6 +39,31 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
     }
   };
 
+  const renderBlankCards = (objectLength) => {
+    if (objectLength === 0) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (objectLength === 1) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    } else if (objectLength === 2) {
+      return (
+        <>
+          <div className="card card-shadow"></div>
+        </>
+      );
+    }
+  };
+
   const calcRating = (reviews) => {
     let totalStars = 0;
 
@@ -62,12 +87,14 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
 
   return (
     <div className="related-items-and-outfits-container">
+      <br></br>
       <RelatedItems
         productId={productId}
         calcRating={calcRating}
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
+        renderBlankCards={renderBlankCards}
       />
       <br></br>
       <OutfitCreation
@@ -76,7 +103,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
         saleAndImageSetter={saleAndImageSetter}
         renderPrice={renderPrice}
         updateProduct={updateProduct}
-        // getProductReviews={getProductReviews}
+        renderBlankCards={renderBlankCards}
       />
     </div>
   );

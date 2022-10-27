@@ -219,19 +219,32 @@ button,
     RELATED PRODUCTS
 ========================================
 */
-/* .related-items-and-outfits-container {
-    display: flex;
-    justify-content: center;
-  } */
+.related-items-and-outfits-container {
+    display: grid;
+    /* justify-content: center; */
+    /* position: relative; */
+  }
 
 .card-container-container {
   width: 1500px;
   position: relative;
   display: inline-block;
   scroll-behavior: smooth;
+  top:  50%;
+  left: 53%;
+  transform: translate(-50%,-50%);
 }
 
 #card-container-related {
+  display: inline-flex;
+  justify-content: left;
+  position: relative;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 75%;
+  overflow: hidden;
+}
+#card-container-outfit {
   display: inline-flex;
   justify-content: left;
   position: relative;
@@ -249,7 +262,19 @@ button,
 
 .cards-arrow {
   position: relative;
+  padding: 50px;
   color: black;
+}
+.cards-arrow-outfit {
+  position: relative;
+  top: 2.2em;
+  padding: 50px;
+  color: black;
+}
+.cards-arrow-transparent {
+  position: relative;
+  padding: 50px;
+  color: white;
 }
 
 .card {
@@ -270,11 +295,12 @@ button,
 }
 
 /* .card.add-outfit {
-
+  display: inline-flex;
+  position: relative;
+  justify-content: left;
 } */
 
 .add-outfit-btn {
-  display: block;
   margin: 1em;
   height: 20px;
   margin-top: 150px;
@@ -291,7 +317,7 @@ button,
 
 .favorite-icon {
   position: absolute;
-  background-color: white;
+  /* background-color: white; */
   right: 0;
 }
 
@@ -345,7 +371,7 @@ button,
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #FFF;
+  background-color: transparent;
   z-index: 10000;
 }
 
