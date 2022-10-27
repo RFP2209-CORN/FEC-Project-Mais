@@ -11,18 +11,12 @@ describe('Overview', () => {
   beforeEach(() => {
     axios.get
       .mockImplementationOnce(() => Promise.resolve({
-        data: dummyData.product
-      }))
-      .mockImplementationOnce(() => Promise.resolve({
         data: dummyData.productStyles
-      }))
-      .mockImplementationOnce(() => Promise.resolve({
-        data: dummyData.meta
       }));
   });
 
   it('image gallery component renders', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const defaultView = await screen.getByTestId('default-view');
     expect(defaultView).toBeTruthy();
@@ -32,7 +26,7 @@ describe('Overview', () => {
   });
 
   it('product info component renders', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const productCategory = await screen.getByText('JACKETS');
     expect(productCategory).toBeTruthy();
@@ -45,7 +39,7 @@ describe('Overview', () => {
   });
 
   it('style selector component renders', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const productStyle = await screen.getByText('Forest Green & Black');
     expect(productStyle).toBeTruthy();
@@ -56,7 +50,7 @@ describe('Overview', () => {
   });
 
   it('add to cart component renders', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const sizeSelector = screen.getByTestId('size-selector');
     expect(sizeSelector).toBeTruthy();
@@ -69,7 +63,7 @@ describe('Overview', () => {
   });
 
   it('handles style changes', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     fireEvent.click(screen.getByTestId('style2'));
 
@@ -78,7 +72,7 @@ describe('Overview', () => {
   });
 
   it('handles add to cart with no size selected', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const selectSizePropmt = await screen.queryByText('Please select size');
     expect(selectSizePropmt).toBeFalsy();
@@ -95,7 +89,7 @@ describe('Overview', () => {
   });
 
   it('handles size & quantity selecting', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const sizeSelector1 = await screen.getByTestId('size-null').selected;
     expect(sizeSelector1).toBeTruthy();
@@ -118,7 +112,7 @@ describe('Overview', () => {
   });
 
   it('handles photo changes', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const defaultPhoto1 = await screen.getByTestId('default-photo-0');
     expect(defaultPhoto1).toBeTruthy();
@@ -145,7 +139,7 @@ describe('Overview', () => {
   });
 
   it('handles expanded view', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const expandedView1 = await screen.queryByTestId('expanded-view');
     expect(expandedView1).toBeFalsy();
@@ -175,7 +169,7 @@ describe('Overview', () => {
   });
 
   it('handles zoomed view', async () => {
-    await act(async () => render(<Overview/>));
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const zoomedView1 = await screen.queryByTestId('zoomed-photo-0');
     expect(zoomedView1).toBeFalsy();

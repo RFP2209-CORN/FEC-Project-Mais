@@ -288,24 +288,37 @@ select {
 */
 .related-items-and-outfits-container {
   text-align: center;
-  }
+  display: grid;
+  /* justify-content: center; */
+  /* position: relative; */
+}
 
 .card-container-container {
   width: 1500px;
   position: relative;
   display: inline-block;
-  /* align-items: center; */
-  /* left: 13%;
-  top: 10%; */
-  /* justify-content: right; */
-
+  scroll-behavior: smooth;
+  top: 50%;
+  left: 53%;
+  transform: translate(-50%, -50%);
 }
 
 #card-container-related {
   display: inline-flex;
   justify-content: left;
-  /* position: relative; */
+  position: relative;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  width: 75%;
+  overflow: hidden;
+}
+
+#card-container-outfit {
+  display: inline-flex;
+  justify-content: left;
+  position: relative;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   width: 75%;
   overflow: hidden;
 }
@@ -314,17 +327,40 @@ select {
   display: flex;
   justify-content: center;
   position: relative;
-  /* width: 75%; */
-  /* overflow: hidden; */
 }
 
 .cards-arrow {
   position: relative;
+  padding: 50px;
   top: 50%;
   transform: translate(0, -50%);
   right: 5px;
   font-size: 30px;
   color: black;
+}
+.cards-arrow-outfit {
+  position: relative;
+  top: 2.2em;
+  padding: 50px;
+  color: black;
+}
+.cards-arrow-transparent {
+  position: relative;
+  padding: 50px;
+  color: white;
+}
+
+.cards-arrow-outfit {
+  position: relative;
+  top: 2.2em;
+  padding: 50px;
+  color: black;
+}
+
+.cards-arrow-transparent {
+  position: relative;
+  padding: 50px;
+  color: white;
 }
 
 .card {
@@ -333,7 +369,6 @@ select {
   margin: .85em;
   display: inline;
   scroll-snap-align: start;
-  /* position: relative; */
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;
@@ -346,11 +381,12 @@ select {
 }
 
 /* .card.add-outfit {
-
+  display: inline-flex;
+  position: relative;
+  justify-content: left;
 } */
 
 .add-outfit-btn {
-  display: block;
   margin: 1em;
   height: 20px;
   margin-top: 150px;
@@ -367,7 +403,7 @@ select {
 
 .favorite-icon {
   position: absolute;
-  background-color: white;
+  /* background-color: white; */
   right: 0;
 }
 
@@ -421,7 +457,7 @@ select {
   position: fixed;
   top: 0;
   right: 0;
-  background-color: #FFF;
+  background-color: transparent;
   z-index: 10000;
 }
 
@@ -584,11 +620,16 @@ select {
   padding: 20px 130px;
 }
 
+.bar-chart {
+  line-height: .5;
+}
+
 .single-star-container {
   height: 36px;
   width: 31px;
   display: inline-block;
   background-color: white;
+
 }
 
 .single-star-outline {
@@ -603,21 +644,32 @@ select {
   background-color: gold;
 }
 
+/* .ratings-and-reviews {
+  display: flex;
+} */
+
 .ratings-breakdown {
-  flex-basis: 25%;
+  flex-basis: 40%;
 }
 
 .reviews-list {
   width: 100%;
-  padding-left: 5%;
   position: relative;
+  line-height: 1.5;
+  padding-left: 5%;
 }
 
 .add-review-btn {
-  /* position:absolute; */
-
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.load-more-reviews-btn {
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
 .reviews-date {
   float: right;
   padding-right: 10%;
@@ -627,4 +679,10 @@ select {
 .textButton {
   background: none;
   border: none;
+}
+
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
 }
