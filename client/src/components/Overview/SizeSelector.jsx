@@ -23,7 +23,7 @@ const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuant
   };
 
   return (
-    <select data-testid="size-selector" value={skuSelected} onChange={onSelectSize}>
+    <select data-testid="size-selector" className="size-selector cart-dropdown" value={skuSelected} onChange={onSelectSize}>
       {renderSizeDropdown()}
     </select>
   );

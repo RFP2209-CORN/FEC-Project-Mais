@@ -11,18 +11,12 @@ import dummyData from './dummyData.js';
   beforeEach(() => {
     axios.get
       .mockImplementationOnce(() => Promise.resolve({
-        data: dummyData.product
-      }))
-      .mockImplementationOnce(() => Promise.resolve({
         data: dummyData.productStyles
-      }))
-      .mockImplementationOnce(() => Promise.resolve({
-        data: dummyData.meta
       }));
   });
 
-//   it('image gallery component renders', async () => {
-//     await act(async () => render(<Overview/>));
+  it('image gallery component renders', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const defaultView = await screen.getByTestId('default-view');
 //     expect(defaultView).toBeTruthy();
@@ -31,8 +25,8 @@ import dummyData from './dummyData.js';
     expect(thumbnailNavBar).toBeTruthy();
   });
 
-//   it('product info component renders', async () => {
-//     await act(async () => render(<Overview/>));
+  it('product info component renders', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const productCategory = await screen.getByText('JACKETS');
     expect(productCategory).toBeTruthy();
@@ -44,8 +38,8 @@ import dummyData from './dummyData.js';
     expect(productPrice).toBeTruthy();
   });
 
-//   it('style selector component renders', async () => {
-//     await act(async () => render(<Overview/>));
+  it('style selector component renders', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
     const productStyle = await screen.getByText('Forest Green & Black');
     expect(productStyle).toBeTruthy();
@@ -55,8 +49,8 @@ import dummyData from './dummyData.js';
     expect(currentStyleSelected.childNodes).toContain(checkmark);
   });
 
-//   it('add to cart component renders', async () => {
-//     await act(async () => render(<Overview/>));
+  it('add to cart component renders', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const sizeSelector = screen.getByTestId('size-selector');
 //     expect(sizeSelector).toBeTruthy();
@@ -68,8 +62,8 @@ import dummyData from './dummyData.js';
 //     expect(addToCartButton).toBeTruthy();
 //   });
 
-//   it('handles style changes', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles style changes', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     fireEvent.click(screen.getByTestId('style2'));
 
@@ -77,8 +71,8 @@ import dummyData from './dummyData.js';
     expect(productStyle2).toBeTruthy();
   });
 
-//   it('handles add to cart with no size selected', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles add to cart with no size selected', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const selectSizePropmt = await screen.queryByText('Please select size');
 //     expect(selectSizePropmt).toBeFalsy();
@@ -94,8 +88,8 @@ import dummyData from './dummyData.js';
 //     expect(selectSizePropmt3).toBeFalsy();
 //   });
 
-//   it('handles size & quantity selecting', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles size & quantity selecting', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const sizeSelector1 = await screen.getByTestId('size-null').selected;
 //     expect(sizeSelector1).toBeTruthy();
@@ -117,8 +111,8 @@ import dummyData from './dummyData.js';
 //     expect(quantitySelector3).toBeTruthy();
 //   });
 
-//   it('handles photo changes', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles photo changes', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const defaultPhoto1 = await screen.getByTestId('default-photo-0');
 //     expect(defaultPhoto1).toBeTruthy();
@@ -144,8 +138,8 @@ import dummyData from './dummyData.js';
 //     expect(defaultPhoto5).toBeTruthy();
 //   });
 
-//   it('handles expanded view', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles expanded view', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const expandedView1 = await screen.queryByTestId('expanded-view');
 //     expect(expandedView1).toBeFalsy();
@@ -174,8 +168,8 @@ import dummyData from './dummyData.js';
 //     expect(expandedPhoto4).toBeTruthy();
 //   });
 
-//   it('handles zoomed view', async () => {
-//     await act(async () => render(<Overview/>));
+  it('handles zoomed view', async () => {
+    await act(async () => render(<Overview currentProduct={dummyData.product} rating={3.75} totalReviews={1000}/>));
 
 //     const zoomedView1 = await screen.queryByTestId('zoomed-photo-0');
 //     expect(zoomedView1).toBeFalsy();

@@ -19,11 +19,11 @@ const ImageGallery = ({currentStyle}) => {
             onClick={onExpandedView}/>
           {currentPhoto > 0 ?
             <i data-testid="default-left-arrow"
-              className="fa-solid fa-arrow-left-long"
+              className="fa-solid fa-angle-left"
               onClick={onLeftClick}/> : null}
           {currentPhoto < currentStyle.photos.length - 1 ?
             <i data-testid="default-right-arrow"
-              className="fa-solid fa-arrow-right-long"
+              className="fa-solid fa-angle-right"
               onClick={onRightClick}/> : null}
         </div>);
     }

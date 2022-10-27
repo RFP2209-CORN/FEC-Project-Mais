@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from '../Ratings/StarRating.jsx';
+import AddReview from '../Reviews/AddReview.jsx';
+
 import SingleReview from '../Reviews/SingleReview.jsx';
 
-const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
+const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
 
   reviews = displayedReviews || reviews;
 
@@ -117,7 +119,11 @@ const ReviewsList = ({ displayedReviews, reviews, handleYesClick, rating, totalN
       <button onClick={loadMoreReviews}>
         Load More Reviews
       </button>}
+      <span className="add-review-btn">
+        <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}/>
+      </span>
     </div>
+
     </>
   )
 }

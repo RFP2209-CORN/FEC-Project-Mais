@@ -9,11 +9,22 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   const [salesPrice, setSalesPrice] = useState(null);
   const [imgURL, setImgURL] = useState();
 
+
   useEffect(() => {
-    axios.get(`/reviews/${product.id}`)
+    // console.log('prodReviews', getProductReviews(product.id))
+    // const reviews = Requests.getProductReviews(product.id);
+    // const avgRating = calcRating(reviews);
+    // setRating(avgRating)
+    // functions.setRating(avgRating)
+
+
+/* INTEGRATION // DELETE AFTER SEEN
+    Edit rating to be same as all other files.
+ */
+    axios.get(`reviews/meta/${product.id}`)
       .then(result => {
-        let reviews = result.data.results;
-        setRating(calcRating(reviews));
+        let ratings = result.data.ratings;
+        setRating(calcRating(ratings));
       });
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
