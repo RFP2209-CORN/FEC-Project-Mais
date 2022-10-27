@@ -84,7 +84,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
   }
 
   return (
-    <div className="bar-chart">
+    <div style={{height:'25px', width:'350px'}}>
       <Bar data={data} options={options}/>
     </div>
 
