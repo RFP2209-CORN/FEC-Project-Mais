@@ -547,13 +547,13 @@ select {
 
 .qa-title {
   grid-area: title;
-  zoom: 125%;
-  padding-left: 10px;
+  zoom: 150%;
+  padding-left: 15px;
 }
 
 .search-question {
   grid-area: search;
-  zoom: 125%;
+  zoom: 200%;
   padding-left: 10px;
 }
 
@@ -628,7 +628,8 @@ select {
   grid-gap: 5px;
   padding: 0 10px 0 10px;
   margin-bottom: 20px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgb(0, 0, 0, .1);
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
