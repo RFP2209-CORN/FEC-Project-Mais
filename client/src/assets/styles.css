@@ -608,8 +608,6 @@ select {
 ========================================
 */
 
-<<<<<<< HEAD
-
 
 .ratings-and-reviews {
   margin-top: 40px;
@@ -627,14 +625,10 @@ select {
 
 .bar-chart {
   line-height: .5;
-=======
-.align-ratings-breakdown-header {
-  margin-left: 4%;
 }
 
-.align-reviews-list-header {
-  margin-right: 10%;
->>>>>>> master
+.align-ratings-breakdown-header {
+  margin-left: 4%;
 }
 
 .single-star-container {
@@ -662,7 +656,7 @@ select {
 } */
 
 .ratings-breakdown {
-  flex-basis: 25%;
+  flex-basis: 40%;
 }
 
 .reviews-list {
@@ -670,10 +664,6 @@ select {
   position: relative;
   line-height: 1.5;
   padding-left: 5%;
-}
-
-.reviews-body {
-  word-wrap: break-word;
 }
 
 .add-review-btn {
@@ -703,41 +693,4 @@ select {
   display: flex;
   align-items: center;
   padding: 20px;
-<<<<<<< HEAD
 }
-=======
-}
-
-.sort-dropdown {
-  position: relative;
-  right: -40px;
-}
-
-.sort-dropdown-menu {
-  position: relative;
-  list-style-type: none;
-  margin: 5px 0;
-  padding: 0;
-  border: 1px solid grey;
-  width: 100px;
-}
-
-.sort-dropdown-menu>li {
-  margin: 0;
-  background-color: white;
-}
-
-.sort-dropdown-menu>li>button {
-  width: 75%;
-  height: 75%;
-  text-align: center;
-  background: white;
-  color: blue;
-  border: none;
-  padding: 5px;
-  margin: 0;
-  font: inherit;
-  cursor: pointer;
-}
-
->>>>>>> master
