@@ -8,19 +8,12 @@ import AddToCart from './AddToCart.jsx';
 const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
   //out of stock style
   // const productId = '40345';
-  // const [currentProduct, setCurrentProduct] = React.useState({});
   const [currentStyle, setCurrentStyle] = React.useState({});
   const [styles, setStyles] = React.useState([]);
   const [skuSelected, setSkuSelected] = React.useState(false);
   const [quantitySelected, setQuantitySelected] = React.useState(0);
-  // const [rating, setRating] = React.useState(0);
-  // const [totalReviews, setTotalReviews] = React.useState(0);
 
   React.useEffect(() => {
-    // axios.get(`/products/${productId}`)
-    //   .then(product => setCurrentProduct(product.data))
-    //   .catch(err => console.log(err));
-
     axios.get(`/products/${productId}/styles`)
       .then(styles => {
         setStyles(styles.data.results);
@@ -32,21 +25,6 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
         }
       })
       .catch(err => console.log(err));
-
-    // axios.get(`reviews/meta/${productId}`)
-    //   .then(results => {
-    //     let ratings = results.data.ratings;
-    //     let rating = 0;
-    //     let total = 0;
-    //     for (let key in ratings) {
-    //       total += Number(ratings[key]);
-    //       rating += Number(key) * Number(ratings[key]);
-    //     }
-    //     rating = (Math.round((rating / total) * 4) / 4);
-    //     setRating(rating);
-    //     setTotalReviews(total);
-    //   })
-    //   .catch(err => console.log(err));
   }, [productId]);
 
   const changeCurrentStyle = (style) => {
