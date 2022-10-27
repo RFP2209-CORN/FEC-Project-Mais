@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from '../Ratings/StarRating.jsx';
 import AddReview from '../Reviews/AddReview.jsx';
-
 import SingleReview from '../Reviews/SingleReview.jsx';
 
 const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
@@ -76,27 +75,25 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
 
   return (
     <>
-    <div className="align-reviews-list-header">
-      <div className="flexbox-container">
-        <h2>
-            {totalNumberOfReviews} Reviews, sorted by
-        </h2>
-        <div className="sort-dropdown">
-          <button className="button-dropdown" onClick={handleOpen} >relevance</button>
-          {open ? (
-            <ul className="sort-dropdown-menu">
-              <li className="sort-dropdown-menu-item">
-                <button onClick={(event) => handleSort(event)} >Helpful</button>
-              </li>
-              <li className="sort-dropdown-menu-item">
-              <button onClick={(event) => handleSort(event)} >Newest</button>
-              </li>
-              <li className="sort-dropdown-menu-item">
-              <button onClick={(event) => handleSort(event)} >Relevant</button>
-              </li>
-            </ul>
-          ) : null}
-        </div>
+    <div className="flexbox-container">
+      <h2>
+          {totalNumberOfReviews} Reviews, sorted by
+      </h2>
+      <div className="sort-dropdown">
+        <button className="button-dropdown" onClick={handleOpen} >relevance</button>
+        {open ? (
+          <ul className="sort-dropdown-menu">
+            <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Helpful</button>
+            </li>
+            <li className="sort-dropdown-menu-item">
+            <button onClick={(event) => handleSort(event)} >Newest</button>
+            </li>
+            <li className="sort-dropdown-menu-item">
+            <button onClick={(event) => handleSort(event)} >Relevant</button>
+            </li>
+          </ul>
+        ) : null}
       </div>
     </div>
     <br></br>
