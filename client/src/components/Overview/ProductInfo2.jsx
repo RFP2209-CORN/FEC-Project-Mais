@@ -21,9 +21,9 @@ const ProductInfo2 = ({currentProduct}) => {
           <li key={feature.feature}>{feature.feature + ': ' + feature.value}</li>
         )}
       </ul>
-      <button name="facebook" onClick={onShare}><i className="fa-brands fa-facebook"></i> Share</button>
-      <button name="twitter" onClick={onShare}><i className="fa-brands fa-twitter"></i> Tweet</button>
-      <button name="pinterest" onClick={onShare}><i className="fa-brands fa-pinterest"></i> Pin</button>
+      <button name="facebook" className="social fb" onClick={onShare}><i className="fa-brands fa-facebook"></i> Share</button>
+      <button name="twitter" className="social twitter" onClick={onShare}><i className="fa-brands fa-twitter"></i> Tweet</button>
+      <button name="pinterest" className="social pin" onClick={onShare}><i className="fa-brands fa-pinterest"></i> Pin</button>
     </div>
   );
 };

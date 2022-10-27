@@ -23,7 +23,7 @@ const ProductInfo1 = ({currentProduct, currentStyle, rating, totalReviews}) => {
       {rating ? <StarRating rating={rating}/> : null}
       {totalReviews ? <a href="#rateAndReview">Read all {totalReviews} reviews</a> : null}
       <p>{currentProduct?.category?.toUpperCase()}</p>
-      <h1>{currentProduct?.name}</h1>
+      <h2 className="product-name" >{currentProduct?.name}</h2>
       {renderPrice()}
     </div>
   );
