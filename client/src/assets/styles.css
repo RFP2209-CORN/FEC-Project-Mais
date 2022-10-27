@@ -544,12 +544,15 @@ select {
 ========================================
 */
 
+.bar-chart {
+  line-height: .5;
+}
+
 .single-star-container {
   height: 36px;
   width: 31px;
   display: inline-block;
   background-color: white;
-  border: 1px solid grey;
 
 }
 
@@ -567,24 +570,30 @@ select {
 
 .ratings-and-reviews {
   display:flex;
-
 }
 
 .ratings-breakdown {
-  flex-basis: 25%;
+  flex-basis: 40%;
 }
 
 .reviews-list {
   width: 100%;
+  line-height: 1.5;
   padding-left:5%;
   position:relative;
 }
 
 .add-review-btn {
-  /* position:absolute; */
-
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+.load-more-reviews-btn {
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
 .reviews-date {
   float: right;
   padding-right: 10%;
@@ -594,4 +603,10 @@ select {
 .textButton {
   background: none;
   border: none;
+}
+
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
 }

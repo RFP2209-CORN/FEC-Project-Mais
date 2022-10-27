@@ -76,29 +76,28 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
 
   return (
     <>
-    <div className="reviews-list-header">
-      <div className="flexbox-container">
-      <h3>
-          {totalNumberOfReviews} Reviews, sorted by
-      </h3>
-        <div className="sort-dropdown">
-          <button className="button-dropdown" onClick={handleOpen} >relevant</button>
-          {open ? (
-            <ul className="sort-dropdown-menu">
-              <li className="sort-dropdown-menu-item">
-                <button onClick={(event) => handleSort(event)} >Helpful</button>
-              </li>
-              <li className="sort-dropdown-menu-item">
-              <button onClick={(event) => handleSort(event)} >Newest</button>
-              </li>
-              <li className="sort-dropdown-menu-item">
-              <button onClick={(event) => handleSort(event)} >Relevant</button>
-              </li>
-            </ul>
-          ) : null}
-        </div>
+    <div className="flexbox-container">
+    <h2>
+          {totalNumberOfReviews} Reviews, sorted by &nbsp;
+    </h2>
+      <div className="sort-dropdown">
+        <button className="button-dropdown" onClick={handleOpen} >relevant</button>
+        {open ? (
+          <ul className="sort-dropdown-menu">
+            <li className="sort-dropdown-menu-item">
+              <button onClick={(event) => handleSort(event)} >Helpful</button>
+            </li>
+            <li className="sort-dropdown-menu-item">
+            <button onClick={(event) => handleSort(event)} >Newest</button>
+            </li>
+            <li className="sort-dropdown-menu-item">
+            <button onClick={(event) => handleSort(event)} >Relevant</button>
+            </li>
+          </ul>
+        ) : null}
       </div>
     </div>
+
     <br></br>
     <br></br>
     <div>
@@ -113,17 +112,15 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
         })
       }
     </div>
-    <div className="more-reviews-button">
-      {!closeLoadButton &&
-      // <button>
-      <button onClick={loadMoreReviews}>
-        Load More Reviews
-      </button>}
-      <span className="add-review-btn">
-        <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}/>
+      <span className="load-more-reviews-btn">
+        {!closeLoadButton &&
+        <button onClick={loadMoreReviews}>
+          Load More Reviews
+        </button>}
+        <span className="add-review-btn">
+          <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}/>
+        </span>
       </span>
-    </div>
-
     </>
   )
 }
