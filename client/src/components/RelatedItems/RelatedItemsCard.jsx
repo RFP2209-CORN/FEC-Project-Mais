@@ -13,21 +13,11 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   const [compareId, setCompareId] = useState();
 
   useEffect(() => {
-    /* INTEGRATION // DELETE AFTER SEEN
-      Edit rating to be same as all other files.
-    */
     axios.get(`/reviews/meta/${product.id}`)
       .then(result => {
         let reviews = result.data.ratings;
         setRating(calcRating(reviews));
       });
-
-    // axios.get(`/reviews/${product.id}`)
-    //   .then(result => {
-    //     let reviews = result.data.results;
-    //     setRating(calcRating(reviews));
-    //   });
-
 
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
@@ -40,10 +30,10 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
       });
   }, []);
 
-  const renderModal = (event) => {
+  const renderModal = (event, productId) => {
     event.stopPropagation();
     setIsOpen(true);
-    setCompareId(event.target.value);
+    setCompareId(productId);
   };
 
   const closeModal = (event) => {
@@ -53,12 +43,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
 
   return (
     <div className="card card-shadow" value={product.id} onClick={() => updateProduct(event, product.id)}>
-      <button
-        className="favorite-icon"
-        value={product.id}
-        onClick={renderModal}>
-        ⭐
-      </button>
+      <i className="fa-solid fa-star favorite-icon star-icon" onClick={(event) => { renderModal(event, product.id); }}></i>
       {isOpen === true &&
         <ComparisonModal
           open={isOpen}
@@ -69,7 +54,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
         </ComparisonModal>
       }
       <div className="card-image">
-        {imgURL === null && <div className="no-image">Image not available</div>}
+        {imgURL === null && <div className="out-of-stock-related-image"/>}
         {imgURL && <img src={imgURL} />}
       </div>
       <p className="card-category">{item.category}</p>

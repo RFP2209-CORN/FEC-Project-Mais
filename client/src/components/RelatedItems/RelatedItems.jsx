@@ -35,6 +35,7 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
 
   return (
     <div className="card-container-container">
+      <h3 className="related-items-title carousel-title">Related Products</h3>
       {relatedItems.length > 4 && <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }}/>}
       {relatedItems.length <= 4 && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent"/>}
       <div id="card-container-related">

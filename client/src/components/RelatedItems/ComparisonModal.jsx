@@ -84,7 +84,7 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
     <>
       <div className="overlay-styles" onClick={onClose}></div>
       <div className="modal-styles comparison-modal">
-        <button className="close-modal-btn" onClick={onClose}>X</button>
+        <i className="fa-solid fa-xmark favorite-icon" onClick={onClose}></i>
         <table onClick={(event) => event.stopPropagation()}>
           <tbody>
             <tr>

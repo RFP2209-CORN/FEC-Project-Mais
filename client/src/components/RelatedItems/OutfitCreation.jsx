@@ -26,13 +26,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
   };
 
   const addOutfit = () => {
-    /* LIST OF CHANGES // delete all comment after read
-    removed get requests,
-    added product as properties passed from parent,
-    changed all product.data to just product*/
-
-    // axios.get(`/products/${productId}`)
-    //   .then(product => {
     let outfitAdded = false;
     for (let i = 0; i < outfits.length; i++) {
       if (outfits[i].id === product.id) {
@@ -43,7 +36,6 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
       setOutfits(currOutfits => {
         return [...currOutfits, product];
       });
-      // Set local storage
       let outfitStorage = localStorage.getItem('outfitStorage');
       outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
       outfitStorage.push(product);
@@ -62,13 +54,12 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         setStartIndex(outfitStorage.length - 4);
       }
     }
-    // });
   };
 
-  const removeOutfit = (event) => {
+  const removeOutfit = (event, productId) => {
     event.stopPropagation();
 
-    const productToRemove = parseInt(event.target.value);
+    const productToRemove = parseInt(productId);
     const newOutfits = outfits.filter((outfit) => outfit.id !== productToRemove);
     setOutfits(newOutfits);
 
@@ -80,6 +71,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
   return (
     <div className="card-container-container">
+      <h3 className="outfit-items-title carousel-title">Your Outfits</h3>
       {outfits.length > 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-outfit" onClick={() => { changeDisplay('left'); }}/>}
       {outfits.length <= 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent"/>}
       <div id="card-container-outfit">
