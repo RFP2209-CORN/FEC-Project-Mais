@@ -57,34 +57,34 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
 
   return (
     <>
-      <h2>
-        Ratings Breakdown
-      </h2>
+      <div className="align-ratings-breakdown-header">
+        <h2>
+          Ratings Breakdown
+        </h2>
+      </div>
       <div className="flexbox-container">
         <h2 >
-          {rating}
+          {rating} &nbsp;&nbsp;
         </h2>
-        <br></br>
         <div>
         <sup><StarRating rating={rating}/></sup>
         </div>
       </div>
-      <h3 className="flexbox-container" onClick={() => handleStarClick(5)}>
-        5 star &nbsp; &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
-      </h3>
-      <h3 className="flexbox-container" onClick={() => handleStarClick(4)}>
-        4 star &nbsp; &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fourStar} /> &nbsp; {fourStar} reviews
-      </h3>
-      <h3 className="flexbox-container" onClick={() => handleStarClick(3)}>
-        3 star &nbsp; &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
-      </h3>
-      <h3 className="flexbox-container" onClick={() => handleStarClick(2)}>
-        2 star &nbsp; &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
-      </h3>
-
-      <h3 className="flexbox-container" onClick={() => handleStarClick(1)}>
-        1 star &nbsp; &nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
-      </h3>
+      <h4 className="flexbox-container" onClick={() => handleStarClick(5)}>
+        5 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
+      </h4>
+      <h4 className="flexbox-container" onClick={() => handleStarClick(4)}>
+        4 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fourStar} /> &nbsp; {fourStar} reviews
+      </h4>
+      <h4 className="flexbox-container" onClick={() => handleStarClick(3)}>
+        3 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
+      </h4>
+      <h4 className="flexbox-container" onClick={() => handleStarClick(2)}>
+        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
+      </h4>
+      <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
+        1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
+      </h4>
     </>
   );
 }
