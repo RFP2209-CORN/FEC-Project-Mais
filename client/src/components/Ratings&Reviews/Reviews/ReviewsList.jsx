@@ -5,7 +5,6 @@ import AddReview from '../Reviews/AddReview.jsx';
 import SingleReview from '../Reviews/SingleReview.jsx';
 
 const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
-
   reviews = displayedReviews || reviews;
 
   const [currentReviews, setCurrentReviews] = useState([]);
@@ -21,14 +20,12 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
     if (helpfulness) {
       reviews.sort((a, b) => {
         return a.helpfulness - b.helpfulness;
-      })
-    }
-    else if (newest) {
+      });
+    } else if (newest) {
       reviews.sort((a, b) => {
         return b.date - a.date;
-      })
-    }
-    else if (relevance) {
+      });
+    } else if (relevance) {
       reviews.sort((a, b) => {
         return b.helpfulness - a.helpfulness;
       }).sort((a, b) => {
@@ -53,7 +50,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
     } else {
       setCloseLoadButton(true);
     }
-  }
+  };
 
   const handleSort = (event) => {
     let word = event.target.innerText;
@@ -72,7 +69,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
       setHelpfulness(false);
       setRelevance(false);
     }
-  }
+  };
 
   return (
     <>
@@ -105,11 +102,11 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
         {currentReviews.length > 0
           ?
           currentReviews.map((review, index) => {
-            return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
+            return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />;
           })
           :
           reviews.slice(0, 2).map((review, index) => {
-            return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />
+            return <SingleReview totalNumberOfReviews={totalNumberOfReviews} review={review} key={index} />;
           })
         }
       </div>
@@ -123,7 +120,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
         </span>
       </span>
     </>
-  )
-}
+  );
+};
 
 export default ReviewsList;
