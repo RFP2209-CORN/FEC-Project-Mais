@@ -16,12 +16,10 @@ const AddReviewButton = ({ product_id, prodName, addReview, metaData }) => {
 
   return (
     <>
-    <button onClick={onAddReviewClick} className="btn-add-review">
+    <button onClick={onAddReviewClick}>
       Add Review
+      <AddReviewModal open={isOpen} onClose={closeModal} product_id={product_id} prodName={prodName} addReview={addReview} metaData={metaData} />
     </button>
-
-    <AddReviewModal open={isOpen} onClose={closeModal} product_id={product_id} prodName={prodName} addReview={addReview} metaData={metaData} />
-
     </>
   )
 }

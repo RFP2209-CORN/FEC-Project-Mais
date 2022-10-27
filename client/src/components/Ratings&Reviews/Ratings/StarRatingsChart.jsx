@@ -36,7 +36,9 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         borderWidth: 0.1,
       },
     },
-    responsive: false,
+    maintainAspectRatio: false,
+    // responsive: false => canvas doesn't resize
+    responsive: true,
     // makes it a horizontal bar
     indexAxis: 'y',
     // hide labels
@@ -82,11 +84,10 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
   }
 
   return (
-    // <div className="ratings-sidebar">
-    //   <div className="star-ratings-chart">
-        <Bar data={data} options={options}/>
-    //   </div>
-    // </div>
+    <div style={{height:'25px', width:'350px'}}>
+      <Bar data={data} options={options}/>
+    </div>
+
   )
 }
 

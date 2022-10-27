@@ -28,7 +28,7 @@ select {
   align-items: center;
   height: 65px;
   color: #FFDB58;
-  font-size: 50px;
+  font-size: 25px;
   border-bottom: 2px solid #9CAF88;
 }
 
@@ -115,8 +115,13 @@ select {
 
 .overview-sidebar {
   display: inline-block;
-  max-width: 500px;
+  width: 500px;
   padding: 0 20px;
+}
+
+.product-name {
+  margin-block-end: -5px;
+  margin-block-start: -5px;
 }
 
 .out-of-stock-main-image {
@@ -218,6 +223,10 @@ select {
   margin-right: 2.5px;
 }
 
+.styles {
+  margin: 25px 0px;
+}
+
 .style-selector {
   position: relative;
   display: inline-block;
@@ -275,6 +284,32 @@ select {
   font-size: 16px;
   width: 92.25%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.social {
+  width: 20%;
+  border: none;
+  color: white;
+  padding: 7px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 5px;
+  margin-right: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+}
+
+.fb {
+  background-color: #4267B2;
+}
+
+.twitter {
+  background-color: #1DA1F2;
+}
+
+.pin {
+  background-color: #E60023;
 }
 
 /*
@@ -601,11 +636,20 @@ select {
 ========================================
 */
 
+.align-ratings-breakdown-header {
+  margin-left: 4%;
+}
+
+.align-reviews-list-header {
+  margin-right: 10%;
+}
+
 .single-star-container {
   height: 36px;
   width: 31px;
   display: inline-block;
   background-color: white;
+
 }
 
 .single-star-outline {
@@ -622,7 +666,6 @@ select {
 
 .ratings-and-reviews {
   display:flex;
-
 }
 
 .ratings-breakdown {
@@ -631,15 +674,26 @@ select {
 
 .reviews-list {
   width: 100%;
+  line-height: 1.5;
   padding-left:5%;
   position:relative;
 }
 
-.add-review-btn {
-  /* position:absolute; */
-
+.reviews-body {
+  word-wrap: break-word;
 }
 
+.add-review-btn {
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.load-more-reviews-btn {
+  color: blue;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
 .reviews-date {
   float: right;
   padding-right: 10%;
@@ -650,3 +704,42 @@ select {
   background: none;
   border: none;
 }
+
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.sort-dropdown {
+  position: relative;
+  right: -40px;
+}
+
+.sort-dropdown-menu {
+  position: relative;
+  list-style-type: none;
+  margin: 5px 0;
+  padding: 0;
+  border: 1px solid grey;
+  width: 100px;
+}
+
+.sort-dropdown-menu>li {
+  margin: 0;
+  background-color: white;
+}
+
+.sort-dropdown-menu>li>button {
+  width: 75%;
+  height: 75%;
+  text-align: center;
+  background: white;
+  color: blue;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
