@@ -4,7 +4,6 @@ import { format, parseISO } from 'date-fns';
 import DisplayPhotoModal from './DisplayPhotoModal.jsx';
 
 const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
-  // console.log('individual answer: ', answer);
   const [report, setReport] = useState(false);
   const [photoClicked, setPhotoClicked] = useState(false);
   const [image, setImage] = useState();
@@ -14,7 +13,7 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   const showPhotos = () => {
     if (photos.length) {
       return photos.map(photo => {
-        return <img src={photo.url} width="90" height="60" className="photo"
+        return <img src={photo.url} key={photo.id} width="90" height="60" className="photo"
           onClick={() => {
             setImage(photo);
             setPhotoClicked(true);

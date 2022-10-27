@@ -6,51 +6,33 @@ import { format, parseISO } from 'date-fns';
 import axios from 'axios';
 import { validate } from 'react-email-validator';
 
-// Testing Purpose ONLY ---- COMMENT OUT WHEN NOT TESTING //
-// const cloudinary = {
-//   createUploadWidget: () => { return null; }
-// };
-
-const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) => {
+const IndividualQuestion = ({ question, handleHelpful, handleReport, product, photoWidget, images, setImages }) => {
   // console.log('Individual question: ', question);
   const [isOpen, setIsOpen] = useState(false);
-  const [images, setImages] = useState([]);
   const [report, setReport] = useState(false);
+  const [answerData, setAnswerData] = useState();
   const { asker_name, question_body, question_helpfulness, question_date, question_id } = question;
-
-  // Online Photo Upload Support
-  const photoWidget = cloudinary.createUploadWidget(
-    {
-      cloudName: 'dqk77sezi',
-      uploadPreset: 'FEC-add-photo'
-    },
-    (error, result) => {
-      if (!error && result && result.event === 'success') {
-        console.log('done! Here is the image info: ', result.info);
-        setImages([...images, result.info.url]);
-      }
-      if (error) { console.log(error); }
-    }
-  );
 
   // Add new Answer w/ validation
   const handleSubmitAnswer = (e) => {
     e.preventDefault();
-    const answerData = {
+    const answerInfo = {
       body: e.target.answer.value,
       name: e.target.name.value,
       email: e.target.email.value,
       photos: images
     };
-    if (!validate(answerData.email)) {
+    if (!validate(answerInfo.email)) {
       alert('The email address provided is not in correct email format.');
     }
-    if (answerData.photos.length > 5) {
+    if (answerInfo.photos.length > 5) {
       alert('Only max of 5 photos allowed');
     }
-    axios.post(`/qa/questions/${question_id}/answers`, answerData)
+    axios.post(`/qa/questions/${question_id}/answers`, answerInfo)
       .then(() => setIsOpen(false))
       .catch(err => console.log(err));
+
+    setAnswerData(answerInfo);
   };
 
   return (
@@ -94,7 +76,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product }) 
       </div>
 
       <div className="render-answers">
-        <AnswersList questionId={question_id} />
+        <AnswersList questionId={question_id} answerInfo={answerData} />
       </div>
     </div >
   );
