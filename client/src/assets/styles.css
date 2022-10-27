@@ -338,12 +338,14 @@ select {
   font-size: 30px;
   color: black;
 }
+
 .cards-arrow-outfit {
   position: relative;
   top: 2.2em;
   padding: 50px;
   color: black;
 }
+
 .cards-arrow-transparent {
   position: relative;
   padding: 50px;
@@ -479,8 +481,8 @@ select {
   margin-top: 40px;
   padding: 20px 100px;
   overflow: scroll;
-  border: .5px solid grey;
   border-radius: 5px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
   grid-template-columns: 2fr 6fr;
   grid-template-areas:
     "title title"
@@ -515,7 +517,6 @@ select {
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
   padding: 0 5px 0 5px;
-  border: .5px solid aliceblue;
   border-radius: 2px;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
@@ -571,8 +572,8 @@ select {
   grid-template-columns: 4fr 2fr 4fr;
   grid-gap: 5px;
   padding: 0 10px 0 10px;
-  margin-bottom: 40px;
-  border: .5px solid aliceblue;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
@@ -616,8 +617,9 @@ select {
   grid-template-columns: 2fr 4fr;
   max-height: 660px;
   max-width: 1070px;
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+
   overflow: scroll;
-  /* border: .5px solid grey; */
   border-radius: 5px;
   padding: 20px 40px;
 }
@@ -672,6 +674,7 @@ select {
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
+
 .reviews-date {
   float: right;
   padding-right: 10%;
