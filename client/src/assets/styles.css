@@ -5,7 +5,7 @@
 */
 
 body {
-  padding: 50px;
+  padding: 0px 50px 50px;
 }
 
 html {
@@ -19,6 +19,25 @@ button,
 .photo,
 select {
   cursor: pointer;
+}
+
+#banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+  color: #FFDB58;
+  font-size: 50px;
+  border-bottom: 2px solid #9CAF88;
+}
+
+.banner-extra {
+  float: right;
+}
+
+.banner-icons {
+  font-size: 25px;
+  color: #4C4E52;
 }
 
 
@@ -83,10 +102,10 @@ select {
   margin-bottom: 75px;
 }
 
-.product-overview {
+/* .product-overview {
   display: flex;
   justify-content: center;
-}
+} */
 
 .image-gallery {
   display: inline-block;
