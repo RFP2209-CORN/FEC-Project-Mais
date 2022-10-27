@@ -51,7 +51,7 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
             />
           );
         })}
-        {relatedItems.length <= 1 && renderBlankCards(0)}
+        {relatedItems.length <= 1 && renderBlankCards(relatedItems.length)}
       </div>
       {relatedItems.length > 4 && <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }}/>}
       {relatedItems.length <= 4 && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent"/>}

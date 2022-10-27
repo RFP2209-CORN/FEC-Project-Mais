@@ -82,7 +82,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
             />
           );
         })}
-        {outfits.length <= 2 && renderBlankCards(0)}
+        {outfits.length <= 2 && renderBlankCards(outfits.length)}
       </div>
       {outfits.length > 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-outfit" onClick={() => { changeDisplay('right'); }}/>}
       {outfits.length <= 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent"/>}
