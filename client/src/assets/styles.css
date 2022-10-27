@@ -5,7 +5,7 @@
 */
 
 
-#body {
+#app-container {
   display: grid;
   font-family: sans-serif;
   justify-items: center;
@@ -287,7 +287,7 @@ select {
 ========================================
 */
 .related-items-and-outfits-container {
-  text-align: center;
+  /* text-align: center; */
   display: grid;
   /* justify-content: center; */
   /* position: relative; */
@@ -479,9 +479,9 @@ select {
   margin-top: 40px;
   padding: 20px 100px;
   overflow: scroll;
-  grid-template-columns: 2fr 6fr;
   border: .5px solid grey;
   border-radius: 5px;
+  grid-template-columns: 2fr 6fr;
   grid-template-areas:
     "title title"
     "search search"
@@ -607,17 +607,19 @@ select {
 ========================================
 */
 
+
+
 .ratings-and-reviews {
-  margin-top: 20px;
+  margin-top: 40px;
   margin-bottom: 100px;
   display: grid;
   grid-template-columns: 2fr 4fr;
   max-height: 660px;
-  /* max-width: 1160px; */
+  max-width: 1070px;
   overflow: scroll;
-  border: .5px solid grey;
+  /* border: .5px solid grey; */
   border-radius: 5px;
-  padding: 20px 130px;
+  padding: 20px 40px;
 }
 
 .bar-chart {

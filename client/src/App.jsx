@@ -85,7 +85,7 @@ const App = () => {
   }, [productId]);
 
   return (
-    <div id="body">
+    <div id="app-container">
       <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
