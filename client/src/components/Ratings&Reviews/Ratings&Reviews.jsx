@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RatingsBreakdownSidebar from './Ratings/RatingsBreakdownSidebar.jsx';
-import AddReview from './Reviews/AddReview.jsx';
 import ReviewsList from './Reviews/ReviewsList.jsx';
 
 const RatingsAndReviews = ({ product_id }) => {
@@ -80,19 +79,18 @@ const RatingsAndReviews = ({ product_id }) => {
   }
 
   return (
-    <>
-    <div className="main-flexbox-container">
-      <div className="sidebar">
-        < RatingsBreakdownSidebar setDisplayedReviews={setDisplayedReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalNumberOfReviews} rating={rating} />
+    <div className="ratings-and-reviews">
+      <div className="ratings-breakdown">
+          < RatingsBreakdownSidebar setDisplayedReviews={setDisplayedReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalNumberOfReviews} rating={rating} />
       </div>
-      {displayedReviews.length > 0
-      ?
-      <ReviewsList displayedReviews={displayedReviews} totalNumberOfReviews={totalNumberOfReviews} />
-      : <ReviewsList reviews={reviews} totalNumberOfReviews={totalNumberOfReviews} />
-      }
+      <div className="reviews-list">
+        {displayedReviews.length > 0
+        ?
+        <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}displayedReviews={displayedReviews} totalNumberOfReviews={totalNumberOfReviews} />
+        : <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}reviews={reviews} totalNumberOfReviews={totalNumberOfReviews} />
+        }
+      </div>
     </div>
-    <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview}/>
-    </>
   );
 }
 

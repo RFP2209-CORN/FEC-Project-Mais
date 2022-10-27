@@ -26,6 +26,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
           display: false,
         },
         ticks: {
+          beginAtZero: true,
           display: false,
         },
       },
@@ -35,7 +36,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         borderWidth: 0.1,
       },
     },
-    responsive: true,
+    responsive: false,
     // makes it a horizontal bar
     indexAxis: 'y',
     // hide labels
@@ -81,11 +82,11 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
   }
 
   return (
-    <div className="sidebar">
-      <div className="star-ratings-chart">
+    // <div className="ratings-sidebar">
+    //   <div className="star-ratings-chart">
         <Bar data={data} options={options}/>
-      </div>
-    </div>
+    //   </div>
+    // </div>
   )
 }
 
