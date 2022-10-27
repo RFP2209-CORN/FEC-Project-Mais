@@ -517,7 +517,7 @@ select {
   padding: 20px 100px;
   overflow: scroll;
   border-radius: 5px;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   grid-template-columns: 2fr 6fr;
   grid-template-areas:
     "title title"
@@ -651,8 +651,7 @@ select {
   grid-template-columns: 2fr 4fr;
   max-height: 660px;
   max-width: 1070px;
-  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 20%);
-
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
   overflow: scroll;
   border-radius: 5px;
   padding: 20px 40px;
@@ -686,9 +685,9 @@ select {
   background-color: gold;
 }
 
-/* .ratings-and-reviews {
-  display: flex;
-} */
+.review-boxes {
+  padding-right: 20px;
+}
 
 .ratings-breakdown {
   flex-basis: 40%;
