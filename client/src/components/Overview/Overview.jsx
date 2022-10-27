@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import ImageGallery from './ImageGallery.jsx';
-import ProductInfo from './ProductInfo.jsx';
+import ProductInfo1 from './ProductInfo1.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import ProductInfo2 from './ProductInfo2.jsx';
 
 const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
   //out of stock style
@@ -17,11 +18,16 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
     axios.get(`/products/${productId}/styles`)
       .then(styles => {
         setStyles(styles.data.results);
+        let defaultStyle = false;
         for (let i = 0; i < styles.data.results.length; i++) {
           if (styles.data.results[i]['default?']) {
             setCurrentStyle(styles.data.results[i]);
+            defaultStyle = true;
             break;
           }
+        }
+        if (!defaultStyle) {
+          setCurrentStyle(styles.data.results[0]);
         }
       })
       .catch(err => console.log(err));
@@ -44,7 +50,7 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
       <ImageGallery
         currentStyle={currentStyle} />
       <div className="overview-sidebar">
-        <ProductInfo
+        <ProductInfo1
           currentProduct={currentProduct}
           currentStyle={currentStyle}
           rating={rating}
@@ -61,6 +67,8 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
           quantitySelected={quantitySelected}
           changeSkuSelected={changeSkuSelected}
           changeQuantitySelected={changeQuantitySelected} />
+        <ProductInfo2
+          currentProduct={currentProduct} />
       </div>
     </div>
   );
