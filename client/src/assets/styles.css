@@ -326,10 +326,10 @@ select {
 .cards-arrow {
   position: relative;
   padding: 50px;
-  /* top: 50%;
+  top: 50%;
   transform: translate(0, -50%);
   right: 5px;
-  font-size: 30px; */
+  font-size: 30px;
   color: black;
 }
 .cards-arrow-outfit {
