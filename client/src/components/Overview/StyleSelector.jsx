@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected}) => {
+const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected, toggleMessage}) => {
   const onChange = (event) => {
     let style;
     for (let i = 0; i < styles.length; i++) {
@@ -12,6 +12,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
     changeCurrentStyle(style);
     changeSkuSelected(false);
     changeQuantitySelected(0);
+    toggleMessage(false);
   };
 
   const renderStyleSelectorThumbnails = () => {
