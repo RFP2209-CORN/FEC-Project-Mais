@@ -584,8 +584,12 @@ select {
 ========================================
 */
 
-.bar-chart {
-  line-height: .5;
+.align-ratings-breakdown-header {
+  margin-left: 4%;
+}
+
+.align-reviews-list-header {
+  margin-right: 10%;
 }
 
 .single-star-container {
@@ -613,7 +617,7 @@ select {
 }
 
 .ratings-breakdown {
-  flex-basis: 40%;
+  flex-basis: 25%;
 }
 
 .reviews-list {
@@ -621,6 +625,10 @@ select {
   line-height: 1.5;
   padding-left:5%;
   position:relative;
+}
+
+.reviews-body {
+  word-wrap: break-word;
 }
 
 .add-review-btn {
@@ -650,3 +658,36 @@ select {
   align-items: center;
   padding: 20px;
 }
+
+.sort-dropdown {
+  position: relative;
+  right: -40px;
+}
+
+.sort-dropdown-menu {
+  position: relative;
+  list-style-type: none;
+  margin: 5px 0;
+  padding: 0;
+  border: 1px solid grey;
+  width: 100px;
+}
+
+.sort-dropdown-menu>li {
+  margin: 0;
+  background-color: white;
+}
+
+.sort-dropdown-menu>li>button {
+  width: 75%;
+  height: 75%;
+  text-align: center;
+  background: white;
+  color: blue;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+

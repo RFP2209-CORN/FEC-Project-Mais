@@ -27,19 +27,20 @@ const SingleReview = ({ review }) => {
   };
 
   const handleNoClick = () => {
-    yesClicked === false && setNo(no + 1);
     setNoClicked(true);
-    let id = review.review_id;
-    axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness -= 1})
-      .then((result) => {
-      })
-      .catch((error) => {
-      })
+    yesClicked === false && setNo(no + 1);
+    // let id = review.review_id;
+    // axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness -= 1})
+    //   .then((result) => {
+    //   })
+    //   .catch((error) => {
+    //   })
   };
 
   const handleYesClick = () => {
-    noClicked === false && setYes(yes + 1);
     setYesClicked(true);
+
+    noClicked === false && setYes(yes + 1);
     let id = review.review_id;
     axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness += 1})
     .then((result) => {
@@ -58,12 +59,12 @@ const SingleReview = ({ review }) => {
       <h3>
         {review.summary?.split('.')[0]}
       </h3>
-      <p>
+      <div className="reviews-body">
         {review.body}
         <br/>
         <br/>
         {review.recommend ? '✅ I recommend this product' : null}
-      </p>
+      </div>
       <br/>
       {photos?.length > 0 && photos.map((photo, index) => {
         return (
