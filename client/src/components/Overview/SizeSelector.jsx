@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuantitySelected, setFailToAdd}) => {
+const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuantitySelected, toggleMessage}) => {
   const renderSizeDropdown = () => {
     let sizes = [<option data-testid="size-null" key="defaultValue" value={false} disabled>Select Size</option>];
     for (let sku in currentStyle.skus) {
@@ -19,7 +19,7 @@ const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuant
   const onSelectSize = (event) => {
     changeSkuSelected(event.target.value);
     changeQuantitySelected(1);
-    setFailToAdd(false);
+    toggleMessage(false);
   };
 
   return (

@@ -2,13 +2,12 @@ import React from 'react';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 
-const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected}) => {
+const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected, failToAdd, toggleMessage})=>{
   const [cart, setCart] = React.useState([]);
-  const [failToAdd, setFailToAdd] = React.useState(false);
 
   const onAddToCart = (event) => {
     if (!skuSelected) {
-      setFailToAdd(true);
+      toggleMessage(true);
     } else if (skuSelected && quantitySelected) {
       let item = { sku: skuSelected, quantity: quantitySelected };
       setCart([...cart, item]);
@@ -23,7 +22,7 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
         skuSelected={skuSelected}
         changeSkuSelected={changeSkuSelected}
         changeQuantitySelected={changeQuantitySelected}
-        setFailToAdd={setFailToAdd}/>
+        toggleMessage={toggleMessage}/>
       <QuantitySelector
         currentStyle={currentStyle}
         skuSelected={skuSelected}
