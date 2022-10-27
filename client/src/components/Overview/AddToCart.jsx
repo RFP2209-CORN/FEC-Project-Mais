@@ -16,7 +16,7 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
   };
 
   return (
-    <div>
+    <div className="add-to-cart">
       {failToAdd ? <p style={{color: 'red'}}>Please select size</p> : null}
       <SizeSelector
         currentStyle={currentStyle}
@@ -29,7 +29,9 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
         skuSelected={skuSelected}
         quantitySelected={quantitySelected}
         changeQuantitySelected={changeQuantitySelected}/>
-      {currentStyle.skus?.null ? null : <button data-testid="add-to-cart-button" onClick={onAddToCart}>Add to Cart</button>}
+      <br/>
+      {currentStyle.skus?.null ? null :
+        <button data-testid="add-to-cart-button" className="add-to-cart-button" onClick={onAddToCart}>Add to Cart</button>}
     </div>
   );
 };

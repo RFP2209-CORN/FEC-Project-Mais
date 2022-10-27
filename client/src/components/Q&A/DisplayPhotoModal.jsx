@@ -6,9 +6,11 @@ const DisplayPhotoModal = ({ photoClicked, setPhotoClicked, photo }) => {
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay-styles" onClick={() => setPhotoClicked(false)}/>
+      <div className="overlay-styles" onClick={() => setPhotoClicked(false)} />
       <div className="expanded-view-modal-style">
-        <img src={photo.url} width="680" height="460"/>
+        <button className="cancel-button" onClick={() => setPhotoClicked(false)} >X</button>
+
+        <img src={photo.url} width="680" height="460" />
       </div>
     </>,
     document.getElementById('modal')

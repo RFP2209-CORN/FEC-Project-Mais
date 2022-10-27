@@ -4,12 +4,20 @@
 ========================================
 */
 
+body {
+  padding: 50px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 /* For Buttons, Links, Modals, or anything clickable */
 button,
 .submit,
 .helpful,
-.photo {
+.photo,
+select {
   cursor: pointer;
 }
 
@@ -19,11 +27,6 @@ button,
     MODAL
 ========================================
 */
-body {
-  /* display: flex;
-  justify-content: center; */
-  padding: 50px;
-}
 
 .modal-styles {
   position: fixed;
@@ -31,7 +34,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #FFF;
-  padding: 50px;
+  padding: 30px;
   z-index: 1000;
   border-radius: 5px;
 }
@@ -55,6 +58,19 @@ body {
   z-index: 1000;
 }
 
+.qa-form {
+  display: block;
+  overflow: scroll;
+}
+
+.cancel-button {
+  float: right;
+  zoom: 125%;
+  border: none;
+  border-color: unset;
+  color: red;
+}
+
 
 /*
 ========================================
@@ -62,18 +78,25 @@ body {
 ========================================
 */
 
+#overview {
+  margin-top: 50px;
+  margin-bottom: 75px;
+}
+
 .product-overview {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .image-gallery {
   display: inline-block;
+  padding: 0 20px;
 }
 
 .overview-sidebar {
   display: inline-block;
-  width: 575px;
+  max-width: 500px;
+  padding: 0 20px;
 }
 
 .out-of-stock-main-image {
@@ -82,54 +105,55 @@ body {
   background-position: center;
   width: 575px;
   height: 575px;
-  display: inline-block
+  display: inline-block;
 }
 
 .thumbnail-nav-bar {
   width: 82.5px;
   height: 575px;
-  display: inline-block
+  display: inline-block;
 }
 
 .thumbnail-nav-bar-arrows {
-  cursor: pointer
+  cursor: pointer;
 }
 
 #thumbnail-nav-bar-images {
   width: 82.5px;
   height: 540px;
   overflow: hidden;
-  scroll-snap-type: y mandatory
+  scroll-snap-type: y mandatory;
 }
 
 .thumbnail-nav-bar-image {
   width: 72.5px;
   height: 72.5px;
   cursor: pointer;
-  scroll-snap-align: 'start'
+  scroll-snap-align: 'start';
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .thumbnail-nav-bar-selected {
-  border: 3px solid black
+  border: 3px solid black;
 }
 
-.fa-arrow-left-long {
+.fa-angle-left {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   left: 5px;
-  font-size: 35px;
-  color: white;
+  font-size: 30px;
+  color: #EEEDE7;
   cursor: pointer;
 }
 
-.fa-arrow-right-long {
+.fa-angle-right {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   right: 5px;
-  font-size: 35px;
-  color: white;
+  font-size: 30px;
+  color: #EEEDE7;
   cursor: pointer;
 }
 
@@ -145,7 +169,8 @@ body {
   background-position: center;
   width: 575px;
   height: 575px;
-  cursor: zoom-in
+  cursor: zoom-in;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .expanded-view-image {
@@ -153,7 +178,7 @@ body {
   background-position: center;
   height: 700px;
   width: 700px;
-  cursor: crosshair
+  cursor: crosshair;
 }
 
 .zoomed-view {
@@ -165,7 +190,7 @@ body {
 .expanded-view-icons {
   display: flex;
   justify-content: center;
-  padding: 2.5px
+  padding: 2.5px;
 }
 
 .fa-circle {
@@ -183,6 +208,7 @@ body {
   height: 55px;
   margin-right: 7.5px;
   border-radius: 50%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
 }
 
 .checkmark {
@@ -199,17 +225,49 @@ body {
   align-items: center;
 }
 
+.add-to-cart {
+  width: 75%;
+}
+
+.cart-dropdown {
+  padding: 8px 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1.5px solid grey;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.size-selector {
+  width: 60%;
+}
+
+.quantity-selector {
+  width: 30%;
+}
+
+.add-to-cart-button {
+  background-color: #5A5A5A;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  width: 92.25%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
 ========================================
 */
-  /* .related-items-and-outfits-container {
+/* .related-items-and-outfits-container {
     display: flex;
     justify-content: center;
   } */
 
-.card-container-container{
+.card-container-container {
   width: 1500px;
   position: relative;
   display: inline-block;
@@ -219,6 +277,7 @@ body {
   /* justify-content: right; */
 
 }
+
 #card-container-related {
   display: inline-flex;
   justify-content: left;
@@ -227,6 +286,7 @@ body {
   width: 75%;
   overflow: hidden;
 }
+
 .card-container {
   display: flex;
   justify-content: center;
@@ -237,6 +297,10 @@ body {
 
 .cards-arrow {
   position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 5px;
+  font-size: 30px;
   color: black;
 }
 
@@ -354,8 +418,8 @@ body {
   max-height: 600px;
   overflow: scroll;
   grid-template-columns: 2fr 6fr;
-  background-color: aliceblue;
-  border: 2px solid grey;
+  border: .5px solid grey;
+  border-radius: 5px;
   grid-template-areas:
     "title title"
     "search search"
@@ -389,10 +453,11 @@ body {
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
   padding: 0 5px 0 5px;
-  border: 1.5px solid grey;
+  border: .5px solid grey;
+  border-radius: 2px;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
-    "blank q-info q-info q-helpful q-helpful q-report q-report q-report q-report q-report"
+    "blank q-info q-info q-info q-helpful q-helpful q-report q-report q-report q-report"
     "answer render-a render-a render-a render-a render-a render-a render-a render-a render-a"
 }
 
@@ -444,7 +509,7 @@ body {
   grid-template-columns: 4fr 2fr 4fr;
   grid-gap: 5px;
   padding: 0 10px 0 10px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
@@ -484,6 +549,8 @@ body {
   width: 31px;
   display: inline-block;
   background-color: white;
+  border: 1px solid grey;
+
 }
 
 .single-star-outline {
@@ -522,4 +589,9 @@ body {
   float: right;
   padding-right: 10%;
   margin-top: -5%;
+}
+
+.textButton {
+  background: none;
+  border: none;
 }

@@ -26,15 +26,15 @@ const App = () => {
 
   return (
     <>
-      {/* <div id="overview">
+      <div id="overview">
         <Overview productId={productId}/>
       </div>
 
       <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
-      </div> */}
+      </div>
 
-      {/* <div id="qa">
+      <div id="qa">
         <QuestionsAndAnswers productId={productId}/>
       </div>
 
