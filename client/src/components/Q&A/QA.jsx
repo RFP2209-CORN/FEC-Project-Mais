@@ -14,12 +14,14 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
   const [collapseButton, setCollapseButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
-
   // Search Function
   const handleSearch = (value) => {
     let container = [];
     if (value.length <= 2) {
-      container = allQuestionsData;
+      for (let i = 0; i < allQuestionsData.length; i++) {
+        if (i > 1) { break; }
+        container.push(allQuestionsData[i]);
+      }
     } else if (value.length > 2) {
       for (let i = 0; i < allQuestionsData.length; i++) {
         if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
@@ -100,7 +102,11 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       alert('The email address provided is not in correct email format.');
     }
     axios.post('/qa/questions', questionData)
+      .then(() => setIsOpen(false))
       .catch(err => console.log(err));
+
+      // setAllQuestionsData[...allQuestionsData, questionData]
+
   };
 
   // Renders list of Questions or Nothing.

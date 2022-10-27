@@ -9,6 +9,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   const [salesPrice, setSalesPrice] = useState(null);
   const [imgURL, setImgURL] = useState();
 
+
   useEffect(() => {
     // console.log('prodReviews', getProductReviews(product.id))
     // const reviews = Requests.getProductReviews(product.id);
@@ -32,6 +33,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
         let styles = result.data.results;
+        console.log('RI styles', styles);
         const { sale, ogPrice, thumbnailURL } = saleAndImageSetter(styles);
 
         setOriginalPrice(ogPrice);
@@ -41,7 +43,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   }, []);
 
   return (
-    <div className="card card-shadow" onClick={() => updateProduct(event, product)}>
+    <div className="card card-shadow" onClick={() => updateProduct(event, product.id)}>
       <button
         className="favorite-icon"
         value={product.id}

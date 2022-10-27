@@ -11,6 +11,7 @@ const App = () => {
   const trackClicks = useTrackerUpdate();
   const [currentProduct, setCurrentProduct] = useState({});
   const [rating, setRating] = useState(0);
+  const [ratingsData, setRatingsData] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
 
 
@@ -54,6 +55,7 @@ const App = () => {
         rating = (Math.round((rating / total) * 4) / 4);
         setRating(rating);
         setTotalReviews(total);
+        setRatingsData(ratings);
       })
       .catch(err => console.log(err));
 
@@ -61,20 +63,20 @@ const App = () => {
 
   return (
     <>
-      <div id="overview">
+      {/* <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
-      </div>
+      </div> */}
 
-      <div id="relatedItemsAndOutfits">
+      {/* <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} />
-      </div>
+      </div> */}
 
-      <div id="qa">
+      {/* <div id="qa">
         <QuestionsAndAnswers productId={productId} productName={currentProduct.name} />
-      </div>
+      </div> */}
 
       {/* <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId} />
+        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews}/>
       </div> */}
     </>
   );
