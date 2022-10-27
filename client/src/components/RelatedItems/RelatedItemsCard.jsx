@@ -42,7 +42,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   };
 
   return (
-    <div className="card card-shadow" value={product.id} onClick={() => updateProduct(event, product.id)}>
+    <div className="card card-shadow related-items-card" value={product.id} onClick={() => updateProduct(event, product.id)}>
       <i className="fa-solid fa-star favorite-icon star-icon" onClick={(event) => { renderModal(event, product.id); }}></i>
       {isOpen === true &&
         <ComparisonModal
@@ -60,7 +60,7 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
       <p className="card-category">{item.category}</p>
       <div className="card-name">{item.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div className="card-rating"><StarRating rating={rating} /></div>
+      <div className="card-rating overall-stars"><StarRating rating={rating} /></div>
     </div>
   );
 };

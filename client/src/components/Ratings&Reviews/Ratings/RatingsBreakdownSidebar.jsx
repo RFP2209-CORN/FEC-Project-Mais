@@ -66,7 +66,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
           {rating} &nbsp;&nbsp;
         </h2>
         <div>
-          <sup><StarRating rating={rating} /></sup>
+          <sup className="overall-stars"><StarRating rating={rating} /></sup>
         </div>
       </div>
       <h4 className="flexbox-container" onClick={() => handleStarClick(5)}>

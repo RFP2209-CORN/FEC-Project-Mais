@@ -50,7 +50,7 @@ const SingleReview = ({ review }) => {
 
   return (
     <>
-      <span>
+      <span className="overall-stars">
         <StarRating rating={review.rating} />
         <div className="reviews-date" > {review.reviewer_name}, &nbsp;  {review.date}
         </div>

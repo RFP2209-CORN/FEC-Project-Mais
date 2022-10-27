@@ -4,7 +4,6 @@
 ========================================
 */
 
-
 #app-container {
   display: grid;
   font-family: sans-serif;
@@ -27,7 +26,7 @@ select {
 #banner {
   display: flex;
   margin: 0 100px;
-  padding: 20px 40px 0 40px;
+  padding: 20px 10px 0 10px;
   justify-content: space-between;
   align-items: center;
   height: 65px;
@@ -44,7 +43,6 @@ select {
   font-size: 25px;
   color: #4C4E52;
 }
-
 
 /*
 ========================================
@@ -95,7 +93,6 @@ select {
   color: red;
 }
 
-
 /*
 ========================================
     OVERVIEW
@@ -106,11 +103,6 @@ select {
   margin-top: 50px;
   margin-bottom: 75px;
 }
-
-/* .product-overview {
-  display: flex;
-  justify-content: center;
-} */
 
 .image-gallery {
   display: inline-block;
@@ -316,11 +308,26 @@ select {
   background-color: #E60023;
 }
 
+.overall-stars {
+  zoom: 65%;
+}
+
+a:link {
+  padding: 10px;
+  color: #525252;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
 ========================================
 */
+
 .related-items-and-outfits-container {
     display: grid;
   }
@@ -331,16 +338,12 @@ select {
   display: inline-block;
   scroll-behavior: smooth;
   top: 50%;
-  left: 53%;
+  left: 56%;
   transform: translate(-50%, -50%);
 }
 .carousel-title {
   position: relative;
-  left: 9%;
-}
-.carousel-title {
-  position: relative;
-  left: 9%;
+  left: 6.5%;
 }
 
 #card-container-related {
@@ -371,38 +374,26 @@ select {
 
 .cards-arrow {
   position: relative;
-  padding: 50px;
-  /* top: 50%;
-  transform: translate(0, -50%);
-  right: 5px;
-  font-size: 30px; */
+  padding: 20px 20px 20px 10px;
+  top: -2.5em;
   color: black;
+  zoom: 200%;
 }
 
 .cards-arrow-outfit {
   position: relative;
-  top: 2.2em;
-  padding: 50px;
+  padding: 20px 20px 20px 10px;
+  top: 0.2em;
   color: black;
+  zoom: 200%;
 }
 
 .cards-arrow-transparent {
   position: relative;
-  padding: 50px;
+  padding: 20px 15px 20px 10px;
+  top: 0.2em;
   color: white;
-}
-
-.cards-arrow-outfit {
-  position: relative;
-  top: 2.2em;
-  padding: 50px;
-  color: black;
-}
-
-.cards-arrow-transparent {
-  position: relative;
-  padding: 50px;
-  color: white;
+  zoom: 200%;
 }
 
 .card {
@@ -414,6 +405,11 @@ select {
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;
+}
+
+.related-items-card,
+.outfits-card {
+  cursor: pointer;
 }
 
 .card.card-shadow {
@@ -449,7 +445,6 @@ select {
   justify-content: center;
   padding: 2.2px;
   background-color: rgba(105, 105, 105, 0.4);
-
 }
 
 .star-icon {
@@ -457,6 +452,11 @@ select {
 }
 .x-icon {
   color: white;
+}
+
+.star-icon:hover,
+.x-icon:hover {
+  color: red;
 }
 
 .card-image {
@@ -532,7 +532,6 @@ select {
 .qa-container {
   display: grid;
   max-height: 660px;
-  /* max-width: 1400px; */
   margin-top: 40px;
   padding: 20px 100px;
   overflow: scroll;
@@ -664,7 +663,6 @@ select {
 ========================================
 */
 
-
 .ratings-and-reviews {
   margin-top: 40px;
   margin-bottom: 100px;
@@ -673,7 +671,7 @@ select {
   max-height: 660px;
   max-width: 1070px;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
-  overflow: scroll;
+  overflow-x: hidden;
   border-radius: 5px;
   padding: 20px 40px;
 }
@@ -708,6 +706,12 @@ select {
 
 .review-boxes {
   padding-right: 20px;
+  overflow: hidden;
+  max-width: 70%;
+}
+
+.reviews-body {
+  overflow: scroll;
 }
 
 .ratings-breakdown {

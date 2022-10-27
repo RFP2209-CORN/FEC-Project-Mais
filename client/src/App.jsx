@@ -7,7 +7,7 @@ import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx'
 import { useTrackerUpdate } from './TrackerProvider.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(40344);
+  const [productId, setProductId] = useState(40352);
   const trackClicks = useTrackerUpdate();
   const [currentProduct, setCurrentProduct] = useState({});
   const [rating, setRating] = useState(0);

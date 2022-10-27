@@ -1,14 +1,14 @@
 import React from 'react';
 import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
-const ProductInfo1 = ({currentProduct, currentStyle, rating, totalReviews}) => {
+const ProductInfo1 = ({ currentProduct, currentStyle, rating, totalReviews }) => {
   const renderPrice = () => {
     if (currentStyle?.sale_price) {
       return (
         <p>
-          <span style={{textDecoration: 'line-through red'}}>{currentStyle?.original_price}</span>
+          <span style={{ textDecoration: 'line-through red' }}>{currentStyle?.original_price}</span>
           <span> </span>
-          <span style={{color: 'red'}}>{currentStyle?.sale_price}</span>
+          <span style={{ color: 'red' }}>{currentStyle?.sale_price}</span>
         </p>
       );
     } else {
@@ -20,8 +20,11 @@ const ProductInfo1 = ({currentProduct, currentStyle, rating, totalReviews}) => {
 
   return (
     <div>
-      {rating ? <StarRating rating={rating}/> : null}
-      {totalReviews ? <a href="#rateAndReview">Read all {totalReviews} reviews</a> : null}
+      <span className="overall-stars">
+        {rating ? <StarRating rating={rating} /> : null}
+      </span>
+      {totalReviews ?
+        <a href="#rateAndReview">Read all {totalReviews} reviews</a> : null}
       <p>{currentProduct?.category?.toUpperCase()}</p>
       <h2 className="product-name" >{currentProduct?.name}</h2>
       {renderPrice()}

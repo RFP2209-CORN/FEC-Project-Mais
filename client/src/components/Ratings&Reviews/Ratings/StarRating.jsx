@@ -42,7 +42,7 @@ const StarRating = ({ rating }) => {
   }
 
   return (
-    <div>
+    <div style={{display: 'inline-block'}}>
       {stars.map((item, i) => {
         return (
           <div className="single-star-container" key={i}>
