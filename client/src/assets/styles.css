@@ -322,11 +322,8 @@ select {
 ========================================
 */
 .related-items-and-outfits-container {
-  /* text-align: center; */
-  display: grid;
-  /* justify-content: center; */
-  /* position: relative; */
-}
+    display: grid;
+  }
 
 .card-container-container {
   width: 1500px;
@@ -336,6 +333,14 @@ select {
   top: 50%;
   left: 53%;
   transform: translate(-50%, -50%);
+}
+.carousel-title {
+  position: relative;
+  left: 9%;
+}
+.carousel-title {
+  position: relative;
+  left: 9%;
 }
 
 #card-container-related {
@@ -367,10 +372,10 @@ select {
 .cards-arrow {
   position: relative;
   padding: 50px;
-  top: 50%;
+  /* top: 50%;
   transform: translate(0, -50%);
   right: 5px;
-  font-size: 30px;
+  font-size: 30px; */
   color: black;
 }
 
@@ -417,12 +422,6 @@ select {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
 }
 
-/* .card.add-outfit {
-  display: inline-flex;
-  position: relative;
-  justify-content: left;
-} */
-
 .add-outfit-btn {
   margin: 1em;
   height: 20px;
@@ -440,8 +439,24 @@ select {
 
 .favorite-icon {
   position: absolute;
-  /* background-color: white; */
-  right: 0;
+  border-radius: 50%;
+  right: 0.7em;
+  top: 0.7em;
+  width: 1.2em;
+  height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2px;
+  background-color: rgba(105, 105, 105, 0.4);
+
+}
+
+.star-icon {
+  color: gold;
+}
+.x-icon {
+  color: white;
 }
 
 .card-image {
@@ -455,6 +470,16 @@ select {
   aspect-ratio: 9 / 16;
   object-fit: cover;
   object-position: center;
+}
+
+.out-of-stock-related-image {
+  background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
+  display: block;
+  width: 100%;
+  max-height: 255px;
+  aspect-ratio: 9 / 16;
+  background-size: cover;
+  background-position: center;
 }
 
 .no-image {
@@ -497,11 +522,6 @@ select {
   background-color: transparent;
   z-index: 10000;
 }
-
-/* .card-rating {
-
-} */
-
 
 /*
 ========================================

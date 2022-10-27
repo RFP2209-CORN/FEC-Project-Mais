@@ -65,12 +65,6 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
   };
 
   const calcRating = (reviews) => {
-
-    /* REMOVE AFTER READ
-    refactor function to be the same as parent
-    */
-    // let totalStars = 0;
-
     let rating = 0;
     let total = 0;
     for (let key in reviews) {
@@ -79,23 +73,6 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
     }
     rating = (Math.round((rating / total) * 4) / 4);
     return rating;
-
-    // for (let i = 0; i < reviews.length; i++) {
-    //   totalStars += reviews[i].rating;
-    // }
-    // let rating = totalStars / reviews.length;
-    // let floor = Math.floor(rating);
-    // let decimal = rating - floor;
-
-    // if (decimal <= .25) {
-    //   return floor;
-    // } else if (decimal <= .5) {
-    //   return floor + .25;
-    // } else if (decimal <= .75) {
-    //   return floor + .5;
-    // } else {
-    //   return floor + .75;
-    // }
   };
 
   return (
@@ -117,7 +94,6 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
         renderPrice={renderPrice}
         updateProduct={updateProduct}
         renderBlankCards={renderBlankCards}
-        // getProductReviews={getProductReviews}
         product={currentProduct}
       />
     </div>

@@ -11,16 +11,6 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
 
 
   useEffect(() => {
-    // console.log('prodReviews', getProductReviews(product.id))
-    // const reviews = Requests.getProductReviews(product.id);
-    // const avgRating = calcRating(reviews);
-    // setRating(avgRating)
-    // functions.setRating(avgRating)
-
-
-/* INTEGRATION // DELETE AFTER SEEN
-    Edit rating to be same as all other files.
- */
     axios.get(`reviews/meta/${product.id}`)
       .then(result => {
         let ratings = result.data.ratings;
@@ -39,14 +29,9 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
 
   return (
     <div className="card card-shadow" onClick={() => updateProduct(event, product.id)}>
-      <button
-        className="favorite-icon"
-        value={product.id}
-        onClick={removeOutfit}>
-        ❌
-      </button>
+      <i className="fa-solid fa-xmark favorite-icon x-icon" onClick={(event) => { removeOutfit(event, product.id); }}></i>
       <div className="card-image">
-        {imgURL === null && <div className="no-image">Image not available</div>}
+        {imgURL === null && <div className="out-of-stock-related-image"/>}
         {imgURL && <img src={imgURL}/>}
       </div>
       <p className="card-category">{outfit.category}</p>
