@@ -743,3 +743,10 @@ select {
   cursor: pointer;
 }
 
+.button-dropdown {
+  background: none;
+  border: none;
+  text-decoration:underline;
+  display:inline-block;
+  font-size: 25px;
+}

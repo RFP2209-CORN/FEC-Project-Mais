@@ -68,10 +68,10 @@ const SingleReview = ({ review }) => {
       <br/>
       {photos?.length > 0 && photos.map((photo, index) => {
         return (
-          <div key={index}>
-            <button onClick={() => setIsOpen(true)}>Open Image</button>
+          <span >
+            <button key={index} onClick={() => setIsOpen(true)}><img src={photo.url} height="40px" width="40px" /></button>
             <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
-          </div>
+          </span>
         )
       })}
       <div>
