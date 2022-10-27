@@ -3,78 +3,77 @@ import ReactDom from 'react-dom';
 import Stars from './Stars.jsx';
 import { validate } from 'react-email-validator';
 
-const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
-
-  const [ recommend, setRecommend ] = useState(false);
-  const [ rating, setRating ] = useState(0);
-  const [ star, setStar ] = useState();
-  const [ images, setImages ] = useState([]);
-  const [ body, setBody ] = useState('');
+const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData, images, setImages, photoWidget }) => {
+  const [recommend, setRecommend] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [star, setStar] = useState();
+  // const [images, setImages] = useState([]);
+  const [body, setBody] = useState('');
 
   const summary = useRef('');
   const name = useRef('');
   const email = useRef('');
 
   // convert chraracteristics object into an array for mapping purposes and add ratings details
-  let chararcteristicsObj = metaData.characteristics
-  let characteristicsArray = []
+  let chararcteristicsObj = metaData.characteristics;
+  let characteristicsArray = [];
   if (chararcteristicsObj) {
-    characteristicsArray = Object.entries(chararcteristicsObj)
+    characteristicsArray = Object.entries(chararcteristicsObj);
   }
   for (let i = 0; i < characteristicsArray.length; i++) {
     switch (characteristicsArray[i][0]) {
-      case "Size":
-        characteristicsArray[i].push("1 = A size too small");
-        characteristicsArray[i].push("5 = A size too wide");
+      case 'Size':
+        characteristicsArray[i].push('1 = A size too small');
+        characteristicsArray[i].push('5 = A size too wide');
         break;
-      case "Width":
-        characteristicsArray[i].push("1 = Too narrow");
-        characteristicsArray[i].push("5 = Too wide");
+      case 'Width':
+        characteristicsArray[i].push('1 = Too narrow');
+        characteristicsArray[i].push('5 = Too wide');
         break;
-      case "Comfort":
-        characteristicsArray[i].push("1 = uncomfortable");
-        characteristicsArray[i].push("5 = Perfect");
+      case 'Comfort':
+        characteristicsArray[i].push('1 = uncomfortable');
+        characteristicsArray[i].push('5 = Perfect');
         break;
-      case "Quality":
-        characteristicsArray[i].push("1 = Poor");
-        characteristicsArray[i].push("5 = Perfect");
+      case 'Quality':
+        characteristicsArray[i].push('1 = Poor');
+        characteristicsArray[i].push('5 = Perfect');
         break;
-      case "Length":
-        characteristicsArray[i].push("1 = Runs Short");
-        characteristicsArray[i].push("5 = Runs Long");
+      case 'Length':
+        characteristicsArray[i].push('1 = Runs Short');
+        characteristicsArray[i].push('5 = Runs Long');
         break;
-      case "Fit":
-        characteristicsArray[i].push("1 = Runs tight");
-        characteristicsArray[i].push("5 = Runs long");
+      case 'Fit':
+        characteristicsArray[i].push('1 = Runs tight');
+        characteristicsArray[i].push('5 = Runs long');
         break;
       default:
         break;
     }
   }
 
-  // photo uploader
-  const photoWidget = cloudinary.createUploadWidget(
-    {
-      cloudName: 'dgjzqkjh0',
-      uploadPreset: 'Add Review Form'
-    },
-    (error, result) => {
-      if (error) {
-        console.log('error uploading photo', error);
-      }
-      if (!error && result && result.event === "success") {
-        // console.log('result.info.url', result.info.url);
-        setImages([...images, result.info.url]);
-      }
-    }
-  );
+  // // photo uploader
+  // const photoWidget = cloudinary.createUploadWidget(
+  //   {
+  //     cloudName: 'dgjzqkjh0',
+  //     uploadPreset: 'Add Review Form'
+  //   },
+  //   (error, result) => {
+  //     if (error) {
+  //       console.log('error uploading photo', error);
+  //     }
+  //     if (!error && result && result.event === 'success') {
+  //       // console.log('result.info.url', result.info.url);
+  //       setImages([...images, result.info.url]);
+  //     }
+  //   }
+  // );
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // convert characteristics back into an object for the post request
     let charsObj = {};
     for (let i = 0; i < characteristicsArray.length; i++) {
-      charsObj[characteristicsArray[i][1].id] = characteristicsArray[i][1].value
+      charsObj[characteristicsArray[i][1].id] = characteristicsArray[i][1].value;
     }
 
     let data = {
@@ -87,17 +86,16 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
       email: event.target.email.value,
       photos: images,
       characteristics: charsObj,
-    }
+    };
     addReview(data);
-  }
+  };
 
   // show the user how many words are left before the body is complete
   const showCounter = () => {
     let counter = body.length;
     let left = 50 - body.length;
-    // console.log('left', left);
-    return `Minimum required characters left: ${left}`
-  }
+    return `Minimum required characters left: ${left}`;
+  };
 
   // if the modal isn't open, return null
   if (!open) {
@@ -106,23 +104,25 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay-styles" onClick={onClose}/>
+      <div className="overlay-styles" onClick={onClose} />
       <div className="modal-styles">
         <div className="review-form-container">
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
-          <form onSubmit={(event) =>
-            handleSubmit(event)} >
+          <form onSubmit={(event) => {
+            setImages([]);
+            handleSubmit(event);
+          }}>
             <div>
               <label>Do you recommend this product?
                 <br></br>
-                <input type="radio"  value="true" checked={recommend === true} name="recommend" required onChange={() => {
-                  setRecommend(true)
-                  }} />Yes
-                <input type="radio" value="false"checked={recommend === false} name="recommend" required onChange={() => {
-                  setRecommend(false)
-                }}/>No
+                <input type="radio" value="true" checked={recommend === true} name="recommend" required onChange={() => {
+                  setRecommend(true);
+                }} />Yes
+                <input type="radio" value="false" checked={recommend === false} name="recommend" required onChange={() => {
+                  setRecommend(false);
+                }} />No
               </label>
             </div>
             <div>
@@ -134,36 +134,36 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                     <div>{char[0]}</div>
                     <label>1</label>
                     <input type="radio" value="1" name={char[0]} required onClick={() => {
-                      char[1].value = 1
-                    }}/>
+                      char[1].value = 1;
+                    }} />
                     &nbsp;
                     &nbsp;
                     <label>2</label>
                     <input type="radio" value="2" name={char[0]} required onClick={() => {
-                      char[1].value = 2
-                    }}/>
+                      char[1].value = 2;
+                    }} />
                     &nbsp;
                     &nbsp;
                     <label>3</label>
                     <input type="radio" value="3" name={char[0]} required onClick={() => {
-                      char[1].value = 3
-                    }}/>
+                      char[1].value = 3;
+                    }} />
                     &nbsp;
                     &nbsp;
                     <label>4</label>
                     <input type="radio" value="4" name={char[0]} required onClick={() => {
-                      char[1].value = 4
-                    }}/>
+                      char[1].value = 4;
+                    }} />
                     &nbsp;
                     &nbsp;
                     <label>5</label>
                     <input type="radio" value="5" name={char[0]} required onClick={() => {
-                      char[1].value = 5
-                    }}/>
+                      char[1].value = 5;
+                    }} />
                     <div>{char[2]} &nbsp; {char[3]}</div>
                     &nbsp;
                   </div>
-                )
+                );
               })}
             </div>
             <br></br>
@@ -203,9 +203,9 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
               />
             </div>
             {body.length < 50 &&
-            <small>
-              {showCounter()}
-            </small>}
+              <small>
+                {showCounter()}
+              </small>}
             {body.length >= 50 &&
               <small>
                 Maximum reached
@@ -223,7 +223,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
                 </button>}
               &nbsp;
               {images && images.map((image, index) => {
-                return <img key={index} src={`${image}`} width="70" height="70" />
+                return <img key={index} src={`${image}`} width="70" height="70" />;
               })}
               {images.length > 0 &&
                 <div>
@@ -276,7 +276,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
             </div>
             &nbsp;
             <div>
-              <input type="submit"/>
+              <input type="submit" />
             </div>
           </form>
         </div>
@@ -284,6 +284,6 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     </>,
     document.getElementById('modal')
   );
-}
+};
 
 export default AddReviewModal;

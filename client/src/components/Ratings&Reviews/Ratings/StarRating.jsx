@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { FaStar } from "react-icons/fa";
+import { FaStar } from 'react-icons/fa';
 import star from '../../../assets/images/star.png';
 
 // takes in a rating and renders 5 stars filled in proportionally with the provided rating, rounded to the nearest .25
 const StarRating = ({ rating }) => {
-
   let stars = [];
   while (stars.length < 5) {
     if (rating > 1) {
       stars.push(1);
-    }
-    else if (rating > 0) {
+    } else if (rating > 0) {
       let empty = Math.abs(0 - rating);
       let oneQuarter = Math.abs(0.25 - rating);
       let half = Math.abs(0.5 - rating);
@@ -44,13 +42,13 @@ const StarRating = ({ rating }) => {
   }
 
   return (
-    <div>
+    <div style={{display: 'inline-block'}}>
       {stars.map((item, i) => {
         return (
           <div className="single-star-container" key={i}>
-            <div className="single-star-fill" style={{"color": "gold", "width" : `${parseInt(item * 100)}%`}}>
-            <img className="single-star-outline"
-            src={star} />
+            <div className="single-star-fill" style={{ 'color': 'gold', 'width': `${parseInt(item * 100)}%` }}>
+              <img className="single-star-outline"
+                src={star} />
             </div>
           </div>
         );

@@ -28,7 +28,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
   }, []);
 
   return (
-    <div className="card card-shadow" onClick={() => updateProduct(event, product.id)}>
+    <div className="card card-shadow outfits-card" onClick={() => updateProduct(event, product.id)}>
       <i className="fa-solid fa-xmark favorite-icon x-icon" onClick={(event) => { removeOutfit(event, product.id); }}></i>
       <div className="card-image">
         {imgURL === null && <div className="out-of-stock-related-image"/>}
@@ -37,7 +37,7 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
       <p className="card-category">{outfit.category}</p>
       <div className="card-name">{outfit.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div className="card-rating"><StarRating rating={rating}/></div>
+      <div className="card-rating overall-stars"><StarRating rating={rating}/></div>
     </div>
   );
 };

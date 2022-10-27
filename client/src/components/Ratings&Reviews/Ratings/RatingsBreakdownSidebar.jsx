@@ -3,13 +3,12 @@ import StarRating from './StarRating.jsx';
 import StarRatingsChart from './StarRatingsChart.jsx';
 
 const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
-
-  const [ filteredReviews, setFilteredReviews ] = useState([]);
-  const [ toggleFiveStar, setToggleFiveStar ] = useState(false);
-  const [ toggleFourStar, setToggleFourStar ] = useState(false);
-  const [ toggleThreeStar, setToggleThreeStar ] = useState(false);
-  const [ toggleTwoStar, setToggleTwoStar ] = useState(false);
-  const [ toggleOneStar, setToggleOneStar ] = useState(false);
+  const [filteredReviews, setFilteredReviews] = useState([]);
+  const [toggleFiveStar, setToggleFiveStar] = useState(false);
+  const [toggleFourStar, setToggleFourStar] = useState(false);
+  const [toggleThreeStar, setToggleThreeStar] = useState(false);
+  const [toggleTwoStar, setToggleTwoStar] = useState(false);
+  const [toggleOneStar, setToggleOneStar] = useState(false);
 
   useEffect(() => {
     let filtered = [];
@@ -53,7 +52,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         break;
       default:
     }
-  }
+  };
 
   return (
     <>
@@ -67,7 +66,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
           {rating} &nbsp;&nbsp;
         </h2>
         <div>
-        <sup><StarRating rating={rating}/></sup>
+          <sup className="overall-stars"><StarRating rating={rating} /></sup>
         </div>
       </div>
       <h4 className="flexbox-container" onClick={() => handleStarClick(5)}>
@@ -80,13 +79,13 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         3 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
       </h4>
       <h4 className="flexbox-container" onClick={() => handleStarClick(2)}>
-        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
+        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar} /> &nbsp; {twoStar} reviews
       </h4>
       <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
         1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
       </h4>
     </>
   );
-}
+};
 
 export default RatingsBreakdownSidebar;

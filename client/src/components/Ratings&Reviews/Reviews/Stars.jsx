@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { FaStar } from "react-icons/fa";
+import { FaStar } from 'react-icons/fa';
 
 const Stars = ({ setStar }) => {
-
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [hoverText, setHoverText] = useState('');
@@ -22,30 +21,28 @@ const Stars = ({ setStar }) => {
             <button className="textButton"
               name="rating"
               value={ratingValue}
-              onClick={() => handleClick(ratingValue)}
-            >
-            <FaStar
-              className="star"
-              color={ratingValue <= (hover || rating) ? "gold" : "lightgray"}
-              size={35}
-              onMouseEnter={() => {
-                setHover(ratingValue);
-                setHoverText(ratingValue);
-                // setStar(ratingValue);
-              }}
-              onMouseLeave={() => {
-                setHover(null);
-                setHoverText('');
-              }}
-            />
+              onClick={() => handleClick(ratingValue)}>
+              <FaStar
+                className="star"
+                color={ratingValue <= (hover || rating) ? 'gold' : 'lightgray'}
+                size={35}
+                onMouseEnter={() => {
+                  setHover(ratingValue);
+                  setHoverText(ratingValue);
+                  // setStar(ratingValue);
+                }}
+                onMouseLeave={() => {
+                  setHover(null);
+                  setHoverText('');
+                }} />
             </button>
           </label>
         );
       })}
       {
         hoverText
-        ? <p>I rate this product {hoverText + " stars"}</p>
-        : <p>I rate this product {rating + " stars"}</p>
+          ? <p>I rate this product {hoverText + ' stars'}</p>
+          : <p>I rate this product {rating + ' stars'}</p>
       }
     </div>
   );

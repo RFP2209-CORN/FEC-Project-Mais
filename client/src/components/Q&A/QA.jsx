@@ -7,13 +7,14 @@ import AnswersList from './AnswersList.jsx';
 import { validate } from 'react-email-validator';
 import axios from 'axios';
 
-const QuestionsAndAnswers = ({ productId, productName }) => {
+const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setImages }) => {
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
   const [collapseButton, setCollapseButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
+  const [reRender, setReRender] = useState(false);
   // Search Function
   const handleSearch = (value) => {
     let container = [];
@@ -105,8 +106,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       .then(() => setIsOpen(false))
       .catch(err => console.log(err));
 
-      // setAllQuestionsData[...allQuestionsData, questionData]
-
+    setReRender(!reRender);
   };
 
   // Renders list of Questions or Nothing.
@@ -116,7 +116,14 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
     }
     if (data.length !== 0) {
       return data.map(item => {
-        return <IndividualQuestion question={item} key={item.question_id} handleHelpful={handleQuestionHelpful} handleReport={handleQuestionReport} product={productName} />;
+        return <IndividualQuestion
+          question={item}
+          key={item.question_id}
+          handleHelpful={handleQuestionHelpful}
+          handleReport={handleQuestionReport}
+          product={productName}
+          photoWidget={photoWidget}
+          images={images} setImages={setImages} />;
       });
     }
   };
@@ -134,13 +141,8 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
         setAllQuestionsData(data);
         setQuestionsList(data);
       })
-      .then(() => {
-        if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
-          localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-        }
-      })
       .catch(err => console.log(err));
-  }, [productId]);
+  }, [productId, reRender]);
 
   return (
     <div className="qa-container">

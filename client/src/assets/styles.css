@@ -4,9 +4,10 @@
 ========================================
 */
 
-body {
-  padding: 0px 50px 50px;
+#app-container {
+  display: grid;
   font-family: sans-serif;
+  justify-items: center;
 }
 
 html {
@@ -24,6 +25,8 @@ select {
 
 #banner {
   display: flex;
+  margin: 0 100px;
+  padding: 20px 10px 0 10px;
   justify-content: space-between;
   align-items: center;
   height: 65px;
@@ -40,7 +43,6 @@ select {
   font-size: 25px;
   color: #4C4E52;
 }
-
 
 /*
 ========================================
@@ -91,7 +93,6 @@ select {
   color: red;
 }
 
-
 /*
 ========================================
     OVERVIEW
@@ -102,11 +103,6 @@ select {
   margin-top: 50px;
   margin-bottom: 75px;
 }
-
-/* .product-overview {
-  display: flex;
-  justify-content: center;
-} */
 
 .image-gallery {
   display: inline-block;
@@ -312,11 +308,26 @@ select {
   background-color: #E60023;
 }
 
+.overall-stars {
+  zoom: 65%;
+}
+
+a:link {
+  padding: 10px;
+  color: #525252;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /*
 ========================================
     RELATED PRODUCTS
 ========================================
 */
+
 .related-items-and-outfits-container {
     display: grid;
   }
@@ -326,13 +337,13 @@ select {
   position: relative;
   display: inline-block;
   scroll-behavior: smooth;
-  top:  50%;
-  left: 53%;
-  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 56%;
+  transform: translate(-50%, -50%);
 }
 .carousel-title {
   position: relative;
-  left: 9%;
+  left: 6.5%;
 }
 
 #card-container-related {
@@ -344,6 +355,7 @@ select {
   width: 75%;
   overflow: hidden;
 }
+
 #card-container-outfit {
   display: inline-flex;
   justify-content: left;
@@ -362,23 +374,26 @@ select {
 
 .cards-arrow {
   position: relative;
-  padding: 50px;
-  /* top: 50%;
-  transform: translate(0, -50%);
-  right: 5px;
-  font-size: 30px; */
+  padding: 20px 20px 20px 10px;
+  top: -2.5em;
   color: black;
+  zoom: 200%;
 }
+
 .cards-arrow-outfit {
   position: relative;
-  top: 2.2em;
-  padding: 50px;
+  padding: 20px 20px 20px 10px;
+  top: 0.2em;
   color: black;
+  zoom: 200%;
 }
+
 .cards-arrow-transparent {
   position: relative;
-  padding: 50px;
+  padding: 20px 15px 20px 10px;
+  top: 0.2em;
   color: white;
+  zoom: 200%;
 }
 
 .card {
@@ -390,6 +405,11 @@ select {
   border-radius: .2rem;
   overflow: hidden;
   padding-bottom: 10px;
+}
+
+.related-items-card,
+.outfits-card {
+  cursor: pointer;
 }
 
 .card.card-shadow {
@@ -425,7 +445,6 @@ select {
   justify-content: center;
   padding: 2.2px;
   background-color: rgba(105, 105, 105, 0.4);
-
 }
 
 .star-icon {
@@ -433,6 +452,11 @@ select {
 }
 .x-icon {
   color: white;
+}
+
+.star-icon:hover,
+.x-icon:hover {
+  color: red;
 }
 
 .card-image {
@@ -507,11 +531,13 @@ select {
 
 .qa-container {
   display: grid;
-  max-height: 600px;
+  max-height: 660px;
+  margin-top: 40px;
+  padding: 20px 100px;
   overflow: scroll;
-  grid-template-columns: 2fr 6fr;
-  border: .5px solid grey;
   border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  grid-template-columns: 2fr 6fr;
   grid-template-areas:
     "title title"
     "search search"
@@ -520,13 +546,13 @@ select {
 
 .qa-title {
   grid-area: title;
-  zoom: 125%;
-  padding-left: 10px;
+  zoom: 150%;
+  padding-left: 15px;
 }
 
 .search-question {
   grid-area: search;
-  zoom: 125%;
+  zoom: 200%;
   padding-left: 10px;
 }
 
@@ -545,7 +571,6 @@ select {
   grid-gap: 5px;
   grid-template-columns: repeat(10, 1fr);
   padding: 0 5px 0 5px;
-  border: .5px solid grey;
   border-radius: 2px;
   grid-template-areas:
     "question q-body q-body q-body q-body q-body q-body q-body add-a add-a"
@@ -601,7 +626,9 @@ select {
   grid-template-columns: 4fr 2fr 4fr;
   grid-gap: 5px;
   padding: 0 10px 0 10px;
-  /* border: 1px solid grey; */
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgb(0, 0, 0, .1);
   grid-template-areas:
     "a-body a-body a-body"
     "a-photos a-photos a-photos"
@@ -636,12 +663,25 @@ select {
 ========================================
 */
 
-.align-ratings-breakdown-header {
-  margin-left: 4%;
+.ratings-and-reviews {
+  margin-top: 40px;
+  margin-bottom: 100px;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  max-height: 660px;
+  max-width: 1070px;
+  box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
+  overflow-x: hidden;
+  border-radius: 5px;
+  padding: 20px 40px;
 }
 
-.align-reviews-list-header {
-  margin-right: 10%;
+.bar-chart {
+  line-height: .5;
+}
+
+.align-ratings-breakdown-header {
+  margin-left: 4%;
 }
 
 .single-star-container {
@@ -664,23 +704,25 @@ select {
   background-color: gold;
 }
 
-.ratings-and-reviews {
-  display:flex;
+.review-boxes {
+  padding-right: 20px;
+  overflow: hidden;
+  max-width: 70%;
+}
+
+.reviews-body {
+  overflow: scroll;
 }
 
 .ratings-breakdown {
-  flex-basis: 25%;
+  flex-basis: 40%;
 }
 
 .reviews-list {
   width: 100%;
+  position: relative;
   line-height: 1.5;
-  padding-left:5%;
-  position:relative;
-}
-
-.reviews-body {
-  word-wrap: break-word;
+  padding-left: 5%;
 }
 
 .add-review-btn {
@@ -694,6 +736,7 @@ select {
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
+
 .reviews-date {
   float: right;
   padding-right: 10%;

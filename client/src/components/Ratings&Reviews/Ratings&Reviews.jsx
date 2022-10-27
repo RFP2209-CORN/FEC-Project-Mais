@@ -3,7 +3,7 @@ import axios from 'axios';
 import RatingsBreakdownSidebar from './Ratings/RatingsBreakdownSidebar.jsx';
 import ReviewsList from './Reviews/ReviewsList.jsx';
 
-const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews }) => {
+const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, images, setImages, photoWidget }) => {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [fiveStar, setFiveStar] = useState(0);
@@ -56,8 +56,8 @@ const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, to
       <div className="reviews-list">
         {displayedReviews.length > 0
           ?
-          <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} displayedReviews={displayedReviews} totalNumberOfReviews={totalReviews} />
-          : <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} reviews={reviews} totalNumberOfReviews={totalReviews} />
+          <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} displayedReviews={displayedReviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
+          : <ReviewsList product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} reviews={reviews} totalNumberOfReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
         }
       </div>
     </div>
