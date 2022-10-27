@@ -17,10 +17,14 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
     // setRating(avgRating)
     // functions.setRating(avgRating)
 
-    axios.get(`/reviews/${product.id}`)
+
+/* INTEGRATION // DELETE AFTER SEEN
+    Edit rating to be same as all other files.
+ */
+    axios.get(`reviews/meta/${product.id}`)
       .then(result => {
-        let reviews = result.data.results;
-        setRating(calcRating(reviews));
+        let ratings = result.data.ratings;
+        setRating(calcRating(ratings));
       });
 
     // const styles = Requests.getProductStyles(product.id);
@@ -33,7 +37,6 @@ const OutfitCard = ({ outfit, calcRating, saleAndImageSetter, renderPrice, updat
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
         let styles = result.data.results;
-        console.log('RI styles', styles);
         const { sale, ogPrice, thumbnailURL } = saleAndImageSetter(styles);
 
         setOriginalPrice(ogPrice);

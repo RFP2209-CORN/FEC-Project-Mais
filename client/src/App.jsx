@@ -43,7 +43,7 @@ const App = () => {
       .catch(err => console.log(err));
 
     // Ratings Metadata
-    axios.get(`reviews/meta/${productId}`)
+    axios.get(`/reviews/meta/${productId}`)
       .then(results => {
         let ratings = results.data.ratings;
         let rating = 0;
@@ -63,21 +63,21 @@ const App = () => {
 
   return (
     <>
-      {/* <div id="overview">
+      <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
-      </div> */}
+      </div>
 
-      {/* <div id="relatedItemsAndOutfits">
-        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} />
-      </div> */}
+      <div id="relatedItemsAndOutfits">
+        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} currentProduct={currentProduct}/>
+      </div>
 
-      {/* <div id="qa">
+      <div id="qa">
         <QuestionsAndAnswers productId={productId} productName={currentProduct.name} />
-      </div> */}
+      </div>
 
-      {/* <div id="rateAndReview">
+      <div id="rateAndReview">
         <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews}/>
-      </div> */}
+      </div>
     </>
   );
 };

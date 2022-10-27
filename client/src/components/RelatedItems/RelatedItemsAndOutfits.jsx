@@ -4,7 +4,7 @@ import RelatedItems from './RelatedItems.jsx';
 import OutfitCreation from './OutfitCreation.jsx';
 
 
-const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
+const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) => {
   const getProductReviews = (productId) => {
     return (
       axios.get(`/reviews/${productId}`)
@@ -48,24 +48,37 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
   };
 
   const calcRating = (reviews) => {
-    let totalStars = 0;
 
-    for (let i = 0; i < reviews.length; i++) {
-      totalStars += reviews[i].rating;
-    }
-    let rating = totalStars / reviews.length;
-    let floor = Math.floor(rating);
-    let decimal = rating - floor;
+    /* REMOVE AFTER READ
+    refactor function to be the same as parent
+    */
+    // let totalStars = 0;
 
-    if (decimal <= .25) {
-      return floor;
-    } else if (decimal <= .5) {
-      return floor + .25;
-    } else if (decimal <= .75) {
-      return floor + .5;
-    } else {
-      return floor + .75;
+    let rating = 0;
+    let total = 0;
+    for (let key in reviews) {
+      total += Number(reviews[key]);
+      rating += Number(key) * Number(reviews[key]);
     }
+    rating = (Math.round((rating / total) * 4) / 4);
+    return rating;
+
+    // for (let i = 0; i < reviews.length; i++) {
+    //   totalStars += reviews[i].rating;
+    // }
+    // let rating = totalStars / reviews.length;
+    // let floor = Math.floor(rating);
+    // let decimal = rating - floor;
+
+    // if (decimal <= .25) {
+    //   return floor;
+    // } else if (decimal <= .5) {
+    //   return floor + .25;
+    // } else if (decimal <= .75) {
+    //   return floor + .5;
+    // } else {
+    //   return floor + .75;
+    // }
   };
 
   return (
@@ -85,6 +98,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct }) => {
         renderPrice={renderPrice}
         updateProduct={updateProduct}
         getProductReviews={getProductReviews}
+        product={currentProduct}
       />
     </div>
   );
