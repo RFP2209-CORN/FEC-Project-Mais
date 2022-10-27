@@ -4,7 +4,7 @@ import AddReview from '../Reviews/AddReview.jsx';
 
 import SingleReview from '../Reviews/SingleReview.jsx';
 
-const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews }) => {
+const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews, images, setImages, photoWidget }) => {
   reviews = displayedReviews || reviews;
 
   const [currentReviews, setCurrentReviews] = useState([]);
@@ -116,7 +116,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
             Load More Reviews
           </button>}
         <span className="add-review-btn">
-          <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} />
+          <AddReview product_id={product_id} prodName={prodName} metaData={metaData} addReview={addReview} photoWidget={photoWidget} images={images} setImages={setImages} />
         </span>
       </span>
     </>

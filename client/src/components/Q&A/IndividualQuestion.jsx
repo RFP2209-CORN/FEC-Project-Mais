@@ -32,6 +32,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product, ph
       .then(() => setIsOpen(false))
       .catch(err => console.log(err));
 
+    setImages([]);
     setAnswerData(answerInfo);
   };
 
@@ -47,7 +48,7 @@ const IndividualQuestion = ({ question, handleHelpful, handleReport, product, ph
 
       <p className="add-answer">
         <button onClick={() => setIsOpen(true)} >Add Answer</button>
-        <AddAnswerModal open={isOpen} onClose={() => setIsOpen(false)} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages} />
+        <AddAnswerModal open={isOpen} onClose={() => { setIsOpen(false); setImages([]); }} question={question_body} submitAnswer={handleSubmitAnswer} product={product} photoWidget={photoWidget} images={images} setImages={setImages} />
       </p>
 
       <p className="question-info">

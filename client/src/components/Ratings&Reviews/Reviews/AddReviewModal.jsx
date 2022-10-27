@@ -3,11 +3,11 @@ import ReactDom from 'react-dom';
 import Stars from './Stars.jsx';
 import { validate } from 'react-email-validator';
 
-const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData }) => {
+const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaData, images, setImages, photoWidget }) => {
   const [recommend, setRecommend] = useState(false);
   const [rating, setRating] = useState(0);
   const [star, setStar] = useState();
-  const [images, setImages] = useState([]);
+  // const [images, setImages] = useState([]);
   const [body, setBody] = useState('');
 
   const summary = useRef('');
@@ -15,10 +15,10 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
   const email = useRef('');
 
   // convert chraracteristics object into an array for mapping purposes and add ratings details
-  let chararcteristicsObj = metaData.characteristics
-  let characteristicsArray = []
+  let chararcteristicsObj = metaData.characteristics;
+  let characteristicsArray = [];
   if (chararcteristicsObj) {
-    characteristicsArray = Object.entries(chararcteristicsObj)
+    characteristicsArray = Object.entries(chararcteristicsObj);
   }
   for (let i = 0; i < characteristicsArray.length; i++) {
     switch (characteristicsArray[i][0]) {
@@ -51,22 +51,22 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
     }
   }
 
-  // photo uploader
-  const photoWidget = cloudinary.createUploadWidget(
-    {
-      cloudName: 'dgjzqkjh0',
-      uploadPreset: 'Add Review Form'
-    },
-    (error, result) => {
-      if (error) {
-        console.log('error uploading photo', error);
-      }
-      if (!error && result && result.event === 'success') {
-        // console.log('result.info.url', result.info.url);
-        setImages([...images, result.info.url]);
-      }
-    }
-  );
+  // // photo uploader
+  // const photoWidget = cloudinary.createUploadWidget(
+  //   {
+  //     cloudName: 'dgjzqkjh0',
+  //     uploadPreset: 'Add Review Form'
+  //   },
+  //   (error, result) => {
+  //     if (error) {
+  //       console.log('error uploading photo', error);
+  //     }
+  //     if (!error && result && result.event === 'success') {
+  //       // console.log('result.info.url', result.info.url);
+  //       setImages([...images, result.info.url]);
+  //     }
+  //   }
+  // );
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -110,8 +110,10 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
           <h1>Write Your Review</h1>
           <h3>{`About the ${prodName}`}</h3>
           <Stars setStar={setStar} />
-          <form onSubmit={(event) =>
-            handleSubmit(event)} >
+          <form onSubmit={(event) => {
+            setImages([]);
+            handleSubmit(event);
+          }}>
             <div>
               <label>Do you recommend this product?
                 <br></br>

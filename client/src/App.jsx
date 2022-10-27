@@ -99,7 +99,7 @@ const App = () => {
       </div>
 
       <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} />
+        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
       </div>
     </div>
   );
