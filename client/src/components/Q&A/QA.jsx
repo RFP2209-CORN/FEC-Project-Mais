@@ -7,20 +7,21 @@ import AnswersList from './AnswersList.jsx';
 import { validate } from 'react-email-validator';
 import axios from 'axios';
 
-const QuestionsAndAnswers = ({ productId }) => {
-  const [productName, setProductName] = useState('');
+const QuestionsAndAnswers = ({ productId, productName }) => {
   const [allQuestionsData, setAllQuestionsData] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
   const [loadQuestionButton, setLoadQuestionButton] = useState(true);
   const [collapseButton, setCollapseButton] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
-
   // Search Function
   const handleSearch = (value) => {
     let container = [];
     if (value.length <= 2) {
-      container = allQuestionsData;
+      for (let i = 0; i < allQuestionsData.length; i++) {
+        if (i > 1) { break; }
+        container.push(allQuestionsData[i]);
+      }
     } else if (value.length > 2) {
       for (let i = 0; i < allQuestionsData.length; i++) {
         if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
@@ -101,7 +102,11 @@ const QuestionsAndAnswers = ({ productId }) => {
       alert('The email address provided is not in correct email format.');
     }
     axios.post('/qa/questions', questionData)
+      .then(() => setIsOpen(false))
       .catch(err => console.log(err));
+
+      // setAllQuestionsData[...allQuestionsData, questionData]
+
   };
 
   // Renders list of Questions or Nothing.
@@ -133,12 +138,6 @@ const QuestionsAndAnswers = ({ productId }) => {
         if (JSON.parse(localStorage[document.cookie]).cookie !== document.cookie) {
           localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
         }
-      })
-      .catch(err => console.log(err));
-
-    axios.get(`/products/${productId}`)
-      .then(result => {
-        setProductName(result.data.name);
       })
       .catch(err => console.log(err));
   }, [productId]);

@@ -14,11 +14,21 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
   const [compareId, setCompareId] = useState();
 
   useEffect(() => {
-    axios.get(`/reviews/${product.id}`)
+    /* INTEGRATION // DELETE AFTER SEEN
+      Edit rating to be same as all other files.
+    */
+    axios.get(`/reviews/meta/${product.id}`)
       .then(result => {
-        let reviews = result.data.results;
+        let reviews = result.data.ratings;
         setRating(calcRating(reviews));
       });
+
+    // axios.get(`/reviews/${product.id}`)
+    //   .then(result => {
+    //     let reviews = result.data.results;
+    //     setRating(calcRating(reviews));
+    //   });
+
 
     axios.get(`/products/${product.id}/styles`)
       .then(result => {
@@ -61,12 +71,12 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
       }
       <div className="card-image">
         {imgURL === null && <div className="no-image">Image not available</div>}
-        {imgURL && <img src={imgURL}/>}
+        {imgURL && <img src={imgURL} />}
       </div>
       <p className="card-category">{item.category}</p>
       <div className="card-name">{item.name}</div>
       {renderPrice(salesPrice, originalPrice)}
-      <div className="card-rating"><StarRating rating={rating}/></div>
+      <div className="card-rating"><StarRating rating={rating} /></div>
     </div>
   );
 };

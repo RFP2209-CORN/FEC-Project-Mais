@@ -6,15 +6,24 @@ import RelatedItemsAndOutfits from './components/RelatedItems/RelatedItemsAndOut
 import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx';
 import { useTrackerUpdate } from './TrackerProvider.jsx';
 
-
 const App = () => {
   const [productId, setProductId] = useState(40344);
   const trackClicks = useTrackerUpdate();
+  const [currentProduct, setCurrentProduct] = useState({});
+  const [rating, setRating] = useState(0);
+  const [ratingsData, setRatingsData] = useState([]);
+  const [totalReviews, setTotalReviews] = useState(0);
+
+
+
 
   const updateProduct = (e, prodId) => {
     setProductId(prodId);
   };
 
+
+
+  // Renders Everything needed for other widget to use
   // useEffect(() => {
   //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
 
@@ -22,24 +31,52 @@ const App = () => {
   //     let elem = document.getElementById(module);
   //     elem.addEventListener('click', trackClicks);
   //   });
+
   // }, []);
+
+
+  useEffect(() => {
+
+    // Single Product
+    axios.get(`/products/${productId}`)
+      .then(result => setCurrentProduct(result.data))
+      .catch(err => console.log(err));
+
+    // Ratings Metadata
+    axios.get(`/reviews/meta/${productId}`)
+      .then(results => {
+        let ratings = results.data.ratings;
+        let rating = 0;
+        let total = 0;
+        for (let key in ratings) {
+          total += Number(ratings[key]);
+          rating += Number(key) * Number(ratings[key]);
+        }
+        rating = (Math.round((rating / total) * 4) / 4);
+        setRating(rating);
+        setTotalReviews(total);
+        setRatingsData(ratings);
+      })
+      .catch(err => console.log(err));
+
+  }, [productId]);
 
   return (
     <>
       <div id="overview">
-        <Overview productId={productId}/>
+        <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
 
       <div id="relatedItemsAndOutfits">
-        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct}/>
+        <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} currentProduct={currentProduct}/>
       </div>
 
       <div id="qa">
-        <QuestionsAndAnswers productId={productId}/>
+        <QuestionsAndAnswers productId={productId} productName={currentProduct.name} />
       </div>
 
       <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId}/>
+        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews}/>
       </div>
     </>
   );

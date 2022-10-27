@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, getProductReviews }) => {
+const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, getProductReviews, product }) => {
   const [outfits, setOutfits] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
@@ -41,38 +41,43 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
   };
 
   const addOutfit = () => {
-    axios.get(`/products/${productId}`)
-      .then(product => {
-        let outfitAdded = false;
-        for (let i = 0; i < outfits.length; i++) {
-          if (outfits[i].id === product.data.id) {
-            outfitAdded = true;
-          }
-        }
-        if (outfitAdded === false) {
-          setOutfits(currOutfits => {
-            return [...currOutfits, product.data];
-          });
-          // Set local storage
-          let outfitStorage = localStorage.getItem('outfitStorage');
-          outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
-          outfitStorage.push(product.data);
-          localStorage.setItem('outfitStorage', JSON.stringify(outfitStorage));
+    /* LIST OF CHANGES // delete all comment after read
+    removed get requests,
+    added product as properties passed from parent,
+    changed all product.data to just product*/
 
-          let toDisplay = [];
-          setDisplayItems([]);
-          if (outfitStorage.length < 4) {
-            setDisplayItems(outfitStorage);
-          } else {
-            for (let i = outfitStorage.length - 4; i < outfitStorage.length; i++) {
-              setDisplayItems(currDisplay => {
-                return [...currDisplay, outfitStorage[i]];
-              });
-            }
-            setStartIndex(outfitStorage.length - 4);
-          }
-        }
+    // axios.get(`/products/${productId}`)
+    //   .then(product => {
+    let outfitAdded = false;
+    for (let i = 0; i < outfits.length; i++) {
+      if (outfits[i].id === product.id) {
+        outfitAdded = true;
+      }
+    }
+    if (outfitAdded === false) {
+      setOutfits(currOutfits => {
+        return [...currOutfits, product];
       });
+      // Set local storage
+      let outfitStorage = localStorage.getItem('outfitStorage');
+      outfitStorage = outfitStorage ? JSON.parse(outfitStorage) : [];
+      outfitStorage.push(product);
+      localStorage.setItem('outfitStorage', JSON.stringify(outfitStorage));
+
+      let toDisplay = [];
+      setDisplayItems([]);
+      if (outfitStorage.length < 4) {
+        setDisplayItems(outfitStorage);
+      } else {
+        for (let i = outfitStorage.length - 4; i < outfitStorage.length; i++) {
+          setDisplayItems(currDisplay => {
+            return [...currDisplay, outfitStorage[i]];
+          });
+        }
+        setStartIndex(outfitStorage.length - 4);
+      }
+    }
+    // });
   };
 
   const removeOutfit = (event) => {
@@ -137,7 +142,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
 
   return (
     <div className="card-container-container">
-      <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }}/>
+      <i className="fa-solid fa-arrow-left-long cards-arrow" onClick={() => { changeDisplay('left'); }} />
       <div id="card-container-related">
         <div className="card add-outfit card-shadow">
           <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
@@ -158,7 +163,7 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         })}
         {displayItems.length <= 2 && renderBlankCards(outfits.length)}
       </div>
-      <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }}/>
+      <i className="fa-solid fa-arrow-right-long cards-arrow" onClick={() => { changeDisplay('right'); }} />
     </div>
   );
 };
