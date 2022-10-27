@@ -544,7 +544,8 @@ select {
 ========================================
 */
 
-.flexbox-container {
+
+.main-flexbox-container {
   display: flex;
   align-items: center;
   border: 1px solid grey;
@@ -577,42 +578,93 @@ select {
   border-radius: 5px;
 }
 
-.sidebar {
-  /* position: absolute; */
-  max-width: 225px;
+.ratings-sidebar {
+  /* display:grid;
+  border:rgba(105, 33, 33, 0.2);
+  position: absolute;
+  top: 700px; */
+  max-width: 285px;
 }
 
-.reviews-list {
-  position: relative;
-  top: -150px;
-  left: 200px
-}
-
-.reviews-list-header {
-  position: relative;
-  right: -420px;
-  top: -450px;
+.reviews-grid {
+  display: grid;
+  width: 60em;
+  height:25em;
 }
 
 .reviews-card {
   display: flex;
   flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
   border-radius: 0.625rem;
   margin: 2rem;
 }
 
+.flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.reviews-date {
+  position: relative;
+  left: 400px;
+  text-align: right;
+}
+
 .reviews-card-text {
-  background-color: white;
-  max-width: 21.25rem;
+  text-align: left;
   border-radius: 0.625rem;
   margin: 2rem;
+}
+.reviews-list {
+  position: relative;
+  top: 450px;
+  left: 200px
+}
+
+.reviews-list-header {
+  display: inline;
+  position: relative;
+  left: 350px;
+  bottom: 550px;
+}
+
+.review-flexbox-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  text-align: right;
+}
+
+.reviews-card-text {
+  text-align: left;
+  border-radius: 0.625rem;
+  margin: 2rem;
+}
+
+.reviews-card-helpful {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+hr {
+  display: block;
+  width: 600px;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
 }
 
 .review-photo {
   height: 200px;
   width: 200px;
+}
+
+.review-form-container {
+  overflow: scroll;
 }
 
 .reviews-image-button {
@@ -626,6 +678,14 @@ select {
   margin: 2rem;
 }
 
+
+
+.reviews-card-helpful {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
 .reviews-card-response {
   display: flex;
   flex-direction: row;
@@ -633,18 +693,7 @@ select {
   max-width: 21.25rem;
 }
 
-.reviews-card-helpful {
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
-}
 
-.reviews-date {
-  position: relative;
-  left: 400px;
-  text-align: right;
-}
 
 .sort-dropdown {
   position: relative;

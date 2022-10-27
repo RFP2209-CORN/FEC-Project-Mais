@@ -32,10 +32,8 @@ const SingleReview = ({ review }) => {
     let id = review.review_id;
     axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness -= 1})
       .then((result) => {
-        console.log('result', result);
       })
       .catch((error) => {
-        console.log('error', error);
       })
   };
 
@@ -45,68 +43,71 @@ const SingleReview = ({ review }) => {
     let id = review.review_id;
     axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness += 1})
       .then((result) => {
-        console.log('result', result);
       })
       .catch((error) => {
-        console.log('error', error);
       })
   }
 
   return (
     <>
-      <div className="reviews-card">
-        <div className="flexbox-container">
-          <div><StarRating rating={review.rating} /></div>
-          <div className="reviews-date">{review.reviewer_name},&nbsp;{review.date}</div>
-        </div>
-      </div>
-      <div className="reviews-card-text">
-        <h3>
-          {review.summary?.split('.')[0]}
-        </h3>
-        <p>
-          {review.body}
-        </p>
-        <p>
-          {review.recommend ? '✅ I recommend this product' : null}
-        </p>
-      </div>
-      <div>
-      {photos?.length > 0 && photos.map((photo, index) => {
-        return (
-          <div key={index}>
-            <button className="reviews-image-button"onClick={() => setIsOpen(true)}>Open Image</button>
-            <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
+      <div className="reviews-grid" >
+        <div className="reviews-card">
+          <div className="flexbox-container">
+            <StarRating rating={review.rating} />
+
+            <div className="reviews-date" >{review.reviewer_name}, &nbsp; {review.date}
+            </div>
           </div>
-        )
-      })}
-       </div>
-      {review.response &&
-        <div className="reviews-card-response">
+        </div>
+        <div className="reviews-card-text">
           <h3>
-            Response from seller:
+            {review.summary?.split('.')[0]}
           </h3>
           <p>
-            {review.response}
+            {review.body}
+         <br/>
+         <br/>
+            {review.recommend ? '✅ I recommend this product' : null}
           </p>
         </div>
-      }
-      <div className="flexbox-container">
-        <div className="reviews-card-text">
-          Was this review helpful?
+
+        {photos?.length > 0 && photos.map((photo, index) => {
+          return (
+            <div key={index}>
+              <button className="reviews-image-button"onClick={() => setIsOpen(true)}>Open Image</button>
+              <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
+            </div>
+          )
+        })}
+
+        {review.response &&
+          <div className="reviews-card-response">
+            <h3>
+              Response from seller:
+            </h3>
+            <p>
+              {review.response}
+            </p>
+          </div>
+        }
+        <div className="flexbox-container">
+          <div className="reviews-card-text">
+            Was this review helpful?
+          </div>
+          <div>
+            <button className="textButton" onClick={handleYesClick}>
+              Yes
+            </button>
+            ({review.helpfulness}) &nbsp;
+          </div>
+          <div>
+            <button className="textButton" onClick={handleNoClick}>
+              No
+            </button>
+            ({no})
+          </div>
         </div>
-        <div>
-          <button className="textButton" onClick={handleYesClick}>
-            Yes
-          </button>
-          ({review.helpfulness}) &nbsp;
-        </div>
-        <div>
-          <button className="textButton" onClick={handleNoClick}>
-            No
-          </button>
-          ({no})
-        </div>
+        <hr/>
       </div>
     </>
   )

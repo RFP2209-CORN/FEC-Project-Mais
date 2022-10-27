@@ -40,7 +40,7 @@ const App = () => {
 
       <div id="rateAndReview">
         <RatingsAndReviews product_id={productId}/>
-      </div>
+      </div> */}
     </>
   );
 };

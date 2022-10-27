@@ -52,12 +52,11 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         setToggleOneStar(!toggleOneStar);
         break;
       default:
-        console.log('did not click anything that I can handle');
     }
   }
 
   return (
-    <div className="sidebar">
+    <div className="ratings-sidebar">
       <h1>
         Ratings Breakdown
       </h1>
