@@ -50,26 +50,24 @@ const SingleReview = ({ review }) => {
 
   return (
     <>
-      <div className="reviews-grid" >
-        <div className="reviews-card">
-          <div className="flexbox-container">
-            <StarRating rating={review.rating} />
+      <span>
+        <StarRating rating={review.rating} />
+        <div className="reviews-date" > {review.reviewer_name}, &nbsp;  {review.date}
+        </div>
+      </span>
+      <h3>
+        {review.summary?.split('.')[0]}
+      </h3>
+      <p>
+          {review.body}
+         <br/>
+         <br/>
+          {review.recommend ? '✅ I recommend this product' : null}
+      </p>
 
-            <div className="reviews-date" >{review.reviewer_name}, &nbsp; {review.date}
-            </div>
-          </div>
-        </div>
-        <div className="reviews-card-text">
-          <h3>
-            {review.summary?.split('.')[0]}
-          </h3>
-          <p>
-            {review.body}
-         <br/>
-         <br/>
-            {review.recommend ? '✅ I recommend this product' : null}
-          </p>
-        </div>
+
+
+
 
         {photos?.length > 0 && photos.map((photo, index) => {
           return (
@@ -108,7 +106,7 @@ const SingleReview = ({ review }) => {
           </div>
         </div>
         <hr/>
-      </div>
+
     </>
   )
 }
