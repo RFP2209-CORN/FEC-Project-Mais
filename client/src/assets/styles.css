@@ -16,7 +16,8 @@ html {
 button,
 .submit,
 .helpful,
-.photo {
+.photo,
+select {
   cursor: pointer;
 }
 
@@ -77,18 +78,25 @@ button,
 ========================================
 */
 
+#overview {
+  margin-top: 50px;
+  margin-bottom: 75px;
+}
+
 .product-overview {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .image-gallery {
   display: inline-block;
+  padding: 0 20px;
 }
 
 .overview-sidebar {
   display: inline-block;
-  width: 575px;
+  max-width: 500px;
+  padding: 0 20px;
 }
 
 .out-of-stock-main-image {
@@ -97,54 +105,55 @@ button,
   background-position: center;
   width: 575px;
   height: 575px;
-  display: inline-block
+  display: inline-block;
 }
 
 .thumbnail-nav-bar {
   width: 82.5px;
   height: 575px;
-  display: inline-block
+  display: inline-block;
 }
 
 .thumbnail-nav-bar-arrows {
-  cursor: pointer
+  cursor: pointer;
 }
 
 #thumbnail-nav-bar-images {
   width: 82.5px;
   height: 540px;
   overflow: hidden;
-  scroll-snap-type: y mandatory
+  scroll-snap-type: y mandatory;
 }
 
 .thumbnail-nav-bar-image {
   width: 72.5px;
   height: 72.5px;
   cursor: pointer;
-  scroll-snap-align: 'start'
+  scroll-snap-align: 'start';
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .thumbnail-nav-bar-selected {
-  border: 3px solid black
+  border: 3px solid black;
 }
 
-.fa-arrow-left-long {
+.fa-angle-left {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   left: 5px;
-  font-size: 35px;
-  color: white;
+  font-size: 30px;
+  color: #EEEDE7;
   cursor: pointer;
 }
 
-.fa-arrow-right-long {
+.fa-angle-right {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
   right: 5px;
-  font-size: 35px;
-  color: white;
+  font-size: 30px;
+  color: #EEEDE7;
   cursor: pointer;
 }
 
@@ -160,7 +169,8 @@ button,
   background-position: center;
   width: 575px;
   height: 575px;
-  cursor: zoom-in
+  cursor: zoom-in;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .expanded-view-image {
@@ -168,7 +178,7 @@ button,
   background-position: center;
   height: 700px;
   width: 700px;
-  cursor: crosshair
+  cursor: crosshair;
 }
 
 .zoomed-view {
@@ -180,7 +190,7 @@ button,
 .expanded-view-icons {
   display: flex;
   justify-content: center;
-  padding: 2.5px
+  padding: 2.5px;
 }
 
 .fa-circle {
@@ -198,6 +208,7 @@ button,
   height: 55px;
   margin-right: 7.5px;
   border-radius: 50%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
 }
 
 .checkmark {
@@ -212,6 +223,38 @@ button,
   height: 12px;
   display: flex;
   align-items: center;
+}
+
+.add-to-cart {
+  width: 75%;
+}
+
+.cart-dropdown {
+  padding: 8px 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1.5px solid grey;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.size-selector {
+  width: 60%;
+}
+
+.quantity-selector {
+  width: 30%;
+}
+
+.add-to-cart-button {
+  background-color: #5A5A5A;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  width: 92.25%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 /*
@@ -254,6 +297,10 @@ button,
 
 .cards-arrow {
   position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 5px;
+  font-size: 30px;
   color: black;
 }
 
@@ -497,14 +544,6 @@ button,
 ========================================
 */
 
-
-.main-flexbox-container {
-  display: flex;
-  align-items: center;
-  border: 1px solid grey;
-  padding: 20px;
-}
-
 .single-star-container {
   height: 36px;
   width: 31px;
@@ -526,189 +565,30 @@ button,
   background-color: gold;
 }
 
-.btn-modal {
-  background-color: antiquewhite;
-  border-radius: 5px;
+.ratings-and-reviews {
+  display:flex;
+
 }
 
-.ratings-sidebar {
-  /* display:grid;
-  border:rgba(105, 33, 33, 0.2);
-  position: absolute;
-  top: 700px; */
-  max-width: 285px;
+.ratings-breakdown {
+  flex-basis: 25%;
 }
 
-.reviews-grid {
-  display: grid;
-  width: 60em;
-  height:25em;
+.reviews-list {
+  width: 100%;
+  padding-left:5%;
+  position:relative;
 }
 
-.reviews-card {
-  display: flex;
-  flex-direction: row;
-  border-radius: 0.625rem;
-  margin: 2rem;
-}
+.add-review-btn {
+  /* position:absolute; */
 
-.flexbox-container {
-  display: flex;
-  align-items: center;
-  padding: 20px;
 }
 
 .reviews-date {
-  position: relative;
-  left: 400px;
-  text-align: right;
-}
-
-.reviews-card-text {
-  text-align: left;
-  border-radius: 0.625rem;
-  margin: 2rem;
-}
-.reviews-list {
-  position: relative;
-  top: 450px;
-  left: 200px
-}
-
-.reviews-list-header {
-  display: inline;
-  position: relative;
-  left: 350px;
-  bottom: 550px;
-}
-
-.review-flexbox-container {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  text-align: right;
-}
-
-.reviews-card-text {
-  text-align: left;
-  border-radius: 0.625rem;
-  margin: 2rem;
-}
-
-.reviews-card-helpful {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-}
-
-hr {
-  display: block;
-  width: 600px;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-
-.review-photo {
-  height: 200px;
-  width: 200px;
-}
-
-.review-form-container {
-  overflow: scroll;
-}
-
-.reviews-image-button {
-  height: 45px;
-  width: 100px;
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
-  border-radius: 0.625rem;
-  margin: 2rem;
-}
-
-
-
-.reviews-card-helpful {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-}
-
-.reviews-card-response {
-  display: flex;
-  flex-direction: row;
-  background-color: gray;
-  max-width: 21.25rem;
-}
-
-
-
-.sort-dropdown {
-  position: relative;
-  right: -40px;
-}
-
-.sort-dropdown-menu {
-  position: relative;
-  list-style-type: none;
-  margin: 5px 0;
-  padding: 0;
-  border: 1px solid grey;
-  width: 100px;
-}
-
-.sort-dropdown-menu>li {
-  margin: 0;
-  background-color: white;
-}
-
-.sort-dropdown-menu>li>button {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  background: white;
-  color: blue;
-  border: none;
-  padding: 5px;
-  margin: 0;
-  font: inherit;
-  cursor: pointer;
-}
-
-.more-reviews-button {
-  position: relative;
-  bottom: -450px;
-  left: -360px;
-  height: 40px;
-  width: 240px;
-  display: flex;
-  flex-direction: row;
-  background-color: white;
-  max-width: 21.25rem;
-  border-radius: 10px;
-  margin: 2rem;
-}
-
-.button-dropdown {
-  text-decoration: underline;
-  border: none;
-  background-color: white;
-  font-size: medium;
-}
-
-.btn-add-review {
-  position: relative;
-  left: 650px;
-  bottom: 35px;
-  font-weight: bold;
-  color: rgba(7, 1, 1, 0.2);
-  background-color: rgb(143, 187, 194);
-  border-radius: 10px;
+  float: right;
+  padding-right: 10%;
+  margin-top: -5%;
 }
 
 .textButton {

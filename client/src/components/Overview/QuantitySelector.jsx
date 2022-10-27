@@ -24,7 +24,11 @@ const QuantitySelector = ({currentStyle, skuSelected, quantitySelected, changeQu
   };
 
   return (
-    <select data-testid="quantity-selector" value={quantitySelected} onChange={onSelectQuantity}>
+    <select
+      data-testid="quantity-selector"
+      className="quantity-selector cart-dropdown"
+      value={quantitySelected}
+      onChange={onSelectQuantity}>
       {renderQuantityDropdown()}
     </select>
   );

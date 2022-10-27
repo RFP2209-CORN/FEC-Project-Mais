@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FaStar } from "react-icons/fa";
-// npm install react-icons --save
 
 const Stars = ({ setStar }) => {
 
