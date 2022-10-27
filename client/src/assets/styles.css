@@ -749,3 +749,43 @@ select {
   align-items: center;
   padding: 20px;
 }
+
+.sort-dropdown {
+  position: relative;
+  right: -40px;
+}
+
+.sort-dropdown-menu {
+  position: relative;
+  list-style-type: none;
+  margin: 5px 0;
+  padding: 0;
+  border: 1px solid grey;
+  width: 100px;
+}
+
+.sort-dropdown-menu>li {
+  margin: 0;
+  background-color: white;
+}
+
+.sort-dropdown-menu>li>button {
+  width: 75%;
+  height: 75%;
+  text-align: center;
+  background: white;
+  color: blue;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.button-dropdown {
+  background: none;
+  border: none;
+  text-decoration:underline;
+  display:inline-block;
+  font-size: 25px;
+}

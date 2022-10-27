@@ -1,6 +1,6 @@
 import React from 'react';
 
-const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected}) => {
+const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected, toggleMessage}) => {
   const onChange = (event) => {
     let style;
     for (let i = 0; i < styles.length; i++) {
@@ -12,6 +12,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
     changeCurrentStyle(style);
     changeSkuSelected(false);
     changeQuantitySelected(0);
+    toggleMessage(false);
   };
 
   const renderStyleSelectorThumbnails = () => {
@@ -31,7 +32,7 @@ const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelec
             data-testid={`style${i}`}
             name={styles[i].name}
             className="style-selector-thumbnail"
-            src={styles[i].photos[0].thumbnail_url}
+            src={styles[i].photos[0].thumbnail_url || 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Empty_set_symbol.svg/640px-Empty_set_symbol.svg.png'}
             onClick={onChange}>
           </img>
           {renderCheckmark(styles[i].style_id)}

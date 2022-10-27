@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from '../Ratings/StarRating.jsx';
 import AddReview from '../Reviews/AddReview.jsx';
-
 import SingleReview from '../Reviews/SingleReview.jsx';
 
 const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedReviews, reviews, handleYesClick, rating, totalNumberOfReviews, images, setImages, photoWidget }) => {
