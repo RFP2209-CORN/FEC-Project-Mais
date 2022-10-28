@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from './StarRating.jsx';
 import StarRatingsChart from './StarRatingsChart.jsx';
+import CharacteristicsChart from './CharacteristicsChart.jsx';
 
-const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
+const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
 
+  const [ recommend, setRecommend ] = useState(0);
   const [ filteredReviews, setFilteredReviews ] = useState([]);
   const [ toggleFiveStar, setToggleFiveStar ] = useState(false);
   const [ toggleFourStar, setToggleFourStar ] = useState(false);
@@ -13,6 +15,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
 
   useEffect(() => {
     let filtered = [];
+    let recs = 0;
     for (let i = 0; i < reviews.length; i++) {
       if (toggleFiveStar && reviews[i].rating === 5) {
         filtered.push(reviews[i]);
@@ -30,9 +33,18 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         filtered.push(reviews[i]);
       }
     }
+    setRecommend(recs);
     setDisplayedReviews(filtered);
   }, [toggleOneStar, toggleTwoStar, toggleThreeStar, toggleFourStar, toggleFiveStar]);
 
+
+  const RecommendPercentage = () => {
+    let recs = 0;
+    reviews.forEach((review) => {
+      review.recommend && recs++;
+    })
+    return Math.trunc(recs/reviews.length * 100);
+  }
 
   const handleStarClick = (num) => {
     switch (num) {
@@ -70,6 +82,9 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         <sup><StarRating rating={rating}/></sup>
         </div>
       </div>
+      <div className="align-ratings-breakdown-header">
+        {RecommendPercentage()}% of reviews recommend this product
+      </div>
       <h4 className="flexbox-container" onClick={() => handleStarClick(5)}>
         5 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={fiveStar} /> &nbsp; {fiveStar} reviews
       </h4>
@@ -85,6 +100,9 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
       <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
         1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
       </h4>
+      <br />
+      <br />
+      <CharacteristicsChart metaData={metaData} reviews={reviews}/>
     </>
   );
 }

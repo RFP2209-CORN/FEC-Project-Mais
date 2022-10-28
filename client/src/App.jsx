@@ -7,12 +7,13 @@ import RatingsAndReviews from './components/Ratings&Reviews/Ratings&Reviews.jsx'
 import { useTrackerUpdate } from './TrackerProvider.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(40344);
+  const [productId, setProductId] = useState(40345);
   const trackClicks = useTrackerUpdate();
   const [currentProduct, setCurrentProduct] = useState({});
   const [rating, setRating] = useState(0);
   const [ratingsData, setRatingsData] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [metaData, setMetaData] = useState([]);
 
 
 
@@ -56,6 +57,7 @@ const App = () => {
         setRating(rating);
         setTotalReviews(total);
         setRatingsData(ratings);
+        setMetaData(results.data);
       })
       .catch(err => console.log(err));
 
@@ -63,7 +65,7 @@ const App = () => {
 
   return (
     <>
-      <div id="overview">
+      {/* <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
 
@@ -73,10 +75,10 @@ const App = () => {
 
       <div id="qa">
         <QuestionsAndAnswers productId={productId} productName={currentProduct.name} />
-      </div>
+      </div> */}
 
       <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews}/>
+        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} metaData={metaData}/>
       </div>
     </>
   );
