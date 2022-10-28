@@ -32,6 +32,10 @@ const Overview = ({productId, currentProduct, rating, totalReviews}) => {
         }
       })
       .catch(err => console.log(err));
+
+    setSkuSelected(false);
+    setQuantitySelected(0);
+    setFailToAdd(false);
   }, [productId]);
 
   const changeCurrentStyle = (style) => {

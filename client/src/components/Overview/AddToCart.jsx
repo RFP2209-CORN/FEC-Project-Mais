@@ -11,6 +11,8 @@ const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelect
     } else if (skuSelected && quantitySelected) {
       let item = { sku: skuSelected, quantity: quantitySelected };
       setCart([...cart, item]);
+      changeSkuSelected(false);
+      changeQuantitySelected(0);
     }
   };
 
