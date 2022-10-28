@@ -226,7 +226,8 @@ select {
 }
 
 .fa-circle {
-  font-size: 12px;
+  font-size: 12.75px;
+  color: white;
   margin-right: 2.5px;
 }
 
