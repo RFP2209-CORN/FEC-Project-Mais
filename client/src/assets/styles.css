@@ -170,7 +170,7 @@ select {
   width: 1.25em;
   height: 1.25em;
   border-radius: 50%;
-  background-color: rgba(105, 105, 105, 0.4);
+  background-color: rgba(105, 105, 105, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
