@@ -25,6 +25,10 @@
   )
 } */
 
+/* body {
+  zoom: 30%;
+} */
+
 #app-container {
   display: grid;
   font-family: sans-serif;
@@ -60,6 +64,7 @@ button,
 #banner {
   display: flex;
   justify-content: space-between;
+  justify-self: stretch;
   align-items: center;
   height: 2.5em;
   padding: 20px 10px 0 10px;
@@ -73,6 +78,7 @@ button,
   height: 2.5em;
   width: 2.5em;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .company-name {
@@ -607,9 +613,12 @@ a:visited {
 
 .search-question {
   grid-area: search;
+  background-color: white;
   zoom: 200%;
-  padding-left: 10px;
+  padding: 5px;
   position: sticky;
+  border: 1px solid grey;
+  border-radius: 2px;
   top: 0;
   z-index: 999;
 }
@@ -678,6 +687,10 @@ a:visited {
   grid-area: add-a;
   padding: 0 10px 0 0;
   justify-self: end;
+}
+
+.question-input {
+  border: none;
 }
 
 .individual-answer {

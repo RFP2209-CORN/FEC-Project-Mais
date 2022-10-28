@@ -98,6 +98,22 @@ const App = () => {
 
   return (
     <div id="app-container" onMouseMove={cursorPosition}>
+      <div id="banner">
+        <div>
+          <span>
+            <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" />
+          </span>
+          <h1 className="company-name">ATELIER MAÏS</h1>
+        </div>
+        <div className="banner-icons">
+          <i className="fa-solid fa-magnifying-glass"> _______________</i>
+          <i className="fa-solid fa-house"></i>
+          <i className="fa-solid fa-cart-shopping"></i>
+          <i className="fa-solid fa-user"></i>
+          <i className="fa-solid fa-bars"></i>
+        </div>
+      </div>
+
       <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
