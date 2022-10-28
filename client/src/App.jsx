@@ -101,15 +101,16 @@ const App = () => {
       <div id="banner">
         <div>
           <span>
-            <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" />
-          </span>
+            {/* <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" /> */}
+            <img class="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg="/>
+          </span>&nbsp;
           <h1 className="company-name">ATELIER MAÏS</h1>
         </div>
         <div className="banner-icons">
-          <i className="fa-solid fa-magnifying-glass"> _______________</i>
-          <i className="fa-solid fa-house"></i>
-          <i className="fa-solid fa-cart-shopping"></i>
-          <i className="fa-solid fa-user"></i>
+          <i className="fa-solid fa-magnifying-glass"> _______________</i>&nbsp;&nbsp;
+          <i className="fa-solid fa-house"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-user"></i>&nbsp;&nbsp;
           <i className="fa-solid fa-bars"></i>
         </div>
       </div>

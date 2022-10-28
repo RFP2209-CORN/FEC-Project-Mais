@@ -79,10 +79,14 @@ button,
   width: 2.5em;
   border-radius: 50%;
   object-fit: cover;
+  position: relative;
+  top: 4px;
 }
 
 .company-name {
   display: inline-block;
+  position: relative;
+  top: -3px;
 }
 
 /*
