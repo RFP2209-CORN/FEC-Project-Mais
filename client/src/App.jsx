@@ -52,24 +52,24 @@ const App = () => {
   document.addEventListener('touchmove', cursorPosition);
 
   // Renders Everything needed for other widget to use
-  useEffect(() => {
-    const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
+  // useEffect(() => {
+  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
 
-    const listeners = modules.map(module => {
-      let elem = document.getElementById(module);
-      elem.addEventListener('click', trackClicks);
-    });
+  //   const listeners = modules.map(module => {
+  //     let elem = document.getElementById(module);
+  //     elem.addEventListener('click', trackClicks);
+  //   });
 
-    // Determine unique user
-    let uniqueUser = localStorage.getItem(document.cookie);
-    uniqueUser = JSON.parse(uniqueUser);
-    if (uniqueUser.cookie !== document.cookie) {
-      console.log('user is not the same');
-      localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-    } else {
-      console.log('same user');
-    }
-  }, []);
+  //   // Determine unique user
+  //   let uniqueUser = localStorage.getItem(document.cookie);
+  //   uniqueUser = JSON.parse(uniqueUser);
+  //   if (uniqueUser.cookie !== document.cookie) {
+  //     console.log('user is not the same');
+  //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+  //   } else {
+  //     console.log('same user');
+  //   }
+  // }, []);
 
   // Re-render everytime ProductId changes
   useEffect(() => {
