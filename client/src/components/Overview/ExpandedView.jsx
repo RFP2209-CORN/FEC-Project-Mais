@@ -49,12 +49,12 @@ const ExpandedView = ({open, onClose, currentStyle, currentPhoto, onLeftClick, o
 
         {!zoomed && currentPhoto > 0 ?
           <i data-testid="expanded-left-arrow"
-            className="fa-solid fa-angle-left"
+            className="fa-solid fa-angle-left image-arrow"
             onClick={onLeftClick}/> : null}
 
         {!zoomed && currentPhoto < currentStyle.photos.length - 1 ?
           <i data-testid="expanded-right-arrow"
-            className="fa-solid fa-angle-right"
+            className="fa-solid fa-angle-right image-arrow"
             onClick={onRightClick}/> : null}
       </div>
     </>

@@ -65,7 +65,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, ratin
         break;
       default:
     }
-  }
+  };
 
   return (
     <>
@@ -79,7 +79,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, ratin
           {rating} &nbsp;&nbsp;
         </h2>
         <div>
-        <sup><StarRating rating={rating}/></sup>
+          <sup className="overall-stars"><StarRating rating={rating} /></sup>
         </div>
       </div>
       <div className="align-ratings-breakdown-header">
@@ -95,7 +95,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, ratin
         3 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={threeStar} /> &nbsp; {threeStar} reviews
       </h4>
       <h4 className="flexbox-container" onClick={() => handleStarClick(2)}>
-        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar}/> &nbsp; {twoStar} reviews
+        2 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={twoStar} /> &nbsp; {twoStar} reviews
       </h4>
       <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
         1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
@@ -105,6 +105,6 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, ratin
       <CharacteristicsChart metaData={metaData} reviews={reviews}/>
     </>
   );
-}
+};
 
 export default RatingsBreakdownSidebar;

@@ -1,9 +1,8 @@
 import React from 'react';
 import Chart from 'chart.js/auto';
-import { Bar }  from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
-
   const options = {
     scales: {
       y: {
@@ -12,7 +11,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         grid: {
           drawBorder: false,
           display: false,
-      },
+        },
         ticks: {
           beginAtZero: true,
           display: false,
@@ -51,7 +50,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
       display: false,
       text: 'Percentage as based on total Reviews',
     }
-  }
+  };
 
   const data = {
     labels: [''],
@@ -81,15 +80,14 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         data: [totalNumberOfReviews - parseInt(rating)]
       }
     ]
-  }
+  };
 
   return (
-    <div style={{height:'25px', width:'350px'}}>
-      <Bar data={data} options={options}/>
+    <div style={{ height: '25px', width: '350px' }}>
+      <Bar data={data} options={options} />
     </div>
-
-  )
-}
+  );
+};
 
 export default StarRatingsChart;
 
