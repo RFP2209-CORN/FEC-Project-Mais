@@ -19,11 +19,11 @@ const ImageGallery = ({currentStyle}) => {
             onClick={onExpandedView}/>
           {currentPhoto > 0 ?
             <i data-testid="default-left-arrow"
-              className="fa-solid fa-angle-left"
+              className="fa-solid fa-angle-left image-arrow"
               onClick={onLeftClick}/> : null}
           {currentPhoto < currentStyle.photos.length - 1 ?
             <i data-testid="default-right-arrow"
-              className="fa-solid fa-angle-right"
+              className="fa-solid fa-angle-right image-arrow"
               onClick={onRightClick}/> : null}
         </div>);
     }
@@ -70,7 +70,7 @@ const ImageGallery = ({currentStyle}) => {
       setCurrentPhoto(currentPhoto - 1);
     }
     if (currentStyle?.photos.length > 7) {
-      document.getElementById('thumbnail-nav-bar-images').scrollBy(0, -75);
+      document.getElementById('thumbnail-nav-bar-images').scrollBy(0, -83.5);
     }
   };
 
@@ -79,16 +79,16 @@ const ImageGallery = ({currentStyle}) => {
       setCurrentPhoto(currentPhoto + 1);
     }
     if (currentStyle?.photos.length > 7) {
-      document.getElementById('thumbnail-nav-bar-images').scrollBy(0, 75);
+      document.getElementById('thumbnail-nav-bar-images').scrollBy(0, 83.5);
     }
   };
 
   const onUpClick = (event) => {
-    document.getElementById('thumbnail-nav-bar-images').scrollBy(0, -75);
+    document.getElementById('thumbnail-nav-bar-images').scrollBy(0, -83.5);
   };
 
   const onDownClick = (event) => {
-    document.getElementById('thumbnail-nav-bar-images').scrollBy(0, 75);
+    document.getElementById('thumbnail-nav-bar-images').scrollBy(0, 83.5);
   };
 
   const onExpandedView = (event) => {

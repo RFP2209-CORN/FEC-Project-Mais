@@ -25,23 +25,24 @@ select {
 
 #banner {
   display: flex;
-  margin: 0 100px;
-  padding: 20px 10px 0 10px;
   justify-content: space-between;
   align-items: center;
-  height: 65px;
-  color: #FFDB58;
+  height: 2.5em;
+  padding: 20px 10px 0 10px;
+  color: #738678;
+  background-image: url(https://i.pinimg.com/564x/63/a7/f2/63a7f2a192df6526ecb57aa87d83bdc4.jpg);
+  font-family: sans-serif;
   font-size: 25px;
-  border-bottom: 2px solid #9CAF88;
 }
 
-.banner-extra {
-  float: right;
+.logo {
+  height: 2.5em;
+  width: 2.5em;
+  border-radius: 50%;
 }
 
-.banner-icons {
-  font-size: 25px;
-  color: #4C4E52;
+.company-name {
+  display: inline-block;
 }
 
 /*
@@ -124,14 +125,14 @@ select {
   background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg);
   background-size: cover;
   background-position: center;
-  width: 575px;
-  height: 575px;
+  width: 600px;
+  height: 600px;
   display: inline-block;
 }
 
 .thumbnail-nav-bar {
   width: 82.5px;
-  height: 575px;
+  height: 625px;
   display: inline-block;
 }
 
@@ -141,55 +142,64 @@ select {
 
 #thumbnail-nav-bar-images {
   width: 82.5px;
-  height: 540px;
+  height: 575.5px;
   overflow: hidden;
-  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .thumbnail-nav-bar-image {
   width: 72.5px;
   height: 72.5px;
   cursor: pointer;
-  scroll-snap-align: 'start';
+  border: 3px solid white;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .thumbnail-nav-bar-selected {
   border: 3px solid black;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.image-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  font-size: 30px;
+  color: #EEEDE7;
+  cursor: pointer;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  background-color: rgba(105, 105, 105, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-arrow:hover {
+  color: #5A5A5A;
 }
 
 .fa-angle-left {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
   left: 5px;
-  font-size: 30px;
-  color: #EEEDE7;
-  cursor: pointer;
 }
 
 .fa-angle-right {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
   right: 5px;
-  font-size: 30px;
-  color: #EEEDE7;
-  cursor: pointer;
 }
 
 .default-view {
   position: relative;
-  width: 575px;
-  height: 575px;
+  width: 600px;
+  height: 600px;
   display: inline-block;
 }
 
 .default-view-image {
   background-size: cover;
   background-position: center;
-  width: 575px;
-  height: 575px;
+  width: 600px;
+  height: 600px;
   cursor: zoom-in;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
@@ -197,13 +207,13 @@ select {
 .expanded-view-image {
   background-size: cover;
   background-position: center;
-  height: 700px;
-  width: 700px;
+  height: 800px;
+  width: 800px;
   cursor: crosshair;
 }
 
 .zoomed-view {
-  background-size: 1875px;
+  background-size: 2000px;
   background-repeat: no-repeat;
   cursor: zoom-out;
 }
@@ -212,6 +222,7 @@ select {
   display: flex;
   justify-content: center;
   padding: 2.5px;
+  cursor: pointer;
 }
 
 .fa-circle {
@@ -233,6 +244,7 @@ select {
   height: 55px;
   margin-right: 7.5px;
   border-radius: 50%;
+  cursor: pointer;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
 }
 
@@ -278,7 +290,7 @@ select {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  width: 92.25%;
+  width: 92.5%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -319,6 +331,11 @@ a:link {
 }
 
 a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #525252;
   text-decoration: underline;
 }
 
