@@ -3,11 +3,7 @@ import axios from 'axios';
 import RatingsBreakdownSidebar from './Ratings/RatingsBreakdownSidebar.jsx';
 import ReviewsList from './Reviews/ReviewsList.jsx';
 
-<<<<<<< HEAD
-const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, metaData }) => {
-=======
-const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, images, setImages, photoWidget }) => {
->>>>>>> master
+const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, metaData, photoWidget, images, setImages }) => {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [fiveStar, setFiveStar] = useState(0);

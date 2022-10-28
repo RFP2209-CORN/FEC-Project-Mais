@@ -69,11 +69,7 @@ const SingleReview = ({ review }) => {
         return (
           <span key={index}>
             <button onClick={() => setIsOpen(true)}><img src={photo.url} height="40px" width="40px" /></button>
-<<<<<<< HEAD
-            <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
-=======
             <SingleReviewPhotoModal open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
->>>>>>> master
           </span>
         )
       })}

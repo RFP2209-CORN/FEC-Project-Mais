@@ -740,6 +740,9 @@ a:visited {
 ========================================
 */
 
+.align-ratings-breakdown-header {
+  margin-left: 0%;
+}
 
 .ratings-and-reviews {
   margin-top: 40px;
@@ -756,10 +759,6 @@ a:visited {
 
 .bar-chart {
   line-height: .5;
-}
-
-.align-ratings-breakdown-header {
-  margin-left: 4%;
 }
 
 .single-star-container {
