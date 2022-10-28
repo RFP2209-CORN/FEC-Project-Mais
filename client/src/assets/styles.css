@@ -4,6 +4,31 @@
 ========================================
 */
 
+/* DARK THEME */
+/* :root {
+  cursor: none;
+  --cursorX: 50vw;
+  --cursorY: 50vh;
+}
+:root:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 10vmax at var(--cursorX) var(--cursorY),
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.5) 80%,
+    rgba(0,0,0,.95) 100%
+  )
+} */
+
+/* body {
+  zoom: 30%;
+} */
+
 #app-container {
   display: grid;
   font-family: sans-serif;
@@ -23,9 +48,23 @@ select {
   cursor: pointer;
 }
 
+button,
+.submit {
+  background-color: #FCFAF0;
+  color: black;
+  padding: 2px 5px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  /* margin-right: 5px; */
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px */
+}
+
 #banner {
   display: flex;
   justify-content: space-between;
+  justify-self: stretch;
   align-items: center;
   height: 2.5em;
   padding: 20px 10px 0 10px;
@@ -39,10 +78,15 @@ select {
   height: 2.5em;
   width: 2.5em;
   border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  top: 4px;
 }
 
 .company-name {
   display: inline-block;
+  position: relative;
+  top: -3px;
 }
 
 /*
@@ -93,6 +137,7 @@ select {
   border-color: unset;
   color: red;
 }
+
 
 /*
 ========================================
@@ -301,7 +346,6 @@ select {
   color: white;
   padding: 7px 0px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 12px;
   border-radius: 5px;
@@ -347,8 +391,8 @@ a:visited {
 */
 
 .related-items-and-outfits-container {
-    display: grid;
-  }
+  display: grid;
+}
 
 .card-container-container {
   width: 1500px;
@@ -359,6 +403,7 @@ a:visited {
   left: 56%;
   transform: translate(-50%, -50%);
 }
+
 .carousel-title {
   position: relative;
   left: 6.5%;
@@ -445,6 +490,7 @@ a:visited {
   border-radius: .8em;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .2);
   padding: 1em;
+  margin-left: 2em;
 }
 
 .add-outfit-btn:hover {
@@ -468,6 +514,7 @@ a:visited {
 .star-icon {
   color: gold;
 }
+
 .x-icon {
   color: white;
 }
@@ -551,7 +598,7 @@ a:visited {
   display: grid;
   max-height: 660px;
   margin-top: 40px;
-  padding: 20px 100px;
+  padding: 20px 80px;
   overflow: scroll;
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
@@ -570,8 +617,14 @@ a:visited {
 
 .search-question {
   grid-area: search;
+  background-color: white;
   zoom: 200%;
-  padding-left: 10px;
+  padding: 5px;
+  position: sticky;
+  border: 1px solid grey;
+  border-radius: 2px;
+  top: 0;
+  z-index: 999;
 }
 
 .questions-list {
@@ -631,12 +684,17 @@ a:visited {
 .question-report {
   grid-area: q-report;
   justify-self: start;
+  margin-top: 14px;
 }
 
 .add-answer {
   grid-area: add-a;
   padding: 0 10px 0 0;
   justify-self: end;
+}
+
+.question-input {
+  border: none;
 }
 
 .individual-answer {
@@ -669,6 +727,7 @@ a:visited {
 
 .answer-report {
   justify-self: start;
+  margin-top: 15px;
 }
 
 .load-answers {
@@ -680,6 +739,7 @@ a:visited {
     RATINGS & REVIEWS
 ========================================
 */
+
 
 .ratings-and-reviews {
   margin-top: 40px;
@@ -769,7 +829,7 @@ a:visited {
 .flexbox-container {
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 20px 20px 20px 0;
 }
 
 .sort-dropdown {
@@ -805,9 +865,13 @@ a:visited {
 }
 
 .button-dropdown {
+  margin-left: -36px;
   background: none;
   border: none;
-  text-decoration:underline;
-  display:inline-block;
+  display: inline-block;
   font-size: 25px;
+}
+
+.button-dropdown:hover {
+  text-decoration: underline;
 }

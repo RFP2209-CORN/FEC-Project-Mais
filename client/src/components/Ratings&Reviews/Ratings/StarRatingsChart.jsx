@@ -65,7 +65,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         height: 0.3,
         hoverBackgroundColor: 'rgba(0,255,0,0.2)',
         hoverBorderColor: 'rgba(0,255,0,0.2)',
-        data: [rating]
+        data: [parseInt(rating)]
       },
       {
         backgroundColor: 'rgba(30,30,30,0.2)',
@@ -77,7 +77,7 @@ const StarRatingsChart = ({ rating, totalNumberOfReviews }) => {
         height: 0.3,
         hoverBackgroundColor: 'rgba(30,30,30,0.2)',
         hoverBorderColor: 'rgba(30,30,30,0.2)',
-        data: [totalNumberOfReviews]
+        data: [totalNumberOfReviews - parseInt(rating)]
       }
     ]
   };

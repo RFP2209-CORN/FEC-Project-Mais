@@ -39,6 +39,18 @@ const App = () => {
     }
   );
 
+  // DARK THEME FLASHLIGHT
+  const cursorPosition = (e) => {
+    var x = e.clientX || e.touches[0].clientX;
+    var y = e.clientY || e.touches[0].clientY;
+
+    document.documentElement.style.setProperty('--cursorX', x + 'px');
+    document.documentElement.style.setProperty('--cursorY', y + 'px');
+  };
+
+  document.addEventListener('mousemove', cursorPosition);
+  document.addEventListener('touchmove', cursorPosition);
+
   // Renders Everything needed for other widget to use
   // useEffect(() => {
   //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
@@ -85,7 +97,24 @@ const App = () => {
   }, [productId]);
 
   return (
-    <div id="app-container">
+    <div id="app-container" onMouseMove={cursorPosition}>
+      <div id="banner">
+        <div>
+          <span>
+            {/* <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" /> */}
+            <img class="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg="/>
+          </span>&nbsp;
+          <h1 className="company-name">ATELIER MAÏS</h1>
+        </div>
+        <div className="banner-icons">
+          <i className="fa-solid fa-magnifying-glass"> _______________</i>&nbsp;&nbsp;
+          <i className="fa-solid fa-house"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-user"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-bars"></i>
+        </div>
+      </div>
+
       <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>

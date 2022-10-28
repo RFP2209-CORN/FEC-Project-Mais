@@ -15,10 +15,9 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
   const [newest, setNewest] = useState(false);
 
   useEffect(() => {
-
     if (helpfulness) {
       reviews.sort((a, b) => {
-        return a.helpfulness - b.helpfulness;
+        return b.helpfulness - a.helpfulness;
       });
     } else if (newest) {
       reviews.sort((a, b) => {
@@ -88,7 +87,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
                   <button onClick={(event) => handleSort(event)} >Newest</button>
                 </li>
                 <li className="sort-dropdown-menu-item">
-                  <button onClick={(event) => handleSort(event)} >Relevant</button>
+                  <button onClick={(event) => handleSort(event)} >Relevance</button>
                 </li>
               </ul>
             ) : null}

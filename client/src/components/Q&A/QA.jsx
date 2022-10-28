@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import SearchQA from './SearchQA.jsx';
+import Surprise from '../../Surprise.jsx';
 import AskAQuestionModal from './AskAQuestionModal.jsx';
 import IndividualQuestion from './IndividualQuestion.jsx';
 import AnswersList from './AnswersList.jsx';
@@ -15,6 +16,7 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
   const [isOpen, setIsOpen] = useState(false);
   const [questionCount, setQuestionCount] = useState(2);
   const [reRender, setReRender] = useState(false);
+  const [openSurprise, setOpenSurprise] = useState(false);
   // Search Function
   const handleSearch = (value) => {
     let container = [];
@@ -146,7 +148,10 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
 
   return (
     <div className="qa-container">
-      <p className="qa-title"><b>Questions & Answers</b></p>
+      <p className="qa-title"><b>
+        <span onClick={() => setOpenSurprise(true)}
+        >Q</span>uestions & Answers </b></p>
+      <Surprise open={openSurprise} onClose={() => setOpenSurprise(false)} />
 
       <div className="search-question">
         <SearchQA handleSearch={handleSearch} />
