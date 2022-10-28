@@ -39,6 +39,18 @@ const App = () => {
     }
   );
 
+  // DARK THEME FLASHLIGHT
+  const cursorPosition = (e) => {
+    var x = e.clientX || e.touches[0].clientX;
+    var y = e.clientY || e.touches[0].clientY;
+
+    document.documentElement.style.setProperty('--cursorX', x + 'px');
+    document.documentElement.style.setProperty('--cursorY', y + 'px');
+  };
+
+  document.addEventListener('mousemove', cursorPosition);
+  document.addEventListener('touchmove', cursorPosition);
+
   // Renders Everything needed for other widget to use
   useEffect(() => {
     const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
@@ -85,7 +97,7 @@ const App = () => {
   }, [productId]);
 
   return (
-    <div id="app-container">
+    <div id="app-container" onMouseMove={cursorPosition}>
       <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
       </div>
