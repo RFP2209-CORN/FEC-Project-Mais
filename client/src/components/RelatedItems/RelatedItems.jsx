@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItemsCard from './RelatedItemsCard.jsx';
 
-const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, renderBlankCards }) => {
+const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, updateProduct, renderBlankCards, currentProduct }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
 
@@ -49,6 +49,7 @@ const RelatedItems = ({ productId, calcRating, saleAndImageSetter, renderPrice, 
               renderPrice={renderPrice}
               updateProduct={updateProduct}
               currProductId={productId}
+              currentProduct={currentProduct}
             />
           );
         })}

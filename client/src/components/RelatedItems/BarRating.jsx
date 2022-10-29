@@ -77,10 +77,10 @@ const BarRating = ({ rating }) => {
                 <div className="bar-rating-icon" style={{
                   'left': `${parseInt(item * 100)}%`,
                 }}>
-                  ▪ {setRendered(true)}
+                  ▪
                 </div>
               }
-              {rendered === false && (item === 1 || item === 0) && i === stars.length - 1 &&
+              {(item === 1 || item === 0) && i === stars.length - 1 &&
                 <div className="bar-rating-icon" style={{
                   'left': `${parseInt(item * 100)}%`,
                 }}>

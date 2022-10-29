@@ -5,7 +5,7 @@ import axios from 'axios';
 import BarRating from './BarRating.jsx';
 
 
-const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, children }) => {
+const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, currentProduct, children }) => {
   const [currCharacteristics, setCurrCharacteristics] = useState();
   const [compareCharacteristics, setCompareCharacteristics] = useState();
   const [currName, setCurrName] = useState();
@@ -20,11 +20,8 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
       .then(result => {
         setCompareCharacteristics(result.data.characteristics);
       });
-    axios.get(`/products/${productId}`)
-      .then(result => {
-        setCurrName(result.data.name);
-        setCompareName(compareProduct.name);
-      });
+    setCurrName(currentProduct.name);
+    setCompareName(compareProduct.name);
   }, []);
 
   const buildRows = () => {

@@ -85,6 +85,7 @@ const RelatedItemsAndOutfits = ({ productId, updateProduct, currentProduct }) =>
         renderPrice={renderPrice}
         updateProduct={updateProduct}
         renderBlankCards={renderBlankCards}
+        currentProduct={currentProduct}
       />
       <br></br>
       <OutfitCreation
