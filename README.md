@@ -1,4 +1,4 @@
-# FEC-Project-Atelier
+# Atelier Maïs
 
 ### Contributors
 <a href="https://github.com/stephaaniechen">Stephanie Chen</a>,
@@ -9,7 +9,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About the Project
-This project was completed over a 3-week sprint. Following the Business Requirements Document, our team created a client-facing retail web-portal template with the provided API.
+Our team built a fully functional front-end for a product page of an eCommerce site that meets the specifications and requirements outlined by project stakeholders and utilized an API provided by the client.
 
 ### This project includes the following sections:
 1. Overview
@@ -24,14 +24,14 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/Overview.png" alt="Overview" width="500">
 </div>
-The product overview includes an image gallery for the selected product, product description, price and ratings. The user can select from different styles, sizes and quantities to add to cart. Sale prices are shown in red next to the original.
+The overview section includes an image gallery with a sidebar that contains the product information, style selectors and add to cart capabilities. The image gallery will rerender when a different style is selected and the sidebar will rerender when a new product is selected.
 <table>
   <tr>
     <td>
-      <img src="screenshots" alt="Zoom View Screenshot" width="500">
+      <img src="screenshots/Overview-Expanded.png" alt="Zoom View Screenshot" width="500">
     </td>
     <td>
-      <b>Expanded View:</b>  When a user zooms into the image, the image gallery expands to the width of their screen to enable a closer look.
+      <b>Expanded View:</b>  The expanded view modal will open when the image within the image gallery is clicked. The expanded view also includes a zoomed view with a zoom and pan feature, where users can zoom into the image and pan with the movement of their cursor.
     </td>
   </tr>
 </table>
@@ -41,11 +41,11 @@ The product overview includes an image gallery for the selected product, product
 <div align="center">
   <img src="screenshots/RelatedProducts.png" alt="Related Products" width="500">
 </div>
-Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product.
+Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product. Users can also add the current product to the outfit list. Their outfits will persist upon refreshing the browser.
 <table>
   <tr>
     <td>
-      <img src="screenshots" alt="Compare Products Screenshot" width="500">
+    <img width="350" alt="Screen Shot 2022-10-29 at 3 15 52 PM" src="https://user-images.githubusercontent.com/12160369/198854423-97534e61-0777-4ccd-9a97-c91cd5160189.png">
     </td>
     <td>
       <b>Compare Products:</b>  A user can click on the card of a related product to compare its features with the current product. A modal popup allows a user to compare without leaving the page.
@@ -91,7 +91,7 @@ Questions and answers related to the product are shown in this section. Only 2 s
 <div align="center">
   <img src="screenshots/RatingsNReviews.png" alt="Ratings & Reviews" width="500">
 </div>
-Users can see how other customers have rated the product from a scale of 1-5. An average of all scores is shown, as well as the breakdown by rating. The stars correspond with the average rating. Up to 4 reviews is shown by default but users can click to see more. Users can also add their own rating and reviews for the product. Like questions and answers, users can also mark reviews as helpful to increase visibility or report to remove them.
+Users can see how other customers have rated a given product from a scale of 1-5. A composite average of all scores is shown, as well as the breakdown by rating. Up to 2 reviews is shown by default but users can click to see more. Users can also add their own review for a given product, including their own rating. Like questions and answers, users can also mark reviews as helpful to increase visibility.
 <table>
   <tr>
     <td>
