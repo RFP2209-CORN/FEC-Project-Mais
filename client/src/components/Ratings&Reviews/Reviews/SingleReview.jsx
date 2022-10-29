@@ -5,12 +5,11 @@ import SingleReviewPhotoModal from './SingleReviewPhotoModal.jsx';
 import axios from 'axios';
 
 const SingleReview = ({ review }) => {
-
-  const [ isOpen, setIsOpen ] = useState(false);
-  const [ yes, setYes ] = useState(0);
-  const [ no, setNo ] = useState(0);
-  const [ yesClicked, setYesClicked ] = useState(false);
-  const [ noClicked, setNoClicked ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [yes, setYes] = useState(0);
+  const [no, setNo] = useState(0);
+  const [yesClicked, setYesClicked] = useState(false);
+  const [noClicked, setNoClicked] = useState(false);
 
   review.date = new Date();
   review.date = format(review.date, 'mm/dd/yyyy');
@@ -42,16 +41,16 @@ const SingleReview = ({ review }) => {
 
     noClicked === false && setYes(yes + 1);
     let id = review.review_id;
-    axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness += 1})
-    .then((result) => {
-    })
-    .catch((error) => {
-    })
+    axios.put(`/reviews/${id}/helpful`, { ...review, "helpfulness": review.helpfulness += 1 })
+      .then((result) => {
+      })
+      .catch((error) => {
+      })
   }
 
   return (
     <>
-      <span>
+      <span className="overall-stars">
         <StarRating rating={review.rating} />
         <div className="reviews-date" > {review.reviewer_name}, &nbsp;  {review.date}
         </div>
@@ -61,32 +60,32 @@ const SingleReview = ({ review }) => {
       </h3>
       <div className="reviews-body">
         {review.body}
-        <br/>
-        <br/>
+        <br />
+        <br />
         {review.recommend ? '✅ I recommend this product' : null}
       </div>
-      <br/>
+      <br />
       {photos?.length > 0 && photos.map((photo, index) => {
         return (
-          <div key={index}>
-            <button onClick={() => setIsOpen(true)}>Open Image</button>
-            <SingleReviewPhotoModal  open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
-          </div>
+          <span key={index}>
+            <button onClick={() => setIsOpen(true)}><img src={photo.url} height="40px" width="40px" /></button>
+            <SingleReviewPhotoModal open={isOpen} onClose={() => setIsOpen(false)} photo={photo} />
+          </span>
         )
       })}
       <div>
         {review.response &&
-        <>
-          <h3>
-            Response from seller:
-          </h3>
-          <p>
-            {review.response}
-          </p>
-        </>
+          <>
+            <h3>
+              Response from seller:
+            </h3>
+            <p>
+              {review.response}
+            </p>
+          </>
         }
       </div>
-      <br/>
+      <br />
       <div className="reviews-card-text">
         Was this review helpful?
       </div>
@@ -101,9 +100,9 @@ const SingleReview = ({ review }) => {
         </button>
         ({no})
       </span>
-      <hr/>
+      <hr />
     </>
-  )
-}
+  );
+};
 
 export default SingleReview;

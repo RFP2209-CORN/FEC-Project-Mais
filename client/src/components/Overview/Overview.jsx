@@ -6,13 +6,14 @@ import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
 import ProductInfo2 from './ProductInfo2.jsx';
 
-const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
+const Overview = ({productId, currentProduct, rating, totalReviews}) => {
   //out of stock style
   // const productId = '40345';
   const [currentStyle, setCurrentStyle] = React.useState({});
   const [styles, setStyles] = React.useState([]);
   const [skuSelected, setSkuSelected] = React.useState(false);
   const [quantitySelected, setQuantitySelected] = React.useState(0);
+  const [failToAdd, setFailToAdd] = React.useState(false);
 
   React.useEffect(() => {
     axios.get(`/products/${productId}/styles`)
@@ -31,6 +32,10 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
         }
       })
       .catch(err => console.log(err));
+
+    setSkuSelected(false);
+    setQuantitySelected(0);
+    setFailToAdd(false);
   }, [productId]);
 
   const changeCurrentStyle = (style) => {
@@ -43,6 +48,10 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
 
   const changeQuantitySelected = (quantity) => {
     setQuantitySelected(quantity);
+  };
+
+  const toggleMessage = (show) => {
+    setFailToAdd(show);
   };
 
   return (
@@ -60,13 +69,16 @@ const Overview = ({ productId, currentProduct, rating, totalReviews }) => {
           styles={styles}
           changeCurrentStyle={changeCurrentStyle}
           changeSkuSelected={changeSkuSelected}
-          changeQuantitySelected={changeQuantitySelected} />
+          changeQuantitySelected={changeQuantitySelected}
+          toggleMessage={toggleMessage} />
         <AddToCart
           currentStyle={currentStyle}
           skuSelected={skuSelected}
           quantitySelected={quantitySelected}
           changeSkuSelected={changeSkuSelected}
-          changeQuantitySelected={changeQuantitySelected} />
+          changeQuantitySelected={changeQuantitySelected}
+          failToAdd={failToAdd}
+          toggleMessage={toggleMessage} />
         <ProductInfo2
           currentProduct={currentProduct} />
       </div>

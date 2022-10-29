@@ -72,8 +72,8 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
   return (
     <div className="card-container-container">
       <h3 className="outfit-items-title carousel-title">Your Outfits</h3>
-      {outfits.length > 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-outfit" onClick={() => { changeDisplay('left'); }}/>}
-      {outfits.length <= 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent"/>}
+      {outfits.length > 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-outfit" onClick={() => { changeDisplay('left'); }} />}
+      {outfits.length <= 3 && <i className="fa-solid fa-arrow-left-long cards-arrow-transparent" />}
       <div id="card-container-outfit">
         <div className="card add-outfit card-shadow">
           <i className="fa-solid fa-plus add-outfit-btn" onClick={addOutfit}> Add to Outfit</i>
@@ -94,8 +94,8 @@ const OutfitCreation = ({ productId, calcRating, saleAndImageSetter, renderPrice
         })}
         {outfits.length <= 2 && renderBlankCards(outfits.length)}
       </div>
-      {outfits.length > 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-outfit" onClick={() => { changeDisplay('right'); }}/>}
-      {outfits.length <= 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent"/>}
+      {outfits.length > 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-outfit" onClick={() => { changeDisplay('right'); }} />}
+      {outfits.length <= 3 && <i className="fa-solid fa-arrow-right-long cards-arrow-transparent" />}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import IndividualAnswer from './IndividualAnswer.jsx';
 import axios from 'axios';
 
-const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
+const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) => {
   const [totalAnswerList, setTotalAnswerList] = useState([]);
   const [answerList, setAnswerList] = useState([]);
   const [loadAnswerButton, setLoadAnswerButton] = useState(true);
@@ -95,7 +95,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport }) => {
         setAnswerList(container);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [answerInfo]);
 
   return (
     <div className="answers-container">
