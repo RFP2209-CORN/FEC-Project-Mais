@@ -41,7 +41,7 @@ The overview section includes an image gallery with a sidebar that contains the 
 <div align="center">
   <img src="screenshots/RelatedProducts.png" alt="Related Products" width="500">
 </div>
-Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product.
+Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product. Users can also add the current product to the outfit list. Their outfits will persist upon refreshing the browser.
 <table>
   <tr>
     <td>
