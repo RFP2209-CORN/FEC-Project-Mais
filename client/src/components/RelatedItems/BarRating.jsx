@@ -54,22 +54,6 @@ const BarRating = ({ rating }) => {
         return (
           <div className="bar-rating-container" key={i}>
             <div className="bar-rating-outline">
-              {console.log('item', item, 'i', i)}
-
-              {/*
-                [1, 1, .5, 0, 0]
-                [1, 1, 1, 1, 0]
-                not last item, don't render
-                are there more 0's after current element?
-                  if not,
-                    last item, render
-                      decimal
-                      1
-                      0
-                  if there are,
-                    render where we're at
-                    still need to account for the overall width for remaining 0's
-              */}
               <div className="bar-rating-icon" style={{
                 'width': `${parseInt(item * 100)}%`,
               }}/>
@@ -87,7 +71,6 @@ const BarRating = ({ rating }) => {
                   ▪
                 </div>
               }
-              {console.log('item', i, 'stars length', stars.length - 1)}
             </div>
           </div>
         );
