@@ -50,12 +50,12 @@ const App = () => {
     });
 
     //   // Determine unique user
-    // let uniqueUser = localStorage.getItem(document.cookie);
-    // uniqueUser = JSON.parse(uniqueUser);
-    // if (uniqueUser.cookie !== document.cookie) {
-    //   console.log('user is not the same');
+    let uniqueUser = localStorage.getItem(document.cookie);
+    uniqueUser = JSON.parse(uniqueUser);
+    if (uniqueUser.cookie !== document.cookie) {
+      console.log('user is not the same');
       localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-    // }
+    }
   }, []);
 
   useEffect(() => {

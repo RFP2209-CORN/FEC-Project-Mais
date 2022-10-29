@@ -24,12 +24,8 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/Overview.png" alt="Overview" width="500">
 </div>
+The product overview includes an image gallery for the selected product, product description, price and ratings. The user can select from different styles, sizes and quantities to add to cart. Sale prices are shown in red next to the original.
 <table>
-  <tr>
-    <td>
-      <b>Product Overview:</b>  The product overview includes an image gallery for the selected product, product description, price and ratings. The user can select from different styles, sizes and quantities to add to cart. Sale prices are shown in red next to the original.
-    </td>
-  </tr>
   <tr>
     <td>
       <img src="screenshots" alt="Zoom View Screenshot" width="500">
@@ -45,12 +41,8 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/RelatedProducts.png" alt="Related Products" width="500">
 </div>
+Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product.
 <table>
-  <tr>
-    <td>
-      <b>Related Products:</b>  Users can scroll through the related products carousel to see suggested products. Each related product card contains the name, image, price, and rating for the product.
-    </td>
-  </tr>
   <tr>
     <td>
       <img src="screenshots" alt="Compare Products Screenshot" width="500">
@@ -66,14 +58,14 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/QnA.png" alt="Q&A" width="500">
 </div>
+Questions and answers related to the product are shown in this section. Only 2 sets of questions and answers are shown by default, but users can click expand to see additional questions and answers. Users can post their own questions and answers. They can also mark specific questions and answers as helpful. Marking as helpful will move it toward the top of the list, allowing other users to locate helpful data more easily. Users can also report questions and answers to remove them from the list.
 <table>
   <tr>
     <td>
-      <b>Questions and Answers:</b>  Questions and answers related to the product are shown in this section. Only 2 sets of questions and answers are shown by default, but users can click expand to see additional questions and answers. Users can post their own questions and answers. They can also mark specific questions and answers as helpful. Marking as helpful will move it toward the top of the list, allowing other users to locate helpful data more easily. Users can also report questions and answers to remove them from the list.
+      <img src="screenshots" alt="Add Questions Screenshot" width="500">
     </td>
-  </tr>
-  <tr>
     <td>
+      <b>Add Questions:</b>  A modal popup allows a user to add a review for the selected product without leaving the page.
     </td>
   </tr>
 </table>
@@ -83,12 +75,8 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/RatingsNReviews.png" alt="Ratings & Reviews" width="500">
 </div>
+Users can see how other customers have rated the product from a scale of 1-5. An average of all scores is shown, as well as the breakdown by rating. The stars correspond with the average rating. Up to 4 reviews is shown by default but users can click to see more. Users can also add their own rating and reviews for the product. Like questions and answers, users can also mark reviews as helpful to increase visibility or report to remove them.
 <table>
-  <tr>
-    <td>
-      <b>Ratings and Reviews:</b>  Users can see how other customers have rated the product from a scale of 1-5. An average of all scores is shown, as well as the breakdown by rating. The stars correspond with the average rating. Up to 4 reviews is shown by default but users can click to see more. Users can also add their own rating and reviews for the product. Like questions and answers, users can also mark reviews as helpful to increase visibility or report to remove them.
-    </td>
-  </tr>
   <tr>
     <td>
       <img src="screenshots" alt="Write Reviews Screenshot" width="500">
