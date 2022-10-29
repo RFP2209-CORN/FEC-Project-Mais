@@ -1,4 +1,4 @@
-# FEC-Project-Atelier
+# Atelier Maïs
 
 ### Contributors
 <a href="https://github.com/stephaaniechen">Stephanie Chen</a>,
@@ -45,7 +45,7 @@ Users can scroll through the related products carousel to see suggested products
 <table>
   <tr>
     <td>
-      <img src="screenshots" alt="Compare Products Screenshot" width="500">
+    <img width="350" alt="Screen Shot 2022-10-29 at 3 15 52 PM" src="https://user-images.githubusercontent.com/12160369/198854423-97534e61-0777-4ccd-9a97-c91cd5160189.png">
     </td>
     <td>
       <b>Compare Products:</b>  A user can click on the card of a related product to compare its features with the current product. A modal popup allows a user to compare without leaving the page.
