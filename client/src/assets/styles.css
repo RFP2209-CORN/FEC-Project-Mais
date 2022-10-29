@@ -511,9 +511,15 @@ select {
 .bar-rating-icon {
   position: relative;
   display: inline-block;
-  height: 36px;
-  /* background-color: gold; */
+  top: -7px;
 }
+/* .bar-rating-icon {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  /* background-color: gold;
+}
+*/
 
 .bar-rating-outline {
   height: 36px;
