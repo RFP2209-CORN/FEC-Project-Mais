@@ -58,14 +58,30 @@ Users can scroll through the related products carousel to see suggested products
 <div align="center">
   <img src="screenshots/QnA.png" alt="Q&A" width="500">
 </div>
-Questions and answers related to the product are shown in this section. Only 2 sets of questions and answers are shown by default, but users can click expand to see additional questions and answers. Users can post their own questions and answers. They can also mark specific questions and answers as helpful. Marking as helpful will move it toward the top of the list, allowing other users to locate helpful data more easily. Users can also report questions and answers to remove them from the list.
+Questions and answers related to the product are shown in this section. Only 2 sets of questions and answers are shown by default, but users can click expand to see additional questions and answers. Users can post their own questions and answers. They can also mark specific questions and answers as helpful. Marking as helpful will move it toward the top of the list, allowing other users to locate helpful data more easily. Users can also report questions and answers to remove them from the list. Users can search for specific question or answer with the search bar.
 <table>
   <tr>
     <td>
-      <img src="screenshots" alt="Add Questions Screenshot" width="500">
+      <img src="screenshots/SearchBar" alt="Search Bar" width="50">
     </td>
     <td>
-      <b>Add Questions:</b>  A modal popup allows a user to add a review for the selected product without leaving the page.
+      <b>Search Bar:</b> This feature allows user to look up questions and answers based on at least 3 keywords typed. The search is not case sensitive.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="screenshots/AskQuestionModal.png" alt="Add Question" width="100">
+    </td>
+    <td>
+      <b>Add Questions:</b> Clicking on "ASK A QUESTION +" button will open a modal that allows the user to fill in their question. The user must fill out the question box, their name, and a valid email address in order to press the submit button.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="screenshots/SubmitAnswerModal.png" alt="Add Answer" width="100">
+    </td>
+    <td>
+      <b>Add Answer:</b> Clicking on "ADD ANSWER" button will open a modal that allows the user to write an answer to the given question. The user must fill out the answer box, their name, and a valid email address in order to press the submit button. The user has the option to upload up to 5 photos. Uploading photos uses an outside source called Cloudinary to render the images as a url.
     </td>
   </tr>
 </table>
