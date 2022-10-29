@@ -9,7 +9,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About the Project
-This project was completed over a 3-week sprint. Following the Business Requirements Document, our team created a client-facing retail web-portal template with the provided API.
+Our team built a fully functional front-end for a product page of an eCommerce site that meets the specifications and requirements outlined by project stakeholders and utilized an API provided by the client.
 
 ### This project includes the following sections:
 1. Overview
@@ -24,14 +24,14 @@ This project was completed over a 3-week sprint. Following the Business Requirem
 <div align="center">
   <img src="screenshots/Overview.png" alt="Overview" width="500">
 </div>
-The product overview includes an image gallery for the selected product, product description, price and ratings. The user can select from different styles, sizes and quantities to add to cart. Sale prices are shown in red next to the original.
+The overview section includes an image gallery with a sidebar that contains the product information, style selectors and add to cart capabilities. The image gallery will rerender when a different style is selected and the sidebar will rerender when a new product is selected.
 <table>
   <tr>
     <td>
-      <img src="screenshots" alt="Zoom View Screenshot" width="500">
+      <img src="screenshots/Overview-Expanded.png" alt="Zoom View Screenshot" width="500">
     </td>
     <td>
-      <b>Expanded View:</b>  When a user zooms into the image, the image gallery expands to the width of their screen to enable a closer look.
+      <b>Expanded View:</b>  The expanded view modal will open when the image within the image gallery is clicked. The expanded view also includes a zoomed view with a zoom and pan feature, where users can zoom into the image and pan with the movement of their cursor.
     </td>
   </tr>
 </table>
