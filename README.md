@@ -62,7 +62,7 @@ Questions and answers related to the product are shown in this section. Only 2 s
 <table>
   <tr>
     <td>
-      <img src="screenshots/SearchBar" alt="Search Bar" width="50">
+      <img src="screenshots/SearchBar.png" alt="Search Bar" width="50">
     </td>
     <td>
       <b>Search Bar:</b> This feature allows user to look up questions and answers based on at least 3 keywords typed. The search is not case sensitive.
