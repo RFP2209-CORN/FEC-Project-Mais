@@ -41,16 +41,16 @@ const App = () => {
   );
 
   // DARK THEME FLASHLIGHT
-  const cursorPosition = (e) => {
-    var x = e.clientX || e.touches[0].clientX;
-    var y = e.clientY || e.touches[0].clientY;
+  // const cursorPosition = (e) => {
+  //   var x = e.clientX || e.touches[0].clientX;
+  //   var y = e.clientY || e.touches[0].clientY;
 
-    document.documentElement.style.setProperty('--cursorX', x + 'px');
-    document.documentElement.style.setProperty('--cursorY', y + 'px');
-  };
+  //   document.documentElement.style.setProperty('--cursorX', x + 'px');
+  //   document.documentElement.style.setProperty('--cursorY', y + 'px');
+  // };
 
-  document.addEventListener('mousemove', cursorPosition);
-  document.addEventListener('touchmove', cursorPosition);
+  // document.addEventListener('mousemove', cursorPosition);
+  // document.addEventListener('touchmove', cursorPosition);
 
   // Renders Everything needed for other widget to use
   // useEffect(() => {
@@ -99,7 +99,8 @@ const App = () => {
   }, [productId]);
 
   return (
-    <div id="app-container" onMouseMove={cursorPosition}>
+    // <div id="app-container" onMouseMove={cursorPosition}>
+      <div id="app-container">
       <div id="banner">
         <div>
           <span>
@@ -117,17 +118,17 @@ const App = () => {
         </div>
       </div>
 
-      <div id="overview">
+      {/* <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
-      </div>
+      </div> */}
 
-      <div id="relatedItemsAndOutfits">
+      {/* <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} currentProduct={currentProduct} />
-      </div>
+      </div> */}
 
-      <div id="qa">
+      {/* <div id="qa">
         <QuestionsAndAnswers productId={productId} productName={currentProduct.name} photoWidget={photoWidget} images={images} setImages={setImages} />
-      </div>
+      </div> */}
 
       <div id="rateAndReview">
         <RatingsAndReviews metaData={metaData} product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />

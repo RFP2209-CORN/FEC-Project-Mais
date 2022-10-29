@@ -4,95 +4,87 @@ import { Bar }  from 'react-chartjs-2';
 
 const CharacteristicsChart = ({ reviews, metaData }) => {
 
-  console.log('reviews', reviews);
-  console.log('metaData', metaData);
+  let chararcteristicsObj = metaData.characteristics;
+  let characteristicsArray = [];
+  if (chararcteristicsObj) {
+    characteristicsArray = Object.entries(chararcteristicsObj);
+  }
+  for (let i = 0; i < characteristicsArray.length; i++) {
+    switch (characteristicsArray[i][0]) {
+      case 'Size':
+        characteristicsArray[i].push('too small');
+        characteristicsArray[i].push('too wide');
+        break;
+      case 'Width':
+        characteristicsArray[i].push('too narrow');
+        characteristicsArray[i].push('too wide');
+        break;
+      case 'Comfort':
+        characteristicsArray[i].push('uncomfortable');
+        characteristicsArray[i].push('perfect');
+        break;
+      case 'Quality':
+        characteristicsArray[i].push('poor');
+        characteristicsArray[i].push('perfect');
+        break;
+      case 'Length':
+        characteristicsArray[i].push('runs short');
+        characteristicsArray[i].push('runs long');
+        break;
+      case 'Fit':
+        characteristicsArray[i].push('runs tight');
+        characteristicsArray[i].push('runs long');
+        break;
+      default:
+        break;
+    }
+  }
 
-  // const options = {
-  //   scales: {
-  //     y: {
-  //       stacked: true,
-  //       display: false,
-  //       grid: {
-  //         drawBorder: false,
-  //         display: false,
-  //     },
-  //       ticks: {
-  //         beginAtZero: true,
-  //         display: false,
-  //       },
-  //     },
-  //     x: {
-  //       stacked: true,
-  //       display: false,
-  //       grid: {
-  //         drawBorder: false,
-  //         display: false,
-  //       },
-  //       ticks: {
-  //         beginAtZero: true,
-  //         display: false,
-  //       },
-  //     },
-  //   },
-  //   elements: {
-  //     bar: {
-  //       borderWidth: 0.1,
-  //     },
-  //   },
-  //   maintainAspectRatio: false,
-  //   // responsive: false => canvas doesn't resize
-  //   responsive: true,
-  //   // makes it a horizontal bar
-  //   indexAxis: 'y',
-  //   // hide labels
-  //   plugins: {
-  //     legend: {
-  //       display: false
-  //     }
-  //   },
-  //   title: {
-  //     display: false,
-  //     text: 'Percentage as based on total Reviews',
-  //   }
-  // }
+  console.log('characteristicsArray', characteristicsArray);
 
-  // const data = {
-  //   labels: [''],
-  //   datasets: [
-  //     {
-  //       backgroundColor: 'rgba(0,255,0,0.2)',
-  //       borderColor: 'rgba(0,255,0,0.2)',
-  //       borderWidth: 0.5,
-  //       stack: 1,
-  //       barThickness: 14,
-  //       categoryPercentage: 0.5,
-  //       height: 0.3,
-  //       hoverBackgroundColor: 'rgba(0,255,0,0.2)',
-  //       hoverBorderColor: 'rgba(0,255,0,0.2)',
-  //       data: [parseInt(rating)]
-  //     },
-  //     {
-  //       backgroundColor: 'rgba(30,30,30,0.2)',
-  //       borderColor: 'rgba(30,30,30,0.2)',
-  //       borderWidth: 0.5,
-  //       stack: 1,
-  //       barThickness: 14,
-  //       categoryPercentage: 0.5,
-  //       height: 0.3,
-  //       hoverBackgroundColor: 'rgba(30,30,30,0.2)',
-  //       hoverBorderColor: 'rgba(30,30,30,0.2)',
-  //       data: [totalNumberOfReviews - parseInt(rating)]
-  //     }
-  //   ]
-  // }
+
+  const calculateLeftStart = (value) => {
+
+    // math needed to account for 77% of the width and a 5-point rating scale
+    value *= .77;
+    value -= 5;
+    value *= .77
+    value += 5;
+    value /= 5;
+    value -= 1;
+
+    // multiply by 100 to get a percentage
+    return value * 100;
+  }
 
   return (
-    <div style={{height:'25px', width:'350px'}}>
-      {/* <Bar data={data} options={options}/> */}
-    </div>
+  <>
+   {characteristicsArray.map((characteristic, index) => {
+      return <div key={index} >
+        <div>
+          {characteristic[0]}
+        </div>
+        <div style={{display:"flex"}}>
+          <div className="char-bar">
+            <hr/>
+          </div>
+          <div className="square-icon" style={{'left': `${calculateLeftStart(characteristic[1].value)}%`}}>
+          ▼
+          </div>
+        </div>
+        <div style={{display:"flex", justifyContent:"space-between", width:"77%"}} >
+          <sup> {characteristic[2]}
+          </sup>
+          <sup > {characteristic[3]}
+          </sup>
+        </div>
+        <br/>
+        <br/>
+      </div>
+    })}
 
+  </>
   )
 }
 
 export default CharacteristicsChart;
-

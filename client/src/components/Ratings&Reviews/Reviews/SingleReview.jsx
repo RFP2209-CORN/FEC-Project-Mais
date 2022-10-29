@@ -28,12 +28,6 @@ const SingleReview = ({ review }) => {
   const handleNoClick = () => {
     setNoClicked(true);
     yesClicked === false && setNo(no + 1);
-    // let id = review.review_id;
-    // axios.put(`/reviews/${id}/helpful`, {...review, "helpfulness": review.helpfulness -= 1})
-    //   .then((result) => {
-    //   })
-    //   .catch((error) => {
-    //   })
   };
 
   const handleYesClick = () => {

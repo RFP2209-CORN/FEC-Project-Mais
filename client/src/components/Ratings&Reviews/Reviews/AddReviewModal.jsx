@@ -215,7 +215,7 @@ const AddReviewModal = ({ prodName, addReview, open, onClose, product_id, metaDa
 
             <div className="answer-photo">
               {images.length < 5 &&
-                <button
+                <button className="Upload-Photos"
                   onClick={(event) => {
                     event.preventDefault();
                     photoWidget.open();
