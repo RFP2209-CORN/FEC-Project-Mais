@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SizeSelector = ({currentStyle, skuSelected, changeSkuSelected, changeQuantitySelected, toggleMessage}) => {
   const renderSizeDropdown = () => {
     let sizes = [<option data-testid="size-null" key="defaultValue" value={false} disabled>Select Size</option>];
