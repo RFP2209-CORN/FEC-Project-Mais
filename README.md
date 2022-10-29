@@ -75,7 +75,7 @@ Questions and answers related to the product are shown in this section. Only 2 s
 <div align="center">
   <img src="screenshots/RatingsNReviews.png" alt="Ratings & Reviews" width="500">
 </div>
-Users can see how other customers have rated the product from a scale of 1-5. An average of all scores is shown, as well as the breakdown by rating. The stars correspond with the average rating. Up to 4 reviews is shown by default but users can click to see more. Users can also add their own rating and reviews for the product. Like questions and answers, users can also mark reviews as helpful to increase visibility or report to remove them.
+Users can see how other customers have rated a given product from a scale of 1-5. A composite average of all scores is shown, as well as the breakdown by rating. Up to 2 reviews is shown by default but users can click to see more. Users can also add their own review for a given product, including their own rating. Like questions and answers, users can also mark reviews as helpful to increase visibility.
 <table>
   <tr>
     <td>
