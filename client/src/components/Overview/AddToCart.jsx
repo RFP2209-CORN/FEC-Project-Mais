@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
 
 const AddToCart = ({currentStyle, skuSelected, quantitySelected, changeSkuSelected, changeQuantitySelected, failToAdd, toggleMessage})=>{
-  const [cart, setCart] = React.useState([]);
+  const [cart, setCart] = useState([]);
 
   const onAddToCart = (event) => {
     if (!skuSelected) {

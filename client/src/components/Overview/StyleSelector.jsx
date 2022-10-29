@@ -1,5 +1,3 @@
-import React from 'react';
-
 const StyleSelector = ({currentStyle, styles, changeCurrentStyle, changeSkuSelected, changeQuantitySelected, toggleMessage}) => {
   const onChange = (event) => {
     let style;
