@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
-import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
+// import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
+import BarRating from './BarRating.jsx';
 
 
-const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, children }) => {
+const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, currentProduct, children }) => {
   const [currCharacteristics, setCurrCharacteristics] = useState();
   const [compareCharacteristics, setCompareCharacteristics] = useState();
   const [currName, setCurrName] = useState();
@@ -19,11 +20,8 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
       .then(result => {
         setCompareCharacteristics(result.data.characteristics);
       });
-    axios.get(`/products/${productId}`)
-      .then(result => {
-        setCurrName(result.data.name);
-        setCompareName(compareProduct.name);
-      });
+    setCurrName(currentProduct.name);
+    setCompareName(compareProduct.name);
   }, []);
 
   const buildRows = () => {
@@ -63,13 +61,13 @@ const ComparisonModal = ({ open, onClose, productId, compareId, compareProduct, 
       return (
         <tr key={entry}>
           <td className="modal-curr-product">
-            {entry[0] > 0 && <StarRating rating={entry[0]}/>}
+            {entry[0] > 0 && <BarRating rating={entry[0]}/>}
           </td>
           <td className="modal-field-name">
             {entry[1]}
           </td>
           <td className="modal-compare-product">
-            {entry[2] > 0 && <StarRating rating={entry[2]}/>}
+            {entry[2] > 0 && <BarRating rating={entry[2]}/>}
           </td>
         </tr>
       );

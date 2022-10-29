@@ -3,7 +3,7 @@ import axios from 'axios';
 import ComparisonModal from './ComparisonModal.jsx';
 import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
-const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct, currProductId }) => {
+const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, updateProduct, currProductId, currentProduct }) => {
   const [product, setProduct] = useState(item);
   const [rating, setRating] = useState();
   const [originalPrice, setOriginalPrice] = useState();
@@ -50,7 +50,9 @@ const RelatedItemsCard = ({ item, calcRating, saleAndImageSetter, renderPrice, u
           onClose={closeModal}
           productId={currProductId}
           compareId={compareId}
-          compareProduct={product}>
+          compareProduct={product}
+          currentProduct={currentProduct}
+        >
         </ComparisonModal>
       }
       <div className="card-image">
