@@ -15,16 +15,8 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
 
-  const updateProduct = (e, prodId) => {
-    setProductId(prodId);
-  };
+  const updateProduct = (e, prodId) => { setProductId(prodId); };
 
-  // Testing Purpose ONLY ---- COMMENT OUT WHEN NOT TESTING //
-  // const cloudinary = {
-  //   createUploadWidget: () => { return null; }
-  // };
-
-  // Online Photo Upload Support
   const photoWidget = cloudinary.createUploadWidget(
     {
       cloudName: 'dqk77sezi',
@@ -32,46 +24,40 @@ const App = () => {
     },
     (error, result) => {
       if (!error && result && result.event === 'success') {
-        console.log('done! Here is the image info: ', result.info);
-        setImages([...images, result.info.url]);
+        setImages(prev => prev.length >= 5 ? prev : [...prev, result.info.url]);
       }
       if (error) { console.log(error); }
     }
   );
 
-  // DARK THEME FLASHLIGHT
+  // DARK THEME FLASHLIGHT MODE //
   const cursorPosition = (e) => {
     var x = e.clientX || e.touches[0].clientX;
     var y = e.clientY || e.touches[0].clientY;
-
     document.documentElement.style.setProperty('--cursorX', x + 'px');
     document.documentElement.style.setProperty('--cursorY', y + 'px');
   };
-
   document.addEventListener('mousemove', cursorPosition);
   document.addEventListener('touchmove', cursorPosition);
 
-  // Renders Everything needed for other widget to use
-  // useEffect(() => {
-  //   const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
+  useEffect(() => {
+    // Click Tracker
+    const modules = ['relatedItemsAndOutfits', 'overview', 'qa', 'rateAndReview'];
 
-  //   const listeners = modules.map(module => {
-  //     let elem = document.getElementById(module);
-  //     elem.addEventListener('click', trackClicks);
-  //   });
+    const listeners = modules.map(module => {
+      let elem = document.getElementById(module);
+      elem.addEventListener('click', trackClicks);
+    });
 
-  //   // Determine unique user
-  //   let uniqueUser = localStorage.getItem(document.cookie);
-  //   uniqueUser = JSON.parse(uniqueUser);
-  //   if (uniqueUser.cookie !== document.cookie) {
-  //     console.log('user is not the same');
-  //     localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
-  //   } else {
-  //     console.log('same user');
-  //   }
-  // }, []);
+    //   // Determine unique user
+    let uniqueUser = localStorage.getItem(document.cookie);
+    uniqueUser = JSON.parse(uniqueUser);
+    if (uniqueUser.cookie !== document.cookie) {
+      console.log('user is not the same');
+      localStorage.setItem(`${document.cookie}`, JSON.stringify({ cookie: document.cookie }));
+    }
+  }, []);
 
-  // Re-render everytime ProductId changes
   useEffect(() => {
     // Single Product
     axios.get(`/products/${productId}`)
@@ -102,7 +88,7 @@ const App = () => {
         <div>
           <span>
             {/* <img className="logo" src="https://static.onecms.io/wp-content/uploads/sites/47/2022/09/15/can-cats-eat-candy-corn-3.png" /> */}
-            <img class="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg="/>
+            <img className="logo" src="https://media.istockphoto.com/vectors/corn-cob-in-a-green-husk-isolated-on-white-background-sweet-golden-vector-id1208173277?k=20&m=1208173277&s=612x612&w=0&h=XFqTQ-8JTjptNr2j8Hdfc2df2bfrVq-UenUwVef-yCg=" />
           </span>&nbsp;
           <h1 className="company-name">ATELIER MAÏS</h1>
         </div>

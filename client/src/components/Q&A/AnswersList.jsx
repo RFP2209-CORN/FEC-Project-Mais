@@ -9,28 +9,21 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
   const [collapseButton, setCollapseButton] = useState(false);
   const [answerCount, setAnswerCount] = useState(2);
 
-  // Render List of Answers or Nothing.
-  const answerData = () => {
-    if (!totalAnswerList.length) {
-      return <em>There are no answers yet.</em>;
-    }
+  const showAnswersData = () => {
+    if (!totalAnswerList.length) { return <em>There are no answers yet.</em>; }
     if (totalAnswerList.length) {
       return answerList.map(answer => {
-        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleAnswerHelpful} handleReport={handleAnswerReport} />;
+        return <IndividualAnswer answer={answer} key={answer.answer_id} handleHelpful={handleAnswerHelpfulClick} handleReport={handleAnswerReport} />;
       });
     }
   };
 
-  // Handle LoadMoreAnswers/Collapse Button
-  const handleAnswerLength = (e) => {
-    if (e.target.innerText === 'LOAD MORE ANSWERS') {
-      setAnswerCount(prev => prev + 2);
-    } else if (e.target.innerText === 'COLLAPSE ANSWERS') {
-      setAnswerCount(2);
-    }
+  const handleLoadAnswersButton = (e) => {
+    if (e.target.innerText === 'LOAD MORE ANSWERS') { setAnswerCount(prev => prev + 2); }
+    if (e.target.innerText === 'COLLAPSE ANSWERS') { setAnswerCount(2); }
   };
 
-  // Async Rendering in conjunction with handleAnswerLength
+  // Async Rendering in conjunction with handleLoadAnswersButton
   useEffect(() => {
     if (totalAnswerList.length < 3) {
       setLoadAnswerButton(false);
@@ -50,8 +43,7 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
     setAnswerList(container);
   }, [answerCount, totalAnswerList]);
 
-  // increment Answer helpful by 1 per user
-  const handleAnswerHelpful = (item) => {
+  const handleAnswerHelpfulClick = (item) => {
     const userLookup = JSON.parse(localStorage.getItem([document.cookie]));
     if (!userLookup[`AID${item.answer_id}`]) {
       axios.put(`/qa/answers/${item.answer_id}/helpful`)
@@ -72,23 +64,17 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
     }
   };
 
-  // Mark Answer as Reported
   const handleAnswerReport = (item) => {
-    axios.put(`/qa/answers/${item.answer_id}/report`)
-      .then(() => item)
-      .catch(err => console.log(err));
+    axios.put(`/qa/answers/${item.answer_id}/report`).catch(err => console.log(err));
   };
 
-  // Initial Answers Data Retrieval
   useEffect(() => {
     axios.get(`/qa/questions/${questionId}/answers`)
       .then(result => {
         const data = result.data.results;
         let container = [];
         for (let i = 0; i < data.length; i++) {
-          if (i === answerCount) {
-            break;
-          }
+          if (i === answerCount) { break; }
           container.push(data[i]);
         }
         setTotalAnswerList(data);
@@ -99,13 +85,10 @@ const AnswersList = ({ questionId, handleHelpful, handleReport, answerInfo }) =>
 
   return (
     <div className="answers-container">
-      <div className="answers-list">
-        {answerData()}
-      </div>
-
+      <div className="answers-list">{showAnswersData()}</div>
       <div className="load-answers">
-        {loadAnswerButton && <button onClick={(e) => handleAnswerLength(e)}>LOAD MORE ANSWERS</button>}
-        {collapseButton && answerList.length > 0 && <button onClick={(e) => handleAnswerLength(e)}>COLLAPSE ANSWERS</button>}
+        {loadAnswerButton && <button onClick={(e) => handleLoadAnswersButton(e)}>LOAD MORE ANSWERS</button>}
+        {collapseButton && answerList.length > 0 && <button onClick={(e) => handleLoadAnswersButton(e)}>COLLAPSE ANSWERS</button>}
       </div>
     </div>
   );
