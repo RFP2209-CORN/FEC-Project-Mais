@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ImageGallery from './ImageGallery.jsx';
 import ProductInfo1 from './ProductInfo1.jsx';
@@ -7,15 +7,13 @@ import AddToCart from './AddToCart.jsx';
 import ProductInfo2 from './ProductInfo2.jsx';
 
 const Overview = ({productId, currentProduct, rating, totalReviews}) => {
-  //out of stock style
-  // const productId = '40345';
-  const [currentStyle, setCurrentStyle] = React.useState({});
-  const [styles, setStyles] = React.useState([]);
-  const [skuSelected, setSkuSelected] = React.useState(false);
-  const [quantitySelected, setQuantitySelected] = React.useState(0);
-  const [failToAdd, setFailToAdd] = React.useState(false);
+  const [currentStyle, setCurrentStyle] = useState({});
+  const [styles, setStyles] = useState([]);
+  const [skuSelected, setSkuSelected] = useState(false);
+  const [quantitySelected, setQuantitySelected] = useState(0);
+  const [failToAdd, setFailToAdd] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     axios.get(`/products/${productId}/styles`)
       .then(styles => {
         setStyles(styles.data.results);

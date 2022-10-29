@@ -1,4 +1,3 @@
-import React from 'react';
 import StarRating from '../Ratings&Reviews/Ratings/StarRating.jsx';
 
 const ProductInfo1 = ({ currentProduct, currentStyle, rating, totalReviews }) => {
@@ -7,7 +6,7 @@ const ProductInfo1 = ({ currentProduct, currentStyle, rating, totalReviews }) =>
       return (
         <p>
           <span style={{ textDecoration: 'line-through red' }}>{currentStyle?.original_price}</span>
-          <span> </span>
+          &nbsp;
           <span style={{ color: 'red' }}>{currentStyle?.sale_price}</span>
         </p>
       );

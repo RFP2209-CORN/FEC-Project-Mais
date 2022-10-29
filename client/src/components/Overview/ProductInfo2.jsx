@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ProductInfo2 = ({currentProduct}) => {
   const onShare = (event) => {
     if (event.target.name === 'facebook') {

@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import { useState } from 'react';
 
 const ExpandedView = ({open, onClose, currentStyle, currentPhoto, onLeftClick, onRightClick, changePhoto}) => {
   if (!open) {
     return null;
   }
 
-  const [zoomed, setZoomed] = React.useState(false);
+  const [zoomed, setZoomed] = useState(false);
 
   const renderIcons = () => {
     let icons = [];
