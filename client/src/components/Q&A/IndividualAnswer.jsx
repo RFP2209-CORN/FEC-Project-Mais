@@ -9,47 +9,25 @@ const IndividualAnswer = ({ answer, handleHelpful, handleReport }) => {
   const [image, setImage] = useState();
   const { body, answerer_name, date, photos, helpfulness } = answer;
 
-  // Display List of Photos for Answer
   const showPhotos = () => {
-    if (photos.length) {
-      return photos.map(photo => {
-        return <img src={photo.url} key={photo.id} width="90" height="60" className="photo"
-          onClick={() => {
-            setImage(photo);
-            setPhotoClicked(true);
-          }} />;
-      });
-    }
+    return photos?.map(photo => {
+      return <img src={photo.url} key={photo.id} width="90" height="60" className="photo"
+        onClick={() => { setImage(photo); setPhotoClicked(true); }} />;
+    });
   };
 
-  // Click event to enlarge image
-  const setPhotos = () => {
-    if (photos.length) {
-      return <p className="photos">{showPhotos()} <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image} /></p>;
-    }
+  const displayPhotos = () => {
+    return <p className="photos">{showPhotos()} <DisplayPhotoModal photoClicked={photoClicked} setPhotoClicked={setPhotoClicked} photo={image} /></p>;
   };
 
   return (
     <div className="individual-answer" data-testid="answer-modal-inputs">
-      <p className="individual-answer-body">
-        {body}
-      </p>
-
-      {setPhotos()}
-
-      <p className="answer-name-and-date">
-        by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}
-      </p>
-
-      <p className="answer-helpfulness">
-        Helpful? <em><span className="helpful" onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em>
-      </p>
-
+      <p className="individual-answer-body">{body}</p>
+      {photos.length > 0 && displayPhotos()}
+      <p className="answer-name-and-date">by {answerer_name}, {format(parseISO(date), 'MMMM dd, yyyy')}</p>
+      <p className="answer-helpfulness">Helpful? <em><span className="helpful" onClick={() => handleHelpful(answer)}>Yes</span> ({helpfulness})</em></p>
       <p className="answer-report">
-        {!report && <button onClick={() => {
-          setReport(true);
-          handleReport(answer);
-        }}>Report</button>}
+        {!report && <button onClick={() => { setReport(true); handleReport(answer); }}>Report</button>}
         {report && <span>Reported</span>}
       </p>
     </div>

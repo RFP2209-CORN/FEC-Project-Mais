@@ -734,6 +734,10 @@ a:visited {
   padding: 10px 0 10px 0;
 }
 
+.helpful:hover {
+  text-decoration: underline;
+}
+
 /*
 ========================================
     RATINGS & REVIEWS
@@ -759,7 +763,7 @@ a:visited {
 }
 
 .align-ratings-breakdown-header {
-  margin-left: 4%;
+  margin-left: 0%;
 }
 
 .single-star-container {
