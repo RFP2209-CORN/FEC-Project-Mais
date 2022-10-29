@@ -491,6 +491,37 @@ select {
   font-weight: bold;
 }
 
+.bar-rating-container {
+  height: 10px;
+  width: 31px;
+  display: inline-block;
+  background-image: url(https://www.freeiconspng.com/uploads/empty-bar-image-icon-14.png);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+/* background-image: url(https://www.drip.com/hubfs/Imported_Blog_Media/Out-of-Stock-Product-Pages-WordPress.jpg); */
+
+.bar-rating-fill {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  background-color: gold;
+}
+.bar-rating-icon {
+  position: relative;
+  display: inline-block;
+  height: 36px;
+  /* background-color: gold; */
+}
+
+.bar-rating-outline {
+  height: 36px;
+  width: 31px;
+
+}
+
+
 .close-modal-btn {
   position: fixed;
   top: 0;
