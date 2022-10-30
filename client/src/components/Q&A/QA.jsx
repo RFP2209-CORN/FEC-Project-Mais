@@ -17,7 +17,7 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
   const [questionCount, setQuestionCount] = useState(2);
   const [reRender, setReRender] = useState(false);
   const [openSurprise, setOpenSurprise] = useState(false);
-  // Search Function
+
   const handleSearch = (value) => {
     let container = [];
     if (value.length <= 2) {
@@ -27,16 +27,21 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
       }
     } else if (value.length > 2) {
       for (let i = 0; i < allQuestionsData.length; i++) {
-        if (allQuestionsData[i].question_body.toLowerCase().includes(value)) {
+        if (allQuestionsData[i].question_body.toLowerCase().includes(value.toLowerCase())) {
           container.push(allQuestionsData[i]);
+        }
+        const currentQuestion = allQuestionsData[i].answers;
+        for (let key in currentQuestion) {
+          if (currentQuestion[key].body.toLowerCase().includes(value.toLowerCase())) {
+            container.push(allQuestionsData[i]);
+          }
         }
       }
     }
     setQuestionsList(container);
   };
 
-  // increment Question helpful by 1 per user
-  const handleQuestionHelpful = (item) => {
+  const handleQuestionHelpfulClick = (item) => {
     const userLookup = JSON.parse(localStorage.getItem([document.cookie]));
     if (!userLookup[`QID${item.question_id}`]) {
       axios.put(`/qa/questions/${item.question_id}/helpful`)
@@ -57,22 +62,16 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
     }
   };
 
-  // Mark Question as Reported
   const handleQuestionReport = (item) => {
-    axios.put(`/qa/questions/${item.question_id}/report`)
-      .catch(err => console.log(err));
+    axios.put(`/qa/questions/${item.question_id}/report`).catch(err => console.log(err));
   };
 
-  // Handle LoadMoreQuestions/Collapse Button
-  const handleLoadMoreQuestion = (e) => {
-    if (e.target.innerText === 'MORE ANSWERED QUESTIONS') {
-      setQuestionCount(prev => prev + 2);
-    } else if (e.target.innerText === 'COLLAPSE QUESTIONS') {
-      setQuestionCount(2);
-    }
+  const handleLoadQuestionsButton = (e) => {
+    if (e.target.innerText === 'MORE ANSWERED QUESTIONS') { setQuestionCount(prev => prev + 2); }
+    if (e.target.innerText === 'COLLAPSE QUESTIONS') { setQuestionCount(2); }
   };
 
-  // works async in conjunction with handleLoadMoreQuestion
+  // works async in conjunction with handleLoadQuestionsButton
   useEffect(() => {
     if (allQuestionsData.length < 3) {
       setLoadQuestionButton(false);
@@ -92,7 +91,6 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
     setQuestionsList(container);
   }, [questionCount, allQuestionsData]);
 
-  // Add new Question w/ validation
   const handleSubmitQuestion = (e) => {
     e.preventDefault();
     const questionData = {
@@ -101,14 +99,14 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
       email: e.target.email.value,
       'product_id': productId
     };
-    if (!validate(questionData.email)) {
-      alert('The email address provided is not in correct email format.');
-    }
-    axios.post('/qa/questions', questionData)
-      .then(() => setIsOpen(false))
-      .catch(err => console.log(err));
 
-    setReRender(!reRender);
+    if (!validate(questionData.email)) { alert('The email address provided is not in correct email format.'); }
+    axios.post('/qa/questions', questionData)
+      .then(() => {
+        setIsOpen(false);
+        setReRender(!reRender);
+      })
+      .catch(err => console.log(err));
   };
 
   // Renders list of Questions or Nothing.
@@ -121,7 +119,7 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
         return <IndividualQuestion
           question={item}
           key={item.question_id}
-          handleHelpful={handleQuestionHelpful}
+          handleHelpful={handleQuestionHelpfulClick}
           handleReport={handleQuestionReport}
           product={productName}
           photoWidget={photoWidget}
@@ -130,7 +128,6 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
     }
   };
 
-  // Initial Questions Data Retrieval
   useEffect(() => {
     axios.get(`/qa/questions/${productId}`)
       .then(result => {
@@ -150,22 +147,16 @@ const QuestionsAndAnswers = ({ productId, productName, photoWidget, images, setI
     <div className="qa-container">
       <p className="qa-title"><b>
         <span onClick={() => setOpenSurprise(true)}
+        // Surprise image Modal
         >Q</span>uestions & Answers </b></p>
       <Surprise open={openSurprise} onClose={() => setOpenSurprise(false)} />
 
-      <div className="search-question">
-        <SearchQA handleSearch={handleSearch} />
-      </div>
-
-      <div className="questions-list">
-        {renderQuestionsList(questionsList)}
-      </div>
-
+      <div className="search-question"><SearchQA handleSearch={handleSearch} /></div>
+      <div className="questions-list">{renderQuestionsList(questionsList)}</div>
       <div className="more-answered-questions">
-        {loadQuestionButton && <button onClick={(e) => handleLoadMoreQuestion(e)} >MORE ANSWERED QUESTIONS</button>}
-        {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadMoreQuestion(e)}>COLLAPSE QUESTIONS</button>}
+        {loadQuestionButton && <button onClick={(e) => handleLoadQuestionsButton(e)} >MORE ANSWERED QUESTIONS</button>}
+        {collapseButton && questionsList.length > 0 && <button onClick={(e) => handleLoadQuestionsButton(e)}>COLLAPSE QUESTIONS</button>}
       </div>
-
       <div className="ask-question-modal">
         <button onClick={() => setIsOpen(true)}>ASK A QUESTION +</button>
         <AskAQuestionModal open={isOpen} onClose={() => setIsOpen(false)} product={productName} submitQuestion={handleSubmitQuestion} />

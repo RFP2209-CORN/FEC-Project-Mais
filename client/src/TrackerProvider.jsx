@@ -16,7 +16,7 @@ export const TrackerProvider = ({ children }) => {
   const [events, setEvents] = useState();
 
   const trackClicks = (event) => {
-    console.log('clicked: ', event.target.nodeName, event.currentTarget.id, Date.now().toString());
+    // console.log('clicked: ', event.target.nodeName, event.currentTarget.id, Date.now().toString());
     axios.post('/interactions', {
       element: event.target.nodeName,
       widget: event.currentTarget.id,

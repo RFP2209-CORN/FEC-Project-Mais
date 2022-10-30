@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState } from 'react';
 import ExpandedView from './ExpandedView.jsx';
 
 const ImageGallery = ({currentStyle}) => {
-  const [currentPhoto, setCurrentPhoto] = React.useState(0);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const renderMainImage = () => {
     if (!currentStyle.photos[0].url) {

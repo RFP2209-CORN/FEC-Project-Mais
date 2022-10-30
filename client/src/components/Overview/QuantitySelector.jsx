@@ -1,5 +1,3 @@
-import React from 'react';
-
 const QuantitySelector = ({currentStyle, skuSelected, quantitySelected, changeQuantitySelected}) => {
   const renderQuantityDropdown = () => {
     if (!skuSelected) {

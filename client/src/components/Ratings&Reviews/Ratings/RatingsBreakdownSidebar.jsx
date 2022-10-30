@@ -3,15 +3,15 @@ import StarRating from './StarRating.jsx';
 import StarRatingsChart from './StarRatingsChart.jsx';
 import CharacteristicsChart from './CharacteristicsChart.jsx';
 
-const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
+const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
 
   const [ recommend, setRecommend ] = useState(0);
-  const [ filteredReviews, setFilteredReviews ] = useState([]);
-  const [ toggleFiveStar, setToggleFiveStar ] = useState(false);
-  const [ toggleFourStar, setToggleFourStar ] = useState(false);
-  const [ toggleThreeStar, setToggleThreeStar ] = useState(false);
-  const [ toggleTwoStar, setToggleTwoStar ] = useState(false);
-  const [ toggleOneStar, setToggleOneStar ] = useState(false);
+  const [filteredReviews, setFilteredReviews] = useState([]);
+  const [toggleFiveStar, setToggleFiveStar] = useState(false);
+  const [toggleFourStar, setToggleFourStar] = useState(false);
+  const [toggleThreeStar, setToggleThreeStar] = useState(false);
+  const [toggleTwoStar, setToggleTwoStar] = useState(false);
+  const [toggleOneStar, setToggleOneStar] = useState(false);
 
   useEffect(() => {
     let filtered = [];
@@ -37,6 +37,13 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, metaData, ratin
     setDisplayedReviews(filtered);
   }, [toggleOneStar, toggleTwoStar, toggleThreeStar, toggleFourStar, toggleFiveStar]);
 
+  const RecommendPercentage = () => {
+    let recs = 0;
+    reviews.forEach((review) => {
+      review.recommend && recs++;
+    });
+    return Math.trunc(recs / reviews.length * 100);
+  };
 
   const RecommendPercentage = () => {
     let recs = 0;
