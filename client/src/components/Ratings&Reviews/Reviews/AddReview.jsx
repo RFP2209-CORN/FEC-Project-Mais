@@ -15,7 +15,7 @@ const AddReviewButton = ({ product_id, prodName, addReview, metaData, images, se
 
   return (
     <>
-      <button onClick={onAddReviewClick}>
+      <button className="Add-Review" onClick={onAddReviewClick}>
         Add Review
         <AddReviewModal open={isOpen} onClose={closeModal} product_id={product_id} prodName={prodName} addReview={addReview} metaData={metaData} photoWidget={photoWidget} images={images} setImages={setImages} />
       </button>

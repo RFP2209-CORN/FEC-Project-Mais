@@ -3,7 +3,7 @@ import axios from 'axios';
 import RatingsBreakdownSidebar from './Ratings/RatingsBreakdownSidebar.jsx';
 import ReviewsList from './Reviews/ReviewsList.jsx';
 
-const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, images, setImages, photoWidget }) => {
+const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, totalReviews, metaData, photoWidget, images, setImages }) => {
   const [displayedReviews, setDisplayedReviews] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [fiveStar, setFiveStar] = useState(0);
@@ -14,7 +14,6 @@ const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, to
   const [prodName, setProdName] = useState('');
   const [star, setStar] = useState();
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [metaData, setMetaData] = useState({});
   const [products, setProducts] = useState({});
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const RatingsAndReviews = ({ product_id, currentProduct, rating, ratingsData, to
   return (
     <div className="ratings-and-reviews">
       <div className="ratings-breakdown">
-        < RatingsBreakdownSidebar setDisplayedReviews={setDisplayedReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalReviews} rating={rating} />
+        < RatingsBreakdownSidebar setDisplayedReviews={setDisplayedReviews} reviews={reviews} fiveStar={fiveStar} fourStar={fourStar} threeStar={threeStar} twoStar={twoStar} oneStar={oneStar} totalNumberOfReviews={totalReviews} metaData={metaData} rating={rating} />
       </div>
       <div className="reviews-list">
         {displayedReviews.length > 0

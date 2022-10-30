@@ -14,6 +14,7 @@ const App = () => {
   const [ratingsData, setRatingsData] = useState([]);
   const [images, setImages] = useState([]);
   const [totalReviews, setTotalReviews] = useState(0);
+  const [metaData, setMetaData] = useState([]);
 
   const updateProduct = (e, prodId) => { setProductId(prodId); };
 
@@ -78,12 +79,14 @@ const App = () => {
         setRating(rating);
         setTotalReviews(total);
         setRatingsData(ratings);
+        setMetaData(results.data);
       })
       .catch(err => console.log(err));
   }, [productId]);
 
   return (
-    <div id="app-container" onMouseMove={cursorPosition}>
+    // <div id="app-container" onMouseMove={cursorPosition}>
+      <div id="app-container">
       <div id="banner">
         <div>
           <span>
@@ -101,20 +104,20 @@ const App = () => {
         </div>
       </div>
 
-      <div id="overview">
+      {/* <div id="overview">
         <Overview productId={productId} currentProduct={currentProduct} rating={rating} totalReviews={totalReviews} />
-      </div>
+      </div> */}
 
-      <div id="relatedItemsAndOutfits">
+      {/* <div id="relatedItemsAndOutfits">
         <RelatedItemsAndOutfits productId={productId} updateProduct={updateProduct} currentProduct={currentProduct} />
-      </div>
+      </div> */}
 
-      <div id="qa">
+      {/* <div id="qa">
         <QuestionsAndAnswers productId={productId} productName={currentProduct.name} photoWidget={photoWidget} images={images} setImages={setImages} />
-      </div>
+      </div> */}
 
       <div id="rateAndReview">
-        <RatingsAndReviews product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
+        <RatingsAndReviews metaData={metaData} product_id={productId} ratingsData={ratingsData} rating={rating} currentProduct={currentProduct} totalReviews={totalReviews} photoWidget={photoWidget} images={images} setImages={setImages} />
       </div>
     </div>
   );

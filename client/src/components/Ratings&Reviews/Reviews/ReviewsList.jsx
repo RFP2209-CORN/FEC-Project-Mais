@@ -110,7 +110,7 @@ const ReviewsList = ({ metaData, product_id, prodName, addReview, displayedRevie
       </div>
       <span className="load-more-reviews-btn">
         {!closeLoadButton &&
-          <button onClick={loadMoreReviews}>
+          <button className="Load-More-Reviews" onClick={loadMoreReviews}>
             Load More Reviews
           </button>}
         <span className="add-review-btn">

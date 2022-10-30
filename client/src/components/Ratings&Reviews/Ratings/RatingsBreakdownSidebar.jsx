@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRating from './StarRating.jsx';
 import StarRatingsChart from './StarRatingsChart.jsx';
+import CharacteristicsChart from './CharacteristicsChart.jsx';
 
 const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveStar, fourStar, threeStar, twoStar, oneStar, totalNumberOfReviews, product_id }) => {
 
@@ -14,6 +15,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
 
   useEffect(() => {
     let filtered = [];
+    let recs = 0;
     for (let i = 0; i < reviews.length; i++) {
       if (toggleFiveStar && reviews[i].rating === 5) {
         filtered.push(reviews[i]);
@@ -31,6 +33,7 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
         filtered.push(reviews[i]);
       }
     }
+    setRecommend(recs);
     setDisplayedReviews(filtered);
   }, [toggleOneStar, toggleTwoStar, toggleThreeStar, toggleFourStar, toggleFiveStar]);
 
@@ -41,6 +44,14 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
     });
     return Math.trunc(recs / reviews.length * 100);
   };
+
+  const RecommendPercentage = () => {
+    let recs = 0;
+    reviews.forEach((review) => {
+      review.recommend && recs++;
+    })
+    return Math.trunc(recs/reviews.length * 100);
+  }
 
   const handleStarClick = (num) => {
     switch (num) {
@@ -96,6 +107,9 @@ const RatingsBreakdownSidebar = ({ setDisplayedReviews, reviews, rating, fiveSta
       <h4 className="flexbox-container" onClick={() => handleStarClick(1)}>
         1 star &nbsp; &nbsp; &nbsp;&nbsp; <StarRatingsChart totalNumberOfReviews={totalNumberOfReviews} rating={oneStar} /> &nbsp; {oneStar} reviews
       </h4>
+      <br />
+      <br />
+      <CharacteristicsChart metaData={metaData} reviews={reviews}/>
     </>
   );
 };

@@ -781,6 +781,9 @@ a:visited {
 ========================================
 */
 
+.align-ratings-breakdown-header {
+  margin-left: 0%;
+}
 
 .ratings-and-reviews {
   margin-top: 40px;
@@ -915,4 +918,19 @@ a:visited {
 
 .button-dropdown:hover {
   text-decoration: underline;
+}
+
+.char-bar {
+  border: none;
+  height: 15px;
+  width: 77%;
+    /* Set the hr color */
+  color: rgb(120, 117, 117); /* old IE */
+  background-color: rgb(120, 117, 117); /* Modern Browsers */
+}
+
+.square-icon {
+    position: relative;
+    display: inline-block;
+    height: .7px;
 }
